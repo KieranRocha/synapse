@@ -402,3 +402,1886 @@ System.Net.Http.HttpRequestException: Nenhuma conexão pôde ser feita porque a 
 2025-06-16 21:47:15.698 -03:00 [INF] End processing HTTP request after 4.3949ms - 404
 2025-06-16 21:48:15.363 -03:00 [INF] 📄 Processando save: 0345385.iam (Tipo: Assembly)
 2025-06-16 21:48:15.367 -03:00 [INF] 🔧 Extraindo BOM de assembly: 0345385.iam
+2025-06-16 21:51:52.450 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:51:52.451 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:51:52.455 -03:00 [INF] Received HTTP response headers after 3.1713ms - 204
+2025-06-16 21:51:52.456 -03:00 [INF] End processing HTTP request after 6.2723ms - 204
+2025-06-16 21:56:52.469 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:56:52.472 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:56:52.477 -03:00 [INF] Received HTTP response headers after 3.9439ms - 204
+2025-06-16 21:56:52.480 -03:00 [INF] End processing HTTP request after 11.8393ms - 204
+2025-06-16 22:00:45.860 -03:00 [INF] Companion Worker Service parando.
+2025-06-16 22:00:45.861 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 22:00:45.862 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 22:00:45.862 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 22:00:45.866 -03:00 [INF] 🏁 Work Session finalizada: 0254385.ipt - Duração: 00:13:30 - 0 saves
+2025-06-16 22:00:45.868 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 22:00:45.868 -03:00 [INF] Enviando fim da sessão de trabalho: 0254385.ipt
+2025-06-16 22:00:45.869 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 22:00:45.869 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 22:01:03.818 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-16 22:01:03.851 -03:00 [INF] Tentando conectar ao Inventor...
+2025-06-16 22:01:03.968 -03:00 [INF] ✓ Conectado ao Inventor 2023
+2025-06-16 22:01:03.970 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-16 22:01:03.972 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-16 22:01:03.972 -03:00 [INF] 🔄 Iniciando monitoramento via polling (mais confiável que eventos COM)
+2025-06-16 22:01:03.973 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-16 22:01:03.975 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-16 22:01:03.989 -03:00 [INF] 🔍 Detectando 28 documentos já abertos
+2025-06-16 22:01:04.013 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:01:04.020 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:01:04.051 -03:00 [INF] 📂 ABERTO: 0345385.iam
+2025-06-16 22:01:04.054 -03:00 [INF] 📂 Documento aberto: 0345385.iam
+2025-06-16 22:01:04.069 -03:00 [INF] 🚀 Work Session iniciada: 0345385.iam (ID: 89e9298a-916c-4ebb-8ebb-a264b444bc99)
+2025-06-16 22:01:04.088 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.089 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.131 -03:00 [INF] 📂 ABERTO: 089277.ipt
+2025-06-16 22:01:04.132 -03:00 [INF] 📂 Documento aberto: 089277.ipt
+2025-06-16 22:01:04.134 -03:00 [INF] 🚀 Work Session iniciada: 089277.ipt (ID: b7bf1367-03d9-4b37-8595-5de5e752c767)
+2025-06-16 22:01:04.135 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.136 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.141 -03:00 [INF] 📂 ABERTO: 0313902.ipt
+2025-06-16 22:01:04.141 -03:00 [INF] 📂 Documento aberto: 0313902.ipt
+2025-06-16 22:01:04.142 -03:00 [INF] 🚀 Work Session iniciada: 0313902.ipt (ID: 3d86aea8-06ad-4242-9304-1ca6cddfdf8b)
+2025-06-16 22:01:04.143 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.145 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.151 -03:00 [INF] 📂 ABERTO: UNI 5589 M16
+2025-06-16 22:01:04.152 -03:00 [INF] 📂 Documento aberto: UNI 5589 M16
+2025-06-16 22:01:04.154 -03:00 [INF] 🚀 Work Session iniciada: UNI 5589 M16 (ID: b5b41712-b1ff-48bd-986d-55c03b482b60)
+2025-06-16 22:01:04.154 -03:00 [INF] Received HTTP response headers after 60.9696ms - 404
+2025-06-16 22:01:04.154 -03:00 [INF] Received HTTP response headers after 14ms - 404
+2025-06-16 22:01:04.154 -03:00 [INF] Received HTTP response headers after 5.5893ms - 404
+2025-06-16 22:01:04.155 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.160 -03:00 [INF] End processing HTTP request after 72.6731ms - 404
+2025-06-16 22:01:04.160 -03:00 [INF] End processing HTTP request after 16.9766ms - 404
+2025-06-16 22:01:04.160 -03:00 [INF] End processing HTTP request after 24.92ms - 404
+2025-06-16 22:01:04.161 -03:00 [INF] Received HTTP response headers after 138.9698ms - 204
+2025-06-16 22:01:04.161 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.165 -03:00 [INF] End processing HTTP request after 161.0209ms - 204
+2025-06-16 22:01:04.168 -03:00 [INF] Received HTTP response headers after 1.2266ms - 404
+2025-06-16 22:01:04.169 -03:00 [INF] End processing HTTP request after 13.9336ms - 404
+2025-06-16 22:01:04.171 -03:00 [INF] 📂 ABERTO: 0345580.ipt
+2025-06-16 22:01:04.172 -03:00 [INF] 📂 Documento aberto: 0345580.ipt
+2025-06-16 22:01:04.173 -03:00 [INF] 🚀 Work Session iniciada: 0345580.ipt (ID: b9243dff-29bc-41fb-be0d-0ab7438efb2b)
+2025-06-16 22:01:04.174 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.175 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.177 -03:00 [INF] Received HTTP response headers after 0.8354ms - 404
+2025-06-16 22:01:04.178 -03:00 [INF] End processing HTTP request after 3.8569ms - 404
+2025-06-16 22:01:04.180 -03:00 [INF] 📂 ABERTO: 0345709.ipt
+2025-06-16 22:01:04.180 -03:00 [INF] 📂 Documento aberto: 0345709.ipt
+2025-06-16 22:01:04.181 -03:00 [INF] 🚀 Work Session iniciada: 0345709.ipt (ID: 93c34cd7-a639-431b-b53f-92f21a507bf1)
+2025-06-16 22:01:04.183 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.184 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.186 -03:00 [INF] Received HTTP response headers after 0.8359ms - 404
+2025-06-16 22:01:04.187 -03:00 [INF] End processing HTTP request after 4.4582ms - 404
+2025-06-16 22:01:04.189 -03:00 [INF] 📂 ABERTO: 0345710.ipt
+2025-06-16 22:01:04.190 -03:00 [INF] 📂 Documento aberto: 0345710.ipt
+2025-06-16 22:01:04.191 -03:00 [INF] 🚀 Work Session iniciada: 0345710.ipt (ID: 3a4f6831-967a-4b08-a9cc-77474c8be262)
+2025-06-16 22:01:04.192 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.193 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.194 -03:00 [INF] Received HTTP response headers after 0.7079ms - 404
+2025-06-16 22:01:04.196 -03:00 [INF] End processing HTTP request after 3.3238ms - 404
+2025-06-16 22:01:04.197 -03:00 [INF] 📂 ABERTO: 0345707.ipt
+2025-06-16 22:01:04.198 -03:00 [INF] 📂 Documento aberto: 0345707.ipt
+2025-06-16 22:01:04.199 -03:00 [INF] 🚀 Work Session iniciada: 0345707.ipt (ID: aa351c89-40ba-4026-a6b9-7f1baebf18f6)
+2025-06-16 22:01:04.200 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.201 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.203 -03:00 [INF] Received HTTP response headers after 1.032ms - 404
+2025-06-16 22:01:04.204 -03:00 [INF] End processing HTTP request after 4.1033ms - 404
+2025-06-16 22:01:04.206 -03:00 [INF] 📂 ABERTO: 0345708.ipt
+2025-06-16 22:01:04.206 -03:00 [INF] 📂 Documento aberto: 0345708.ipt
+2025-06-16 22:01:04.207 -03:00 [INF] 🚀 Work Session iniciada: 0345708.ipt (ID: 9f6ccc8c-8f2e-4e2f-a488-d0d33a84183d)
+2025-06-16 22:01:04.208 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.209 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.210 -03:00 [INF] Received HTTP response headers after 0.8305ms - 404
+2025-06-16 22:01:04.211 -03:00 [INF] End processing HTTP request after 3.4265ms - 404
+2025-06-16 22:01:04.213 -03:00 [INF] 📂 ABERTO: 0345536.ipt
+2025-06-16 22:01:04.213 -03:00 [INF] 📂 Documento aberto: 0345536.ipt
+2025-06-16 22:01:04.215 -03:00 [INF] 🚀 Work Session iniciada: 0345536.ipt (ID: 576300eb-3b95-4218-88c1-c318b2e4521f)
+2025-06-16 22:01:04.216 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.217 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.219 -03:00 [INF] Received HTTP response headers after 1.1114ms - 404
+2025-06-16 22:01:04.220 -03:00 [INF] End processing HTTP request after 4.6342ms - 404
+2025-06-16 22:01:04.222 -03:00 [INF] 📂 ABERTO: 0345538.ipt
+2025-06-16 22:01:04.222 -03:00 [INF] 📂 Documento aberto: 0345538.ipt
+2025-06-16 22:01:04.223 -03:00 [INF] 🚀 Work Session iniciada: 0345538.ipt (ID: 59352dde-8a95-44f1-97c2-633c3ac18c70)
+2025-06-16 22:01:04.224 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.225 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.227 -03:00 [INF] Received HTTP response headers after 0.7139ms - 404
+2025-06-16 22:01:04.228 -03:00 [INF] End processing HTTP request after 3.4807ms - 404
+2025-06-16 22:01:04.229 -03:00 [INF] 📂 ABERTO: 088259.ipt
+2025-06-16 22:01:04.230 -03:00 [INF] 📂 Documento aberto: 088259.ipt
+2025-06-16 22:01:04.231 -03:00 [INF] 🚀 Work Session iniciada: 088259.ipt (ID: ee8b84e6-3452-4211-a056-b08e40d94ae4)
+2025-06-16 22:01:04.232 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.233 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.235 -03:00 [INF] Received HTTP response headers after 0.8647ms - 404
+2025-06-16 22:01:04.237 -03:00 [INF] End processing HTTP request after 4.5048ms - 404
+2025-06-16 22:01:04.240 -03:00 [INF] 📂 ABERTO: 111646.ipt
+2025-06-16 22:01:04.240 -03:00 [INF] 📂 Documento aberto: 111646.ipt
+2025-06-16 22:01:04.242 -03:00 [INF] 🚀 Work Session iniciada: 111646.ipt (ID: 979f10f2-d091-4e26-a8c1-e0f340fa0896)
+2025-06-16 22:01:04.244 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.245 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.246 -03:00 [INF] Received HTTP response headers after 0.7773ms - 404
+2025-06-16 22:01:04.248 -03:00 [INF] End processing HTTP request after 3.973ms - 404
+2025-06-16 22:01:04.250 -03:00 [INF] 📂 ABERTO: 0254385.ipt
+2025-06-16 22:01:04.251 -03:00 [INF] 📂 Documento aberto: 0254385.ipt
+2025-06-16 22:01:04.252 -03:00 [INF] 🚀 Work Session iniciada: 0254385.ipt (ID: 75098b3d-0383-4f3f-a405-5e4223a0129b)
+2025-06-16 22:01:04.253 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.254 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.256 -03:00 [INF] Received HTTP response headers after 0.7186ms - 404
+2025-06-16 22:01:04.258 -03:00 [INF] End processing HTTP request after 4.2701ms - 404
+2025-06-16 22:01:04.260 -03:00 [INF] 📂 ABERTO: 0321862.ipt
+2025-06-16 22:01:04.261 -03:00 [INF] 📂 Documento aberto: 0321862.ipt
+2025-06-16 22:01:04.262 -03:00 [INF] 🚀 Work Session iniciada: 0321862.ipt (ID: db5fa7a3-1cde-4b24-b1e4-f4c635f34b02)
+2025-06-16 22:01:04.263 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.264 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.266 -03:00 [INF] Received HTTP response headers after 0.8107ms - 404
+2025-06-16 22:01:04.267 -03:00 [INF] End processing HTTP request after 4.0433ms - 404
+2025-06-16 22:01:04.269 -03:00 [INF] 📂 ABERTO: 0307215.iam
+2025-06-16 22:01:04.269 -03:00 [INF] 📂 Documento aberto: 0307215.iam
+2025-06-16 22:01:04.271 -03:00 [INF] 🚀 Work Session iniciada: 0307215.iam (ID: ee3d5926-fa38-41c8-a163-97eea9e878e6)
+2025-06-16 22:01:04.272 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.273 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.274 -03:00 [INF] Received HTTP response headers after 0.7309ms - 404
+2025-06-16 22:01:04.276 -03:00 [INF] End processing HTTP request after 4.0353ms - 404
+2025-06-16 22:01:04.277 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_1.ipt
+2025-06-16 22:01:04.278 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_1.ipt
+2025-06-16 22:01:04.279 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_1.ipt (ID: d94d1afb-09e7-4cef-a354-1d8c6993da48)
+2025-06-16 22:01:04.280 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.281 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.283 -03:00 [INF] Received HTTP response headers after 0.7869ms - 404
+2025-06-16 22:01:04.285 -03:00 [INF] End processing HTTP request after 4.4731ms - 404
+2025-06-16 22:01:04.286 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_2.ipt
+2025-06-16 22:01:04.287 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_2.ipt
+2025-06-16 22:01:04.288 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_2.ipt (ID: 8c99abb0-2819-45f2-870c-0fdec4613150)
+2025-06-16 22:01:04.289 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.290 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.292 -03:00 [INF] Received HTTP response headers after 0.8045ms - 404
+2025-06-16 22:01:04.293 -03:00 [INF] End processing HTTP request after 3.9088ms - 404
+2025-06-16 22:01:04.295 -03:00 [INF] 📂 ABERTO: 0345546.ipt
+2025-06-16 22:01:04.296 -03:00 [INF] 📂 Documento aberto: 0345546.ipt
+2025-06-16 22:01:04.297 -03:00 [INF] 🚀 Work Session iniciada: 0345546.ipt (ID: dea4f0ea-9435-4f2b-86dd-c90948ae19b5)
+2025-06-16 22:01:04.299 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.300 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.302 -03:00 [INF] Received HTTP response headers after 0.9829ms - 404
+2025-06-16 22:01:04.304 -03:00 [INF] End processing HTTP request after 5.7001ms - 404
+2025-06-16 22:01:04.306 -03:00 [INF] 📂 ABERTO: 0345712.ipt
+2025-06-16 22:01:04.306 -03:00 [INF] 📂 Documento aberto: 0345712.ipt
+2025-06-16 22:01:04.308 -03:00 [INF] 🚀 Work Session iniciada: 0345712.ipt (ID: 4c0bd855-2967-46c3-a310-c03169474442)
+2025-06-16 22:01:04.309 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.310 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.312 -03:00 [INF] Received HTTP response headers after 0.8994ms - 404
+2025-06-16 22:01:04.313 -03:00 [INF] End processing HTTP request after 4.2875ms - 404
+2025-06-16 22:01:04.315 -03:00 [INF] 📂 ABERTO: 0345713.ipt
+2025-06-16 22:01:04.316 -03:00 [INF] 📂 Documento aberto: 0345713.ipt
+2025-06-16 22:01:04.317 -03:00 [INF] 🚀 Work Session iniciada: 0345713.ipt (ID: fa3c189e-a933-46a4-ba48-13406b573ea8)
+2025-06-16 22:01:04.318 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.319 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.321 -03:00 [INF] Received HTTP response headers after 0.9289ms - 404
+2025-06-16 22:01:04.323 -03:00 [INF] End processing HTTP request after 4.3762ms - 404
+2025-06-16 22:01:04.324 -03:00 [INF] 📂 ABERTO: 0345711.ipt
+2025-06-16 22:01:04.325 -03:00 [INF] 📂 Documento aberto: 0345711.ipt
+2025-06-16 22:01:04.326 -03:00 [INF] 🚀 Work Session iniciada: 0345711.ipt (ID: 7ea92b8c-30e1-43aa-b032-bf96473bc080)
+2025-06-16 22:01:04.327 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.328 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.330 -03:00 [INF] Received HTTP response headers after 0.7666ms - 404
+2025-06-16 22:01:04.331 -03:00 [INF] End processing HTTP request after 3.9356ms - 404
+2025-06-16 22:01:04.333 -03:00 [INF] 📂 ABERTO: 0345714.ipt
+2025-06-16 22:01:04.334 -03:00 [INF] 📂 Documento aberto: 0345714.ipt
+2025-06-16 22:01:04.336 -03:00 [INF] 🚀 Work Session iniciada: 0345714.ipt (ID: 2d9338aa-e864-4d72-8006-b6d0af6ee8ef)
+2025-06-16 22:01:04.337 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.338 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.340 -03:00 [INF] Received HTTP response headers after 0.8521ms - 404
+2025-06-16 22:01:04.341 -03:00 [INF] End processing HTTP request after 4.6528ms - 404
+2025-06-16 22:01:04.343 -03:00 [INF] 📂 ABERTO: 0345715.ipt
+2025-06-16 22:01:04.344 -03:00 [INF] 📂 Documento aberto: 0345715.ipt
+2025-06-16 22:01:04.345 -03:00 [INF] 🚀 Work Session iniciada: 0345715.ipt (ID: 8d7578cf-5afa-4e48-b8d1-643a8e6d5725)
+2025-06-16 22:01:04.346 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.347 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.349 -03:00 [INF] Received HTTP response headers after 1.0686ms - 404
+2025-06-16 22:01:04.350 -03:00 [INF] End processing HTTP request after 4.3099ms - 404
+2025-06-16 22:01:04.352 -03:00 [INF] 📂 ABERTO: 0345716.ipt
+2025-06-16 22:01:04.353 -03:00 [INF] 📂 Documento aberto: 0345716.ipt
+2025-06-16 22:01:04.354 -03:00 [INF] 🚀 Work Session iniciada: 0345716.ipt (ID: d8c4eac5-06a4-421b-a139-0c84f70b85a7)
+2025-06-16 22:01:04.355 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.357 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.359 -03:00 [INF] Received HTTP response headers after 0.9236ms - 404
+2025-06-16 22:01:04.360 -03:00 [INF] End processing HTTP request after 4.5539ms - 404
+2025-06-16 22:01:04.361 -03:00 [INF] 📂 ABERTO: 0345717.ipt
+2025-06-16 22:01:04.362 -03:00 [INF] 📂 Documento aberto: 0345717.ipt
+2025-06-16 22:01:04.363 -03:00 [INF] 🚀 Work Session iniciada: 0345717.ipt (ID: ea4b3acc-d0d3-425c-bae0-57ed4408375f)
+2025-06-16 22:01:04.364 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.365 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.367 -03:00 [INF] Received HTTP response headers after 0.869ms - 404
+2025-06-16 22:01:04.369 -03:00 [INF] End processing HTTP request after 4.9596ms - 404
+2025-06-16 22:01:04.370 -03:00 [INF] 📂 ABERTO: 0345718.ipt
+2025-06-16 22:01:04.371 -03:00 [INF] 📂 Documento aberto: 0345718.ipt
+2025-06-16 22:01:04.388 -03:00 [INF] 🚀 Work Session iniciada: 0345718.ipt (ID: fe98748c-8120-4725-bf75-58ecb51fe425)
+2025-06-16 22:01:04.389 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.395 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.400 -03:00 [INF] Received HTTP response headers after 4.437ms - 404
+2025-06-16 22:01:04.404 -03:00 [INF] End processing HTTP request after 15.006ms - 404
+2025-06-16 22:01:04.407 -03:00 [INF] 📂 ABERTO: 134538.ipt
+2025-06-16 22:01:04.408 -03:00 [INF] 📂 Documento aberto: 134538.ipt
+2025-06-16 22:01:04.409 -03:00 [INF] 🚀 Work Session iniciada: 134538.ipt (ID: 50ce0d9d-3b6c-4dfe-bf1f-a3413671612b)
+2025-06-16 22:01:04.410 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.412 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:04.413 -03:00 [INF] ✅ Monitoring de documentos ativo via polling
+2025-06-16 22:01:04.413 -03:00 [INF] Received HTTP response headers after 0.7781ms - 404
+2025-06-16 22:01:04.415 -03:00 [INF] End processing HTTP request after 4.9153ms - 404
+2025-06-16 22:01:26.786 -03:00 [INF] Companion Worker Service parando.
+2025-06-16 22:01:26.787 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 22:01:26.789 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 22:01:26.789 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 22:01:26.792 -03:00 [INF] 🏁 Work Session finalizada: 0345707.ipt - Duração: 00:00:22 - 0 saves
+2025-06-16 22:01:26.794 -03:00 [INF] Enviando fim da sessão de trabalho: 0345707.ipt
+2025-06-16 22:01:26.795 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 22:01:26.796 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 22:01:26.796 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 22:01:26.796 -03:00 [INF] 🏁 Work Session finalizada: 0345580.ipt - Duração: 00:00:22 - 0 saves
+2025-06-16 22:01:35.812 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-16 22:01:35.844 -03:00 [INF] Tentando conectar ao Inventor...
+2025-06-16 22:01:35.974 -03:00 [INF] ✓ Conectado ao Inventor 2023
+2025-06-16 22:01:35.976 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-16 22:01:35.978 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-16 22:01:35.979 -03:00 [INF] 🔄 Iniciando monitoramento via polling (mais confiável que eventos COM)
+2025-06-16 22:01:35.980 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-16 22:01:35.985 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-16 22:01:36.003 -03:00 [INF] 🔍 Detectando 28 documentos já abertos
+2025-06-16 22:01:36.037 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:01:36.044 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:01:36.080 -03:00 [INF] 📂 ABERTO: 0345385.iam
+2025-06-16 22:01:36.082 -03:00 [INF] 📂 Documento aberto: 0345385.iam
+2025-06-16 22:01:36.106 -03:00 [INF] 🚀 Work Session iniciada: 0345385.iam (ID: b2407c67-afaf-4391-9ffe-21256e2865d5)
+2025-06-16 22:01:36.148 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.150 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.165 -03:00 [INF] Received HTTP response headers after 116.2024ms - 204
+2025-06-16 22:01:36.165 -03:00 [INF] Received HTTP response headers after 10.2407ms - 404
+2025-06-16 22:01:36.172 -03:00 [INF] End processing HTTP request after 145.9954ms - 204
+2025-06-16 22:01:36.172 -03:00 [INF] End processing HTTP request after 24.6144ms - 404
+2025-06-16 22:01:36.204 -03:00 [INF] 📂 ABERTO: 089277.ipt
+2025-06-16 22:01:36.205 -03:00 [INF] 📂 Documento aberto: 089277.ipt
+2025-06-16 22:01:36.206 -03:00 [INF] 🚀 Work Session iniciada: 089277.ipt (ID: da10725c-a166-42c6-abef-6d1e9844aa7f)
+2025-06-16 22:01:36.207 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.208 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.210 -03:00 [INF] Received HTTP response headers after 1.0885ms - 404
+2025-06-16 22:01:36.211 -03:00 [INF] End processing HTTP request after 3.7206ms - 404
+2025-06-16 22:01:36.212 -03:00 [INF] 📂 ABERTO: 0313902.ipt
+2025-06-16 22:01:36.213 -03:00 [INF] 📂 Documento aberto: 0313902.ipt
+2025-06-16 22:01:36.214 -03:00 [INF] 🚀 Work Session iniciada: 0313902.ipt (ID: 244a3bdc-64d0-48df-b0d1-10d5798972a8)
+2025-06-16 22:01:36.215 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.216 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.218 -03:00 [INF] Received HTTP response headers after 0.794ms - 404
+2025-06-16 22:01:36.219 -03:00 [INF] End processing HTTP request after 3.9631ms - 404
+2025-06-16 22:01:36.221 -03:00 [INF] 📂 ABERTO: UNI 5589 M16
+2025-06-16 22:01:36.221 -03:00 [INF] 📂 Documento aberto: UNI 5589 M16
+2025-06-16 22:01:36.223 -03:00 [INF] 🚀 Work Session iniciada: UNI 5589 M16 (ID: 211f89ea-08f1-4e79-9a55-5089b6c74050)
+2025-06-16 22:01:36.223 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.224 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.226 -03:00 [INF] Received HTTP response headers after 0.6221ms - 404
+2025-06-16 22:01:36.227 -03:00 [INF] End processing HTTP request after 3.5209ms - 404
+2025-06-16 22:01:36.228 -03:00 [INF] 📂 ABERTO: 0345580.ipt
+2025-06-16 22:01:36.228 -03:00 [INF] 📂 Documento aberto: 0345580.ipt
+2025-06-16 22:01:36.230 -03:00 [INF] 🚀 Work Session iniciada: 0345580.ipt (ID: 14e83155-6c66-4d77-b0e0-b8d396d6c5d6)
+2025-06-16 22:01:36.230 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.232 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.234 -03:00 [INF] Received HTTP response headers after 0.8206ms - 404
+2025-06-16 22:01:36.235 -03:00 [INF] End processing HTTP request after 4.2823ms - 404
+2025-06-16 22:01:36.236 -03:00 [INF] 📂 ABERTO: 0345709.ipt
+2025-06-16 22:01:36.237 -03:00 [INF] 📂 Documento aberto: 0345709.ipt
+2025-06-16 22:01:36.238 -03:00 [INF] 🚀 Work Session iniciada: 0345709.ipt (ID: d3dccdcf-8d1b-4b4d-a20a-186d5ce56f59)
+2025-06-16 22:01:36.238 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.239 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.241 -03:00 [INF] Received HTTP response headers after 0.6281ms - 404
+2025-06-16 22:01:36.242 -03:00 [INF] End processing HTTP request after 3.3591ms - 404
+2025-06-16 22:01:36.243 -03:00 [INF] 📂 ABERTO: 0345710.ipt
+2025-06-16 22:01:36.244 -03:00 [INF] 📂 Documento aberto: 0345710.ipt
+2025-06-16 22:01:36.245 -03:00 [INF] 🚀 Work Session iniciada: 0345710.ipt (ID: ab4935ea-5776-4712-ae6a-5e965c2ef183)
+2025-06-16 22:01:36.246 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.247 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.249 -03:00 [INF] Received HTTP response headers after 0.6985ms - 404
+2025-06-16 22:01:36.250 -03:00 [INF] End processing HTTP request after 3.9695ms - 404
+2025-06-16 22:01:36.251 -03:00 [INF] 📂 ABERTO: 0345707.ipt
+2025-06-16 22:01:36.252 -03:00 [INF] 📂 Documento aberto: 0345707.ipt
+2025-06-16 22:01:36.253 -03:00 [INF] 🚀 Work Session iniciada: 0345707.ipt (ID: b6ff3ce4-d622-4627-a25b-f19fb106e4da)
+2025-06-16 22:01:36.254 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.255 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.257 -03:00 [INF] Received HTTP response headers after 0.6831ms - 404
+2025-06-16 22:01:36.258 -03:00 [INF] End processing HTTP request after 3.7289ms - 404
+2025-06-16 22:01:36.259 -03:00 [INF] 📂 ABERTO: 0345708.ipt
+2025-06-16 22:01:36.260 -03:00 [INF] 📂 Documento aberto: 0345708.ipt
+2025-06-16 22:01:36.261 -03:00 [INF] 🚀 Work Session iniciada: 0345708.ipt (ID: 7fd79286-5d48-4a03-a5d1-f9c18d5a5c22)
+2025-06-16 22:01:36.262 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.262 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.264 -03:00 [INF] Received HTTP response headers after 0.6162ms - 404
+2025-06-16 22:01:36.265 -03:00 [INF] End processing HTTP request after 3.5006ms - 404
+2025-06-16 22:01:36.267 -03:00 [INF] 📂 ABERTO: 0345536.ipt
+2025-06-16 22:01:36.268 -03:00 [INF] 📂 Documento aberto: 0345536.ipt
+2025-06-16 22:01:36.269 -03:00 [INF] 🚀 Work Session iniciada: 0345536.ipt (ID: b4f209b1-a9f6-4efc-be1c-1ca4f9dd6c95)
+2025-06-16 22:01:36.270 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.271 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.273 -03:00 [INF] Received HTTP response headers after 0.7207ms - 404
+2025-06-16 22:01:36.274 -03:00 [INF] End processing HTTP request after 3.8004ms - 404
+2025-06-16 22:01:36.275 -03:00 [INF] 📂 ABERTO: 0345538.ipt
+2025-06-16 22:01:36.276 -03:00 [INF] 📂 Documento aberto: 0345538.ipt
+2025-06-16 22:01:36.277 -03:00 [INF] 🚀 Work Session iniciada: 0345538.ipt (ID: 7d44915c-70df-4227-8c6a-70d5e557386c)
+2025-06-16 22:01:36.278 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.278 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.280 -03:00 [INF] Received HTTP response headers after 0.6938ms - 404
+2025-06-16 22:01:36.282 -03:00 [INF] End processing HTTP request after 3.9513ms - 404
+2025-06-16 22:01:36.283 -03:00 [INF] 📂 ABERTO: 088259.ipt
+2025-06-16 22:01:36.284 -03:00 [INF] 📂 Documento aberto: 088259.ipt
+2025-06-16 22:01:36.285 -03:00 [INF] 🚀 Work Session iniciada: 088259.ipt (ID: 7edea7bd-00a8-448f-b6d3-888824e693de)
+2025-06-16 22:01:36.286 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.287 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.289 -03:00 [INF] Received HTTP response headers after 0.6277ms - 404
+2025-06-16 22:01:36.290 -03:00 [INF] End processing HTTP request after 3.8416ms - 404
+2025-06-16 22:01:36.291 -03:00 [INF] 📂 ABERTO: 111646.ipt
+2025-06-16 22:01:36.292 -03:00 [INF] 📂 Documento aberto: 111646.ipt
+2025-06-16 22:01:36.293 -03:00 [INF] 🚀 Work Session iniciada: 111646.ipt (ID: 6aa6f4bf-8b28-4dcf-9324-413280438500)
+2025-06-16 22:01:36.294 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.295 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.296 -03:00 [INF] Received HTTP response headers after 0.607ms - 404
+2025-06-16 22:01:36.297 -03:00 [INF] End processing HTTP request after 3.2391ms - 404
+2025-06-16 22:01:36.299 -03:00 [INF] 📂 ABERTO: 0254385.ipt
+2025-06-16 22:01:36.300 -03:00 [INF] 📂 Documento aberto: 0254385.ipt
+2025-06-16 22:01:36.301 -03:00 [INF] 🚀 Work Session iniciada: 0254385.ipt (ID: 4df2a808-212a-4e7c-a504-9e4cb6d64141)
+2025-06-16 22:01:36.302 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.303 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.305 -03:00 [INF] Received HTTP response headers after 0.7ms - 404
+2025-06-16 22:01:36.306 -03:00 [INF] End processing HTTP request after 3.8294ms - 404
+2025-06-16 22:01:36.307 -03:00 [INF] 📂 ABERTO: 0321862.ipt
+2025-06-16 22:01:36.308 -03:00 [INF] 📂 Documento aberto: 0321862.ipt
+2025-06-16 22:01:36.309 -03:00 [INF] 🚀 Work Session iniciada: 0321862.ipt (ID: 6d58657a-3cf1-4dda-9b17-f2eb7f8781d9)
+2025-06-16 22:01:36.310 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.311 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.312 -03:00 [INF] Received HTTP response headers after 0.6631ms - 404
+2025-06-16 22:01:36.313 -03:00 [INF] End processing HTTP request after 3.4432ms - 404
+2025-06-16 22:01:36.314 -03:00 [INF] 📂 ABERTO: 0307215.iam
+2025-06-16 22:01:36.315 -03:00 [INF] 📂 Documento aberto: 0307215.iam
+2025-06-16 22:01:36.317 -03:00 [INF] 🚀 Work Session iniciada: 0307215.iam (ID: 2844b282-0e70-4f83-a7c0-7ddcfbc3990c)
+2025-06-16 22:01:36.318 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.319 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.320 -03:00 [INF] Received HTTP response headers after 0.5936ms - 404
+2025-06-16 22:01:36.321 -03:00 [INF] End processing HTTP request after 3.4295ms - 404
+2025-06-16 22:01:36.323 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_1.ipt
+2025-06-16 22:01:36.323 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_1.ipt
+2025-06-16 22:01:36.324 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_1.ipt (ID: 72c0db33-501e-41c5-98c1-ecec645d5803)
+2025-06-16 22:01:36.325 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.326 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.328 -03:00 [INF] Received HTTP response headers after 0.7381ms - 404
+2025-06-16 22:01:36.329 -03:00 [INF] End processing HTTP request after 3.4657ms - 404
+2025-06-16 22:01:36.330 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_2.ipt
+2025-06-16 22:01:36.330 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_2.ipt
+2025-06-16 22:01:36.332 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_2.ipt (ID: 4f9f181f-383b-44d4-9bc4-cc682d2c70bd)
+2025-06-16 22:01:36.333 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.334 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.336 -03:00 [INF] Received HTTP response headers after 0.7114ms - 404
+2025-06-16 22:01:36.337 -03:00 [INF] End processing HTTP request after 4.1342ms - 404
+2025-06-16 22:01:36.338 -03:00 [INF] 📂 ABERTO: 0345546.ipt
+2025-06-16 22:01:36.339 -03:00 [INF] 📂 Documento aberto: 0345546.ipt
+2025-06-16 22:01:36.340 -03:00 [INF] 🚀 Work Session iniciada: 0345546.ipt (ID: a54dc4c6-429f-42b0-9ef5-a39988f0e45b)
+2025-06-16 22:01:36.341 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.342 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.344 -03:00 [INF] Received HTTP response headers after 0.7169ms - 404
+2025-06-16 22:01:36.345 -03:00 [INF] End processing HTTP request after 3.6109ms - 404
+2025-06-16 22:01:36.346 -03:00 [INF] 📂 ABERTO: 0345712.ipt
+2025-06-16 22:01:36.347 -03:00 [INF] 📂 Documento aberto: 0345712.ipt
+2025-06-16 22:01:36.356 -03:00 [INF] 🚀 Work Session iniciada: 0345712.ipt (ID: c4942cb2-c0d9-476c-b921-f1df5ce49a65)
+2025-06-16 22:01:36.358 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.359 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.362 -03:00 [INF] Received HTTP response headers after 1.3207ms - 404
+2025-06-16 22:01:36.363 -03:00 [INF] End processing HTTP request after 5.3985ms - 404
+2025-06-16 22:01:36.372 -03:00 [INF] 📂 ABERTO: 0345713.ipt
+2025-06-16 22:01:36.373 -03:00 [INF] 📂 Documento aberto: 0345713.ipt
+2025-06-16 22:01:36.374 -03:00 [INF] 🚀 Work Session iniciada: 0345713.ipt (ID: ff5821ee-db64-4538-b40e-259f2239a7f2)
+2025-06-16 22:01:36.375 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.377 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.379 -03:00 [INF] Received HTTP response headers after 1.5209ms - 404
+2025-06-16 22:01:36.380 -03:00 [INF] End processing HTTP request after 5.295ms - 404
+2025-06-16 22:01:36.383 -03:00 [INF] 📂 ABERTO: 0345711.ipt
+2025-06-16 22:01:36.385 -03:00 [INF] 📂 Documento aberto: 0345711.ipt
+2025-06-16 22:01:36.386 -03:00 [INF] 🚀 Work Session iniciada: 0345711.ipt (ID: dbe8d4b7-c35b-4104-9c2b-4146c8e7caee)
+2025-06-16 22:01:36.387 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.388 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.390 -03:00 [INF] Received HTTP response headers after 0.6675ms - 404
+2025-06-16 22:01:36.391 -03:00 [INF] End processing HTTP request after 3.8846ms - 404
+2025-06-16 22:01:36.393 -03:00 [INF] 📂 ABERTO: 0345714.ipt
+2025-06-16 22:01:36.394 -03:00 [INF] 📂 Documento aberto: 0345714.ipt
+2025-06-16 22:01:36.396 -03:00 [INF] 🚀 Work Session iniciada: 0345714.ipt (ID: 0362b933-1412-4545-9e23-9025dfb454f8)
+2025-06-16 22:01:36.397 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.400 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.402 -03:00 [INF] Received HTTP response headers after 0.7049ms - 404
+2025-06-16 22:01:36.404 -03:00 [INF] End processing HTTP request after 6.1821ms - 404
+2025-06-16 22:01:36.405 -03:00 [INF] 📂 ABERTO: 0345715.ipt
+2025-06-16 22:01:36.405 -03:00 [INF] 📂 Documento aberto: 0345715.ipt
+2025-06-16 22:01:36.407 -03:00 [INF] 🚀 Work Session iniciada: 0345715.ipt (ID: fb6acbbd-078d-4067-9d47-12ae0687cb4e)
+2025-06-16 22:01:36.407 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.409 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.410 -03:00 [INF] Received HTTP response headers after 0.8384ms - 404
+2025-06-16 22:01:36.411 -03:00 [INF] End processing HTTP request after 3.9153ms - 404
+2025-06-16 22:01:36.413 -03:00 [INF] 📂 ABERTO: 0345716.ipt
+2025-06-16 22:01:36.414 -03:00 [INF] 📂 Documento aberto: 0345716.ipt
+2025-06-16 22:01:36.416 -03:00 [INF] 🚀 Work Session iniciada: 0345716.ipt (ID: 8fe4ee68-a2a7-48c5-b12f-69e71dccd4c0)
+2025-06-16 22:01:36.417 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.418 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.420 -03:00 [INF] Received HTTP response headers after 0.5952ms - 404
+2025-06-16 22:01:36.421 -03:00 [INF] End processing HTTP request after 4.2617ms - 404
+2025-06-16 22:01:36.422 -03:00 [INF] 📂 ABERTO: 0345717.ipt
+2025-06-16 22:01:36.423 -03:00 [INF] 📂 Documento aberto: 0345717.ipt
+2025-06-16 22:01:36.424 -03:00 [INF] 🚀 Work Session iniciada: 0345717.ipt (ID: 7490798e-f7d1-4711-bb16-aa5fdb1de52f)
+2025-06-16 22:01:36.425 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.426 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.428 -03:00 [INF] Received HTTP response headers after 0.629ms - 404
+2025-06-16 22:01:36.429 -03:00 [INF] End processing HTTP request after 3.3007ms - 404
+2025-06-16 22:01:36.430 -03:00 [INF] 📂 ABERTO: 0345718.ipt
+2025-06-16 22:01:36.431 -03:00 [INF] 📂 Documento aberto: 0345718.ipt
+2025-06-16 22:01:36.432 -03:00 [INF] 🚀 Work Session iniciada: 0345718.ipt (ID: 050182e0-5db6-41c3-bbd1-49fc59006df2)
+2025-06-16 22:01:36.433 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.435 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.437 -03:00 [INF] Received HTTP response headers after 0.6919ms - 404
+2025-06-16 22:01:36.438 -03:00 [INF] End processing HTTP request after 4.3033ms - 404
+2025-06-16 22:01:36.439 -03:00 [INF] 📂 ABERTO: 134538.ipt
+2025-06-16 22:01:36.439 -03:00 [INF] 📂 Documento aberto: 134538.ipt
+2025-06-16 22:01:36.440 -03:00 [INF] 🚀 Work Session iniciada: 134538.ipt (ID: d2114e03-bc4a-4577-9e58-1c2fdff2cb5b)
+2025-06-16 22:01:36.441 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.442 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:01:36.443 -03:00 [INF] ✅ Monitoring de documentos ativo via polling
+2025-06-16 22:01:36.444 -03:00 [INF] Received HTTP response headers after 0.5431ms - 404
+2025-06-16 22:01:36.445 -03:00 [INF] End processing HTTP request after 3.7859ms - 404
+2025-06-16 22:02:37.084 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-16 22:02:37.127 -03:00 [INF] Tentando conectar ao Inventor...
+2025-06-16 22:02:37.249 -03:00 [INF] ✓ Conectado ao Inventor 2023
+2025-06-16 22:02:37.250 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-16 22:02:37.252 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-16 22:02:37.252 -03:00 [INF] 🔄 Iniciando monitoramento via polling (mais confiável que eventos COM)
+2025-06-16 22:02:37.253 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-16 22:02:37.254 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-16 22:02:37.271 -03:00 [INF] 🔍 Detectando 28 documentos já abertos
+2025-06-16 22:02:37.298 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:02:37.305 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:02:37.336 -03:00 [INF] 📂 ABERTO: 0345385.iam
+2025-06-16 22:02:37.337 -03:00 [INF] 📂 Documento aberto: 0345385.iam
+2025-06-16 22:02:37.349 -03:00 [INF] 🚀 Work Session iniciada: 0345385.iam (ID: 7756a3b7-337a-4c01-89c4-16e0a4884338)
+2025-06-16 22:02:37.368 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.369 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.414 -03:00 [INF] 📂 ABERTO: 089277.ipt
+2025-06-16 22:02:37.415 -03:00 [INF] 📂 Documento aberto: 089277.ipt
+2025-06-16 22:02:37.416 -03:00 [INF] 🚀 Work Session iniciada: 089277.ipt (ID: 71352316-b56b-42a8-a3f6-48a7ed4441e8)
+2025-06-16 22:02:37.417 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.418 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.422 -03:00 [INF] 📂 ABERTO: 0313902.ipt
+2025-06-16 22:02:37.423 -03:00 [INF] 📂 Documento aberto: 0313902.ipt
+2025-06-16 22:02:37.425 -03:00 [INF] 🚀 Work Session iniciada: 0313902.ipt (ID: 8396256e-d132-432a-b530-4da9e8c265c5)
+2025-06-16 22:02:37.427 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.428 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.433 -03:00 [INF] Received HTTP response headers after 11.2362ms - 404
+2025-06-16 22:02:37.433 -03:00 [INF] Received HTTP response headers after 59.7552ms - 404
+2025-06-16 22:02:37.435 -03:00 [INF] Received HTTP response headers after 5.2219ms - 404
+2025-06-16 22:02:37.435 -03:00 [INF] 📂 ABERTO: UNI 5589 M16
+2025-06-16 22:02:37.439 -03:00 [INF] End processing HTTP request after 70.9024ms - 404
+2025-06-16 22:02:37.439 -03:00 [INF] End processing HTTP request after 21.5196ms - 404
+2025-06-16 22:02:37.439 -03:00 [INF] End processing HTTP request after 12.3559ms - 404
+2025-06-16 22:02:37.439 -03:00 [INF] 📂 Documento aberto: UNI 5589 M16
+2025-06-16 22:02:37.442 -03:00 [INF] Received HTTP response headers after 136.2567ms - 204
+2025-06-16 22:02:37.444 -03:00 [INF] 🚀 Work Session iniciada: UNI 5589 M16 (ID: 7a3b5e4e-ade7-4602-a11f-ab5a77564175)
+2025-06-16 22:02:37.444 -03:00 [INF] End processing HTTP request after 155.9817ms - 204
+2025-06-16 22:02:37.445 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.446 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.449 -03:00 [INF] Received HTTP response headers after 0.9977ms - 404
+2025-06-16 22:02:37.450 -03:00 [INF] End processing HTTP request after 5.6256ms - 404
+2025-06-16 22:02:37.452 -03:00 [INF] 📂 ABERTO: 0345580.ipt
+2025-06-16 22:02:37.453 -03:00 [INF] 📂 Documento aberto: 0345580.ipt
+2025-06-16 22:02:37.454 -03:00 [INF] 🚀 Work Session iniciada: 0345580.ipt (ID: 2a2235a7-9b25-40db-8311-21785a995b6f)
+2025-06-16 22:02:37.454 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.456 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.458 -03:00 [INF] Received HTTP response headers after 0.7542ms - 404
+2025-06-16 22:02:37.459 -03:00 [INF] End processing HTTP request after 4.4505ms - 404
+2025-06-16 22:02:37.460 -03:00 [INF] 📂 ABERTO: 0345709.ipt
+2025-06-16 22:02:37.461 -03:00 [INF] 📂 Documento aberto: 0345709.ipt
+2025-06-16 22:02:37.462 -03:00 [INF] 🚀 Work Session iniciada: 0345709.ipt (ID: de04d5b5-6af0-479d-89d5-288310bb08f6)
+2025-06-16 22:02:37.463 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.465 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.467 -03:00 [INF] Received HTTP response headers after 1.0055ms - 404
+2025-06-16 22:02:37.468 -03:00 [INF] End processing HTTP request after 5.4225ms - 404
+2025-06-16 22:02:37.469 -03:00 [INF] 📂 ABERTO: 0345710.ipt
+2025-06-16 22:02:37.470 -03:00 [INF] 📂 Documento aberto: 0345710.ipt
+2025-06-16 22:02:37.471 -03:00 [INF] 🚀 Work Session iniciada: 0345710.ipt (ID: fe055095-0dc2-4d95-86d9-fe53d31d533d)
+2025-06-16 22:02:37.472 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.473 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.475 -03:00 [INF] Received HTTP response headers after 0.8037ms - 404
+2025-06-16 22:02:37.476 -03:00 [INF] End processing HTTP request after 3.3461ms - 404
+2025-06-16 22:02:37.477 -03:00 [INF] 📂 ABERTO: 0345707.ipt
+2025-06-16 22:02:37.478 -03:00 [INF] 📂 Documento aberto: 0345707.ipt
+2025-06-16 22:02:37.479 -03:00 [INF] 🚀 Work Session iniciada: 0345707.ipt (ID: abb45fd2-1141-4f47-9d2d-259491b42a86)
+2025-06-16 22:02:37.480 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.482 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.484 -03:00 [INF] Received HTTP response headers after 0.9652ms - 404
+2025-06-16 22:02:37.485 -03:00 [INF] End processing HTTP request after 5.2146ms - 404
+2025-06-16 22:02:37.486 -03:00 [INF] 📂 ABERTO: 0345708.ipt
+2025-06-16 22:02:37.487 -03:00 [INF] 📂 Documento aberto: 0345708.ipt
+2025-06-16 22:02:37.489 -03:00 [INF] 🚀 Work Session iniciada: 0345708.ipt (ID: d307308b-038d-44bb-b685-3faf7691ee4a)
+2025-06-16 22:02:37.490 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.491 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.505 -03:00 [INF] Received HTTP response headers after 3.0393ms - 404
+2025-06-16 22:02:37.510 -03:00 [INF] 📂 ABERTO: 0345536.ipt
+2025-06-16 22:02:37.511 -03:00 [INF] End processing HTTP request after 21.237ms - 404
+2025-06-16 22:02:37.512 -03:00 [INF] 📂 Documento aberto: 0345536.ipt
+2025-06-16 22:02:37.515 -03:00 [INF] 🚀 Work Session iniciada: 0345536.ipt (ID: d77e2973-afd3-4f5f-bb3b-bba44e9f25b3)
+2025-06-16 22:02:37.525 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.533 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.542 -03:00 [INF] 📂 ABERTO: 0345538.ipt
+2025-06-16 22:02:37.537 -03:00 [INF] Received HTTP response headers after 2.4982ms - 404
+2025-06-16 22:02:37.544 -03:00 [INF] 📂 Documento aberto: 0345538.ipt
+2025-06-16 22:02:37.544 -03:00 [INF] End processing HTTP request after 19.0932ms - 404
+2025-06-16 22:02:37.546 -03:00 [INF] 🚀 Work Session iniciada: 0345538.ipt (ID: c6474b6e-8456-43c1-8a95-19dc824119a9)
+2025-06-16 22:02:37.547 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.550 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.556 -03:00 [INF] Received HTTP response headers after 2.8131ms - 404
+2025-06-16 22:02:37.558 -03:00 [INF] 📂 ABERTO: 088259.ipt
+2025-06-16 22:02:37.561 -03:00 [INF] End processing HTTP request after 13.9611ms - 404
+2025-06-16 22:02:37.561 -03:00 [INF] 📂 Documento aberto: 088259.ipt
+2025-06-16 22:02:37.564 -03:00 [INF] 🚀 Work Session iniciada: 088259.ipt (ID: a5abe312-79e2-4d59-b9bc-4003eb4f0e0a)
+2025-06-16 22:02:37.566 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.567 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.570 -03:00 [INF] Received HTTP response headers after 0.7815ms - 404
+2025-06-16 22:02:37.571 -03:00 [INF] End processing HTTP request after 5.36ms - 404
+2025-06-16 22:02:37.573 -03:00 [INF] 📂 ABERTO: 111646.ipt
+2025-06-16 22:02:37.574 -03:00 [INF] 📂 Documento aberto: 111646.ipt
+2025-06-16 22:02:37.575 -03:00 [INF] 🚀 Work Session iniciada: 111646.ipt (ID: 8ef91bd4-41d2-4128-bf6b-026948d6f87f)
+2025-06-16 22:02:37.576 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.577 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.579 -03:00 [INF] Received HTTP response headers after 0.7821ms - 404
+2025-06-16 22:02:37.582 -03:00 [INF] End processing HTTP request after 5.6352ms - 404
+2025-06-16 22:02:37.583 -03:00 [INF] 📂 ABERTO: 0254385.ipt
+2025-06-16 22:02:37.584 -03:00 [INF] 📂 Documento aberto: 0254385.ipt
+2025-06-16 22:02:37.585 -03:00 [INF] 🚀 Work Session iniciada: 0254385.ipt (ID: a70f481d-1cbe-4310-ab9a-b6e6ea344a48)
+2025-06-16 22:02:37.586 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.587 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.589 -03:00 [INF] Received HTTP response headers after 1.0893ms - 404
+2025-06-16 22:02:37.590 -03:00 [INF] End processing HTTP request after 4.0038ms - 404
+2025-06-16 22:02:37.593 -03:00 [INF] 📂 ABERTO: 0321862.ipt
+2025-06-16 22:02:37.593 -03:00 [INF] 📂 Documento aberto: 0321862.ipt
+2025-06-16 22:02:37.596 -03:00 [INF] 🚀 Work Session iniciada: 0321862.ipt (ID: f21dc453-9671-443a-ba62-0b249f0531b3)
+2025-06-16 22:02:37.600 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.602 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.605 -03:00 [INF] Received HTTP response headers after 1.3896ms - 404
+2025-06-16 22:02:37.606 -03:00 [INF] End processing HTTP request after 6.2496ms - 404
+2025-06-16 22:02:37.608 -03:00 [INF] 📂 ABERTO: 0307215.iam
+2025-06-16 22:02:37.609 -03:00 [INF] 📂 Documento aberto: 0307215.iam
+2025-06-16 22:02:37.611 -03:00 [INF] 🚀 Work Session iniciada: 0307215.iam (ID: ec71a9c2-7192-4e33-840e-de57c14ad826)
+2025-06-16 22:02:37.611 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.612 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.615 -03:00 [INF] Received HTTP response headers after 1.0183ms - 404
+2025-06-16 22:02:37.616 -03:00 [INF] End processing HTTP request after 4.5942ms - 404
+2025-06-16 22:02:37.618 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_1.ipt
+2025-06-16 22:02:37.618 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_1.ipt
+2025-06-16 22:02:37.620 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_1.ipt (ID: a3db4a1a-2fae-4481-b57b-03ebea86e63c)
+2025-06-16 22:02:37.620 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.621 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.623 -03:00 [INF] Received HTTP response headers after 0.8023ms - 404
+2025-06-16 22:02:37.624 -03:00 [INF] End processing HTTP request after 3.7906ms - 404
+2025-06-16 22:02:37.626 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_2.ipt
+2025-06-16 22:02:37.627 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_2.ipt
+2025-06-16 22:02:37.628 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_2.ipt (ID: 9e4c9569-1de4-4466-9e18-09aeca19b5c4)
+2025-06-16 22:02:37.629 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.630 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.632 -03:00 [INF] Received HTTP response headers after 0.8857ms - 404
+2025-06-16 22:02:37.633 -03:00 [INF] End processing HTTP request after 4.4914ms - 404
+2025-06-16 22:02:37.635 -03:00 [INF] 📂 ABERTO: 0345546.ipt
+2025-06-16 22:02:37.635 -03:00 [INF] 📂 Documento aberto: 0345546.ipt
+2025-06-16 22:02:37.636 -03:00 [INF] 🚀 Work Session iniciada: 0345546.ipt (ID: 8bf494bd-47e5-474f-afbb-88b868654db9)
+2025-06-16 22:02:37.637 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.638 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.640 -03:00 [INF] Received HTTP response headers after 0.8132ms - 404
+2025-06-16 22:02:37.641 -03:00 [INF] End processing HTTP request after 4.0168ms - 404
+2025-06-16 22:02:37.642 -03:00 [INF] 📂 ABERTO: 0345712.ipt
+2025-06-16 22:02:37.643 -03:00 [INF] 📂 Documento aberto: 0345712.ipt
+2025-06-16 22:02:37.644 -03:00 [INF] 🚀 Work Session iniciada: 0345712.ipt (ID: c1d2de17-55e2-4011-99b3-13784579ff15)
+2025-06-16 22:02:37.645 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.646 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.648 -03:00 [INF] Received HTTP response headers after 0.9659ms - 404
+2025-06-16 22:02:37.650 -03:00 [INF] End processing HTTP request after 4.5802ms - 404
+2025-06-16 22:02:37.651 -03:00 [INF] 📂 ABERTO: 0345713.ipt
+2025-06-16 22:02:37.652 -03:00 [INF] 📂 Documento aberto: 0345713.ipt
+2025-06-16 22:02:37.653 -03:00 [INF] 🚀 Work Session iniciada: 0345713.ipt (ID: 9c3341d5-d4b1-473a-bd49-7ca9fae09675)
+2025-06-16 22:02:37.655 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.656 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.657 -03:00 [INF] Received HTTP response headers after 0.7904ms - 404
+2025-06-16 22:02:37.659 -03:00 [INF] End processing HTTP request after 4.2506ms - 404
+2025-06-16 22:02:37.661 -03:00 [INF] 📂 ABERTO: 0345711.ipt
+2025-06-16 22:02:37.661 -03:00 [INF] 📂 Documento aberto: 0345711.ipt
+2025-06-16 22:02:37.663 -03:00 [INF] 🚀 Work Session iniciada: 0345711.ipt (ID: e3e68dbd-ef63-4f11-b5b0-50fb61ada4ce)
+2025-06-16 22:02:37.664 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.665 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.667 -03:00 [INF] Received HTTP response headers after 0.7851ms - 404
+2025-06-16 22:02:37.668 -03:00 [INF] End processing HTTP request after 4.3731ms - 404
+2025-06-16 22:02:37.670 -03:00 [INF] 📂 ABERTO: 0345714.ipt
+2025-06-16 22:02:37.670 -03:00 [INF] 📂 Documento aberto: 0345714.ipt
+2025-06-16 22:02:37.672 -03:00 [INF] 🚀 Work Session iniciada: 0345714.ipt (ID: 8438fd29-3029-4a5d-9df0-62b0bee59314)
+2025-06-16 22:02:37.672 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.673 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.674 -03:00 [INF] Received HTTP response headers after 0.6079ms - 404
+2025-06-16 22:02:37.675 -03:00 [INF] End processing HTTP request after 3.0877ms - 404
+2025-06-16 22:02:37.677 -03:00 [INF] 📂 ABERTO: 0345715.ipt
+2025-06-16 22:02:37.677 -03:00 [INF] 📂 Documento aberto: 0345715.ipt
+2025-06-16 22:02:37.678 -03:00 [INF] 🚀 Work Session iniciada: 0345715.ipt (ID: 30f219b7-08e2-47a6-90a2-4d4818c6a6aa)
+2025-06-16 22:02:37.679 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.679 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.681 -03:00 [INF] Received HTTP response headers after 0.8014ms - 404
+2025-06-16 22:02:37.683 -03:00 [INF] End processing HTTP request after 4.0241ms - 404
+2025-06-16 22:02:37.684 -03:00 [INF] 📂 ABERTO: 0345716.ipt
+2025-06-16 22:02:37.685 -03:00 [INF] 📂 Documento aberto: 0345716.ipt
+2025-06-16 22:02:37.686 -03:00 [INF] 🚀 Work Session iniciada: 0345716.ipt (ID: 27d649a5-73cc-4ff7-9c5e-b410aaba2a11)
+2025-06-16 22:02:37.686 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.687 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.688 -03:00 [INF] Received HTTP response headers after 0.6201ms - 404
+2025-06-16 22:02:37.689 -03:00 [INF] End processing HTTP request after 3.1485ms - 404
+2025-06-16 22:02:37.691 -03:00 [INF] 📂 ABERTO: 0345717.ipt
+2025-06-16 22:02:37.691 -03:00 [INF] 📂 Documento aberto: 0345717.ipt
+2025-06-16 22:02:37.692 -03:00 [INF] 🚀 Work Session iniciada: 0345717.ipt (ID: 9fb377fe-252c-4f2c-b3a4-1d2083ed641d)
+2025-06-16 22:02:37.693 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.694 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.695 -03:00 [INF] Received HTTP response headers after 0.6213ms - 404
+2025-06-16 22:02:37.696 -03:00 [INF] End processing HTTP request after 3.1384ms - 404
+2025-06-16 22:02:37.698 -03:00 [INF] 📂 ABERTO: 0345718.ipt
+2025-06-16 22:02:37.699 -03:00 [INF] 📂 Documento aberto: 0345718.ipt
+2025-06-16 22:02:37.700 -03:00 [INF] 🚀 Work Session iniciada: 0345718.ipt (ID: af3fd6d4-7f6a-4483-951e-d588d88c6569)
+2025-06-16 22:02:37.701 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.702 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.703 -03:00 [INF] Received HTTP response headers after 0.6346ms - 404
+2025-06-16 22:02:37.704 -03:00 [INF] End processing HTTP request after 3.3136ms - 404
+2025-06-16 22:02:37.705 -03:00 [INF] 📂 ABERTO: 134538.ipt
+2025-06-16 22:02:37.706 -03:00 [INF] 📂 Documento aberto: 134538.ipt
+2025-06-16 22:02:37.707 -03:00 [INF] 🚀 Work Session iniciada: 134538.ipt (ID: 7feb9dd2-ce17-4362-a548-a62d80c38a13)
+2025-06-16 22:02:37.708 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.709 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:02:37.710 -03:00 [INF] ✅ Monitoring de documentos ativo via polling
+2025-06-16 22:02:37.710 -03:00 [INF] Received HTTP response headers after 0.6125ms - 404
+2025-06-16 22:02:37.712 -03:00 [INF] End processing HTTP request after 4.3711ms - 404
+2025-06-16 22:03:12.725 -03:00 [INF] 📂 FECHADO: 0345385.iam
+2025-06-16 22:03:12.726 -03:00 [INF] 📂 Documento fechado: 0345385.iam
+2025-06-16 22:03:12.728 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.729 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.732 -03:00 [INF] 📂 FECHADO: 089277.ipt
+2025-06-16 22:03:12.733 -03:00 [INF] Received HTTP response headers after 1.9891ms - 404
+2025-06-16 22:03:12.733 -03:00 [INF] 📂 Documento fechado: 089277.ipt
+2025-06-16 22:03:12.734 -03:00 [INF] End processing HTTP request after 6.2569ms - 404
+2025-06-16 22:03:12.736 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.737 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.738 -03:00 [INF] 📂 FECHADO: 0313902.ipt
+2025-06-16 22:03:12.738 -03:00 [INF] Received HTTP response headers after 0.789ms - 404
+2025-06-16 22:03:12.739 -03:00 [INF] 📂 Documento fechado: 0313902.ipt
+2025-06-16 22:03:12.741 -03:00 [INF] End processing HTTP request after 5.0789ms - 404
+2025-06-16 22:03:12.742 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.743 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.744 -03:00 [INF] 📂 FECHADO: UNI 5589 - M16 - 2.IPT
+2025-06-16 22:03:12.745 -03:00 [INF] Received HTTP response headers after 0.754ms - 404
+2025-06-16 22:03:12.747 -03:00 [INF] End processing HTTP request after 5.0812ms - 404
+2025-06-16 22:03:12.745 -03:00 [INF] 📂 Documento fechado: UNI 5589 - M16 - 2.IPT
+2025-06-16 22:03:12.749 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.750 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.751 -03:00 [INF] 📂 FECHADO: 0345580.ipt
+2025-06-16 22:03:12.752 -03:00 [INF] Received HTTP response headers after 1.0012ms - 404
+2025-06-16 22:03:12.753 -03:00 [INF] 📂 Documento fechado: 0345580.ipt
+2025-06-16 22:03:12.755 -03:00 [INF] End processing HTTP request after 6.3061ms - 404
+2025-06-16 22:03:12.757 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.758 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.759 -03:00 [INF] 📂 FECHADO: 0345709.ipt
+2025-06-16 22:03:12.759 -03:00 [INF] Received HTTP response headers after 0.8089ms - 404
+2025-06-16 22:03:12.760 -03:00 [INF] 📂 Documento fechado: 0345709.ipt
+2025-06-16 22:03:12.761 -03:00 [INF] End processing HTTP request after 4.0703ms - 404
+2025-06-16 22:03:12.762 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.764 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.766 -03:00 [INF] 📂 FECHADO: 0345710.ipt
+2025-06-16 22:03:12.767 -03:00 [INF] Received HTTP response headers after 1.8374ms - 404
+2025-06-16 22:03:12.768 -03:00 [INF] 📂 Documento fechado: 0345710.ipt
+2025-06-16 22:03:12.768 -03:00 [INF] End processing HTTP request after 6.6043ms - 404
+2025-06-16 22:03:12.770 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.772 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.774 -03:00 [INF] 📂 FECHADO: 0345707.ipt
+2025-06-16 22:03:12.774 -03:00 [INF] Received HTTP response headers after 0.9421ms - 404
+2025-06-16 22:03:12.775 -03:00 [INF] 📂 Documento fechado: 0345707.ipt
+2025-06-16 22:03:12.775 -03:00 [INF] End processing HTTP request after 5.5239ms - 404
+2025-06-16 22:03:12.776 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.778 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.779 -03:00 [INF] 📂 FECHADO: 0345708.ipt
+2025-06-16 22:03:12.779 -03:00 [INF] Received HTTP response headers after 0.8453ms - 404
+2025-06-16 22:03:12.780 -03:00 [INF] 📂 Documento fechado: 0345708.ipt
+2025-06-16 22:03:12.781 -03:00 [INF] End processing HTTP request after 4.9963ms - 404
+2025-06-16 22:03:12.783 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.784 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.785 -03:00 [INF] 📂 FECHADO: 0345536.ipt
+2025-06-16 22:03:12.786 -03:00 [INF] Received HTTP response headers after 0.8462ms - 404
+2025-06-16 22:03:12.786 -03:00 [INF] 📂 Documento fechado: 0345536.ipt
+2025-06-16 22:03:12.787 -03:00 [INF] End processing HTTP request after 4.1384ms - 404
+2025-06-16 22:03:12.788 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.789 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.790 -03:00 [INF] 📂 FECHADO: 0345538.ipt
+2025-06-16 22:03:12.791 -03:00 [INF] Received HTTP response headers after 0.6561ms - 404
+2025-06-16 22:03:12.791 -03:00 [INF] 📂 Documento fechado: 0345538.ipt
+2025-06-16 22:03:12.791 -03:00 [INF] End processing HTTP request after 3.5811ms - 404
+2025-06-16 22:03:12.793 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.794 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.796 -03:00 [INF] 📂 FECHADO: 088259.ipt
+2025-06-16 22:03:12.796 -03:00 [INF] Received HTTP response headers after 0.9892ms - 404
+2025-06-16 22:03:12.797 -03:00 [INF] 📂 Documento fechado: 088259.ipt
+2025-06-16 22:03:12.798 -03:00 [INF] End processing HTTP request after 5.1222ms - 404
+2025-06-16 22:03:12.799 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.801 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.802 -03:00 [INF] 📂 FECHADO: 111646.ipt
+2025-06-16 22:03:12.803 -03:00 [INF] Received HTTP response headers after 0.5843ms - 404
+2025-06-16 22:03:12.803 -03:00 [INF] 📂 Documento fechado: 111646.ipt
+2025-06-16 22:03:12.803 -03:00 [INF] End processing HTTP request after 4.4932ms - 404
+2025-06-16 22:03:12.804 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.806 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.807 -03:00 [INF] 📂 FECHADO: 0254385.ipt
+2025-06-16 22:03:12.808 -03:00 [INF] Received HTTP response headers after 0.8361ms - 404
+2025-06-16 22:03:12.808 -03:00 [INF] 📂 Documento fechado: 0254385.ipt
+2025-06-16 22:03:12.809 -03:00 [INF] End processing HTTP request after 4.4404ms - 404
+2025-06-16 22:03:12.810 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.811 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.812 -03:00 [INF] 📂 FECHADO: 0321862.ipt
+2025-06-16 22:03:12.813 -03:00 [INF] Received HTTP response headers after 1.315ms - 404
+2025-06-16 22:03:12.813 -03:00 [INF] 📂 Documento fechado: 0321862.ipt
+2025-06-16 22:03:12.814 -03:00 [INF] End processing HTTP request after 4.4884ms - 404
+2025-06-16 22:03:12.816 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.817 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.819 -03:00 [INF] 📂 FECHADO: 0307215.iam
+2025-06-16 22:03:12.819 -03:00 [INF] Received HTTP response headers after 0.8364ms - 404
+2025-06-16 22:03:12.820 -03:00 [INF] 📂 Documento fechado: 0307215.iam
+2025-06-16 22:03:12.820 -03:00 [INF] End processing HTTP request after 4.3387ms - 404
+2025-06-16 22:03:12.821 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.823 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.824 -03:00 [INF] 📂 FECHADO: CP96SDB63-100C_1.ipt
+2025-06-16 22:03:12.824 -03:00 [INF] Received HTTP response headers after 0.5718ms - 404
+2025-06-16 22:03:12.825 -03:00 [INF] 📂 Documento fechado: CP96SDB63-100C_1.ipt
+2025-06-16 22:03:12.826 -03:00 [INF] End processing HTTP request after 4.4389ms - 404
+2025-06-16 22:03:12.827 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.828 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.830 -03:00 [INF] 📂 FECHADO: CP96SDB63-100C_2.ipt
+2025-06-16 22:03:12.830 -03:00 [INF] Received HTTP response headers after 0.9377ms - 404
+2025-06-16 22:03:12.831 -03:00 [INF] 📂 Documento fechado: CP96SDB63-100C_2.ipt
+2025-06-16 22:03:12.832 -03:00 [INF] End processing HTTP request after 5.1964ms - 404
+2025-06-16 22:03:12.833 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.835 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.836 -03:00 [INF] 📂 FECHADO: 0345546.ipt
+2025-06-16 22:03:12.836 -03:00 [INF] Received HTTP response headers after 0.6312ms - 404
+2025-06-16 22:03:12.837 -03:00 [INF] 📂 Documento fechado: 0345546.ipt
+2025-06-16 22:03:12.837 -03:00 [INF] End processing HTTP request after 4.0558ms - 404
+2025-06-16 22:03:12.839 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.840 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.841 -03:00 [INF] 📂 FECHADO: 0345712.ipt
+2025-06-16 22:03:12.841 -03:00 [INF] Received HTTP response headers after 0.5255ms - 404
+2025-06-16 22:03:12.841 -03:00 [INF] 📂 Documento fechado: 0345712.ipt
+2025-06-16 22:03:12.842 -03:00 [INF] End processing HTTP request after 3.3171ms - 404
+2025-06-16 22:03:12.843 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.844 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.846 -03:00 [INF] 📂 FECHADO: 0345713.ipt
+2025-06-16 22:03:12.846 -03:00 [INF] Received HTTP response headers after 1.0225ms - 404
+2025-06-16 22:03:12.847 -03:00 [INF] 📂 Documento fechado: 0345713.ipt
+2025-06-16 22:03:12.848 -03:00 [INF] End processing HTTP request after 5.0375ms - 404
+2025-06-16 22:03:12.849 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.851 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.852 -03:00 [INF] 📂 FECHADO: 0345711.ipt
+2025-06-16 22:03:12.852 -03:00 [INF] Received HTTP response headers after 0.6737ms - 404
+2025-06-16 22:03:12.853 -03:00 [INF] 📂 Documento fechado: 0345711.ipt
+2025-06-16 22:03:12.854 -03:00 [INF] End processing HTTP request after 4.5086ms - 404
+2025-06-16 22:03:12.855 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.856 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.858 -03:00 [INF] 📂 FECHADO: 0345714.ipt
+2025-06-16 22:03:12.858 -03:00 [INF] Received HTTP response headers after 0.6606ms - 404
+2025-06-16 22:03:12.858 -03:00 [INF] 📂 Documento fechado: 0345714.ipt
+2025-06-16 22:03:12.859 -03:00 [INF] End processing HTTP request after 4.1931ms - 404
+2025-06-16 22:03:12.860 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.862 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.864 -03:00 [INF] 📂 FECHADO: 0345715.ipt
+2025-06-16 22:03:12.864 -03:00 [INF] Received HTTP response headers after 0.7978ms - 404
+2025-06-16 22:03:12.864 -03:00 [INF] 📂 Documento fechado: 0345715.ipt
+2025-06-16 22:03:12.866 -03:00 [INF] End processing HTTP request after 5.4793ms - 404
+2025-06-16 22:03:12.867 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.868 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.870 -03:00 [INF] 📂 FECHADO: 0345716.ipt
+2025-06-16 22:03:12.870 -03:00 [INF] Received HTTP response headers after 0.6954ms - 404
+2025-06-16 22:03:12.870 -03:00 [INF] 📂 Documento fechado: 0345716.ipt
+2025-06-16 22:03:12.871 -03:00 [INF] End processing HTTP request after 3.9152ms - 404
+2025-06-16 22:03:12.872 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.873 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.875 -03:00 [INF] 📂 FECHADO: 0345717.ipt
+2025-06-16 22:03:12.875 -03:00 [INF] Received HTTP response headers after 0.6673ms - 404
+2025-06-16 22:03:12.875 -03:00 [INF] 📂 Documento fechado: 0345717.ipt
+2025-06-16 22:03:12.876 -03:00 [INF] End processing HTTP request after 4.2521ms - 404
+2025-06-16 22:03:12.877 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.878 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.880 -03:00 [INF] 📂 FECHADO: 0345718.ipt
+2025-06-16 22:03:12.880 -03:00 [INF] Received HTTP response headers after 0.7821ms - 404
+2025-06-16 22:03:12.881 -03:00 [INF] 📂 Documento fechado: 0345718.ipt
+2025-06-16 22:03:12.882 -03:00 [INF] End processing HTTP request after 5.0575ms - 404
+2025-06-16 22:03:12.883 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.885 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.886 -03:00 [INF] 📂 FECHADO: 134538.ipt
+2025-06-16 22:03:12.886 -03:00 [INF] Received HTTP response headers after 0.5587ms - 404
+2025-06-16 22:03:12.887 -03:00 [INF] 📂 Documento fechado: 134538.ipt
+2025-06-16 22:03:12.887 -03:00 [INF] End processing HTTP request after 4.092ms - 404
+2025-06-16 22:03:12.888 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.889 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:12.891 -03:00 [INF] Received HTTP response headers after 0.6757ms - 404
+2025-06-16 22:03:12.892 -03:00 [INF] End processing HTTP request after 4.1093ms - 404
+2025-06-16 22:03:22.914 -03:00 [INF] Companion Worker Service parando.
+2025-06-16 22:03:22.915 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 22:03:22.916 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 22:03:22.916 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 22:03:22.920 -03:00 [INF] 🏁 Work Session finalizada: 134538.ipt - Duração: 00:00:45 - 0 saves
+2025-06-16 22:03:22.922 -03:00 [INF] Enviando fim da sessão de trabalho: 134538.ipt
+2025-06-16 22:03:22.923 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 22:03:22.925 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 22:03:22.925 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 22:03:27.601 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-16 22:03:27.635 -03:00 [INF] Tentando conectar ao Inventor...
+2025-06-16 22:03:27.789 -03:00 [INF] ✓ Conectado ao Inventor 2023
+2025-06-16 22:03:27.790 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-16 22:03:27.792 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-16 22:03:27.792 -03:00 [INF] 🔄 Iniciando monitoramento via polling (mais confiável que eventos COM)
+2025-06-16 22:03:27.792 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-16 22:03:27.793 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-16 22:03:27.810 -03:00 [INF] 🔍 Detectando 0 documentos já abertos
+2025-06-16 22:03:27.814 -03:00 [INF] ✅ Monitoring de documentos ativo via polling
+2025-06-16 22:03:27.831 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:03:27.837 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:03:27.895 -03:00 [INF] Received HTTP response headers after 56.1728ms - 204
+2025-06-16 22:03:27.901 -03:00 [INF] End processing HTTP request after 76.6168ms - 204
+2025-06-16 22:03:42.318 -03:00 [INF] 📂 ABERTO: 0345385.iam
+2025-06-16 22:03:42.320 -03:00 [INF] 📂 Documento aberto: 0345385.iam
+2025-06-16 22:03:42.330 -03:00 [INF] 🚀 Work Session iniciada: 0345385.iam (ID: c91ddded-f2a7-4ab5-ab80-9ee30f977f59)
+2025-06-16 22:03:42.352 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.353 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.361 -03:00 [INF] Received HTTP response headers after 6.5777ms - 404
+2025-06-16 22:03:42.364 -03:00 [INF] End processing HTTP request after 12.0245ms - 404
+2025-06-16 22:03:42.718 -03:00 [INF] 📂 ABERTO: 089277.ipt
+2025-06-16 22:03:42.718 -03:00 [INF] 📂 Documento aberto: 089277.ipt
+2025-06-16 22:03:42.719 -03:00 [INF] 🚀 Work Session iniciada: 089277.ipt (ID: 7eb090d1-535b-4230-b0c3-a116540ffd76)
+2025-06-16 22:03:42.720 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.721 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.723 -03:00 [INF] Received HTTP response headers after 0.6519ms - 404
+2025-06-16 22:03:42.724 -03:00 [INF] End processing HTTP request after 3.5551ms - 404
+2025-06-16 22:03:42.731 -03:00 [INF] 📂 ABERTO: 0313902.ipt
+2025-06-16 22:03:42.732 -03:00 [INF] 📂 Documento aberto: 0313902.ipt
+2025-06-16 22:03:42.734 -03:00 [INF] 🚀 Work Session iniciada: 0313902.ipt (ID: ad9114b9-ddd3-430f-8204-08150bb1f67d)
+2025-06-16 22:03:42.738 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.740 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.741 -03:00 [INF] Received HTTP response headers after 0.5807ms - 404
+2025-06-16 22:03:42.742 -03:00 [INF] End processing HTTP request after 4.0018ms - 404
+2025-06-16 22:03:42.751 -03:00 [INF] 📂 ABERTO: UNI 5589 M16
+2025-06-16 22:03:42.751 -03:00 [INF] 📂 Documento aberto: UNI 5589 M16
+2025-06-16 22:03:42.753 -03:00 [INF] 🚀 Work Session iniciada: UNI 5589 M16 (ID: 371ca97f-1a3e-409a-964e-cfda1c1c1e81)
+2025-06-16 22:03:42.754 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.755 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.757 -03:00 [INF] Received HTTP response headers after 0.7379ms - 404
+2025-06-16 22:03:42.758 -03:00 [INF] End processing HTTP request after 4.0082ms - 404
+2025-06-16 22:03:42.768 -03:00 [INF] 📂 ABERTO: 0345580.ipt
+2025-06-16 22:03:42.769 -03:00 [INF] 📂 Documento aberto: 0345580.ipt
+2025-06-16 22:03:42.770 -03:00 [INF] 🚀 Work Session iniciada: 0345580.ipt (ID: 47ea92e6-2fd1-475d-b2f8-e3e3dfa7caea)
+2025-06-16 22:03:42.771 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.772 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.773 -03:00 [INF] Received HTTP response headers after 0.4149ms - 404
+2025-06-16 22:03:42.774 -03:00 [INF] End processing HTTP request after 2.5429ms - 404
+2025-06-16 22:03:42.784 -03:00 [INF] 📂 ABERTO: 0345709.ipt
+2025-06-16 22:03:42.785 -03:00 [INF] 📂 Documento aberto: 0345709.ipt
+2025-06-16 22:03:42.786 -03:00 [INF] 🚀 Work Session iniciada: 0345709.ipt (ID: 3db6cf41-83ad-42a7-b0ad-057343e6d0db)
+2025-06-16 22:03:42.787 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.788 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.790 -03:00 [INF] Received HTTP response headers after 0.5038ms - 404
+2025-06-16 22:03:42.790 -03:00 [INF] End processing HTTP request after 3.0609ms - 404
+2025-06-16 22:03:42.802 -03:00 [INF] 📂 ABERTO: 0345710.ipt
+2025-06-16 22:03:42.803 -03:00 [INF] 📂 Documento aberto: 0345710.ipt
+2025-06-16 22:03:42.804 -03:00 [INF] 🚀 Work Session iniciada: 0345710.ipt (ID: 25bc75d2-c922-4cd7-8b8b-2ad740bd3702)
+2025-06-16 22:03:42.805 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.806 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.808 -03:00 [INF] Received HTTP response headers after 0.4647ms - 404
+2025-06-16 22:03:42.809 -03:00 [INF] End processing HTTP request after 3.421ms - 404
+2025-06-16 22:03:42.819 -03:00 [INF] 📂 ABERTO: 0345707.ipt
+2025-06-16 22:03:42.820 -03:00 [INF] 📂 Documento aberto: 0345707.ipt
+2025-06-16 22:03:42.821 -03:00 [INF] 🚀 Work Session iniciada: 0345707.ipt (ID: 07edb0a6-a943-47a2-a5fc-a8034a92e8ce)
+2025-06-16 22:03:42.822 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.823 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.825 -03:00 [INF] Received HTTP response headers after 0.4969ms - 404
+2025-06-16 22:03:42.825 -03:00 [INF] End processing HTTP request after 3.2536ms - 404
+2025-06-16 22:03:42.836 -03:00 [INF] 📂 ABERTO: 0345708.ipt
+2025-06-16 22:03:42.837 -03:00 [INF] 📂 Documento aberto: 0345708.ipt
+2025-06-16 22:03:42.838 -03:00 [INF] 🚀 Work Session iniciada: 0345708.ipt (ID: c431b77a-420e-493a-bbe6-2eb44e117d07)
+2025-06-16 22:03:42.839 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.840 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.841 -03:00 [INF] Received HTTP response headers after 0.5043ms - 404
+2025-06-16 22:03:42.842 -03:00 [INF] End processing HTTP request after 3.2702ms - 404
+2025-06-16 22:03:42.853 -03:00 [INF] 📂 ABERTO: 0345536.ipt
+2025-06-16 22:03:42.854 -03:00 [INF] 📂 Documento aberto: 0345536.ipt
+2025-06-16 22:03:42.855 -03:00 [INF] 🚀 Work Session iniciada: 0345536.ipt (ID: 210a3767-2126-4975-8093-c45138af3552)
+2025-06-16 22:03:42.856 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.857 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.858 -03:00 [INF] Received HTTP response headers after 0.5392ms - 404
+2025-06-16 22:03:42.859 -03:00 [INF] End processing HTTP request after 3.0541ms - 404
+2025-06-16 22:03:42.870 -03:00 [INF] 📂 ABERTO: 0345538.ipt
+2025-06-16 22:03:42.871 -03:00 [INF] 📂 Documento aberto: 0345538.ipt
+2025-06-16 22:03:42.872 -03:00 [INF] 🚀 Work Session iniciada: 0345538.ipt (ID: 9f1d37c0-a316-4c97-8a70-a855b0c35594)
+2025-06-16 22:03:42.873 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.874 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.876 -03:00 [INF] Received HTTP response headers after 0.8957ms - 404
+2025-06-16 22:03:42.876 -03:00 [INF] End processing HTTP request after 3.6033ms - 404
+2025-06-16 22:03:42.887 -03:00 [INF] 📂 ABERTO: 088259.ipt
+2025-06-16 22:03:42.888 -03:00 [INF] 📂 Documento aberto: 088259.ipt
+2025-06-16 22:03:42.889 -03:00 [INF] 🚀 Work Session iniciada: 088259.ipt (ID: 15bb1ffb-428e-431e-9c0e-a7bd059b166a)
+2025-06-16 22:03:42.890 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.891 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.892 -03:00 [INF] Received HTTP response headers after 0.4736ms - 404
+2025-06-16 22:03:42.893 -03:00 [INF] End processing HTTP request after 3.2771ms - 404
+2025-06-16 22:03:42.906 -03:00 [INF] 📂 ABERTO: 111646.ipt
+2025-06-16 22:03:42.907 -03:00 [INF] 📂 Documento aberto: 111646.ipt
+2025-06-16 22:03:42.908 -03:00 [INF] 🚀 Work Session iniciada: 111646.ipt (ID: 00fb1902-e28d-401a-8f43-c2039eb22c38)
+2025-06-16 22:03:42.909 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.910 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.912 -03:00 [INF] Received HTTP response headers after 0.5145ms - 404
+2025-06-16 22:03:42.913 -03:00 [INF] End processing HTTP request after 3.9753ms - 404
+2025-06-16 22:03:42.922 -03:00 [INF] 📂 ABERTO: 0254385.ipt
+2025-06-16 22:03:42.923 -03:00 [INF] 📂 Documento aberto: 0254385.ipt
+2025-06-16 22:03:42.924 -03:00 [INF] 🚀 Work Session iniciada: 0254385.ipt (ID: b5507a76-a0fd-4a64-ae4b-cb55f5936a9d)
+2025-06-16 22:03:42.925 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.926 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.928 -03:00 [INF] Received HTTP response headers after 0.5503ms - 404
+2025-06-16 22:03:42.929 -03:00 [INF] End processing HTTP request after 3.8489ms - 404
+2025-06-16 22:03:42.939 -03:00 [INF] 📂 ABERTO: 0321862.ipt
+2025-06-16 22:03:42.940 -03:00 [INF] 📂 Documento aberto: 0321862.ipt
+2025-06-16 22:03:42.942 -03:00 [INF] 🚀 Work Session iniciada: 0321862.ipt (ID: 6edccb80-66f5-4868-a02a-3a3e1bd4fd4c)
+2025-06-16 22:03:42.943 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.943 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.945 -03:00 [INF] Received HTTP response headers after 0.5151ms - 404
+2025-06-16 22:03:42.946 -03:00 [INF] End processing HTTP request after 3.7243ms - 404
+2025-06-16 22:03:42.957 -03:00 [INF] 📂 ABERTO: 0307215.iam
+2025-06-16 22:03:42.958 -03:00 [INF] 📂 Documento aberto: 0307215.iam
+2025-06-16 22:03:42.959 -03:00 [INF] 🚀 Work Session iniciada: 0307215.iam (ID: b240ed0c-63d7-4a2b-bb8d-ead785db94be)
+2025-06-16 22:03:42.960 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.961 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.963 -03:00 [INF] Received HTTP response headers after 1.214ms - 404
+2025-06-16 22:03:42.965 -03:00 [INF] End processing HTTP request after 4.352ms - 404
+2025-06-16 22:03:42.975 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_1.ipt
+2025-06-16 22:03:42.976 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_1.ipt
+2025-06-16 22:03:42.977 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_1.ipt (ID: aef41c4d-80e2-4828-8f93-a04db7b9fdfe)
+2025-06-16 22:03:42.978 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.979 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.981 -03:00 [INF] Received HTTP response headers after 0.7028ms - 404
+2025-06-16 22:03:42.982 -03:00 [INF] End processing HTTP request after 4.522ms - 404
+2025-06-16 22:03:42.992 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_2.ipt
+2025-06-16 22:03:42.993 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_2.ipt
+2025-06-16 22:03:42.994 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_2.ipt (ID: ba97dbcf-fba2-4c63-bf68-c9989cc09131)
+2025-06-16 22:03:42.995 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.996 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:42.998 -03:00 [INF] Received HTTP response headers after 0.6137ms - 404
+2025-06-16 22:03:42.999 -03:00 [INF] End processing HTTP request after 4.0891ms - 404
+2025-06-16 22:03:43.009 -03:00 [INF] 📂 ABERTO: 0345546.ipt
+2025-06-16 22:03:43.009 -03:00 [INF] 📂 Documento aberto: 0345546.ipt
+2025-06-16 22:03:43.011 -03:00 [INF] 🚀 Work Session iniciada: 0345546.ipt (ID: c77d1ecd-8e1a-4e18-8f6f-6d295a466d20)
+2025-06-16 22:03:43.012 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.013 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.015 -03:00 [INF] Received HTTP response headers after 0.6921ms - 404
+2025-06-16 22:03:43.016 -03:00 [INF] End processing HTTP request after 4.4258ms - 404
+2025-06-16 22:03:43.026 -03:00 [INF] 📂 ABERTO: 0345712.ipt
+2025-06-16 22:03:43.027 -03:00 [INF] 📂 Documento aberto: 0345712.ipt
+2025-06-16 22:03:43.028 -03:00 [INF] 🚀 Work Session iniciada: 0345712.ipt (ID: c80c9b28-5faf-4284-a1c9-6c0d98d83f2d)
+2025-06-16 22:03:43.030 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.031 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.033 -03:00 [INF] Received HTTP response headers after 0.4929ms - 404
+2025-06-16 22:03:43.034 -03:00 [INF] End processing HTTP request after 3.8978ms - 404
+2025-06-16 22:03:43.044 -03:00 [INF] 📂 ABERTO: 0345713.ipt
+2025-06-16 22:03:43.045 -03:00 [INF] 📂 Documento aberto: 0345713.ipt
+2025-06-16 22:03:43.047 -03:00 [INF] 🚀 Work Session iniciada: 0345713.ipt (ID: 81ea89cc-2b51-4b9e-8986-e554812821b4)
+2025-06-16 22:03:43.048 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.049 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.051 -03:00 [INF] Received HTTP response headers after 0.5373ms - 404
+2025-06-16 22:03:43.052 -03:00 [INF] End processing HTTP request after 3.3148ms - 404
+2025-06-16 22:03:43.061 -03:00 [INF] 📂 ABERTO: 0345711.ipt
+2025-06-16 22:03:43.062 -03:00 [INF] 📂 Documento aberto: 0345711.ipt
+2025-06-16 22:03:43.064 -03:00 [INF] 🚀 Work Session iniciada: 0345711.ipt (ID: 76ad828b-09d2-4fbf-af71-f4625395c2c1)
+2025-06-16 22:03:43.065 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.066 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.068 -03:00 [INF] Received HTTP response headers after 0.4623ms - 404
+2025-06-16 22:03:43.069 -03:00 [INF] End processing HTTP request after 3.1492ms - 404
+2025-06-16 22:03:43.081 -03:00 [INF] 📂 ABERTO: 0345714.ipt
+2025-06-16 22:03:43.082 -03:00 [INF] 📂 Documento aberto: 0345714.ipt
+2025-06-16 22:03:43.083 -03:00 [INF] 🚀 Work Session iniciada: 0345714.ipt (ID: aaf58c4a-e7af-4edb-9ed1-46c4c7f61299)
+2025-06-16 22:03:43.084 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.085 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.086 -03:00 [INF] Received HTTP response headers after 0.4733ms - 404
+2025-06-16 22:03:43.087 -03:00 [INF] End processing HTTP request after 3.0352ms - 404
+2025-06-16 22:03:43.098 -03:00 [INF] 📂 ABERTO: 0345715.ipt
+2025-06-16 22:03:43.099 -03:00 [INF] 📂 Documento aberto: 0345715.ipt
+2025-06-16 22:03:43.100 -03:00 [INF] 🚀 Work Session iniciada: 0345715.ipt (ID: d06a77b2-b1fe-4f20-a114-f22c3be6981a)
+2025-06-16 22:03:43.101 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.102 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.103 -03:00 [INF] Received HTTP response headers after 0.6808ms - 404
+2025-06-16 22:03:43.104 -03:00 [INF] End processing HTTP request after 3.488ms - 404
+2025-06-16 22:03:43.115 -03:00 [INF] 📂 ABERTO: 0345716.ipt
+2025-06-16 22:03:43.116 -03:00 [INF] 📂 Documento aberto: 0345716.ipt
+2025-06-16 22:03:43.117 -03:00 [INF] 🚀 Work Session iniciada: 0345716.ipt (ID: fed71b4e-d65d-4e96-bf62-1665c9117fdf)
+2025-06-16 22:03:43.118 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.118 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.120 -03:00 [INF] Received HTTP response headers after 0.473ms - 404
+2025-06-16 22:03:43.121 -03:00 [INF] End processing HTTP request after 3.0915ms - 404
+2025-06-16 22:03:43.131 -03:00 [INF] 📂 ABERTO: 0345717.ipt
+2025-06-16 22:03:43.132 -03:00 [INF] 📂 Documento aberto: 0345717.ipt
+2025-06-16 22:03:43.133 -03:00 [INF] 🚀 Work Session iniciada: 0345717.ipt (ID: 22c27899-3198-416c-b1e6-43218f698a3c)
+2025-06-16 22:03:43.134 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.135 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.136 -03:00 [INF] Received HTTP response headers after 0.4168ms - 404
+2025-06-16 22:03:43.137 -03:00 [INF] End processing HTTP request after 2.7527ms - 404
+2025-06-16 22:03:43.147 -03:00 [INF] 📂 ABERTO: 0345718.ipt
+2025-06-16 22:03:43.148 -03:00 [INF] 📂 Documento aberto: 0345718.ipt
+2025-06-16 22:03:43.149 -03:00 [INF] 🚀 Work Session iniciada: 0345718.ipt (ID: a7f3c60f-9858-457b-8ed1-30ef7bbe4728)
+2025-06-16 22:03:43.150 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.151 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.153 -03:00 [INF] Received HTTP response headers after 0.5663ms - 404
+2025-06-16 22:03:43.154 -03:00 [INF] End processing HTTP request after 3.4991ms - 404
+2025-06-16 22:03:43.166 -03:00 [INF] 📂 ABERTO: 134538.ipt
+2025-06-16 22:03:43.166 -03:00 [INF] 📂 Documento aberto: 134538.ipt
+2025-06-16 22:03:43.168 -03:00 [INF] 🚀 Work Session iniciada: 134538.ipt (ID: e5505028-e9ef-4e8f-9409-6c9a8b7e9f24)
+2025-06-16 22:03:43.169 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.169 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:03:43.171 -03:00 [INF] Received HTTP response headers after 0.4416ms - 404
+2025-06-16 22:03:43.172 -03:00 [INF] End processing HTTP request after 2.9842ms - 404
+2025-06-16 22:04:23.839 -03:00 [INF] 📄 Processando save: 0345385.iam (Tipo: Assembly)
+2025-06-16 22:04:23.842 -03:00 [INF] 🔧 Extraindo BOM de assembly: 0345385.iam
+2025-06-16 22:04:36.380 -03:00 [INF] Enviando dados de BOM: 0345385.iam
+2025-06-16 22:04:36.397 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/boms/data
+2025-06-16 22:04:36.398 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/boms/data
+2025-06-16 22:04:36.415 -03:00 [INF] Received HTTP response headers after 16.6669ms - 404
+2025-06-16 22:04:36.416 -03:00 [INF] End processing HTTP request after 19.7407ms - 404
+2025-06-16 22:04:36.418 -03:00 [INF] ✅ BOM enviado: 27 itens (Projeto: Projeto Desconhecido)
+2025-06-16 22:04:36.419 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:36.420 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:36.421 -03:00 [INF] Received HTTP response headers after 0.6681ms - 404
+2025-06-16 22:04:36.422 -03:00 [INF] End processing HTTP request after 3.5971ms - 404
+2025-06-16 22:04:38.817 -03:00 [INF] 📂 FECHADO: 0345385.iam
+2025-06-16 22:04:38.819 -03:00 [INF] 📂 Documento fechado: 0345385.iam
+2025-06-16 22:04:38.820 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.821 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.821 -03:00 [INF] 📂 FECHADO: 089277.ipt
+2025-06-16 22:04:38.822 -03:00 [INF] Received HTTP response headers after 0.5241ms - 404
+2025-06-16 22:04:38.822 -03:00 [INF] 📂 Documento fechado: 089277.ipt
+2025-06-16 22:04:38.823 -03:00 [INF] End processing HTTP request after 3.0203ms - 404
+2025-06-16 22:04:38.824 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.825 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.826 -03:00 [INF] 📂 FECHADO: 0313902.ipt
+2025-06-16 22:04:38.827 -03:00 [INF] Received HTTP response headers after 0.4519ms - 404
+2025-06-16 22:04:38.827 -03:00 [INF] 📂 Documento fechado: 0313902.ipt
+2025-06-16 22:04:38.828 -03:00 [INF] End processing HTTP request after 4.5829ms - 404
+2025-06-16 22:04:38.830 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.831 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.832 -03:00 [INF] 📂 FECHADO: UNI 5589 - M16 - 2.IPT
+2025-06-16 22:04:38.833 -03:00 [INF] Received HTTP response headers after 0.4565ms - 404
+2025-06-16 22:04:38.834 -03:00 [INF] 📂 Documento fechado: UNI 5589 - M16 - 2.IPT
+2025-06-16 22:04:38.835 -03:00 [INF] End processing HTTP request after 5.0489ms - 404
+2025-06-16 22:04:38.836 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.837 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.838 -03:00 [INF] 📂 FECHADO: 0345580.ipt
+2025-06-16 22:04:38.838 -03:00 [INF] Received HTTP response headers after 0.3606ms - 404
+2025-06-16 22:04:38.838 -03:00 [INF] 📂 Documento fechado: 0345580.ipt
+2025-06-16 22:04:38.839 -03:00 [INF] End processing HTTP request after 3.2125ms - 404
+2025-06-16 22:04:38.840 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.841 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.842 -03:00 [INF] 📂 FECHADO: 0345709.ipt
+2025-06-16 22:04:38.843 -03:00 [INF] Received HTTP response headers after 0.3432ms - 404
+2025-06-16 22:04:38.843 -03:00 [INF] 📂 Documento fechado: 0345709.ipt
+2025-06-16 22:04:38.844 -03:00 [INF] End processing HTTP request after 3.4467ms - 404
+2025-06-16 22:04:38.844 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.846 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.847 -03:00 [INF] 📂 FECHADO: 0345710.ipt
+2025-06-16 22:04:38.848 -03:00 [INF] Received HTTP response headers after 0.8227ms - 404
+2025-06-16 22:04:38.849 -03:00 [INF] 📂 Documento fechado: 0345710.ipt
+2025-06-16 22:04:38.850 -03:00 [INF] End processing HTTP request after 5.1954ms - 404
+2025-06-16 22:04:38.851 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.851 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.852 -03:00 [INF] 📂 FECHADO: 0345707.ipt
+2025-06-16 22:04:38.853 -03:00 [INF] Received HTTP response headers after 0.3484ms - 404
+2025-06-16 22:04:38.853 -03:00 [INF] 📂 Documento fechado: 0345707.ipt
+2025-06-16 22:04:38.854 -03:00 [INF] End processing HTTP request after 3.0958ms - 404
+2025-06-16 22:04:38.855 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.856 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.857 -03:00 [INF] 📂 FECHADO: 0345708.ipt
+2025-06-16 22:04:38.857 -03:00 [INF] Received HTTP response headers after 0.3717ms - 404
+2025-06-16 22:04:38.857 -03:00 [INF] 📂 Documento fechado: 0345708.ipt
+2025-06-16 22:04:38.858 -03:00 [INF] End processing HTTP request after 3.4483ms - 404
+2025-06-16 22:04:38.859 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.860 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.861 -03:00 [INF] 📂 FECHADO: 0345536.ipt
+2025-06-16 22:04:38.862 -03:00 [INF] Received HTTP response headers after 1.2255ms - 404
+2025-06-16 22:04:38.863 -03:00 [INF] 📂 Documento fechado: 0345536.ipt
+2025-06-16 22:04:38.863 -03:00 [INF] End processing HTTP request after 4.4742ms - 404
+2025-06-16 22:04:38.865 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.866 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.867 -03:00 [INF] 📂 FECHADO: 0345538.ipt
+2025-06-16 22:04:38.867 -03:00 [INF] Received HTTP response headers after 0.3601ms - 404
+2025-06-16 22:04:38.867 -03:00 [INF] 📂 Documento fechado: 0345538.ipt
+2025-06-16 22:04:38.868 -03:00 [INF] End processing HTTP request after 3.6047ms - 404
+2025-06-16 22:04:38.869 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.870 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.871 -03:00 [INF] 📂 FECHADO: 088259.ipt
+2025-06-16 22:04:38.872 -03:00 [INF] Received HTTP response headers after 0.7361ms - 404
+2025-06-16 22:04:38.872 -03:00 [INF] 📂 Documento fechado: 088259.ipt
+2025-06-16 22:04:38.873 -03:00 [INF] End processing HTTP request after 3.6871ms - 404
+2025-06-16 22:04:38.873 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.875 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.875 -03:00 [INF] 📂 FECHADO: 111646.ipt
+2025-06-16 22:04:38.876 -03:00 [INF] Received HTTP response headers after 0.3823ms - 404
+2025-06-16 22:04:38.876 -03:00 [INF] 📂 Documento fechado: 111646.ipt
+2025-06-16 22:04:38.877 -03:00 [INF] End processing HTTP request after 3.578ms - 404
+2025-06-16 22:04:38.878 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.880 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.881 -03:00 [INF] 📂 FECHADO: 0254385.ipt
+2025-06-16 22:04:38.882 -03:00 [INF] Received HTTP response headers after 0.5933ms - 404
+2025-06-16 22:04:38.882 -03:00 [INF] 📂 Documento fechado: 0254385.ipt
+2025-06-16 22:04:38.883 -03:00 [INF] End processing HTTP request after 4.7226ms - 404
+2025-06-16 22:04:38.884 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.885 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.886 -03:00 [INF] 📂 FECHADO: 0321862.ipt
+2025-06-16 22:04:38.886 -03:00 [INF] Received HTTP response headers after 0.3582ms - 404
+2025-06-16 22:04:38.887 -03:00 [INF] 📂 Documento fechado: 0321862.ipt
+2025-06-16 22:04:38.887 -03:00 [INF] End processing HTTP request after 3.3188ms - 404
+2025-06-16 22:04:38.888 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.889 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.890 -03:00 [INF] 📂 FECHADO: 0307215.iam
+2025-06-16 22:04:38.890 -03:00 [INF] Received HTTP response headers after 0.3524ms - 404
+2025-06-16 22:04:38.891 -03:00 [INF] 📂 Documento fechado: 0307215.iam
+2025-06-16 22:04:38.891 -03:00 [INF] End processing HTTP request after 3.0614ms - 404
+2025-06-16 22:04:38.892 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.893 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.895 -03:00 [INF] 📂 FECHADO: CP96SDB63-100C_1.ipt
+2025-06-16 22:04:38.895 -03:00 [INF] Received HTTP response headers after 0.4885ms - 404
+2025-06-16 22:04:38.896 -03:00 [INF] 📂 Documento fechado: CP96SDB63-100C_1.ipt
+2025-06-16 22:04:38.897 -03:00 [INF] End processing HTTP request after 4.3321ms - 404
+2025-06-16 22:04:38.898 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.899 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.900 -03:00 [INF] 📂 FECHADO: CP96SDB63-100C_2.ipt
+2025-06-16 22:04:38.900 -03:00 [INF] Received HTTP response headers after 0.3528ms - 404
+2025-06-16 22:04:38.901 -03:00 [INF] 📂 Documento fechado: CP96SDB63-100C_2.ipt
+2025-06-16 22:04:38.901 -03:00 [INF] End processing HTTP request after 3.5667ms - 404
+2025-06-16 22:04:38.902 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.903 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.904 -03:00 [INF] 📂 FECHADO: 0345546.ipt
+2025-06-16 22:04:38.904 -03:00 [INF] Received HTTP response headers after 0.3671ms - 404
+2025-06-16 22:04:38.905 -03:00 [INF] 📂 Documento fechado: 0345546.ipt
+2025-06-16 22:04:38.906 -03:00 [INF] End processing HTTP request after 3.552ms - 404
+2025-06-16 22:04:38.906 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.908 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.908 -03:00 [INF] 📂 FECHADO: 0345712.ipt
+2025-06-16 22:04:38.909 -03:00 [INF] Received HTTP response headers after 0.3343ms - 404
+2025-06-16 22:04:38.909 -03:00 [INF] 📂 Documento fechado: 0345712.ipt
+2025-06-16 22:04:38.910 -03:00 [INF] End processing HTTP request after 3.1867ms - 404
+2025-06-16 22:04:38.911 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.912 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.913 -03:00 [INF] 📂 FECHADO: 0345713.ipt
+2025-06-16 22:04:38.914 -03:00 [INF] Received HTTP response headers after 0.4508ms - 404
+2025-06-16 22:04:38.914 -03:00 [INF] 📂 Documento fechado: 0345713.ipt
+2025-06-16 22:04:38.915 -03:00 [INF] End processing HTTP request after 4.5313ms - 404
+2025-06-16 22:04:38.916 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.917 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.918 -03:00 [INF] 📂 FECHADO: 0345711.ipt
+2025-06-16 22:04:38.918 -03:00 [INF] Received HTTP response headers after 0.3665ms - 404
+2025-06-16 22:04:38.919 -03:00 [INF] 📂 Documento fechado: 0345711.ipt
+2025-06-16 22:04:38.919 -03:00 [INF] End processing HTTP request after 3.172ms - 404
+2025-06-16 22:04:38.920 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.921 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.922 -03:00 [INF] 📂 FECHADO: 0345714.ipt
+2025-06-16 22:04:38.923 -03:00 [INF] Received HTTP response headers after 0.3476ms - 404
+2025-06-16 22:04:38.923 -03:00 [INF] 📂 Documento fechado: 0345714.ipt
+2025-06-16 22:04:38.924 -03:00 [INF] End processing HTTP request after 3.4349ms - 404
+2025-06-16 22:04:38.924 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.925 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.926 -03:00 [INF] 📂 FECHADO: 0345715.ipt
+2025-06-16 22:04:38.927 -03:00 [INF] Received HTTP response headers after 0.4123ms - 404
+2025-06-16 22:04:38.927 -03:00 [INF] 📂 Documento fechado: 0345715.ipt
+2025-06-16 22:04:38.929 -03:00 [INF] End processing HTTP request after 4.2961ms - 404
+2025-06-16 22:04:38.929 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.931 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.932 -03:00 [INF] 📂 FECHADO: 0345716.ipt
+2025-06-16 22:04:38.932 -03:00 [INF] Received HTTP response headers after 0.4535ms - 404
+2025-06-16 22:04:38.933 -03:00 [INF] 📂 Documento fechado: 0345716.ipt
+2025-06-16 22:04:38.934 -03:00 [INF] End processing HTTP request after 4.0463ms - 404
+2025-06-16 22:04:38.934 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.935 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.936 -03:00 [INF] 📂 FECHADO: 0345717.ipt
+2025-06-16 22:04:38.936 -03:00 [INF] Received HTTP response headers after 0.358ms - 404
+2025-06-16 22:04:38.937 -03:00 [INF] 📂 Documento fechado: 0345717.ipt
+2025-06-16 22:04:38.938 -03:00 [INF] End processing HTTP request after 3.153ms - 404
+2025-06-16 22:04:38.939 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.939 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.940 -03:00 [INF] 📂 FECHADO: 0345718.ipt
+2025-06-16 22:04:38.940 -03:00 [INF] Received HTTP response headers after 0.3621ms - 404
+2025-06-16 22:04:38.941 -03:00 [INF] 📂 Documento fechado: 0345718.ipt
+2025-06-16 22:04:38.942 -03:00 [INF] End processing HTTP request after 3.0835ms - 404
+2025-06-16 22:04:38.942 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.944 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.945 -03:00 [INF] 📂 FECHADO: 134538.ipt
+2025-06-16 22:04:38.945 -03:00 [INF] Received HTTP response headers after 0.5489ms - 404
+2025-06-16 22:04:38.946 -03:00 [INF] 📂 Documento fechado: 134538.ipt
+2025-06-16 22:04:38.947 -03:00 [INF] End processing HTTP request after 4.2646ms - 404
+2025-06-16 22:04:38.947 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.948 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:04:38.950 -03:00 [INF] Received HTTP response headers after 0.4384ms - 404
+2025-06-16 22:04:38.951 -03:00 [INF] End processing HTTP request after 3.4245ms - 404
+2025-06-16 22:08:27.906 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:08:27.908 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:08:27.922 -03:00 [INF] Received HTTP response headers after 13.29ms - 204
+2025-06-16 22:08:27.924 -03:00 [INF] End processing HTTP request after 18.4136ms - 204
+2025-06-16 22:13:27.938 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:13:27.939 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:13:27.957 -03:00 [INF] Received HTTP response headers after 14.4483ms - 204
+2025-06-16 22:13:27.960 -03:00 [INF] End processing HTTP request after 22.3217ms - 204
+2025-06-16 22:17:41.620 -03:00 [INF] Companion Worker Service parando.
+2025-06-16 22:17:41.622 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 22:17:41.623 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 22:17:41.623 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 22:17:41.630 -03:00 [INF] 🏁 Work Session finalizada: 088259.ipt - Duração: 00:13:58 - 0 saves
+2025-06-16 22:17:41.638 -03:00 [INF] Enviando fim da sessão de trabalho: 088259.ipt
+2025-06-16 22:17:41.639 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 22:17:41.648 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 22:17:41.653 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 22:18:00.788 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-16 22:18:00.824 -03:00 [INF] Tentando conectar ao Inventor...
+2025-06-16 22:18:00.997 -03:00 [INF] ✓ Conectado ao Inventor 2023
+2025-06-16 22:18:00.998 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-16 22:18:01.001 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-16 22:18:01.002 -03:00 [INF] 🔄 Iniciando monitoramento via polling (mais confiável que eventos COM)
+2025-06-16 22:18:01.003 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-16 22:18:01.004 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-16 22:18:01.026 -03:00 [INF] 🔍 Detectando 0 documentos já abertos
+2025-06-16 22:18:01.029 -03:00 [INF] ✅ Monitoring de documentos ativo via polling
+2025-06-16 22:18:01.042 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:18:01.048 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:18:01.103 -03:00 [INF] Received HTTP response headers after 51.8478ms - 204
+2025-06-16 22:18:01.108 -03:00 [INF] End processing HTTP request after 71.137ms - 204
+2025-06-16 22:18:12.269 -03:00 [INF] 📂 ABERTO: 0345385.iam
+2025-06-16 22:18:12.272 -03:00 [INF] 📂 Documento aberto: 0345385.iam
+2025-06-16 22:18:12.282 -03:00 [INF] 🚀 Work Session iniciada: 0345385.iam (ID: c20887a0-6fbc-410f-b22f-f282a0a25a22)
+2025-06-16 22:18:12.306 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.371 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.378 -03:00 [INF] Received HTTP response headers after 5.305ms - 404
+2025-06-16 22:18:12.380 -03:00 [INF] End processing HTTP request after 74.4216ms - 404
+2025-06-16 22:18:12.686 -03:00 [INF] 📂 ABERTO: 089277.ipt
+2025-06-16 22:18:12.687 -03:00 [INF] 📂 Documento aberto: 089277.ipt
+2025-06-16 22:18:12.689 -03:00 [INF] 🚀 Work Session iniciada: 089277.ipt (ID: d8721c55-2eac-42e0-a470-a5adbbf9a955)
+2025-06-16 22:18:12.690 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.690 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.692 -03:00 [INF] Received HTTP response headers after 0.6397ms - 404
+2025-06-16 22:18:12.693 -03:00 [INF] End processing HTTP request after 3.6249ms - 404
+2025-06-16 22:18:12.706 -03:00 [INF] 📂 ABERTO: 0313902.ipt
+2025-06-16 22:18:12.707 -03:00 [INF] 📂 Documento aberto: 0313902.ipt
+2025-06-16 22:18:12.708 -03:00 [INF] 🚀 Work Session iniciada: 0313902.ipt (ID: b656f066-f6f5-4a2b-9499-9c881f38b333)
+2025-06-16 22:18:12.709 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.710 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.712 -03:00 [INF] Received HTTP response headers after 0.8471ms - 404
+2025-06-16 22:18:12.713 -03:00 [INF] End processing HTTP request after 4.3497ms - 404
+2025-06-16 22:18:12.742 -03:00 [INF] 📂 ABERTO: UNI 5589 M16
+2025-06-16 22:18:12.744 -03:00 [INF] 📂 Documento aberto: UNI 5589 M16
+2025-06-16 22:18:12.745 -03:00 [INF] 🚀 Work Session iniciada: UNI 5589 M16 (ID: 9cf22b20-b098-4d54-9313-6ec630b8a5b5)
+2025-06-16 22:18:12.746 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.748 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.751 -03:00 [INF] Received HTTP response headers after 0.9889ms - 404
+2025-06-16 22:18:12.752 -03:00 [INF] End processing HTTP request after 6.1727ms - 404
+2025-06-16 22:18:12.766 -03:00 [INF] 📂 ABERTO: 0345580.ipt
+2025-06-16 22:18:12.768 -03:00 [INF] 📂 Documento aberto: 0345580.ipt
+2025-06-16 22:18:12.770 -03:00 [INF] 🚀 Work Session iniciada: 0345580.ipt (ID: 782ce3d7-40aa-4fc6-8da4-18b66d5a5dcb)
+2025-06-16 22:18:12.770 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.771 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.772 -03:00 [INF] Received HTTP response headers after 0.4634ms - 404
+2025-06-16 22:18:12.773 -03:00 [INF] End processing HTTP request after 2.9107ms - 404
+2025-06-16 22:18:12.790 -03:00 [INF] 📂 ABERTO: 0345709.ipt
+2025-06-16 22:18:12.791 -03:00 [INF] 📂 Documento aberto: 0345709.ipt
+2025-06-16 22:18:12.793 -03:00 [INF] 🚀 Work Session iniciada: 0345709.ipt (ID: f06a2175-ee8f-41ed-824a-dbcd3c9322b3)
+2025-06-16 22:18:12.794 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.796 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.798 -03:00 [INF] Received HTTP response headers after 1.1223ms - 404
+2025-06-16 22:18:12.800 -03:00 [INF] End processing HTTP request after 5.7618ms - 404
+2025-06-16 22:18:12.818 -03:00 [INF] 📂 ABERTO: 0345710.ipt
+2025-06-16 22:18:12.819 -03:00 [INF] 📂 Documento aberto: 0345710.ipt
+2025-06-16 22:18:12.820 -03:00 [INF] 🚀 Work Session iniciada: 0345710.ipt (ID: 62566930-c3db-4eb1-af1f-d737c143531a)
+2025-06-16 22:18:12.821 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.822 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.823 -03:00 [INF] Received HTTP response headers after 0.432ms - 404
+2025-06-16 22:18:12.824 -03:00 [INF] End processing HTTP request after 2.6511ms - 404
+2025-06-16 22:18:12.834 -03:00 [INF] 📂 ABERTO: 0345707.ipt
+2025-06-16 22:18:12.835 -03:00 [INF] 📂 Documento aberto: 0345707.ipt
+2025-06-16 22:18:12.836 -03:00 [INF] 🚀 Work Session iniciada: 0345707.ipt (ID: d3e5961e-523c-43dd-b087-3b2678310b74)
+2025-06-16 22:18:12.836 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.837 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.838 -03:00 [INF] Received HTTP response headers after 0.4664ms - 404
+2025-06-16 22:18:12.839 -03:00 [INF] End processing HTTP request after 2.8855ms - 404
+2025-06-16 22:18:12.851 -03:00 [INF] 📂 ABERTO: 0345708.ipt
+2025-06-16 22:18:12.852 -03:00 [INF] 📂 Documento aberto: 0345708.ipt
+2025-06-16 22:18:12.853 -03:00 [INF] 🚀 Work Session iniciada: 0345708.ipt (ID: 0beee58a-61e0-41a6-a140-7949a8b6b4b0)
+2025-06-16 22:18:12.854 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.855 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.856 -03:00 [INF] Received HTTP response headers after 0.5276ms - 404
+2025-06-16 22:18:12.857 -03:00 [INF] End processing HTTP request after 3.1518ms - 404
+2025-06-16 22:18:12.868 -03:00 [INF] 📂 ABERTO: 0345536.ipt
+2025-06-16 22:18:12.869 -03:00 [INF] 📂 Documento aberto: 0345536.ipt
+2025-06-16 22:18:12.870 -03:00 [INF] 🚀 Work Session iniciada: 0345536.ipt (ID: b8948a88-e8be-4ea0-b7f6-9967b5d1599b)
+2025-06-16 22:18:12.871 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.872 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.873 -03:00 [INF] Received HTTP response headers after 0.5071ms - 404
+2025-06-16 22:18:12.874 -03:00 [INF] End processing HTTP request after 3.1441ms - 404
+2025-06-16 22:18:12.886 -03:00 [INF] 📂 ABERTO: 0345538.ipt
+2025-06-16 22:18:12.887 -03:00 [INF] 📂 Documento aberto: 0345538.ipt
+2025-06-16 22:18:12.888 -03:00 [INF] 🚀 Work Session iniciada: 0345538.ipt (ID: d2dd9d8f-47d5-4a1d-ad97-8e0b9e48a7a2)
+2025-06-16 22:18:12.888 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.889 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.891 -03:00 [INF] Received HTTP response headers after 0.5188ms - 404
+2025-06-16 22:18:12.892 -03:00 [INF] End processing HTTP request after 3.462ms - 404
+2025-06-16 22:18:12.904 -03:00 [INF] 📂 ABERTO: 088259.ipt
+2025-06-16 22:18:12.905 -03:00 [INF] 📂 Documento aberto: 088259.ipt
+2025-06-16 22:18:12.906 -03:00 [INF] 🚀 Work Session iniciada: 088259.ipt (ID: 6eacf55a-583a-4cca-b577-15f7062877db)
+2025-06-16 22:18:12.906 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.907 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.908 -03:00 [INF] Received HTTP response headers after 0.4143ms - 404
+2025-06-16 22:18:12.909 -03:00 [INF] End processing HTTP request after 2.6937ms - 404
+2025-06-16 22:18:12.921 -03:00 [INF] 📂 ABERTO: 111646.ipt
+2025-06-16 22:18:12.922 -03:00 [INF] 📂 Documento aberto: 111646.ipt
+2025-06-16 22:18:12.923 -03:00 [INF] 🚀 Work Session iniciada: 111646.ipt (ID: 10c1513a-742d-46eb-9ca7-9828c791873e)
+2025-06-16 22:18:12.923 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.924 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.925 -03:00 [INF] Received HTTP response headers after 0.3929ms - 404
+2025-06-16 22:18:12.926 -03:00 [INF] End processing HTTP request after 2.7231ms - 404
+2025-06-16 22:18:12.936 -03:00 [INF] 📂 ABERTO: 0254385.ipt
+2025-06-16 22:18:12.937 -03:00 [INF] 📂 Documento aberto: 0254385.ipt
+2025-06-16 22:18:12.938 -03:00 [INF] 🚀 Work Session iniciada: 0254385.ipt (ID: 17083ff8-ce84-478a-9036-0ff96202ce90)
+2025-06-16 22:18:12.938 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.939 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.940 -03:00 [INF] Received HTTP response headers after 0.3926ms - 404
+2025-06-16 22:18:12.941 -03:00 [INF] End processing HTTP request after 2.8996ms - 404
+2025-06-16 22:18:12.954 -03:00 [INF] 📂 ABERTO: 0321862.ipt
+2025-06-16 22:18:12.955 -03:00 [INF] 📂 Documento aberto: 0321862.ipt
+2025-06-16 22:18:12.956 -03:00 [INF] 🚀 Work Session iniciada: 0321862.ipt (ID: 79a909a2-25f3-4df9-a235-f5625de5ba74)
+2025-06-16 22:18:12.957 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.957 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.959 -03:00 [INF] Received HTTP response headers after 0.5082ms - 404
+2025-06-16 22:18:12.960 -03:00 [INF] End processing HTTP request after 2.8793ms - 404
+2025-06-16 22:18:12.975 -03:00 [INF] 📂 ABERTO: 0307215.iam
+2025-06-16 22:18:12.976 -03:00 [INF] 📂 Documento aberto: 0307215.iam
+2025-06-16 22:18:12.977 -03:00 [INF] 🚀 Work Session iniciada: 0307215.iam (ID: fbd76e9e-f3d4-4229-8162-40af08325a37)
+2025-06-16 22:18:12.978 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.978 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.979 -03:00 [INF] Received HTTP response headers after 0.5121ms - 404
+2025-06-16 22:18:12.981 -03:00 [INF] End processing HTTP request after 3.2425ms - 404
+2025-06-16 22:18:12.992 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_1.ipt
+2025-06-16 22:18:12.992 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_1.ipt
+2025-06-16 22:18:12.993 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_1.ipt (ID: 415410a5-8834-491b-befc-ddd6c7356f6f)
+2025-06-16 22:18:12.994 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.995 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:12.996 -03:00 [INF] Received HTTP response headers after 0.5876ms - 404
+2025-06-16 22:18:12.998 -03:00 [INF] End processing HTTP request after 3.7384ms - 404
+2025-06-16 22:18:13.013 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_2.ipt
+2025-06-16 22:18:13.015 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_2.ipt
+2025-06-16 22:18:13.016 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_2.ipt (ID: 09334ab8-5a5f-40df-b227-df0ebed08f3c)
+2025-06-16 22:18:13.017 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.019 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.020 -03:00 [INF] Received HTTP response headers after 0.4494ms - 404
+2025-06-16 22:18:13.021 -03:00 [INF] End processing HTTP request after 3.3652ms - 404
+2025-06-16 22:18:13.037 -03:00 [INF] 📂 ABERTO: 0345546.ipt
+2025-06-16 22:18:13.038 -03:00 [INF] 📂 Documento aberto: 0345546.ipt
+2025-06-16 22:18:13.039 -03:00 [INF] 🚀 Work Session iniciada: 0345546.ipt (ID: 26b69ef6-9b2a-4f85-9259-f7975432b018)
+2025-06-16 22:18:13.040 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.041 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.042 -03:00 [INF] Received HTTP response headers after 0.4374ms - 404
+2025-06-16 22:18:13.043 -03:00 [INF] End processing HTTP request after 2.8136ms - 404
+2025-06-16 22:18:13.056 -03:00 [INF] 📂 ABERTO: 0345712.ipt
+2025-06-16 22:18:13.057 -03:00 [INF] 📂 Documento aberto: 0345712.ipt
+2025-06-16 22:18:13.058 -03:00 [INF] 🚀 Work Session iniciada: 0345712.ipt (ID: 3b238dfa-bd87-4ee7-93d8-3afae684b3f2)
+2025-06-16 22:18:13.059 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.060 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.061 -03:00 [INF] Received HTTP response headers after 0.4561ms - 404
+2025-06-16 22:18:13.062 -03:00 [INF] End processing HTTP request after 2.8611ms - 404
+2025-06-16 22:18:13.074 -03:00 [INF] 📂 ABERTO: 0345713.ipt
+2025-06-16 22:18:13.075 -03:00 [INF] 📂 Documento aberto: 0345713.ipt
+2025-06-16 22:18:13.076 -03:00 [INF] 🚀 Work Session iniciada: 0345713.ipt (ID: 953f6201-0f0f-448f-8f3d-3c6d5981781f)
+2025-06-16 22:18:13.077 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.078 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.079 -03:00 [INF] Received HTTP response headers after 0.488ms - 404
+2025-06-16 22:18:13.080 -03:00 [INF] End processing HTTP request after 3.049ms - 404
+2025-06-16 22:18:13.091 -03:00 [INF] 📂 ABERTO: 0345711.ipt
+2025-06-16 22:18:13.092 -03:00 [INF] 📂 Documento aberto: 0345711.ipt
+2025-06-16 22:18:13.093 -03:00 [INF] 🚀 Work Session iniciada: 0345711.ipt (ID: b3efdffb-4c2d-43ee-ba1b-2651838542cf)
+2025-06-16 22:18:13.094 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.095 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.096 -03:00 [INF] Received HTTP response headers after 0.4633ms - 404
+2025-06-16 22:18:13.097 -03:00 [INF] End processing HTTP request after 3.1464ms - 404
+2025-06-16 22:18:13.110 -03:00 [INF] 📂 ABERTO: 0345714.ipt
+2025-06-16 22:18:13.111 -03:00 [INF] 📂 Documento aberto: 0345714.ipt
+2025-06-16 22:18:13.112 -03:00 [INF] 🚀 Work Session iniciada: 0345714.ipt (ID: eb49b98d-63e9-46de-9fc3-0f88edc85e24)
+2025-06-16 22:18:13.113 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.113 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.115 -03:00 [INF] Received HTTP response headers after 0.7884ms - 404
+2025-06-16 22:18:13.117 -03:00 [INF] End processing HTTP request after 4.3077ms - 404
+2025-06-16 22:18:13.127 -03:00 [INF] 📂 ABERTO: 0345715.ipt
+2025-06-16 22:18:13.128 -03:00 [INF] 📂 Documento aberto: 0345715.ipt
+2025-06-16 22:18:13.129 -03:00 [INF] 🚀 Work Session iniciada: 0345715.ipt (ID: 098d125a-df7e-4c09-8f51-e690c4f061c8)
+2025-06-16 22:18:13.130 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.132 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.134 -03:00 [INF] Received HTTP response headers after 0.5617ms - 404
+2025-06-16 22:18:13.134 -03:00 [INF] End processing HTTP request after 4.4623ms - 404
+2025-06-16 22:18:13.146 -03:00 [INF] 📂 ABERTO: 0345716.ipt
+2025-06-16 22:18:13.147 -03:00 [INF] 📂 Documento aberto: 0345716.ipt
+2025-06-16 22:18:13.149 -03:00 [INF] 🚀 Work Session iniciada: 0345716.ipt (ID: 001bab76-f8b8-427c-ae97-d8f05b3fa4a0)
+2025-06-16 22:18:13.150 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.151 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.152 -03:00 [INF] Received HTTP response headers after 0.4694ms - 404
+2025-06-16 22:18:13.153 -03:00 [INF] End processing HTTP request after 3.3988ms - 404
+2025-06-16 22:18:13.165 -03:00 [INF] 📂 ABERTO: 0345717.ipt
+2025-06-16 22:18:13.166 -03:00 [INF] 📂 Documento aberto: 0345717.ipt
+2025-06-16 22:18:13.168 -03:00 [INF] 🚀 Work Session iniciada: 0345717.ipt (ID: b3c5bc3b-8a98-4e61-88ed-4a6a6b522ea7)
+2025-06-16 22:18:13.169 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.170 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.171 -03:00 [INF] Received HTTP response headers after 0.4435ms - 404
+2025-06-16 22:18:13.172 -03:00 [INF] End processing HTTP request after 3.2601ms - 404
+2025-06-16 22:18:13.184 -03:00 [INF] 📂 ABERTO: 0345718.ipt
+2025-06-16 22:18:13.185 -03:00 [INF] 📂 Documento aberto: 0345718.ipt
+2025-06-16 22:18:13.186 -03:00 [INF] 🚀 Work Session iniciada: 0345718.ipt (ID: 5f548196-3138-452f-a2d8-6dbaefae295c)
+2025-06-16 22:18:13.187 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.188 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.189 -03:00 [INF] Received HTTP response headers after 0.4853ms - 404
+2025-06-16 22:18:13.190 -03:00 [INF] End processing HTTP request after 2.9384ms - 404
+2025-06-16 22:18:13.201 -03:00 [INF] 📂 ABERTO: 134538.ipt
+2025-06-16 22:18:13.202 -03:00 [INF] 📂 Documento aberto: 134538.ipt
+2025-06-16 22:18:13.203 -03:00 [INF] 🚀 Work Session iniciada: 134538.ipt (ID: 6454c446-8b26-4f11-917c-58d62acb6a7c)
+2025-06-16 22:18:13.204 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.205 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:13.206 -03:00 [INF] Received HTTP response headers after 0.4379ms - 404
+2025-06-16 22:18:13.207 -03:00 [INF] End processing HTTP request after 2.6216ms - 404
+2025-06-16 22:18:27.053 -03:00 [INF] 📄 Processando save: 0345385.iam (Tipo: Assembly)
+2025-06-16 22:18:27.056 -03:00 [INF] 🔧 Extraindo BOM de assembly: 0345385.iam
+2025-06-16 22:18:33.345 -03:00 [INF] Enviando dados de BOM: 0345385.iam
+2025-06-16 22:18:33.363 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/boms
+2025-06-16 22:18:33.365 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/boms
+2025-06-16 22:18:33.381 -03:00 [INF] Received HTTP response headers after 13.2696ms - 404
+2025-06-16 22:18:33.382 -03:00 [INF] End processing HTTP request after 19.1515ms - 404
+2025-06-16 22:18:33.383 -03:00 [INF] ✅ BOM enviado: 27 itens (Projeto: Projeto Desconhecido)
+2025-06-16 22:18:33.384 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:33.385 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:18:33.387 -03:00 [INF] Received HTTP response headers after 0.8357ms - 404
+2025-06-16 22:18:33.390 -03:00 [INF] End processing HTTP request after 5.8641ms - 404
+2025-06-16 22:20:17.581 -03:00 [INF] Companion Worker Service parando.
+2025-06-16 22:20:17.582 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 22:20:17.583 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 22:20:17.583 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 22:20:17.587 -03:00 [INF] 🏁 Work Session finalizada: 0345712.ipt - Duração: 00:02:04 - 0 saves
+2025-06-16 22:20:17.588 -03:00 [INF] Enviando fim da sessão de trabalho: 0345712.ipt
+2025-06-16 22:20:17.589 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 22:20:17.590 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 22:20:17.590 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 22:20:17.590 -03:00 [INF] 🏁 Work Session finalizada: 0345710.ipt - Duração: 00:02:04 - 0 saves
+2025-06-16 22:20:36.686 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-16 22:20:36.722 -03:00 [INF] Tentando conectar ao Inventor...
+2025-06-16 22:20:37.726 -03:00 [INF] ✓ Conectado ao Inventor 2023
+2025-06-16 22:20:37.727 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-16 22:20:37.731 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-16 22:20:37.732 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-16 22:20:37.732 -03:00 [INF] 🔄 Iniciando monitoramento via polling (mais confiável que eventos COM)
+2025-06-16 22:20:37.732 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-16 22:20:37.772 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:20:37.777 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:20:37.811 -03:00 [INF] 🔍 Detectando 28 documentos já abertos
+2025-06-16 22:20:37.915 -03:00 [INF] Received HTTP response headers after 132.5571ms - 204
+2025-06-16 22:20:37.921 -03:00 [INF] End processing HTTP request after 155.6798ms - 204
+2025-06-16 22:20:38.470 -03:00 [INF] 📂 ABERTO: 0345385.iam
+2025-06-16 22:20:38.472 -03:00 [INF] 📂 Documento aberto: 0345385.iam
+2025-06-16 22:20:38.481 -03:00 [INF] 🚀 Work Session iniciada: 0345385.iam (ID: 06c6bf50-0514-4a63-8716-0a9e449dee77)
+2025-06-16 22:20:38.501 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:38.502 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:38.513 -03:00 [INF] Received HTTP response headers after 10.0239ms - 404
+2025-06-16 22:20:38.515 -03:00 [INF] End processing HTTP request after 14.0471ms - 404
+2025-06-16 22:20:39.167 -03:00 [INF] 📂 ABERTO: 089277.ipt
+2025-06-16 22:20:39.168 -03:00 [INF] 📂 Documento aberto: 089277.ipt
+2025-06-16 22:20:39.169 -03:00 [INF] 🚀 Work Session iniciada: 089277.ipt (ID: a84e82d7-d585-4c4e-b1b5-f20fb91e6baa)
+2025-06-16 22:20:39.170 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.171 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.174 -03:00 [INF] Received HTTP response headers after 1.9768ms - 404
+2025-06-16 22:20:39.174 -03:00 [INF] End processing HTTP request after 4.2683ms - 404
+2025-06-16 22:20:39.186 -03:00 [INF] 📂 ABERTO: 0313902.ipt
+2025-06-16 22:20:39.187 -03:00 [INF] 📂 Documento aberto: 0313902.ipt
+2025-06-16 22:20:39.188 -03:00 [INF] 🚀 Work Session iniciada: 0313902.ipt (ID: b644b4e6-7071-4216-8bfa-66d919f65f66)
+2025-06-16 22:20:39.189 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.190 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.191 -03:00 [INF] Received HTTP response headers after 0.7241ms - 404
+2025-06-16 22:20:39.192 -03:00 [INF] End processing HTTP request after 3.4279ms - 404
+2025-06-16 22:20:39.204 -03:00 [INF] 📂 ABERTO: UNI 5589 M16
+2025-06-16 22:20:39.204 -03:00 [INF] 📂 Documento aberto: UNI 5589 M16
+2025-06-16 22:20:39.210 -03:00 [INF] 🚀 Work Session iniciada: UNI 5589 M16 (ID: 76464613-3dc6-4307-ba7a-8f5ecc08dc6b)
+2025-06-16 22:20:39.211 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.212 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.215 -03:00 [INF] Received HTTP response headers after 1.1555ms - 404
+2025-06-16 22:20:39.216 -03:00 [INF] End processing HTTP request after 5.1865ms - 404
+2025-06-16 22:20:39.224 -03:00 [INF] 📂 ABERTO: 0345580.ipt
+2025-06-16 22:20:39.225 -03:00 [INF] 📂 Documento aberto: 0345580.ipt
+2025-06-16 22:20:39.226 -03:00 [INF] 🚀 Work Session iniciada: 0345580.ipt (ID: cb9cb66b-b213-4230-a84b-c929f45f8827)
+2025-06-16 22:20:39.227 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.229 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.232 -03:00 [INF] Received HTTP response headers after 1.7354ms - 404
+2025-06-16 22:20:39.233 -03:00 [INF] End processing HTTP request after 5.9793ms - 404
+2025-06-16 22:20:39.246 -03:00 [INF] 📂 ABERTO: 0345709.ipt
+2025-06-16 22:20:39.247 -03:00 [INF] 📂 Documento aberto: 0345709.ipt
+2025-06-16 22:20:39.249 -03:00 [INF] 🚀 Work Session iniciada: 0345709.ipt (ID: f87cbc30-d0ad-4aa2-a558-0c86f5f289da)
+2025-06-16 22:20:39.250 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.251 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.253 -03:00 [INF] Received HTTP response headers after 0.7922ms - 404
+2025-06-16 22:20:39.254 -03:00 [INF] End processing HTTP request after 3.6095ms - 404
+2025-06-16 22:20:39.267 -03:00 [INF] 📂 ABERTO: 0345710.ipt
+2025-06-16 22:20:39.267 -03:00 [INF] 📂 Documento aberto: 0345710.ipt
+2025-06-16 22:20:39.269 -03:00 [INF] 🚀 Work Session iniciada: 0345710.ipt (ID: e16e6697-3a26-4069-8bf0-95975308a3a0)
+2025-06-16 22:20:39.270 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.270 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.272 -03:00 [INF] Received HTTP response headers after 0.6853ms - 404
+2025-06-16 22:20:39.273 -03:00 [INF] End processing HTTP request after 3.0124ms - 404
+2025-06-16 22:20:39.285 -03:00 [INF] 📂 ABERTO: 0345707.ipt
+2025-06-16 22:20:39.286 -03:00 [INF] 📂 Documento aberto: 0345707.ipt
+2025-06-16 22:20:39.287 -03:00 [INF] 🚀 Work Session iniciada: 0345707.ipt (ID: 6ac55ff5-c8ac-485d-97e4-80ff08c42f08)
+2025-06-16 22:20:39.288 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.289 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.290 -03:00 [INF] Received HTTP response headers after 0.7251ms - 404
+2025-06-16 22:20:39.291 -03:00 [INF] End processing HTTP request after 3.0596ms - 404
+2025-06-16 22:20:39.303 -03:00 [INF] 📂 ABERTO: 0345708.ipt
+2025-06-16 22:20:39.304 -03:00 [INF] 📂 Documento aberto: 0345708.ipt
+2025-06-16 22:20:39.305 -03:00 [INF] 🚀 Work Session iniciada: 0345708.ipt (ID: 99e46012-75dd-4bc2-9b6d-eec6e4f9dce5)
+2025-06-16 22:20:39.305 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.306 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.308 -03:00 [INF] Received HTTP response headers after 0.7269ms - 404
+2025-06-16 22:20:39.308 -03:00 [INF] End processing HTTP request after 3.1623ms - 404
+2025-06-16 22:20:39.322 -03:00 [INF] 📂 ABERTO: 0345536.ipt
+2025-06-16 22:20:39.322 -03:00 [INF] 📂 Documento aberto: 0345536.ipt
+2025-06-16 22:20:39.324 -03:00 [INF] 🚀 Work Session iniciada: 0345536.ipt (ID: 158f80d1-b019-404d-a1f5-b3504e0ff6b5)
+2025-06-16 22:20:39.324 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.325 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.327 -03:00 [INF] Received HTTP response headers after 0.9611ms - 404
+2025-06-16 22:20:39.328 -03:00 [INF] End processing HTTP request after 3.3079ms - 404
+2025-06-16 22:20:39.340 -03:00 [INF] 📂 ABERTO: 0345538.ipt
+2025-06-16 22:20:39.340 -03:00 [INF] 📂 Documento aberto: 0345538.ipt
+2025-06-16 22:20:39.342 -03:00 [INF] 🚀 Work Session iniciada: 0345538.ipt (ID: 757780b4-9f72-41f8-bbfd-b28635844809)
+2025-06-16 22:20:39.343 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.344 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.346 -03:00 [INF] Received HTTP response headers after 0.9116ms - 404
+2025-06-16 22:20:39.347 -03:00 [INF] End processing HTTP request after 4.2568ms - 404
+2025-06-16 22:20:39.361 -03:00 [INF] 📂 ABERTO: 088259.ipt
+2025-06-16 22:20:39.362 -03:00 [INF] 📂 Documento aberto: 088259.ipt
+2025-06-16 22:20:39.364 -03:00 [INF] 🚀 Work Session iniciada: 088259.ipt (ID: 84e0ac49-a9d1-40b3-bd7d-1937120fdf91)
+2025-06-16 22:20:39.365 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.366 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.368 -03:00 [INF] Received HTTP response headers after 0.7133ms - 404
+2025-06-16 22:20:39.369 -03:00 [INF] End processing HTTP request after 3.8151ms - 404
+2025-06-16 22:20:39.385 -03:00 [INF] 📂 ABERTO: 111646.ipt
+2025-06-16 22:20:39.386 -03:00 [INF] 📂 Documento aberto: 111646.ipt
+2025-06-16 22:20:39.388 -03:00 [INF] 🚀 Work Session iniciada: 111646.ipt (ID: 2cd14830-7ba5-4e71-bd7f-0cb9e3317ca4)
+2025-06-16 22:20:39.389 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.390 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.392 -03:00 [INF] Received HTTP response headers after 0.7663ms - 404
+2025-06-16 22:20:39.393 -03:00 [INF] End processing HTTP request after 4.3108ms - 404
+2025-06-16 22:20:39.408 -03:00 [INF] 📂 ABERTO: 0254385.ipt
+2025-06-16 22:20:39.409 -03:00 [INF] 📂 Documento aberto: 0254385.ipt
+2025-06-16 22:20:39.410 -03:00 [INF] 🚀 Work Session iniciada: 0254385.ipt (ID: 16797f6f-de81-42cc-857a-555bf8266d26)
+2025-06-16 22:20:39.411 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.412 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.415 -03:00 [INF] Received HTTP response headers after 1.0196ms - 404
+2025-06-16 22:20:39.417 -03:00 [INF] End processing HTTP request after 6.1795ms - 404
+2025-06-16 22:20:39.428 -03:00 [INF] 📂 ABERTO: 0321862.ipt
+2025-06-16 22:20:39.429 -03:00 [INF] 📂 Documento aberto: 0321862.ipt
+2025-06-16 22:20:39.432 -03:00 [INF] 🚀 Work Session iniciada: 0321862.ipt (ID: 47f54bec-df41-421a-a6e9-62a4ae4f813a)
+2025-06-16 22:20:39.433 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.434 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.436 -03:00 [INF] Received HTTP response headers after 0.9827ms - 404
+2025-06-16 22:20:39.437 -03:00 [INF] End processing HTTP request after 3.9013ms - 404
+2025-06-16 22:20:39.449 -03:00 [INF] 📂 ABERTO: 0307215.iam
+2025-06-16 22:20:39.449 -03:00 [INF] 📂 Documento aberto: 0307215.iam
+2025-06-16 22:20:39.450 -03:00 [INF] 🚀 Work Session iniciada: 0307215.iam (ID: 247a7aac-e41b-4c5a-8141-98fa7c10b845)
+2025-06-16 22:20:39.451 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.452 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.453 -03:00 [INF] Received HTTP response headers after 0.7144ms - 404
+2025-06-16 22:20:39.454 -03:00 [INF] End processing HTTP request after 2.823ms - 404
+2025-06-16 22:20:39.467 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_1.ipt
+2025-06-16 22:20:39.467 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_1.ipt
+2025-06-16 22:20:39.469 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_1.ipt (ID: 2906f4fe-a756-4e7b-b759-222025d36587)
+2025-06-16 22:20:39.470 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.470 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.472 -03:00 [INF] Received HTTP response headers after 0.7352ms - 404
+2025-06-16 22:20:39.473 -03:00 [INF] End processing HTTP request after 3.081ms - 404
+2025-06-16 22:20:39.486 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_2.ipt
+2025-06-16 22:20:39.487 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_2.ipt
+2025-06-16 22:20:39.488 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_2.ipt (ID: 98db027f-eab9-4145-b060-a399314fea91)
+2025-06-16 22:20:39.489 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.490 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.491 -03:00 [INF] Received HTTP response headers after 0.7104ms - 404
+2025-06-16 22:20:39.492 -03:00 [INF] End processing HTTP request after 3.19ms - 404
+2025-06-16 22:20:39.503 -03:00 [INF] 📂 ABERTO: 0345546.ipt
+2025-06-16 22:20:39.504 -03:00 [INF] 📂 Documento aberto: 0345546.ipt
+2025-06-16 22:20:39.505 -03:00 [INF] 🚀 Work Session iniciada: 0345546.ipt (ID: 5189e76e-4424-4861-a29d-da5d9b5c4185)
+2025-06-16 22:20:39.506 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.507 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.508 -03:00 [INF] Received HTTP response headers after 0.6612ms - 404
+2025-06-16 22:20:39.509 -03:00 [INF] End processing HTTP request after 2.9843ms - 404
+2025-06-16 22:20:39.520 -03:00 [INF] 📂 ABERTO: 0345712.ipt
+2025-06-16 22:20:39.521 -03:00 [INF] 📂 Documento aberto: 0345712.ipt
+2025-06-16 22:20:39.522 -03:00 [INF] 🚀 Work Session iniciada: 0345712.ipt (ID: 760f701e-be4f-4ddd-8fa8-6854b64ab5dd)
+2025-06-16 22:20:39.523 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.524 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.526 -03:00 [INF] Received HTTP response headers after 0.7149ms - 404
+2025-06-16 22:20:39.527 -03:00 [INF] End processing HTTP request after 3.2189ms - 404
+2025-06-16 22:20:39.538 -03:00 [INF] 📂 ABERTO: 0345713.ipt
+2025-06-16 22:20:39.538 -03:00 [INF] 📂 Documento aberto: 0345713.ipt
+2025-06-16 22:20:39.540 -03:00 [INF] 🚀 Work Session iniciada: 0345713.ipt (ID: 6fa74a03-d417-4cd8-8d70-9ce1302a665c)
+2025-06-16 22:20:39.540 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.541 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.542 -03:00 [INF] Received HTTP response headers after 0.6666ms - 404
+2025-06-16 22:20:39.543 -03:00 [INF] End processing HTTP request after 2.8022ms - 404
+2025-06-16 22:20:39.554 -03:00 [INF] 📂 ABERTO: 0345711.ipt
+2025-06-16 22:20:39.555 -03:00 [INF] 📂 Documento aberto: 0345711.ipt
+2025-06-16 22:20:39.556 -03:00 [INF] 🚀 Work Session iniciada: 0345711.ipt (ID: 6cc1a6db-5271-4d1e-931b-7b54f1ed075e)
+2025-06-16 22:20:39.557 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.558 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.559 -03:00 [INF] Received HTTP response headers after 0.6858ms - 404
+2025-06-16 22:20:39.560 -03:00 [INF] End processing HTTP request after 2.8919ms - 404
+2025-06-16 22:20:39.571 -03:00 [INF] 📂 ABERTO: 0345714.ipt
+2025-06-16 22:20:39.572 -03:00 [INF] 📂 Documento aberto: 0345714.ipt
+2025-06-16 22:20:39.574 -03:00 [INF] 🚀 Work Session iniciada: 0345714.ipt (ID: ee27b453-490e-44ba-bd8e-4b6acb3d3011)
+2025-06-16 22:20:39.574 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.575 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.577 -03:00 [INF] Received HTTP response headers after 0.8724ms - 404
+2025-06-16 22:20:39.579 -03:00 [INF] End processing HTTP request after 4.2208ms - 404
+2025-06-16 22:20:39.593 -03:00 [INF] 📂 ABERTO: 0345715.ipt
+2025-06-16 22:20:39.593 -03:00 [INF] 📂 Documento aberto: 0345715.ipt
+2025-06-16 22:20:39.595 -03:00 [INF] 🚀 Work Session iniciada: 0345715.ipt (ID: f439880a-3e74-42bc-a376-6f4720e41852)
+2025-06-16 22:20:39.596 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.597 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.599 -03:00 [INF] Received HTTP response headers after 0.8214ms - 404
+2025-06-16 22:20:39.601 -03:00 [INF] End processing HTTP request after 4.3924ms - 404
+2025-06-16 22:20:39.612 -03:00 [INF] 📂 ABERTO: 0345716.ipt
+2025-06-16 22:20:39.613 -03:00 [INF] 📂 Documento aberto: 0345716.ipt
+2025-06-16 22:20:39.615 -03:00 [INF] 🚀 Work Session iniciada: 0345716.ipt (ID: 474f896e-5a87-4be9-91ce-99f3aaf00efe)
+2025-06-16 22:20:39.616 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.617 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.618 -03:00 [INF] Received HTTP response headers after 0.7349ms - 404
+2025-06-16 22:20:39.619 -03:00 [INF] End processing HTTP request after 3.1127ms - 404
+2025-06-16 22:20:39.631 -03:00 [INF] 📂 ABERTO: 0345717.ipt
+2025-06-16 22:20:39.632 -03:00 [INF] 📂 Documento aberto: 0345717.ipt
+2025-06-16 22:20:39.633 -03:00 [INF] 🚀 Work Session iniciada: 0345717.ipt (ID: e91de800-c57f-4518-9dba-a53895db06e8)
+2025-06-16 22:20:39.634 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.635 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.636 -03:00 [INF] Received HTTP response headers after 0.6904ms - 404
+2025-06-16 22:20:39.637 -03:00 [INF] End processing HTTP request after 3.1234ms - 404
+2025-06-16 22:20:39.648 -03:00 [INF] 📂 ABERTO: 0345718.ipt
+2025-06-16 22:20:39.649 -03:00 [INF] 📂 Documento aberto: 0345718.ipt
+2025-06-16 22:20:39.650 -03:00 [INF] 🚀 Work Session iniciada: 0345718.ipt (ID: 19b99971-e21c-4f69-aa73-7b9d00005c5e)
+2025-06-16 22:20:39.652 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.653 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.655 -03:00 [INF] Received HTTP response headers after 1.0165ms - 404
+2025-06-16 22:20:39.656 -03:00 [INF] End processing HTTP request after 4.7968ms - 404
+2025-06-16 22:20:39.669 -03:00 [INF] 📂 ABERTO: 134538.ipt
+2025-06-16 22:20:39.669 -03:00 [INF] 📂 Documento aberto: 134538.ipt
+2025-06-16 22:20:39.670 -03:00 [INF] 🚀 Work Session iniciada: 134538.ipt (ID: b37e1999-68c4-4079-81dd-9cce6578bef6)
+2025-06-16 22:20:39.671 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.672 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:20:39.673 -03:00 [INF] ✅ Monitoring de documentos ativo via polling
+2025-06-16 22:20:39.673 -03:00 [INF] Received HTTP response headers after 0.5902ms - 404
+2025-06-16 22:20:39.674 -03:00 [INF] End processing HTTP request after 3.4042ms - 404
+2025-06-16 22:23:24.370 -03:00 [INF] 📄 Processando save: 0345385.iam (Tipo: Assembly)
+2025-06-16 22:23:24.374 -03:00 [INF] 🔧 Extraindo BOM de assembly: 0345385.iam
+2025-06-16 22:24:13.741 -03:00 [INF] Enviando dados de BOM: 0345385.iam
+2025-06-16 22:24:13.769 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/boms
+2025-06-16 22:24:13.770 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/boms
+2025-06-16 22:24:13.789 -03:00 [INF] Received HTTP response headers after 18.0142ms - 404
+2025-06-16 22:24:13.791 -03:00 [INF] End processing HTTP request after 21.2084ms - 404
+2025-06-16 22:24:13.792 -03:00 [INF] ✅ BOM enviado: 27 itens (Projeto: Projeto Desconhecido)
+2025-06-16 22:24:13.793 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:24:13.795 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:24:13.797 -03:00 [INF] Received HTTP response headers after 1.3863ms - 404
+2025-06-16 22:24:13.798 -03:00 [INF] End processing HTTP request after 5.0979ms - 404
+2025-06-16 22:25:37.934 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:25:37.935 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:25:37.939 -03:00 [INF] Received HTTP response headers after 3.2747ms - 204
+2025-06-16 22:25:37.942 -03:00 [INF] End processing HTTP request after 8.7393ms - 204
+2025-06-16 22:29:08.718 -03:00 [INF] 📄 Processando save: 0345385.iam (Tipo: Assembly)
+2025-06-16 22:29:08.724 -03:00 [INF] 🔧 Extraindo BOM de assembly: 0345385.iam
+2025-06-16 22:29:16.560 -03:00 [INF] Enviando dados de BOM: 0345385.iam
+2025-06-16 22:29:16.561 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/boms
+2025-06-16 22:29:16.562 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/boms
+2025-06-16 22:29:16.568 -03:00 [INF] Received HTTP response headers after 5.0311ms - 404
+2025-06-16 22:29:16.571 -03:00 [INF] End processing HTTP request after 10.4012ms - 404
+2025-06-16 22:29:16.573 -03:00 [INF] ✅ BOM enviado: 27 itens (Projeto: Projeto Desconhecido)
+2025-06-16 22:29:16.575 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:16.576 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:16.579 -03:00 [INF] Received HTTP response headers after 0.9982ms - 404
+2025-06-16 22:29:16.580 -03:00 [INF] End processing HTTP request after 5.2865ms - 404
+2025-06-16 22:29:17.687 -03:00 [INF] 📂 FECHADO: 0345385.iam
+2025-06-16 22:29:17.688 -03:00 [INF] 📂 Documento fechado: 0345385.iam
+2025-06-16 22:29:17.690 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.691 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.693 -03:00 [INF] 📂 FECHADO: 089277.ipt
+2025-06-16 22:29:17.694 -03:00 [INF] Received HTTP response headers after 1.3086ms - 404
+2025-06-16 22:29:17.695 -03:00 [INF] 📂 Documento fechado: 089277.ipt
+2025-06-16 22:29:17.696 -03:00 [INF] End processing HTTP request after 6.0742ms - 404
+2025-06-16 22:29:17.698 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.700 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.701 -03:00 [INF] 📂 FECHADO: 0313902.ipt
+2025-06-16 22:29:17.702 -03:00 [INF] Received HTTP response headers after 0.7718ms - 404
+2025-06-16 22:29:17.702 -03:00 [INF] 📂 Documento fechado: 0313902.ipt
+2025-06-16 22:29:17.704 -03:00 [INF] End processing HTTP request after 6.2437ms - 404
+2025-06-16 22:29:17.705 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.706 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.709 -03:00 [INF] 📂 FECHADO: UNI 5589 - M16 - 2.IPT
+2025-06-16 22:29:17.710 -03:00 [INF] Received HTTP response headers after 0.655ms - 404
+2025-06-16 22:29:17.711 -03:00 [INF] 📂 Documento fechado: UNI 5589 - M16 - 2.IPT
+2025-06-16 22:29:17.711 -03:00 [INF] End processing HTTP request after 6.2827ms - 404
+2025-06-16 22:29:17.712 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.713 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.715 -03:00 [INF] 📂 FECHADO: 0345580.ipt
+2025-06-16 22:29:17.715 -03:00 [INF] Received HTTP response headers after 0.8047ms - 404
+2025-06-16 22:29:17.715 -03:00 [INF] 📂 Documento fechado: 0345580.ipt
+2025-06-16 22:29:17.716 -03:00 [INF] End processing HTTP request after 4.086ms - 404
+2025-06-16 22:29:17.717 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.718 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.719 -03:00 [INF] 📂 FECHADO: 0345709.ipt
+2025-06-16 22:29:17.720 -03:00 [INF] Received HTTP response headers after 0.9431ms - 404
+2025-06-16 22:29:17.720 -03:00 [INF] 📂 Documento fechado: 0345709.ipt
+2025-06-16 22:29:17.721 -03:00 [INF] End processing HTTP request after 3.763ms - 404
+2025-06-16 22:29:17.723 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.724 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.725 -03:00 [INF] 📂 FECHADO: 0345710.ipt
+2025-06-16 22:29:17.726 -03:00 [INF] Received HTTP response headers after 0.7696ms - 404
+2025-06-16 22:29:17.726 -03:00 [INF] 📂 Documento fechado: 0345710.ipt
+2025-06-16 22:29:17.728 -03:00 [INF] End processing HTTP request after 5.4569ms - 404
+2025-06-16 22:29:17.729 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.731 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.733 -03:00 [INF] 📂 FECHADO: 0345707.ipt
+2025-06-16 22:29:17.734 -03:00 [INF] Received HTTP response headers after 1.2842ms - 404
+2025-06-16 22:29:17.735 -03:00 [INF] 📂 Documento fechado: 0345707.ipt
+2025-06-16 22:29:17.736 -03:00 [INF] End processing HTTP request after 6.2842ms - 404
+2025-06-16 22:29:17.737 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.739 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.741 -03:00 [INF] 📂 FECHADO: 0345708.ipt
+2025-06-16 22:29:17.742 -03:00 [INF] 📂 Documento fechado: 0345708.ipt
+2025-06-16 22:29:17.742 -03:00 [INF] Received HTTP response headers after 1.5856ms - 404
+2025-06-16 22:29:17.743 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.744 -03:00 [INF] End processing HTTP request after 6.5308ms - 404
+2025-06-16 22:29:17.745 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.747 -03:00 [INF] 📂 FECHADO: 0345536.ipt
+2025-06-16 22:29:17.748 -03:00 [INF] Received HTTP response headers after 1.3263ms - 404
+2025-06-16 22:29:17.748 -03:00 [INF] 📂 Documento fechado: 0345536.ipt
+2025-06-16 22:29:17.750 -03:00 [INF] End processing HTTP request after 6.3523ms - 404
+2025-06-16 22:29:17.751 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.753 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.756 -03:00 [INF] 📂 FECHADO: 0345538.ipt
+2025-06-16 22:29:17.757 -03:00 [INF] Received HTTP response headers after 1.2678ms - 404
+2025-06-16 22:29:17.757 -03:00 [INF] 📂 Documento fechado: 0345538.ipt
+2025-06-16 22:29:17.758 -03:00 [INF] End processing HTTP request after 7.135ms - 404
+2025-06-16 22:29:17.759 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.761 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.762 -03:00 [INF] 📂 FECHADO: 088259.ipt
+2025-06-16 22:29:17.763 -03:00 [INF] Received HTTP response headers after 0.7436ms - 404
+2025-06-16 22:29:17.763 -03:00 [INF] 📂 Documento fechado: 088259.ipt
+2025-06-16 22:29:17.764 -03:00 [INF] End processing HTTP request after 5.0151ms - 404
+2025-06-16 22:29:17.765 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.767 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.769 -03:00 [INF] 📂 FECHADO: 111646.ipt
+2025-06-16 22:29:17.770 -03:00 [INF] 📂 Documento fechado: 111646.ipt
+2025-06-16 22:29:17.770 -03:00 [INF] Received HTTP response headers after 1.8585ms - 404
+2025-06-16 22:29:17.772 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.773 -03:00 [INF] End processing HTTP request after 7.4119ms - 404
+2025-06-16 22:29:17.776 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.778 -03:00 [INF] 📂 FECHADO: 0254385.ipt
+2025-06-16 22:29:17.779 -03:00 [INF] Received HTTP response headers after 0.8941ms - 404
+2025-06-16 22:29:17.779 -03:00 [INF] 📂 Documento fechado: 0254385.ipt
+2025-06-16 22:29:17.781 -03:00 [INF] End processing HTTP request after 8.5039ms - 404
+2025-06-16 22:29:17.782 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.784 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.785 -03:00 [INF] 📂 FECHADO: 0321862.ipt
+2025-06-16 22:29:17.786 -03:00 [INF] Received HTTP response headers after 0.891ms - 404
+2025-06-16 22:29:17.788 -03:00 [INF] 📂 Documento fechado: 0321862.ipt
+2025-06-16 22:29:17.791 -03:00 [INF] End processing HTTP request after 8.864ms - 404
+2025-06-16 22:29:17.792 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.795 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.797 -03:00 [INF] 📂 FECHADO: 0307215.iam
+2025-06-16 22:29:17.798 -03:00 [INF] Received HTTP response headers after 0.717ms - 404
+2025-06-16 22:29:17.798 -03:00 [INF] 📂 Documento fechado: 0307215.iam
+2025-06-16 22:29:17.799 -03:00 [INF] End processing HTTP request after 7.0983ms - 404
+2025-06-16 22:29:17.800 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.801 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.802 -03:00 [INF] 📂 FECHADO: CP96SDB63-100C_1.ipt
+2025-06-16 22:29:17.804 -03:00 [INF] 📂 Documento fechado: CP96SDB63-100C_1.ipt
+2025-06-16 22:29:17.804 -03:00 [INF] Received HTTP response headers after 1.6901ms - 404
+2025-06-16 22:29:17.805 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.806 -03:00 [INF] End processing HTTP request after 5.7897ms - 404
+2025-06-16 22:29:17.807 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.809 -03:00 [INF] 📂 FECHADO: CP96SDB63-100C_2.ipt
+2025-06-16 22:29:17.810 -03:00 [INF] Received HTTP response headers after 0.7863ms - 404
+2025-06-16 22:29:17.810 -03:00 [INF] 📂 Documento fechado: CP96SDB63-100C_2.ipt
+2025-06-16 22:29:17.812 -03:00 [INF] End processing HTTP request after 6.4038ms - 404
+2025-06-16 22:29:17.813 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.813 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.815 -03:00 [INF] 📂 FECHADO: 0345546.ipt
+2025-06-16 22:29:17.815 -03:00 [INF] Received HTTP response headers after 0.9298ms - 404
+2025-06-16 22:29:17.815 -03:00 [INF] 📂 Documento fechado: 0345546.ipt
+2025-06-16 22:29:17.818 -03:00 [INF] End processing HTTP request after 4.9594ms - 404
+2025-06-16 22:29:17.819 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.820 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.822 -03:00 [INF] 📂 FECHADO: 0345712.ipt
+2025-06-16 22:29:17.822 -03:00 [INF] Received HTTP response headers after 0.7139ms - 404
+2025-06-16 22:29:17.823 -03:00 [INF] 📂 Documento fechado: 0345712.ipt
+2025-06-16 22:29:17.824 -03:00 [INF] End processing HTTP request after 4.5255ms - 404
+2025-06-16 22:29:17.825 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.826 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.827 -03:00 [INF] 📂 FECHADO: 0345713.ipt
+2025-06-16 22:29:17.828 -03:00 [INF] Received HTTP response headers after 0.6883ms - 404
+2025-06-16 22:29:17.828 -03:00 [INF] 📂 Documento fechado: 0345713.ipt
+2025-06-16 22:29:17.829 -03:00 [INF] End processing HTTP request after 4.3022ms - 404
+2025-06-16 22:29:17.830 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.832 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.833 -03:00 [INF] 📂 FECHADO: 0345711.ipt
+2025-06-16 22:29:17.833 -03:00 [INF] Received HTTP response headers after 0.6744ms - 404
+2025-06-16 22:29:17.833 -03:00 [INF] 📂 Documento fechado: 0345711.ipt
+2025-06-16 22:29:17.834 -03:00 [INF] End processing HTTP request after 3.9727ms - 404
+2025-06-16 22:29:17.835 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.837 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.838 -03:00 [INF] 📂 FECHADO: 0345714.ipt
+2025-06-16 22:29:17.839 -03:00 [INF] Received HTTP response headers after 0.8188ms - 404
+2025-06-16 22:29:17.839 -03:00 [INF] 📂 Documento fechado: 0345714.ipt
+2025-06-16 22:29:17.840 -03:00 [INF] End processing HTTP request after 4.5483ms - 404
+2025-06-16 22:29:17.841 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.842 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.843 -03:00 [INF] 📂 FECHADO: 0345715.ipt
+2025-06-16 22:29:17.843 -03:00 [INF] Received HTTP response headers after 0.5579ms - 404
+2025-06-16 22:29:17.844 -03:00 [INF] 📂 Documento fechado: 0345715.ipt
+2025-06-16 22:29:17.844 -03:00 [INF] End processing HTTP request after 3.8355ms - 404
+2025-06-16 22:29:17.845 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.847 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.848 -03:00 [INF] 📂 FECHADO: 0345716.ipt
+2025-06-16 22:29:17.848 -03:00 [INF] Received HTTP response headers after 0.5558ms - 404
+2025-06-16 22:29:17.848 -03:00 [INF] 📂 Documento fechado: 0345716.ipt
+2025-06-16 22:29:17.849 -03:00 [INF] End processing HTTP request after 3.7209ms - 404
+2025-06-16 22:29:17.850 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.851 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.852 -03:00 [INF] 📂 FECHADO: 0345717.ipt
+2025-06-16 22:29:17.853 -03:00 [INF] Received HTTP response headers after 0.5908ms - 404
+2025-06-16 22:29:17.853 -03:00 [INF] 📂 Documento fechado: 0345717.ipt
+2025-06-16 22:29:17.854 -03:00 [INF] End processing HTTP request after 4.3893ms - 404
+2025-06-16 22:29:17.855 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.856 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.857 -03:00 [INF] 📂 FECHADO: 0345718.ipt
+2025-06-16 22:29:17.857 -03:00 [INF] Received HTTP response headers after 0.547ms - 404
+2025-06-16 22:29:17.857 -03:00 [INF] 📂 Documento fechado: 0345718.ipt
+2025-06-16 22:29:17.858 -03:00 [INF] End processing HTTP request after 2.9599ms - 404
+2025-06-16 22:29:17.859 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.860 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.861 -03:00 [INF] 📂 FECHADO: 134538.ipt
+2025-06-16 22:29:17.861 -03:00 [INF] Received HTTP response headers after 0.5515ms - 404
+2025-06-16 22:29:17.861 -03:00 [INF] 📂 Documento fechado: 134538.ipt
+2025-06-16 22:29:17.862 -03:00 [INF] End processing HTTP request after 3.1214ms - 404
+2025-06-16 22:29:17.863 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.863 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/activity/log
+2025-06-16 22:29:17.865 -03:00 [INF] Received HTTP response headers after 0.6708ms - 404
+2025-06-16 22:29:17.866 -03:00 [INF] End processing HTTP request after 3.0163ms - 404
+2025-06-16 22:30:37.946 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:30:37.947 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 22:30:37.954 -03:00 [INF] Received HTTP response headers after 6.746ms - 204
+2025-06-16 22:30:37.956 -03:00 [INF] End processing HTTP request after 10.045ms - 204

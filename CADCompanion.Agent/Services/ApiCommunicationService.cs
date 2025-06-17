@@ -44,7 +44,7 @@ public class ApiCommunicationService : IApiCommunicationService
         try
         {
             _logger.LogInformation("Enviando dados de BOM: {AssemblyFileName}", bomData.AssemblyFileName);
-            await _httpClient.PostAsJsonAsync("api/boms/data", bomData);
+            await _httpClient.PostAsJsonAsync("api/boms", bomData);
         }
         catch (Exception ex)
         {
