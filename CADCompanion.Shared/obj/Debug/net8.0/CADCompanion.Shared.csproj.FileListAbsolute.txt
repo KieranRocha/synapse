@@ -9,3 +9,4 @@ C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Shared\obj\Debug\net8.0\CA
 C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Shared\obj\Debug\net8.0\refint\CADCompanion.Shared.dll
 C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Shared\obj\Debug\net8.0\CADCompanion.Shared.pdb
 C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Shared\obj\Debug\net8.0\ref\CADCompanion.Shared.dll
+C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Shared\obj\Debug\net8.0\CADCompanion.Shared.sourcelink.json
