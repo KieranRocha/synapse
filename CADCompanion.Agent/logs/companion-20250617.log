@@ -189,3 +189,71 @@ System.Net.Http.HttpRequestException: Nenhuma conexão pôde ser feita porque a 
 2025-06-17 19:28:01.736 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
 2025-06-17 19:28:01.741 -03:00 [INF] Received HTTP response headers after 4.1464ms - 204
 2025-06-17 19:28:01.742 -03:00 [INF] End processing HTTP request after 7.6767ms - 204
+2025-06-17 19:33:01.757 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 19:33:01.759 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 19:33:01.763 -03:00 [INF] Received HTTP response headers after 3.1056ms - 204
+2025-06-17 19:33:01.764 -03:00 [INF] End processing HTTP request after 7.0206ms - 204
+2025-06-17 19:38:01.765 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 19:38:01.767 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 19:38:01.772 -03:00 [INF] Received HTTP response headers after 3.2583ms - 204
+2025-06-17 19:38:01.773 -03:00 [INF] End processing HTTP request after 7.6254ms - 204
+2025-06-17 19:43:01.781 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 19:43:01.783 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 19:43:01.787 -03:00 [INF] Received HTTP response headers after 2.7766ms - 204
+2025-06-17 19:43:01.788 -03:00 [INF] End processing HTTP request after 6.941ms - 204
+2025-06-17 19:48:01.789 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 19:48:01.791 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 19:48:01.796 -03:00 [INF] Received HTTP response headers after 2.9829ms - 204
+2025-06-17 19:48:01.797 -03:00 [INF] End processing HTTP request after 7.9193ms - 204
+2025-06-17 19:53:01.805 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 19:53:01.807 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 19:53:01.812 -03:00 [INF] Received HTTP response headers after 3.0684ms - 204
+2025-06-17 19:53:01.813 -03:00 [INF] End processing HTTP request after 8.2804ms - 204
+2025-06-17 19:58:01.816 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 19:58:01.818 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 19:58:01.832 -03:00 [INF] Received HTTP response headers after 12.2813ms - 204
+2025-06-17 19:58:01.834 -03:00 [INF] End processing HTTP request after 17.7667ms - 204
+2025-06-17 20:03:01.845 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:03:01.847 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:03:01.851 -03:00 [INF] Received HTTP response headers after 2.6144ms - 204
+2025-06-17 20:03:01.852 -03:00 [INF] End processing HTTP request after 7.276ms - 204
+2025-06-17 20:08:01.864 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:08:01.866 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:08:01.871 -03:00 [INF] Received HTTP response headers after 3.4461ms - 204
+2025-06-17 20:08:01.873 -03:00 [INF] End processing HTTP request after 8.3462ms - 204
+2025-06-17 20:13:01.888 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:13:01.890 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:13:01.894 -03:00 [INF] Received HTTP response headers after 3.1257ms - 204
+2025-06-17 20:13:01.896 -03:00 [INF] End processing HTTP request after 7.5521ms - 204
+2025-06-17 20:18:01.899 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:18:01.900 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:18:01.903 -03:00 [INF] Received HTTP response headers after 2.7373ms - 204
+2025-06-17 20:18:01.905 -03:00 [INF] End processing HTTP request after 6.2691ms - 204
+2025-06-17 20:23:01.913 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:23:01.915 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:23:01.919 -03:00 [INF] Received HTTP response headers after 3.3365ms - 204
+2025-06-17 20:23:01.920 -03:00 [INF] End processing HTTP request after 6.8025ms - 204
+2025-06-17 20:28:01.933 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:28:01.934 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:28:01.938 -03:00 [INF] Received HTTP response headers after 2.5077ms - 204
+2025-06-17 20:28:01.939 -03:00 [INF] End processing HTTP request after 5.7556ms - 204
+2025-06-17 20:33:01.939 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:33:01.940 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:33:01.944 -03:00 [INF] Received HTTP response headers after 2.855ms - 204
+2025-06-17 20:33:01.945 -03:00 [INF] End processing HTTP request after 6.1359ms - 204
+2025-06-17 20:38:01.950 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:38:01.952 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:38:01.955 -03:00 [INF] Received HTTP response headers after 2.8372ms - 204
+2025-06-17 20:38:01.957 -03:00 [INF] End processing HTTP request after 7.1607ms - 204
+2025-06-17 20:43:01.970 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:43:01.971 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:43:01.975 -03:00 [INF] Received HTTP response headers after 3.3098ms - 204
+2025-06-17 20:43:01.976 -03:00 [INF] End processing HTTP request after 6.5127ms - 204
+2025-06-17 20:48:01.987 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:48:01.989 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:48:01.992 -03:00 [INF] Received HTTP response headers after 2.3234ms - 204
+2025-06-17 20:48:01.993 -03:00 [INF] End processing HTTP request after 6.7222ms - 204
+2025-06-17 20:53:02.003 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:53:02.004 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-17 20:53:02.014 -03:00 [INF] Received HTTP response headers after 9.0052ms - 204
+2025-06-17 20:53:02.015 -03:00 [INF] End processing HTTP request after 12.6498ms - 204
