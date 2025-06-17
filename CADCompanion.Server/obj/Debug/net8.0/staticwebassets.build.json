@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "epvKbtU5/2biBtRWkELaXF2mS/BNnlg+oxO9RA4FMv4=",
+  "Source": "CADCompanion.Server",
+  "BasePath": "_content/CADCompanion.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

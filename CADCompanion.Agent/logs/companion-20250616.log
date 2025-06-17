@@ -1,0 +1,180 @@
+2025-06-16 21:03:54.594 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-16 21:03:54.625 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-16 21:03:54.628 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-16 21:03:54.628 -03:00 [ERR] Inventor não conectado - não é possível subscrever eventos
+2025-06-16 21:03:54.629 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-16 21:03:54.630 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-16 21:03:54.669 -03:00 [INF] Start processing HTTP request POST http://localhost:5158/api/session/heartbeat
+2025-06-16 21:03:54.675 -03:00 [INF] Sending HTTP request POST http://localhost:5158/api/session/heartbeat
+2025-06-16 21:03:58.824 -03:00 [ERR] Erro ao enviar heartbeat
+System.Net.Http.HttpRequestException: Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente. (localhost:5158)
+ ---> System.Net.Sockets.SocketException (10061): Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CADCompanion.Agent.Services.ApiCommunicationService.SendHeartbeatAsync() in C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Agent\Services\ApiCommunicationService.cs:line 79
+2025-06-16 21:08:58.856 -03:00 [INF] Start processing HTTP request POST http://localhost:5158/api/session/heartbeat
+2025-06-16 21:08:58.858 -03:00 [INF] Sending HTTP request POST http://localhost:5158/api/session/heartbeat
+2025-06-16 21:09:02.909 -03:00 [ERR] Erro ao enviar heartbeat
+System.Net.Http.HttpRequestException: Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente. (localhost:5158)
+ ---> System.Net.Sockets.SocketException (10061): Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CADCompanion.Agent.Services.ApiCommunicationService.SendHeartbeatAsync() in C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Agent\Services\ApiCommunicationService.cs:line 79
+2025-06-16 21:11:07.110 -03:00 [INF] Companion Worker Service parando.
+2025-06-16 21:11:07.111 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 21:11:07.112 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 21:11:07.113 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 21:11:07.114 -03:00 [INF] Finalizadas 0 sessões ativas
+2025-06-16 21:11:07.118 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 21:11:07.119 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 21:11:07.119 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 21:11:13.625 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-16 21:11:13.655 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-16 21:11:13.658 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-16 21:11:13.658 -03:00 [ERR] Inventor não conectado - não é possível subscrever eventos
+2025-06-16 21:11:13.659 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-16 21:11:13.660 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-16 21:11:13.687 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:11:13.692 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:11:13.818 -03:00 [INF] Received HTTP response headers after 123.4647ms - 404
+2025-06-16 21:11:13.824 -03:00 [INF] End processing HTTP request after 142.7218ms - 404
+2025-06-16 21:14:23.759 -03:00 [INF] Companion Worker Service parando.
+2025-06-16 21:14:23.760 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 21:14:23.762 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 21:14:23.762 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 21:14:23.763 -03:00 [INF] Finalizadas 0 sessões ativas
+2025-06-16 21:14:23.767 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 21:14:23.768 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 21:14:23.768 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 21:14:48.931 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-16 21:14:48.964 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-16 21:14:48.967 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-16 21:14:48.967 -03:00 [ERR] Inventor não conectado - não é possível subscrever eventos
+2025-06-16 21:14:48.968 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-16 21:14:48.969 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-16 21:14:49.005 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:14:49.010 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:14:49.112 -03:00 [INF] Received HTTP response headers after 99.7605ms - 404
+2025-06-16 21:14:49.118 -03:00 [INF] End processing HTTP request after 119.5719ms - 404
+2025-06-16 21:16:35.068 -03:00 [INF] Companion Worker Service parando.
+2025-06-16 21:16:35.069 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 21:16:35.071 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 21:16:35.072 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 21:16:35.073 -03:00 [INF] Finalizadas 0 sessões ativas
+2025-06-16 21:16:35.077 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 21:16:35.078 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 21:16:35.078 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 21:16:35.078 -03:00 [INF] Finalizadas 0 sessões ativas
+2025-06-16 21:16:49.312 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-16 21:16:49.340 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-16 21:16:49.342 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-16 21:16:49.343 -03:00 [ERR] Inventor não conectado - não é possível subscrever eventos
+2025-06-16 21:16:49.343 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-16 21:16:49.345 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-16 21:16:49.373 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:16:49.379 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:16:49.498 -03:00 [INF] Received HTTP response headers after 115.2446ms - 204
+2025-06-16 21:16:49.504 -03:00 [INF] End processing HTTP request after 136.1971ms - 204
+2025-06-16 21:19:40.488 -03:00 [INF] Companion Worker Service parando.
+2025-06-16 21:19:40.491 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 21:19:40.493 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 21:19:40.493 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 21:19:40.494 -03:00 [INF] Finalizadas 0 sessões ativas
+2025-06-16 21:19:40.498 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 21:19:40.500 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 21:19:40.500 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 21:19:56.790 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-16 21:19:56.819 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-16 21:19:56.821 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-16 21:19:56.822 -03:00 [ERR] Inventor não conectado - não é possível subscrever eventos
+2025-06-16 21:19:56.822 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-16 21:19:56.824 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-16 21:19:56.850 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:19:56.854 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:19:56.958 -03:00 [INF] Received HTTP response headers after 101.8004ms - 204
+2025-06-16 21:19:56.963 -03:00 [INF] End processing HTTP request after 118.7667ms - 204
+2025-06-16 21:24:56.974 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:24:56.976 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:24:56.983 -03:00 [INF] Received HTTP response headers after 5.3235ms - 204
+2025-06-16 21:24:56.984 -03:00 [INF] End processing HTTP request after 10.3936ms - 204
+2025-06-16 21:26:30.437 -03:00 [INF] Companion Worker Service parando.
+2025-06-16 21:26:30.438 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 21:26:30.439 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 21:26:30.439 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 21:26:30.440 -03:00 [INF] Finalizadas 0 sessões ativas
+2025-06-16 21:26:30.444 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 21:26:30.445 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 21:26:30.445 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 21:28:04.647 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-16 21:28:04.682 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-16 21:28:04.685 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-16 21:28:04.686 -03:00 [ERR] Inventor não conectado - não é possível subscrever eventos
+2025-06-16 21:28:04.686 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-16 21:28:04.688 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-16 21:28:04.721 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:28:04.725 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:28:04.786 -03:00 [INF] Received HTTP response headers after 58.1248ms - 204
+2025-06-16 21:28:04.792 -03:00 [INF] End processing HTTP request after 77.3276ms - 204
+2025-06-16 21:32:44.360 -03:00 [INF] Companion Worker Service parando.
+2025-06-16 21:32:44.361 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 21:32:44.364 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 21:32:44.364 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 21:32:44.365 -03:00 [INF] Finalizadas 0 sessões ativas
+2025-06-16 21:32:44.369 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 21:32:44.370 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 21:32:44.370 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 21:32:44.370 -03:00 [INF] Finalizadas 0 sessões ativas
+2025-06-16 21:38:28.811 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-16 21:38:28.850 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-16 21:38:28.853 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-16 21:38:28.854 -03:00 [ERR] Inventor não conectado - não é possível subscrever eventos
+2025-06-16 21:38:28.854 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-16 21:38:28.858 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-16 21:38:28.898 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:38:28.903 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:38:28.966 -03:00 [INF] Received HTTP response headers after 60.2901ms - 204
+2025-06-16 21:38:28.971 -03:00 [INF] End processing HTTP request after 79.592ms - 204
+2025-06-16 21:38:34.546 -03:00 [INF] Companion Worker Service parando.
+2025-06-16 21:38:34.548 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 21:38:34.549 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 21:38:34.549 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 21:38:34.551 -03:00 [INF] Finalizadas 0 sessões ativas
+2025-06-16 21:38:34.556 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-16 21:38:34.557 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-16 21:38:34.557 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-16 21:38:50.070 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-16 21:38:50.103 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-16 21:38:50.107 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-16 21:38:50.108 -03:00 [ERR] Inventor não conectado - não é possível subscrever eventos
+2025-06-16 21:38:50.108 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-16 21:38:50.110 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-16 21:38:50.145 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:38:50.151 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-16 21:38:50.217 -03:00 [INF] Received HTTP response headers after 64.0258ms - 204
+2025-06-16 21:38:50.223 -03:00 [INF] End processing HTTP request after 84.4675ms - 204

@@ -1,0 +1,6 @@
+@CADCompanion.Server_HostAddress = http://localhost:5047
+
+GET {{CADCompanion.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

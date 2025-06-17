@@ -1,0 +1,11 @@
+C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Shared\bin\Debug\net8.0\CADCompanion.Shared.deps.json
+C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Shared\bin\Debug\net8.0\CADCompanion.Shared.dll
+C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Shared\bin\Debug\net8.0\CADCompanion.Shared.pdb
+C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Shared\obj\Debug\net8.0\CADCompanion.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Shared\obj\Debug\net8.0\CADCompanion.Shared.AssemblyInfoInputs.cache
+C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Shared\obj\Debug\net8.0\CADCompanion.Shared.AssemblyInfo.cs
+C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Shared\obj\Debug\net8.0\CADCompanion.Shared.csproj.CoreCompileInputs.cache
+C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Shared\obj\Debug\net8.0\CADCompanion.Shared.dll
+C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Shared\obj\Debug\net8.0\refint\CADCompanion.Shared.dll
+C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Shared\obj\Debug\net8.0\CADCompanion.Shared.pdb
+C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Shared\obj\Debug\net8.0\ref\CADCompanion.Shared.dll
