@@ -1,66 +1,55 @@
+// CADCompanion.Server/Program.cs - COMPLETO E CORRIGIDO
 using CADCompanion.Server.Data;
 using CADCompanion.Server.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// --- Início da Configuração dos Serviços ---
-
-// Adiciona os serviços essenciais para a API
+// ✅ SERVIÇOS ESSENCIAIS
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-// ✅ LINHA CRÍTICA 1: Garante que os controllers sejam registrados.
 builder.Services.AddControllers();
 
-// ✅ CONFIGURAÇÃO CORS ADICIONADA
+// ✅ CORS CORRIGIDO
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
         policy.WithOrigins(
-                "http://localhost:5173",  // Vite dev server
-                "http://localhost:3000",  // React dev server alternativo
-                "http://localhost:8080"   // Electron dev
+                "http://localhost:5173",  // Vite
+                "http://localhost:3000",  // React
+                "http://localhost:8080"   // Electron
             )
             .AllowAnyMethod()
             .AllowAnyHeader()
-            .SetIsOriginAllowed(_ => true) // Para desenvolvimento
             .AllowCredentials();
     });
 });
 
-// Configura o DbContext para usar PostgreSQL
+// ✅ DATABASE
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Registra seus serviços customizados
+// ✅ CACHE PARA DASHBOARD
+builder.Services.AddMemoryCache();
+
+// ✅ REGISTRAR TODOS OS SERVIÇOS NECESSÁRIOS
 builder.Services.AddScoped<BomVersioningService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
-
-// --- Fim da Configuração dos Serviços ---
-
+builder.Services.AddScoped<IDashboardService, DashboardService>();
+builder.Services.AddScoped<ISystemHealthService, SystemHealthService>();
 
 var app = builder.Build();
 
-// --- Início da Configuração do Pipeline HTTP ---
+// ✅ PIPELINE CORRETO
+app.UseCors("AllowFrontend"); // DEVE VIR PRIMEIRO
 
-// ✅ USAR CORS - DEVE VIR ANTES DE OUTROS MIDDLEWARES
-app.UseCors("AllowFrontend");
-
-// Habilita o Swagger em ambiente de desenvolvimento
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// ✅ REMOVER HTTPS REDIRECT POR ENQUANTO (está causando warning)
-// app.UseHttpsRedirection();
-
-// ✅ LINHA CRÍTICA 2: Mapeia as rotas para os controllers.
 app.MapControllers();
-
-// --- Fim da Configuração do Pipeline HTTP ---
 
 app.Run();

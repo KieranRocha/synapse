@@ -1,3 +1,12 @@
+// CADCompanion.Server/Services/SystemHealthService.cs - CORRIGIDO
+using CADCompanion.Server.Data;
+using CADCompanion.Server.Services;
+using CADCompanion.Shared.Dashboard;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
+
+namespace CADCompanion.Server.Services;
+
 public class SystemHealthService : ISystemHealthService
 {
     private readonly ILogger<SystemHealthService> _logger;

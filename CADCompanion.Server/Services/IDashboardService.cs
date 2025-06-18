@@ -1,3 +1,4 @@
+// CADCompanion.Server/Services/IDashboardService.cs - CORRIGIDO
 using CADCompanion.Shared.Dashboard;
 
 namespace CADCompanion.Server.Services
