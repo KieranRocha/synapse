@@ -16,6 +16,7 @@ public interface IApiCommunicationService
     Task SendWorkSessionUpdatedAsync(WorkSession session, string updateReason); // Sobrecarga
     Task SendHeartbeatAsync();
     Task SendBOMDataAsync(BOMDataWithContext bomData);
+    Task<bool> SendMachineStatusAsync(object statusData);
     Task SendPartDataAsync(object partData); // Considere criar um DTO específico em vez de 'object'
     Task SendDocumentActivityAsync(DocumentEvent documentEvent);
 }

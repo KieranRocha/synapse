@@ -76,6 +76,33 @@ public class ApiCommunicationService : IApiCommunicationService
     }
 
     // ✅ CORRIGIDO: Cria endpoint no servidor ou apenas loga localmente
+
+    public async Task<bool> SendMachineStatusAsync(object statusData)
+    {
+        try
+        {
+            var jsonContent = JsonSerializer.Serialize(statusData);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync("/api/machine-status", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                _logger.LogDebug("✅ Status da máquina enviado com sucesso");
+                return true;
+            }
+            else
+            {
+                _logger.LogWarning($"⚠️ Falha ao enviar status: {response.StatusCode}");
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "❌ Erro ao enviar status da máquina");
+            return false;
+        }
+    }
     public async Task SendDocumentActivityAsync(DocumentEvent documentEvent)
     {
         try
