@@ -20,5 +20,6 @@ namespace CADCompanion.Server.Services
         Task<MachineDto> CreateMachineForProjectAsync(int projectId, CreateMachineDto createMachineDto);
         Task<MachineDto?> UpdateMachineInProjectAsync(int projectId, int machineId, UpdateMachineDto updateMachineDto);
         Task<bool> DeleteMachineFromProjectAsync(int projectId, int machineId);
+        Task<bool> UpdateMachineStatusAsync(int machineId, string status, string? userName, string? currentFile);
     }
 }

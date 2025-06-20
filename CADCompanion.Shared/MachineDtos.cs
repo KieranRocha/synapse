@@ -24,6 +24,8 @@ public class MachineDto
 }
 
 // DTO resumido para listagens
+
+
 public class MachineSummaryDto
 {
     public int Id { get; set; }
@@ -98,4 +100,11 @@ public class BomVersionSummaryDto
     public DateTime CreatedAt { get; set; }
     public string? ExtractedBy { get; set; }
     public int ItemCount { get; set; }
+}
+public class UpdateStatusRequest
+{
+    [Required]
+    public string Status { get; set; } = string.Empty;
+    public string? UserName { get; set; }
+    public string? CurrentFile { get; set; }
 }

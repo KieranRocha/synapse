@@ -18,4 +18,5 @@ public interface IApiCommunicationService
     Task SendBOMDataAsync(BOMDataWithContext bomData);
     Task SendPartDataAsync(object partData); // Considere criar um DTO específico em vez de 'object'
     Task SendDocumentActivityAsync(DocumentEvent documentEvent);
+    Task UpdateMachineStatusAsync(int machineId, string status, string userName, string currentFile);
 }

@@ -74,5 +74,25 @@ namespace CADCompanion.Server.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+        [HttpPost("{id}/status")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> SetMachineStatus(int id, [FromBody] UpdateStatusRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var success = await _machineService.UpdateMachineStatusAsync(id, request.Status, request.UserName, request.CurrentFile);
+
+            if (!success)
+            {
+                return NotFound($"Máquina com ID {id} não encontrada ou status inválido.");
+            }
+
+            return NoContent(); // Indica sucesso na operação
+        }
     }
 }

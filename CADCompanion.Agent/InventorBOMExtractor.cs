@@ -69,13 +69,13 @@ namespace CADCompanion.Agent
         private dynamic? _inventorApp;
 
         // ✅ CORRIGIDO: Configuração de licença do EPPlus para versão 8+
-           static InventorBomExtractor()
-    {
-        // Para uso não comercial sob a licença Polyform, o EPPlus 8+ não requer
-        // que nenhuma propriedade de licença seja definida. A linha que causava
-        // o erro foi removida. O desenvolvedor deve estar ciente dos termos da licença.
-        // Veja: https://epplussoftware.com/developers/licenseexception
-    }
+        static InventorBomExtractor()
+        {
+            // Para uso não comercial sob a licença Polyform, o EPPlus 8+ não requer
+            // que nenhuma propriedade de licença seja definida. A linha que causava
+            // o erro foi removida. O desenvolvedor deve estar ciente dos termos da licença.
+            // Veja: https://epplussoftware.com/developers/licenseexception
+        }
         [System.Runtime.Versioning.SupportedOSPlatform("windows")]
         public void ConnectToInventor()
         {
@@ -390,13 +390,13 @@ namespace CADCompanion.Agent
                     try
                     {
                         dynamic doc = _inventorApp.Documents[i];
-                        
+
                         // Verificar se é o arquivo que estamos procurando
                         if (doc.DisplayName.Equals(fileName, StringComparison.OrdinalIgnoreCase) ||
                             Path.GetFileName(doc.FullFileName ?? "").Equals(fileName, StringComparison.OrdinalIgnoreCase))
                         {
                             int docType = doc.DocumentType;
-                            
+
                             // Verificar se é assembly
                             if (docType == 12291) // kAssemblyDocumentObject
                             {
@@ -453,7 +453,7 @@ namespace CADCompanion.Agent
                         if (doc.FullFileName?.Equals(filePath, StringComparison.OrdinalIgnoreCase) == true)
                         {
                             Console.WriteLine($"✅ Documento já está aberto: {doc.DisplayName}");
-                            
+
                             // Ativar o documento
                             _inventorApp.ActiveDocument = doc;
                             return true;
@@ -467,12 +467,12 @@ namespace CADCompanion.Agent
 
                 // Abrir novo documento
                 dynamic openedDoc = _inventorApp.Documents.Open(filePath, true); // true = visível
-                
+
                 Console.WriteLine($"✅ Documento aberto com sucesso: {openedDoc.DisplayName}");
-                
+
                 // Trazer Inventor para frente
                 _inventorApp.Visible = true;
-                
+
                 return true;
             }
             catch (Exception ex)
@@ -481,7 +481,39 @@ namespace CADCompanion.Agent
                 throw;
             }
         }
+        /// <summary>
+        /// Obtém o valor de uma iProperty customizada de um documento do Inventor.
+        /// </summary>
+        /// <param name="document">O objeto do documento do Inventor.</param>
+        /// <param name="propertyName">O nome da iProperty a ser lida.</param>
+        /// <returns>O valor da propriedade como string, ou null se não for encontrada.</returns>
+        public string? GetCustomIProperty(dynamic document, string propertyName)
+        {
+            try
+            {
+                // PropertySets "User Defined Properties" é onde as iProperties customizadas são armazenadas.
+                dynamic customPropertySet = document.PropertySets["User Defined Properties"];
 
+                // Itera sobre as propriedades para encontrar a que queremos pelo nome.
+                foreach (dynamic prop in customPropertySet)
+                {
+                    if (prop.Name.Equals(propertyName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        Console.WriteLine($"✅ iProperty customizada '{propertyName}' encontrada com valor: '{prop.Value}'");
+                        return prop.Value?.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // É normal ocorrer um erro se o conjunto de propriedades ou a propriedade não existirem.
+                // Logamos como Debug para não poluir os logs principais.
+                Console.WriteLine($"[DEBUG] Não foi possível encontrar a iProperty customizada '{propertyName}'. Isso pode ser esperado. Erro: {ex.Message}");
+            }
+
+            Console.WriteLine($"[WARNING] iProperty customizada '{propertyName}' não encontrada no documento {document.FullFileName}.");
+            return null;
+        }
         /// <summary>
         /// Ativa um documento específico que já está aberto
         /// </summary>
@@ -501,13 +533,13 @@ namespace CADCompanion.Agent
                     try
                     {
                         dynamic doc = _inventorApp.Documents[i];
-                        
+
                         if (doc.DisplayName.Equals(fileName, StringComparison.OrdinalIgnoreCase) ||
                             Path.GetFileName(doc.FullFileName ?? "").Equals(fileName, StringComparison.OrdinalIgnoreCase))
                         {
                             _inventorApp.ActiveDocument = doc;
                             _inventorApp.Visible = true;
-                            
+
                             Console.WriteLine($"✅ Documento ativado: {doc.DisplayName}");
                             return true;
                         }
@@ -540,7 +572,7 @@ namespace CADCompanion.Agent
                 }
 
                 dynamic activeDoc = _inventorApp.ActiveDocument;
-                
+
                 return new ActiveDocumentInfo
                 {
                     FileName = activeDoc.DisplayName,
@@ -920,7 +952,7 @@ namespace CADCompanion.Agent
                 {
                     return _inventorApp;
                 }
-                
+
                 // Se não existe, tenta conectar
                 ConnectToInventor();
                 return _inventorApp;
@@ -938,7 +970,7 @@ namespace CADCompanion.Agent
             try
             {
                 if (_inventorApp == null) return false;
-                
+
                 // Testa acesso simples para verificar se ainda está válida
                 var version = _inventorApp.SoftwareVersion;
                 return version != null;

@@ -385,7 +385,31 @@ namespace CADCompanion.Server.Services
                 _logger.LogError(ex, "Erro ao atualizar contador de máquinas do projeto {ProjectId}", projectId);
             }
         }
+        public async Task<bool> UpdateMachineStatusAsync(int machineId, string status, string? userName, string? currentFile)
+        {
+            var machine = await _context.Machines.FindAsync(machineId);
+            if (machine == null)
+            {
+                _logger.LogWarning("Máquina com ID {MachineId} não encontrada para atualização de status.", machineId);
+                return false;
+            }
 
+            // Usamos o Enum para garantir que o status é válido
+            if (Enum.TryParse<MachineStatus>(status, true, out var newStatus))
+            {
+                machine.Status = newStatus;
+                machine.UpdatedAt = DateTime.UtcNow;
+                // Futuramente, podemos adicionar campos para `WorkingUser` e `CurrentOpenFile` na entidade Machine
+
+                await _context.SaveChangesAsync();
+                _logger.LogInformation("Status da máquina {MachineId} atualizado para {Status} pelo usuário {User}", machineId, newStatus, userName ?? "N/A");
+                return true;
+            }
+
+            _logger.LogWarning("Tentativa de atualizar máquina {MachineId} com status inválido: {Status}", machineId, status);
+            return false;
+        }
         #endregion
     }
+
 }

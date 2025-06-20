@@ -1,7 +1,6 @@
-// Services/WorkDrivenMonitoringService.cs - CORRIGIDO v2
-
 using CADCompanion.Agent.Configuration;
 using CADCompanion.Agent.Models;
+
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Collections.Concurrent;
@@ -10,11 +9,20 @@ namespace CADCompanion.Agent.Services;
 
 public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDisposable
 {
+    // Mapa para associar um arquivo aberto ao ID da máquina correspondente
+    private readonly ConcurrentDictionary<string, int> _fileToMachineIdMap = new();
+
     private readonly ILogger<WorkDrivenMonitoringService> _logger;
     private readonly IInventorDocumentEventService _documentEventService;
     private readonly DocumentProcessingService _documentProcessingService;
     private readonly WorkSessionService _workSessionService;
     private readonly CompanionConfiguration _configuration;
+
+    // Serviços injetados que são necessários para a nova lógica
+    private readonly IInventorConnectionService _inventorConnection;
+    private readonly IInventorBOMExtractor _bomExtractor;
+    private readonly IApiCommunicationService _apiService;
+
     private readonly ConcurrentDictionary<string, FileSystemWatcher> _watchers = new();
     private readonly ConcurrentDictionary<string, DocumentWatcher> _documentWatchers = new();
     private bool _isMonitoring = false;
@@ -24,14 +32,20 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         IOptions<CompanionConfiguration> configuration,
         IInventorDocumentEventService documentEventService,
         DocumentProcessingService documentProcessingService,
-        WorkSessionService workSessionService)
+        WorkSessionService workSessionService,
+        IInventorConnectionService inventorConnection, // Adicionado
+        IInventorBOMExtractor bomExtractor,           // Adicionado
+        IApiCommunicationService apiService)           // Adicionado
     {
         _logger = logger;
         _configuration = configuration.Value;
         _documentEventService = documentEventService;
         _documentProcessingService = documentProcessingService;
         _workSessionService = workSessionService;
-        
+        _inventorConnection = inventorConnection;
+        _bomExtractor = bomExtractor;
+        _apiService = apiService;
+
         // Subscreve aos eventos de documentos
         SubscribeToDocumentEvents();
     }
@@ -103,8 +117,37 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         {
             _logger.LogInformation($"📂 Documento aberto: {e.FileName}");
 
+            // --- Lógica para identificar a máquina ---
+            var inventorApp = _inventorConnection.GetInventorApp();
+            if (inventorApp != null && e.DocumentType == DocumentType.Assembly)
+            {
+                dynamic? doc = null;
+                try
+                {
+                    // Encontra o objeto do documento que acabou de ser aberto
+                    doc = inventorApp.Documents[e.FilePath];
+                }
+                catch (Exception) { /* Ignora se não encontrar, pode acontecer em alguns cenários */ }
+
+                if (doc != null)
+                {
+                    var machineIdStr = _bomExtractor.GetCustomIProperty(doc, "MachineDB_ID");
+                    if (!string.IsNullOrEmpty(machineIdStr) && int.TryParse(machineIdStr, out int machineId))
+                    {
+                        _logger.LogInformation("Montagem principal da Máquina ID {MachineId} aberta: {FileName}", machineId, e.FileName);
+
+                        // Mapeia o caminho do arquivo ao ID da máquina
+                        _fileToMachineIdMap[e.FilePath] = machineId;
+
+                        // Notifica o servidor que a máquina está em "Design"
+                        await _apiService.UpdateMachineStatusAsync(machineId, "Design", Environment.UserName, e.FileName);
+                    }
+                }
+            }
+            // --- Fim da lógica de máquina ---
+
             var documentEvent = CreateDocumentEvent(e.FilePath, e.FileName, DocumentEventType.Opened, e.DocumentType);
-            
+
             // Detecta projeto
             var projectInfo = DetectProjectFromFile(e.FilePath);
             if (projectInfo != null)
@@ -143,13 +186,21 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         {
             _logger.LogInformation($"📂 Documento fechado: {e.FileName}");
 
+            // --- Lógica para limpar o mapeamento da máquina ---
+            if (_fileToMachineIdMap.TryRemove(e.FilePath, out int machineId))
+            {
+                _logger.LogInformation("Arquivo da Máquina ID {MachineId} foi fechado: {FileName}", machineId, e.FileName);
+                // Opcional: notificar o servidor que a máquina não está mais "em uso"
+                // await _apiService.UpdateMachineStatusAsync(machineId, "Available", Environment.UserName, string.Empty);
+            }
+            // --- Fim da lógica de máquina ---
+
             var documentEvent = CreateDocumentEvent(e.FilePath, e.FileName, DocumentEventType.Closed, e.DocumentType);
 
             // Remove watcher do documento
             RemoveDocumentWatcher(e.FilePath);
 
-            // Finaliza sessão de trabalho
-            // (será implementado quando tivermos o ID da sessão)
+            // Finaliza sessão de trabalho (implementação futura)
 
             // Processa evento
             await _documentProcessingService.ProcessDocumentChangeAsync(documentEvent);
@@ -166,7 +217,17 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         {
             _logger.LogDebug($"💾 Documento salvo: {e.FileName}");
 
+            // Tenta obter o MachineId do mapa para enriquecer o evento
+            _fileToMachineIdMap.TryGetValue(e.FilePath, out int machineId);
+
             var documentEvent = CreateDocumentEvent(e.FilePath, e.FileName, DocumentEventType.Saved, e.DocumentType);
+
+            // Adiciona o machineId ao evento se ele existir no mapa
+            if (machineId > 0)
+            {
+                // Supondo que você adicione uma propriedade MachineId em DocumentEvent
+                // documentEvent.MachineId = machineId;
+            }
 
             // Detecta projeto
             var projectInfo = DetectProjectFromFile(e.FilePath);
@@ -175,9 +236,6 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                 documentEvent.ProjectId = projectInfo.ProjectId;
                 documentEvent.ProjectName = projectInfo.DetectedName;
             }
-
-            // Atualiza sessão de trabalho
-            // (implementar quando tivermos ID da sessão)
 
             // Processa save (inclui extração de BOM se for assembly)
             await _documentProcessingService.ProcessDocumentSaveAsync(documentEvent);
@@ -211,7 +269,6 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                     EnableRaisingEvents = true
                 };
 
-                // Adiciona filtros de extensão
                 foreach (var fileType in folder.FileTypes)
                 {
                     watcher.Filter = fileType;
@@ -303,7 +360,7 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
             var documentWatcher = new DocumentWatcher
             {
                 FilePath = filePath,
-                FileName = Path.GetFileName(filePath),
+                FileName = System.IO.Path.GetFileName(filePath),
                 ProjectInfo = DetectProjectFromFile(filePath),
                 OpenedAt = DateTime.UtcNow,
                 LastActivity = DateTime.UtcNow,
@@ -360,18 +417,18 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
             if (!_configuration.Settings.ProjectDetection.EnableAutoDetection)
                 return null;
 
-            var fileName = Path.GetFileNameWithoutExtension(filePath);
-            var directoryPath = Path.GetDirectoryName(filePath) ?? "";
+            var fileName = System.IO.Path.GetFileNameWithoutExtension(filePath);
+            var directoryPath = System.IO.Path.GetDirectoryName(filePath) ?? "";
 
             foreach (var pattern in _configuration.Settings.ProjectDetection.ProjectIdPatterns)
             {
                 var regex = new System.Text.RegularExpressions.Regex(pattern);
                 var match = regex.Match(fileName);
-                
+
                 if (match.Success && match.Groups.Count > 1)
                 {
                     var projectId = match.Groups[1].Value;
-                    
+
                     return new ProjectInfo
                     {
                         ProjectId = projectId,
@@ -383,7 +440,6 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                 }
             }
 
-            // Se não encontrou padrão, cria projeto desconhecido
             if (_configuration.Settings.ProjectDetection.UnknownProjectHandling == "CREATE_UNKNOWN")
             {
                 var unknownId = $"UNKNOWN_{DateTime.Now:yyyyMMdd}";
@@ -410,12 +466,11 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
     {
         try
         {
-            var fileName = Path.GetFileName(filePath);
+            var fileName = System.IO.Path.GetFileName(filePath);
             var docType = DetermineDocumentType(filePath);
-            
+
             var documentEvent = CreateDocumentEvent(filePath, fileName, eventType, docType);
-            
-            // Detecta projeto
+
             var projectInfo = DetectProjectFromFile(filePath);
             if (projectInfo != null)
             {
@@ -440,13 +495,13 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
 
     private bool IsCADFile(string filePath)
     {
-        var extension = Path.GetExtension(filePath).ToLowerInvariant();
+        var extension = System.IO.Path.GetExtension(filePath).ToLowerInvariant();
         return extension is ".iam" or ".ipt" or ".idw" or ".ipn";
     }
 
     private DocumentType DetermineDocumentType(string filePath)
     {
-        var extension = Path.GetExtension(filePath).ToLowerInvariant();
+        var extension = System.IO.Path.GetExtension(filePath).ToLowerInvariant();
         return extension switch
         {
             ".iam" => DocumentType.Assembly,
@@ -461,31 +516,24 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
     {
         try
         {
-            if (File.Exists(filePath))
+            if (System.IO.File.Exists(filePath))
             {
-                return new FileInfo(filePath).Length;
+                return new System.IO.FileInfo(filePath).Length;
             }
         }
-        catch
-        {
-            // Ignora erros
-        }
+        catch { /* Ignora erros */ }
         return 0;
     }
 
-    // ✅ CORRIGIDO: Método agora é async para resolver o warning
     private async Task FinalizeActiveSessionsAsync()
     {
         try
         {
-            // Finaliza todas as sessões ativas
             var activeSessions = await _workSessionService.GetActiveWorkSessionsAsync();
-            
             foreach (var session in activeSessions)
             {
                 await _workSessionService.EndWorkSessionAsync(session.Id, DateTime.UtcNow);
             }
-
             _logger.LogInformation($"Finalizadas {activeSessions.Count} sessões ativas");
         }
         catch (Exception ex)
@@ -499,14 +547,13 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
     public void Dispose()
     {
         StopMonitoring();
-        
-        // Dispose document watchers
+
         foreach (var watcher in _documentWatchers.Values)
         {
             watcher.Dispose();
         }
         _documentWatchers.Clear();
-        
+
         GC.SuppressFinalize(this);
     }
 }

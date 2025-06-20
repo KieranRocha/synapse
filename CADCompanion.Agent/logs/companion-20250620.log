@@ -357,3 +357,46 @@ System.Net.Http.HttpRequestException: Nenhuma conexão pôde ser feita porque a 
    at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
    at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
    at CADCompanion.Agent.Services.ApiCommunicationService.SendHeartbeatAsync() in C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Agent\Services\ApiCommunicationService.cs:line 110
+2025-06-20 20:00:48.489 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 20:00:48.490 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 20:00:48.577 -03:00 [INF] Received HTTP response headers after 83.8039ms - 204
+2025-06-20 20:00:48.580 -03:00 [INF] End processing HTTP request after 91.2939ms - 204
+2025-06-20 20:05:48.584 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 20:05:48.586 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 20:05:48.593 -03:00 [INF] Received HTTP response headers after 5.3971ms - 204
+2025-06-20 20:05:48.594 -03:00 [INF] End processing HTTP request after 10.6649ms - 204
+2025-06-20 20:10:48.609 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 20:10:48.611 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 20:10:48.617 -03:00 [INF] Received HTTP response headers after 4.6633ms - 204
+2025-06-20 20:10:48.619 -03:00 [INF] End processing HTTP request after 10.1122ms - 204
+2025-06-20 20:15:48.627 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 20:15:48.630 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 20:15:48.635 -03:00 [INF] Received HTTP response headers after 3.3642ms - 204
+2025-06-20 20:15:48.636 -03:00 [INF] End processing HTTP request after 8.8176ms - 204
+2025-06-20 20:20:48.649 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 20:20:48.650 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 20:20:48.655 -03:00 [INF] Received HTTP response headers after 3.2471ms - 204
+2025-06-20 20:20:48.656 -03:00 [INF] End processing HTTP request after 6.3887ms - 204
+2025-06-20 20:25:48.671 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 20:25:48.674 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 20:25:48.678 -03:00 [INF] Received HTTP response headers after 3.1236ms - 204
+2025-06-20 20:25:48.680 -03:00 [INF] End processing HTTP request after 8.2994ms - 204
+2025-06-20 20:30:48.683 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 20:30:48.685 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 20:30:48.689 -03:00 [INF] Received HTTP response headers after 2.8953ms - 204
+2025-06-20 20:30:48.690 -03:00 [INF] End processing HTTP request after 7.4619ms - 204
+2025-06-20 20:35:48.707 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 20:35:48.709 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 20:35:48.713 -03:00 [INF] Received HTTP response headers after 3.0966ms - 204
+2025-06-20 20:35:48.715 -03:00 [INF] End processing HTTP request after 8.0249ms - 204
+2025-06-20 20:38:46.794 -03:00 [INF] Companion Worker Service parando.
+2025-06-20 20:38:46.796 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-20 20:38:46.797 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-20 20:38:46.798 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-20 20:38:46.801 -03:00 [INF] 🏁 Work Session finalizada: 111646.ipt - Duração: 00:43:01 - 0 saves
+2025-06-20 20:38:46.802 -03:00 [INF] 🏁 Enviando fim da sessão de trabalho: 111646.ipt
+2025-06-20 20:38:46.802 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-20 20:38:46.803 -03:00 [INF] 🏁 Work Session finalizada: 0321862.ipt - Duração: 00:43:01 - 0 saves
+2025-06-20 20:38:46.803 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-20 20:38:46.803 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-20 20:38:46.803 -03:00 [INF] 🏁 Work Session finalizada: 0345714.ipt - Duração: 00:43:01 - 0 saves

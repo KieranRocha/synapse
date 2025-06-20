@@ -114,7 +114,27 @@ public class ApiCommunicationService : IApiCommunicationService
             _logger.LogError(ex, "❌ Erro ao enviar heartbeat");
         }
     }
+    public async Task UpdateMachineStatusAsync(int machineId, string status, string userName, string currentFile)
+    {
+        try
+        {
+            var payload = new { Status = status, UserName = userName, CurrentFile = currentFile };
+            var response = await _httpClient.PostAsJsonAsync($"api/machines/{machineId}/status", payload);
 
+            if (!response.IsSuccessStatusCode)
+            {
+                _logger.LogError("Falha ao atualizar status da máquina {MachineId} no servidor. Status: {StatusCode}", machineId, response.StatusCode);
+            }
+            else
+            {
+                _logger.LogInformation("Status da máquina {MachineId} atualizado para {Status} no servidor.", machineId, status);
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Erro de comunicação ao tentar atualizar status da máquina {MachineId}.", machineId);
+        }
+    }
     public async Task SendPartDataAsync(object partData)
     {
         try
