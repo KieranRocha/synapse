@@ -17,6 +17,8 @@ namespace CADCompanion.Server.Services
             _logger = logger;
         }
 
+        #region Métodos Existentes
+
         public async Task<IEnumerable<MachineSummaryDto>> GetAllMachinesAsync()
         {
             try
@@ -26,10 +28,11 @@ namespace CADCompanion.Server.Services
                     {
                         Id = m.Id,
                         Name = m.Name,
-                        OperationNumber = m.OperationNumber, // ✅ CORRIGIDO: era MachineCode
+                        OperationNumber = m.OperationNumber,
                         Status = m.Status.ToString(),
                         TotalBomVersions = m.TotalBomVersions,
                         LastBomExtraction = m.LastBomExtraction
+                        // StatusColor é calculado automaticamente via property
                     })
                     .ToListAsync();
             }
@@ -79,12 +82,12 @@ namespace CADCompanion.Server.Services
                 var machine = new Machine
                 {
                     Name = createMachineDto.Name,
-                    OperationNumber = createMachineDto.OperationNumber, // ✅ CORRIGIDO
+                    OperationNumber = createMachineDto.OperationNumber,
                     Description = createMachineDto.Description,
                     FolderPath = createMachineDto.FolderPath,
                     MainAssemblyPath = createMachineDto.MainAssemblyPath,
                     ProjectId = createMachineDto.ProjectId,
-                    Status = MachineStatus.Planning, // ✅ CORRIGIDO: Status válido
+                    Status = MachineStatus.Planning,
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow
                 };
@@ -118,26 +121,30 @@ namespace CADCompanion.Server.Services
                     return null;
                 }
 
-                // ✅ ATUALIZAR APENAS CAMPOS NÃO NULOS
-                if (updateMachineDto.Name != null) machine.Name = updateMachineDto.Name;
-                if (updateMachineDto.OperationNumber != null) machine.OperationNumber = updateMachineDto.OperationNumber;
-                if (updateMachineDto.Description != null) machine.Description = updateMachineDto.Description;
-                if (updateMachineDto.FolderPath != null) machine.FolderPath = updateMachineDto.FolderPath;
-                if (updateMachineDto.MainAssemblyPath != null) machine.MainAssemblyPath = updateMachineDto.MainAssemblyPath;
+                // Atualizar campos
+                if (!string.IsNullOrEmpty(updateMachineDto.Name))
+                    machine.Name = updateMachineDto.Name;
 
-                // ✅ ATUALIZAR STATUS SE FORNECIDO
-                if (!string.IsNullOrEmpty(updateMachineDto.Status) &&
-                    Enum.TryParse<MachineStatus>(updateMachineDto.Status, out var status))
-                {
+                if (updateMachineDto.OperationNumber != null)
+                    machine.OperationNumber = updateMachineDto.OperationNumber;
+
+                if (updateMachineDto.Description != null)
+                    machine.Description = updateMachineDto.Description;
+
+                if (updateMachineDto.FolderPath != null)
+                    machine.FolderPath = updateMachineDto.FolderPath;
+
+                if (updateMachineDto.MainAssemblyPath != null)
+                    machine.MainAssemblyPath = updateMachineDto.MainAssemblyPath;
+
+                if (updateMachineDto.Status != null && Enum.TryParse<MachineStatus>(updateMachineDto.Status, out var status))
                     machine.Status = status;
-                }
 
                 machine.UpdatedAt = DateTime.UtcNow;
 
                 await _context.SaveChangesAsync();
 
-                _logger.LogInformation("Máquina atualizada: {MachineName} (ID: {MachineId})",
-                    machine.Name, machine.Id);
+                _logger.LogInformation("Máquina atualizada: {MachineName} (ID: {MachineId})", machine.Name, machine.Id);
 
                 return ToMachineDto(machine);
             }
@@ -164,12 +171,9 @@ namespace CADCompanion.Server.Services
                 _context.Machines.Remove(machine);
                 await _context.SaveChangesAsync();
 
-                // ✅ ATUALIZAR CONTADOR NO PROJETO
                 await UpdateProjectMachineCountAsync(projectId);
 
-                _logger.LogInformation("Máquina excluída: {MachineName} (ID: {MachineId})",
-                    machine.Name, machine.Id);
-
+                _logger.LogInformation("Máquina excluída: {MachineName} (ID: {MachineId})", machine.Name, machine.Id);
                 return true;
             }
             catch (Exception ex)
@@ -183,20 +187,159 @@ namespace CADCompanion.Server.Services
         {
             try
             {
-                // ✅ BUSCAR BOMs POR MACHINE ID (convertendo para string para compatibilidade)
                 return await _context.BomVersions
-                   .Where(b => b.MachineId == machineId.ToString())
-                   .OrderByDescending(b => b.ExtractedAt)
-                   .ToListAsync();
+                    .Where(bv => bv.MachineId == machineId.ToString())
+                    .OrderByDescending(bv => bv.VersionNumber)
+                    .ToListAsync();
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao buscar BOMs da máquina {MachineId}", machineId);
+                _logger.LogError(ex, "Erro ao buscar versões BOM da máquina {MachineId}", machineId);
                 throw;
             }
         }
 
-        #region Private Methods
+        #endregion
+
+        #region ✅ NOVOS MÉTODOS PARA PROJETOS
+
+        public async Task<IEnumerable<MachineSummaryDto>> GetMachinesByProjectAsync(int projectId)
+        {
+            try
+            {
+                _logger.LogInformation("Buscando máquinas do projeto {ProjectId}", projectId);
+
+                // Verificar se projeto existe
+                var projectExists = await _context.Projects.AnyAsync(p => p.Id == projectId);
+                if (!projectExists)
+                {
+                    _logger.LogWarning("Projeto {ProjectId} não encontrado", projectId);
+                    throw new InvalidOperationException($"Projeto {projectId} não encontrado");
+                }
+
+                var machines = await _context.Machines
+                    .Where(m => m.ProjectId == projectId)
+                    .Select(m => new MachineSummaryDto
+                    {
+                        Id = m.Id,
+                        Name = m.Name,
+                        OperationNumber = m.OperationNumber,
+                        Status = m.Status.ToString(),
+                        TotalBomVersions = m.TotalBomVersions,
+                        LastBomExtraction = m.LastBomExtraction
+                        // StatusColor é calculado automaticamente
+                    })
+                    .ToListAsync();
+
+                _logger.LogInformation("Encontradas {Count} máquinas no projeto {ProjectId}",
+                    machines.Count, projectId);
+
+                return machines;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao buscar máquinas do projeto {ProjectId}", projectId);
+                throw;
+            }
+        }
+
+        public async Task<MachineDto?> GetMachineByProjectAndIdAsync(int projectId, int machineId)
+        {
+            try
+            {
+                var machine = await _context.Machines
+                    .Include(m => m.Project)
+                    .FirstOrDefaultAsync(m => m.Id == machineId && m.ProjectId == projectId);
+
+                if (machine == null)
+                {
+                    _logger.LogWarning("Máquina {MachineId} não encontrada no projeto {ProjectId}",
+                        machineId, projectId);
+                    return null;
+                }
+
+                return ToMachineDto(machine);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao buscar máquina {MachineId} do projeto {ProjectId}",
+                    machineId, projectId);
+                throw;
+            }
+        }
+
+        public async Task<MachineDto> CreateMachineForProjectAsync(int projectId, CreateMachineDto createMachineDto)
+        {
+            try
+            {
+                // Verificar se projeto existe
+                var projectExists = await _context.Projects.AnyAsync(p => p.Id == projectId);
+                if (!projectExists)
+                {
+                    throw new InvalidOperationException($"Projeto {projectId} não encontrado");
+                }
+
+                // Forçar ProjectId correto
+                createMachineDto.ProjectId = projectId;
+
+                return await CreateMachineAsync(createMachineDto);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao criar máquina no projeto {ProjectId}", projectId);
+                throw;
+            }
+        }
+
+        public async Task<MachineDto?> UpdateMachineInProjectAsync(int projectId, int machineId, UpdateMachineDto updateMachineDto)
+        {
+            try
+            {
+                // Verificar se máquina pertence ao projeto
+                var machine = await _context.Machines
+                    .FirstOrDefaultAsync(m => m.Id == machineId && m.ProjectId == projectId);
+
+                if (machine == null)
+                {
+                    throw new InvalidOperationException($"Máquina {machineId} não encontrada no projeto {projectId}");
+                }
+
+                return await UpdateMachineAsync(machineId, updateMachineDto);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao atualizar máquina {MachineId} do projeto {ProjectId}",
+                    machineId, projectId);
+                throw;
+            }
+        }
+
+        public async Task<bool> DeleteMachineFromProjectAsync(int projectId, int machineId)
+        {
+            try
+            {
+                // Verificar se máquina pertence ao projeto
+                var machine = await _context.Machines
+                    .FirstOrDefaultAsync(m => m.Id == machineId && m.ProjectId == projectId);
+
+                if (machine == null)
+                {
+                    throw new InvalidOperationException($"Máquina {machineId} não encontrada no projeto {projectId}");
+                }
+
+                return await DeleteMachineAsync(machineId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao excluir máquina {MachineId} do projeto {ProjectId}",
+                    machineId, projectId);
+                throw;
+            }
+        }
+
+        #endregion
+
+        #region Helper Methods
 
         private static MachineDto ToMachineDto(Machine machine)
         {
@@ -204,7 +347,7 @@ namespace CADCompanion.Server.Services
             {
                 Id = machine.Id,
                 Name = machine.Name,
-                OperationNumber = machine.OperationNumber, // ✅ CORRIGIDO
+                OperationNumber = machine.OperationNumber,
                 Description = machine.Description,
                 FolderPath = machine.FolderPath,
                 MainAssemblyPath = machine.MainAssemblyPath,
@@ -214,7 +357,7 @@ namespace CADCompanion.Server.Services
                 UpdatedAt = machine.UpdatedAt,
                 LastBomExtraction = machine.LastBomExtraction,
                 TotalBomVersions = machine.TotalBomVersions,
-                BomVersions = new List<BomVersionSummaryDto>() // ✅ INICIALIZAR VAZIO POR ENQUANTO
+                BomVersions = new List<BomVersionSummaryDto>() // ✅ Inicializar vazio
             };
         }
 
