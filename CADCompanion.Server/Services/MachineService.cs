@@ -1,101 +1,122 @@
-// CADCompanion.Server/Services/MachineService.cs
-public interface IMachineService
+using CADCompanion.Server.Data;
+using CADCompanion.Server.Models;
+using CADCompanion.Shared.Contracts;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace CADCompanion.Server.Services
 {
-    Task<List<MachineSummaryDto>> GetMachinesByProjectAsync(int projectId);
-    Task<MachineDto?> GetMachineByIdAsync(int id);
-    Task<MachineDto> CreateMachineAsync(int projectId, CreateMachineDto createDto);
-    Task<MachineDto?> UpdateMachineAsync(int id, UpdateMachineDto updateDto);
-    Task<bool> DeleteMachineAsync(int id);
-    Task<List<BomVersion>> GetMachineBomVersionsAsync(int machineId);
-}
-
-public class MachineService : IMachineService
-{
-    private readonly AppDbContext _context;
-    private readonly ILogger<MachineService> _logger;
-
-    public MachineService(AppDbContext context, ILogger<MachineService> logger)
+    public class MachineService : IMachineService
     {
-        _context = context;
-        _logger = logger;
-    }
+        private readonly AppDbContext _context;
 
-    public async Task<List<MachineSummaryDto>> GetMachinesByProjectAsync(int projectId)
-    {
-        return await _context.Machines
-            .Where(m => m.ProjectId == projectId)
-            .OrderBy(m => m.OperationNumber)
-            .ThenBy(m => m.Name)
-            .Select(m => new MachineSummaryDto
-            {
-                Id = m.Id,
-                Name = m.Name,
-                OperationNumber = m.OperationNumber,
-                Status = m.Status.ToString(),
-                TotalBomVersions = m.TotalBomVersions,
-                LastBomExtraction = m.LastBomExtraction
-            })
-            .ToListAsync();
-    }
-
-    public async Task<MachineDto?> GetMachineByIdAsync(int id)
-    {
-        var machine = await _context.Machines
-            .Include(m => m.Project)
-            .FirstOrDefaultAsync(m => m.Id == id);
-
-        if (machine == null) return null;
-
-        return MapToMachineDto(machine);
-    }
-
-    public async Task<MachineDto> CreateMachineAsync(int projectId, CreateMachineDto createDto)
-    {
-        // Validar se projeto existe
-        var projectExists = await _context.Projects.AnyAsync(p => p.Id == projectId);
-        if (!projectExists)
+        public MachineService(AppDbContext context)
         {
-            throw new ArgumentException($"Projeto {projectId} não encontrado");
+            _context = context;
         }
 
-        var machine = new Machine
+        public async Task<IEnumerable<MachineSummaryDto>> GetAllMachinesAsync()
         {
-            Name = createDto.Name,
-            OperationNumber = createDto.OperationNumber,
-            Description = createDto.Description,
-            FolderPath = createDto.FolderPath,
-            MainAssemblyPath = createDto.MainAssemblyPath,
-            ProjectId = projectId,
-            Status = MachineStatus.Planning,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
-        };
+            return await _context.Machines
+                .Select(m => new MachineSummaryDto
+                {
+                    Id = m.Id,
+                    Name = m.Name,
+                    MachineCode = m.MachineCode,
+                    Status = m.Status.ToString()
+                })
+                .ToListAsync();
+        }
 
-        _context.Machines.Add(machine);
-        await _context.SaveChangesAsync();
-
-        _logger.LogInformation("Máquina criada: {MachineName} (ID: {MachineId}) no projeto {ProjectId}",
-            machine.Name, machine.Id, projectId);
-
-        return MapToMachineDto(machine);
-    }
-
-    private static MachineDto MapToMachineDto(Machine machine)
-    {
-        return new MachineDto
+        public async Task<MachineDto> GetMachineByIdAsync(int id)
         {
-            Id = machine.Id,
-            Name = machine.Name,
-            OperationNumber = machine.OperationNumber,
-            Description = machine.Description,
-            FolderPath = machine.FolderPath,
-            MainAssemblyPath = machine.MainAssemblyPath,
-            Status = machine.Status.ToString(),
-            ProjectId = machine.ProjectId,
-            CreatedAt = machine.CreatedAt,
-            UpdatedAt = machine.UpdatedAt,
-            LastBomExtraction = machine.LastBomExtraction,
-            TotalBomVersions = machine.TotalBomVersions
-        };
+            var machine = await _context.Machines
+                .Include(m => m.BomVersions)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (machine == null)
+            {
+                return null;
+            }
+
+            return ToMachineDto(machine);
+        }
+
+        public async Task<MachineDto> CreateMachineAsync(CreateMachineDto createMachineDto)
+        {
+            var machine = new Machine
+            {
+                Name = createMachineDto.Name,
+                MachineCode = createMachineDto.MachineCode,
+                Description = createMachineDto.Description,
+                Status = MachineStatus.Active, // Default status
+                CreatedAt = DateTime.UtcNow
+            };
+
+            _context.Machines.Add(machine);
+            await _context.SaveChangesAsync();
+
+            return ToMachineDto(machine);
+        }
+
+        public async Task<MachineDto> UpdateMachineAsync(int id, UpdateMachineDto updateMachineDto)
+        {
+            var machine = await _context.Machines.FindAsync(id);
+            if (machine == null)
+            {
+                return null;
+            }
+
+            machine.Name = updateMachineDto.Name;
+            machine.MachineCode = updateMachineDto.MachineCode;
+            machine.Description = updateMachineDto.Description;
+            machine.Status = Enum.Parse<MachineStatus>(updateMachineDto.Status);
+
+            await _context.SaveChangesAsync();
+            return ToMachineDto(machine);
+        }
+
+        public async Task<bool> DeleteMachineAsync(int id)
+        {
+            var machine = await _context.Machines.FindAsync(id);
+            if (machine == null)
+            {
+                return false;
+            }
+
+            _context.Machines.Remove(machine);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<IEnumerable<BomVersion>> GetMachineBomVersionsAsync(int machineId)
+        {
+            return await _context.BomVersions
+               .Where(b => b.MachineId == machineId)
+               .ToListAsync();
+        }
+
+        private static MachineDto ToMachineDto(Machine machine)
+        {
+            return new MachineDto
+            {
+                Id = machine.Id,
+                Name = machine.Name,
+                MachineCode = machine.MachineCode,
+                Description = machine.Description,
+                Status = machine.Status.ToString(),
+                CreatedAt = machine.CreatedAt,
+                BomVersions = machine.BomVersions?.Select(b => new BomVersionDto
+                {
+                    Id = b.Id,
+                    VersionNumber = b.VersionNumber,
+                    Description = b.Description,
+                    CreatedAt = b.CreatedAt
+                }).ToList() ?? new List<BomVersionDto>()
+            };
+        }
     }
 }

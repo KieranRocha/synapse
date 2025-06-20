@@ -1,74 +1,78 @@
-// CADCompanion.Server/Controllers/MachinesController.cs
-[ApiController]
-[Route("api/projects/{projectId:int}/[controller]")]
-public class MachinesController : ControllerBase
+using CADCompanion.Server.Services;
+using CADCompanion.Shared.Contracts;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace CADCompanion.Server.Controllers
 {
-    private readonly IMachineService _machineService;
-    private readonly ILogger<MachinesController> _logger;
-
-    public MachinesController(IMachineService machineService, ILogger<MachinesController> logger)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class MachinesController : ControllerBase
     {
-        _machineService = machineService;
-        _logger = logger;
-    }
+        private readonly IMachineService _machineService;
+        private readonly ILogger<MachinesController> _logger;
 
-    [HttpGet]
-    public async Task<ActionResult<List<MachineSummaryDto>>> GetMachines(int projectId)
-    {
-        try
+        public MachinesController(IMachineService machineService, ILogger<MachinesController> logger)
         {
-            var machines = await _machineService.GetMachinesByProjectAsync(projectId);
-            return Ok(machines);
+            _machineService = machineService;
+            _logger = logger;
         }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Erro ao buscar máquinas do projeto {ProjectId}", projectId);
-            return StatusCode(500, "Erro interno do servidor");
-        }
-    }
 
-    [HttpGet("{id:int}")]
-    public async Task<ActionResult<MachineDto>> GetMachine(int projectId, int id)
-    {
-        try
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<MachineSummaryDto>>> GetAllMachines()
         {
-            var machine = await _machineService.GetMachineByIdAsync(id);
-
-            if (machine == null || machine.ProjectId != projectId)
+            try
             {
-                return NotFound();
+                var machines = await _machineService.GetAllMachinesAsync();
+                return Ok(machines);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting all machines");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<MachineDto>> GetMachineById(int id)
+        {
+            try
+            {
+                var machine = await _machineService.GetMachineByIdAsync(id);
+                if (machine == null)
+                {
+                    return NotFound();
+                }
+                return Ok(machine);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error getting machine with id {id}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<MachineDto>> CreateMachine([FromBody] CreateMachineDto createMachineDto)
+        {
+            if (createMachineDto == null)
+            {
+                return BadRequest("Machine data is null.");
             }
 
-            return Ok(machine);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Erro ao buscar máquina {MachineId}", id);
-            return StatusCode(500, "Erro interno do servidor");
-        }
-    }
-
-    [HttpPost]
-    public async Task<ActionResult<MachineDto>> CreateMachine(int projectId, [FromBody] CreateMachineDto createDto)
-    {
-        try
-        {
-            var machine = await _machineService.CreateMachineAsync(projectId, createDto);
-
-            return CreatedAtAction(
-                nameof(GetMachine),
-                new { projectId = projectId, id = machine.Id },
-                machine
-            );
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(ex.Message);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Erro ao criar máquina no projeto {ProjectId}", projectId);
-            return StatusCode(500, "Erro interno do servidor");
+            try
+            {
+                var newMachine = await _machineService.CreateMachineAsync(createMachineDto);
+                return CreatedAtAction(nameof(GetMachineById), new { id = newMachine.Id }, newMachine);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error creating new machine");
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 }

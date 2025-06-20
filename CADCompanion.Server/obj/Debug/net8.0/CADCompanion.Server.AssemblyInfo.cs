@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CADCompanion.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+224a8d5dcc08c3166cc5038cbc640ac8c06b1df0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+183bfa8e2ad17943d4a8d5d07063236e631791f0")]
 [assembly: System.Reflection.AssemblyProductAttribute("CADCompanion.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CADCompanion.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
