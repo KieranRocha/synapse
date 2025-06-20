@@ -1,5 +1,8 @@
-// Models/DocumentEvent.cs - CORRIGIDO
+// CADCompanion.Agent/Models/DocumentEvent.cs
+
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CADCompanion.Agent.Models
 {
@@ -37,7 +40,7 @@ namespace CADCompanion.Agent.Models
     public class ProjectInfo
     {
         public string ProjectId { get; set; } = string.Empty;
-        public string DetectedName { get; set; } = string.Empty;
+        public string ProjectName { get; set; } = string.Empty; // CORRIGIDO
         public string FolderPath { get; set; } = string.Empty;
         public string Phase { get; set; } = string.Empty;
         public bool IsValidProject { get; set; }
@@ -81,13 +84,15 @@ namespace CADCompanion.Agent.Models
                 FileWatcher.Dispose();
                 FileWatcher = null;
             }
+            GC.SuppressFinalize(this);
         }
     }
 
+    // CORRIGIDO
     public class BOMDataWithContext
     {
-        public string ProjectId { get; set; } = string.Empty;
-        public string ProjectName { get; set; } = string.Empty;
+        public string? ProjectId { get; set; }
+        public string? ProjectName { get; set; }
         public string AssemblyFileName { get; set; } = string.Empty;
         public string AssemblyFilePath { get; set; } = string.Empty;
         public DateTime ExtractedAt { get; set; }
@@ -95,26 +100,12 @@ namespace CADCompanion.Agent.Models
         public string? WorkSessionId { get; set; }
         public string? MachineId { get; set; }
         public string? Engineer { get; set; }
-        public List<BomItem> BOMItems { get; set; } = new();
+        public List<BOMItem> BOMItems { get; set; } = new();
 
-        // Metadata agregado - ✅ FIX: Corrigido tipos double
         public int TotalItems => BOMItems.Count;
-        public double TotalMass => BOMItems.Sum(b =>
-        {
-            // Converte Quantity para double e Mass para double
-            var quantity = Convert.ToDouble(b.Quantity);
-            var mass = b.Mass;
-            return quantity * mass;
-        });
+        public double TotalMass => BOMItems.Sum(b => Convert.ToDouble(b.Quantity) * b.Mass);
+        public double TotalVolume => BOMItems.Sum(b => Convert.ToDouble(b.Quantity) * b.Volume);
 
-        public double TotalVolume => BOMItems.Sum(b =>
-        {
-            // Converte Quantity para double e Volume para double
-            var quantity = Convert.ToDouble(b.Quantity);
-            var volume = b.Volume;
-            return quantity * volume;
-        });
-
-        public string InventorVersion { get; set; } = string.Empty;
+        public string? InventorVersion { get; set; }
     }
 }

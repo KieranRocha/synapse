@@ -1,340 +1,275 @@
-// Services/DocumentProcessingService.cs - CORRIGIDO - LATE BINDING PURO
-using Microsoft.Extensions.Logging;
-using CADCompanion.Agent.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Text.RegularExpressions;
+using Inventor;
+using Microsoft.Extensions.Logging;
+using CADCompanion.Shared.Models;
+using CADCompanion.Agent.Services;
 
 namespace CADCompanion.Agent.Services
 {
+    /// <summary>
+    /// Interface para processamento de documentos do Inventor
+    /// </summary>
     public interface IDocumentProcessingService
     {
-        Task ProcessDocumentSaveAsync(DocumentEvent documentEvent);
-        Task ProcessDocumentChangeAsync(DocumentEvent documentEvent);
-        Task<BOMDataWithContext?> ExtractBOMWithContextAsync(string filePath, ProjectInfo? projectInfo, string? workSessionId = null);
+        Task<BOMDataWithContext> ExtractBOMAsync(Document document, ProjectInfo project);
+        Task ProcessDocumentSaveAsync(Document document, ProjectInfo project);
+        bool IsAssemblyDocument(Document document);
+        bool IsPartDocument(Document document);
     }
 
+    /// <summary>
+    /// Serviço responsável pelo processamento de documentos do Inventor
+    /// </summary>
     public class DocumentProcessingService : IDocumentProcessingService
     {
         private readonly ILogger<DocumentProcessingService> _logger;
-        private readonly IInventorConnectionService _inventorConnection;
-        private readonly IApiCommunicationService _apiCommunication;
-        private readonly InventorBomExtractor _bomExtractor;
+        private readonly IApiCommunicationService _apiService;
+        private readonly Application _inventorApp;
 
         public DocumentProcessingService(
             ILogger<DocumentProcessingService> logger,
-            IInventorConnectionService inventorConnection,
-            IApiCommunicationService apiCommunication,
-            InventorBomExtractor bomExtractor)
+            IApiCommunicationService apiService,
+            Application inventorApp)
         {
             _logger = logger;
-            _inventorConnection = inventorConnection;
-            _apiCommunication = apiCommunication;
-            _bomExtractor = bomExtractor;
+            _apiService = apiService;
+            _inventorApp = inventorApp;
         }
 
-        public async Task ProcessDocumentSaveAsync(DocumentEvent documentEvent)
+        /// <summary>
+        /// Verifica se o documento é um assembly
+        /// </summary>
+        public bool IsAssemblyDocument(Document document)
         {
+            return document?.DocumentType == DocumentTypeEnum.kAssemblyDocumentObject;
+        }
+
+        /// <summary>
+        /// Verifica se o documento é uma peça
+        /// </summary>
+        public bool IsPartDocument(Document document)
+        {
+            return document?.DocumentType == DocumentTypeEnum.kPartDocumentObject;
+        }
+
+        /// <summary>
+        /// Extrai BOM completo de um assembly
+        /// </summary>
+        public async Task<BOMDataWithContext> ExtractBOMAsync(Document document, ProjectInfo project)
+        {
+            if (!IsAssemblyDocument(document))
+            {
+                throw new InvalidOperationException("Documento não é um assembly");
+            }
+
+            var assemblyDoc = (AssemblyDocument)document;
+            var bomData = new BOMDataWithContext();
+
             try
             {
-                _logger.LogInformation($"📄 Processando save: {documentEvent.FileName} (Tipo: {documentEvent.DocumentType})");
+                // Preencher dados de contexto
+                bomData.FilePath = document.FullFileName;
+                bomData.FileName = Path.GetFileName(document.FullFileName);
+                bomData.ProjectName = project?.ProjectName ?? "Projeto Desconhecido";
+                bomData.ExtractedBy = Environment.UserName;
+                bomData.InventorVersion = _inventorApp.SoftwareVersion.DisplayVersion;
 
-                // Verifica se arquivo ainda existe (pode ter sido movido/deletado)
-                if (!File.Exists(documentEvent.FilePath))
-                {
-                    _logger.LogWarning($"⚠️ Arquivo não encontrado: {documentEvent.FilePath}");
-                    return;
-                }
+                // Obter informações do arquivo
+                var fileInfo = new FileInfo(document.FullFileName);
+                bomData.FileSizeBytes = fileInfo.Length;
 
-                // Aguarda arquivo estabilizar (pode ainda estar sendo escrito)
-                await WaitForFileStabilityAsync(documentEvent.FilePath);
+                // Extrair nome da máquina do caminho
+                bomData.MachineName = ExtractMachineNameFromPath(document.FullFileName, project);
 
-                // ✅ NOVA FUNCIONALIDADE: Extrair Machine ID para assemblies
-                string? machineId = ExtractMachineIdFromDocument(documentEvent);
+                // Configurar BOM
+                var bom = assemblyDoc.ComponentDefinition.BOM;
+                bom.StructuredViewEnabled = true;
+                bom.StructuredViewFirstLevelOnly = false;
 
-                // Processar baseado no tipo do documento
-                switch (documentEvent.DocumentType)
-                {
-                    case DocumentType.Assembly:
-                        await ProcessAssemblyDocumentAsync(documentEvent, machineId);
-                        break;
+                var bomView = bom.BOMViews["Estruturado"];
+                var bomRows = bomView.BOMRows;
 
-                    case DocumentType.Part:
-                    case DocumentType.Drawing:
-                        await ProcessRegularDocumentAsync(documentEvent);
-                        break;
+                // Processar linhas do BOM recursivamente
+                ProcessBOMRows(bomRows, bomData.BomItems, 0, null);
 
-                    default:
-                        _logger.LogDebug($"Tipo de documento não monitorado: {documentEvent.DocumentType}");
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Erro ao processar documento: {documentEvent.FilePath}");
-            }
-        }
+                // Atualizar totais
+                bomData.TotalItems = bomData.BomItems.Count;
 
-        public async Task ProcessDocumentChangeAsync(DocumentEvent documentEvent)
-        {
-            // Por enquanto, apenas log - implementar conforme necessário
-            _logger.LogDebug($"📝 Documento modificado: {documentEvent.FileName}");
-            await Task.CompletedTask;
-        }
-
-        public async Task<BOMDataWithContext?> ExtractBOMWithContextAsync(string filePath, ProjectInfo? projectInfo, string? workSessionId = null)
-        {
-            try
-            {
-                if (!_inventorConnection.IsConnected)
-                {
-                    throw new InvalidOperationException("Inventor não está conectado");
-                }
-
-                _logger.LogInformation($"🔧 Extraindo BOM: {Path.GetFileName(filePath)}");
-
-                var bomItems = _bomExtractor.GetBOMFromFile(filePath);
-
-                var bomData = new BOMDataWithContext
-                {
-                    FilePath = filePath,
-                    FileName = Path.GetFileName(filePath),
-                    ProjectId = projectInfo?.ProjectId,
-                    ProjectName = projectInfo?.ProjectName,
-                    MachineId = ExtractMachineIdFromFileName(Path.GetFileName(filePath)),
-                    WorkSessionId = workSessionId,
-                    ExtractedAt = DateTime.UtcNow,
-                    ExtractedBy = Environment.UserName,
-                    TotalItems = bomItems.Count,
-                    BomItems = bomItems
-                };
-
-                _logger.LogInformation($"✅ BOM extraído: {bomItems.Count} itens");
+                _logger.LogInformation($"BOM extraído com sucesso: {bomData.TotalItems} itens");
                 return bomData;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Erro ao extrair BOM de: {filePath}");
+                _logger.LogError(ex, $"Erro ao extrair BOM de {document.FullFileName}");
                 throw;
             }
         }
 
-        // ===== MÉTODOS PRIVADOS =====
-
-        private async Task ProcessAssemblyDocumentAsync(DocumentEvent documentEvent, string? machineId)
+        /// <summary>
+        /// Processa linhas do BOM recursivamente
+        /// </summary>
+        private void ProcessBOMRows(BOMRowsEnumerator rows, List<BomItem> items, int level, string parentPartNumber)
         {
-            try
+            foreach (BOMRow row in rows)
             {
-                _logger.LogInformation($"🔧 Processando assembly: {documentEvent.FileName}");
-
-                // Detecta projeto do caminho
-                var projectInfo = DetectProjectFromPath(documentEvent.FilePath);
-
-                // Extrai BOM se for assembly principal
-                if (IsMainAssemblyFile(documentEvent.FileName, machineId))
+                try
                 {
-                    var bomData = await ExtractBOMWithContextAsync(documentEvent.FilePath, projectInfo);
-
-                    if (bomData != null)
+                    var item = new BomItem
                     {
-                        await _apiCommunication.SendBOMDataAsync(bomData);
-                        _logger.LogInformation($"📡 BOM enviado para servidor: {bomData.TotalItems} itens");
+                        Level = level,
+                        ParentPartNumber = parentPartNumber,
+                        Quantity = (int)row.TotalQuantity
+                    };
+
+                    // Obter componente definition
+                    var componentDef = row.ComponentDefinitions[1];
+                    var document = (Document)componentDef.Document;
+
+                    // Extrair propriedades
+                    var designProperties = document.PropertySets["Design Tracking Properties"];
+                    var summaryProperties = document.PropertySets["Inventor Summary Information"];
+                    var customProperties = document.PropertySets["Inventor User Defined Properties"];
+
+                    // Part Number
+                    item.PartNumber = designProperties["Part Number"].Value?.ToString() ??
+                                     Path.GetFileNameWithoutExtension(document.FullFileName);
+
+                    // Description
+                    item.Description = summaryProperties["Title"].Value?.ToString() ??
+                                      designProperties["Description"].Value?.ToString() ?? "";
+
+                    // Material (para peças)
+                    if (document.DocumentType == DocumentTypeEnum.kPartDocumentObject)
+                    {
+                        var partDoc = (PartDocument)document;
+                        item.Material = partDoc.ComponentDefinition.Material?.Name ?? "N/A";
+
+                        // Massa
+                        var massProps = partDoc.ComponentDefinition.MassProperties;
+                        item.Mass = Math.Round(massProps.Mass, 3); // kg
+                    }
+
+                    // Categoria
+                    item.Category = DetermineCategory(customProperties);
+
+                    // Propriedades customizadas
+                    foreach (Property prop in customProperties)
+                    {
+                        if (prop.Value != null && !string.IsNullOrEmpty(prop.Value.ToString()))
+                        {
+                            item.CustomProperties[prop.Name] = prop.Value.ToString();
+                        }
+                    }
+
+                    items.Add(item);
+
+                    // Processar sub-componentes recursivamente
+                    if (row.ChildRows != null && row.ChildRows.Count > 0)
+                    {
+                        ProcessBOMRows(row.ChildRows, items, level + 1, item.PartNumber);
                     }
                 }
-
-                // Registra atividade de salvamento
-                _logger.LogInformation($"📄 Atividade registrada: {documentEvent.FileName}");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Erro ao processar assembly: {documentEvent.FilePath}");
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(ex, $"Erro ao processar linha do BOM");
+                }
             }
         }
 
-        private async Task ProcessRegularDocumentAsync(DocumentEvent documentEvent)
+        /// <summary>
+        /// Determina a categoria do item baseado em propriedades customizadas
+        /// </summary>
+        private string DetermineCategory(PropertySet customProperties)
         {
             try
             {
-                // Detecta projeto e registra atividade
-                var projectInfo = DetectProjectFromPath(documentEvent.FilePath);
+                // Verificar se existe propriedade "Categoria"
+                if (customProperties["Categoria"] != null)
+                {
+                    return customProperties["Categoria"].Value?.ToString() ?? "fabricado";
+                }
 
-                _logger.LogDebug($"📄 Atividade registrada: {documentEvent.FileName}");
-                await Task.CompletedTask;
+                // Verificar se existe propriedade "Tipo"
+                if (customProperties["Tipo"] != null)
+                {
+                    var tipo = customProperties["Tipo"].Value?.ToString()?.ToLower();
+                    if (tipo?.Contains("comprado") == true) return "comprado";
+                    if (tipo?.Contains("normalizado") == true) return "normalizado";
+                }
+            }
+            catch { }
+
+            return "fabricado"; // padrão
+        }
+
+        /// <summary>
+        /// Extrai nome da máquina do caminho do arquivo
+        /// </summary>
+        private string ExtractMachineNameFromPath(string filePath, ProjectInfo project)
+        {
+            try
+            {
+                // Normalizar caminhos
+                var normalizedFilePath = Path.GetFullPath(filePath).ToLower();
+                var projectPath = Path.GetFullPath(project.FolderPath).ToLower();
+
+                if (normalizedFilePath.StartsWith(projectPath))
+                {
+                    var relativePath = normalizedFilePath.Substring(projectPath.Length).TrimStart('\\');
+                    var pathParts = relativePath.Split('\\');
+
+                    // Procurar pasta "Maquinas" ou similar
+                    for (int i = 0; i < pathParts.Length - 1; i++)
+                    {
+                        if (pathParts[i].Contains("maquina", StringComparison.OrdinalIgnoreCase))
+                        {
+                            // Próxima pasta deve ser o nome da máquina
+                            if (i + 1 < pathParts.Length)
+                            {
+                                return pathParts[i + 1];
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Erro ao processar documento regular: {documentEvent.FilePath}");
+                _logger.LogWarning(ex, "Erro ao extrair nome da máquina do caminho");
             }
+
+            return "Máquina Desconhecida";
         }
 
-        private async Task SendActivityAsync(DocumentEvent documentEvent, ProjectInfo? projectInfo, string? machineId)
+        /// <summary>
+        /// Processa salvamento de documento
+        /// </summary>
+        public async Task ProcessDocumentSaveAsync(Document document, ProjectInfo project)
         {
             try
             {
                 var activity = new ActivityData
                 {
-                    Type = "DOCUMENT_SAVE",
-                    ProjectId = projectInfo?.ProjectId,
-                    ProjectName = projectInfo?.ProjectName,
-                    MachineId = machineId,
-                    FileName = documentEvent.FileName,
-                    FilePath = documentEvent.FilePath,
-                    DocumentType = documentEvent.DocumentType.ToString(),
-                    Timestamp = DateTime.UtcNow,
-                    User = Environment.UserName,
-                    CompanionId = Environment.MachineName
+                    Type = "FileSaved",
+                    UserName = Environment.UserName,
+                    FileName = Path.GetFileName(document.FullFileName),
+                    FilePath = document.FullFileName,
+                    ProjectName = project?.ProjectName ?? "Desconhecido",
+                    MachineName = ExtractMachineNameFromPath(document.FullFileName, project)
                 };
 
-                await _apiCommunication.SendActivityAsync(activity);
+                // Adicionar metadados
+                activity.Metadata["DocumentType"] = document.DocumentType.ToString();
+                activity.Metadata["FileSize"] = new FileInfo(document.FullFileName).Length;
+
+                await _apiService.SendActivityAsync(activity);
             }
             catch (Exception ex)
             {
-                _logger.LogWarning(ex, $"Falha ao enviar atividade para: {documentEvent.FileName}");
-            }
-        }
-
-        private string? ExtractMachineIdFromDocument(DocumentEvent documentEvent)
-        {
-            try
-            {
-                if (documentEvent.DocumentType != DocumentType.Assembly)
-                    return null;
-
-                if (!_inventorConnection.IsConnected)
-                {
-                    _logger.LogWarning("Inventor não conectado para extrair Machine ID");
-                    return ExtractMachineIdFromFileName(documentEvent.FileName);
-                }
-
-                var inventorApp = _inventorConnection.GetInventorApp();
-                if (inventorApp?.Documents == null)
-                {
-                    return ExtractMachineIdFromFileName(documentEvent.FileName);
-                }
-
-                // ✅ CORRIGIDO: Usar dynamic em vez de tipos estáticos
-                // Busca o documento aberto na coleção
-                dynamic documents = inventorApp.Documents;
-                foreach (dynamic doc in documents)
-                {
-                    if (doc.FullFileName.Equals(documentEvent.FilePath, StringComparison.OrdinalIgnoreCase) &&
-                        doc.DocumentType == 12291) // kAssemblyDocumentObject
-                    {
-                        return ExtractMachineIdFromAssembly(doc);
-                    }
-                }
-
-                // Fallback: extrair do nome do arquivo
-                return ExtractMachineIdFromFileName(documentEvent.FileName);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Erro ao extrair Machine ID de: {documentEvent.FilePath}");
-                return ExtractMachineIdFromFileName(documentEvent.FileName);
-            }
-        }
-
-        private string? ExtractMachineIdFromAssembly(dynamic assembly)
-        {
-            try
-            {
-                // 1. Primeiro tenta iProperties customizadas
-                dynamic customProps = assembly.PropertySets["Inventor User Defined Properties"];
-                foreach (dynamic prop in customProps)
-                {
-                    if (prop.Name.Equals("MACHINE_ID", StringComparison.OrdinalIgnoreCase) ||
-                        prop.Name.Equals("ID_MAQUINA", StringComparison.OrdinalIgnoreCase) ||
-                        prop.Name.Equals("MACHINE", StringComparison.OrdinalIgnoreCase))
-                    {
-                        var machineId = prop.Value?.ToString()?.Trim();
-                        if (!string.IsNullOrEmpty(machineId))
-                        {
-                            _logger.LogDebug($"🔧 Machine ID encontrado via iProperty '{prop.Name}': {machineId}");
-                            return machineId;
-                        }
-                    }
-                }
-
-                // 2. Fallback: extrair do nome do arquivo
-                return ExtractMachineIdFromFileName(assembly.DisplayName);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogWarning(ex, "Erro ao extrair Machine ID via iProperties");
-                return ExtractMachineIdFromFileName(assembly.DisplayName);
-            }
-        }
-
-        private string? ExtractMachineIdFromFileName(string fileName)
-        {
-            // Padrões de nomenclatura comuns para máquinas
-            var patterns = new[]
-            {
-                @"^(.+?)_", // Até o primeiro underscore
-                @"MAQ_(\w+)", // MAQ_XXXXX
-                @"MACHINE_(\w+)", // MACHINE_XXXXX
-                @"(\w+)_ASSEMBLY", // XXXXX_ASSEMBLY
-            };
-
-            foreach (var pattern in patterns)
-            {
-                var match = Regex.Match(fileName, pattern, RegexOptions.IgnoreCase);
-                if (match.Success)
-                {
-                    var machineId = match.Groups[1].Value.Trim();
-                    if (!string.IsNullOrEmpty(machineId))
-                    {
-                        _logger.LogDebug($"🔧 Machine ID extraído do nome: {machineId}");
-                        return machineId;
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        private ProjectInfo? DetectProjectFromPath(string filePath)
-        {
-            try
-            {
-                // Implementar lógica de detecção de projeto baseada no caminho
-                // Por enquanto, retorna null - implementar conforme estrutura de pastas
-                return null;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogWarning(ex, $"Erro ao detectar projeto do caminho: {filePath}");
-                return null;
-            }
-        }
-
-        private bool IsMainAssemblyFile(string fileName, string? machineId)
-        {
-            // Lógica simples: se tem Machine ID e é .iam, considera principal
-            return !string.IsNullOrEmpty(machineId) &&
-                   fileName.EndsWith(".iam", StringComparison.OrdinalIgnoreCase);
-        }
-
-        private async Task WaitForFileStabilityAsync(string filePath)
-        {
-            const int maxAttempts = 10;
-            const int delayMs = 500;
-
-            for (int i = 0; i < maxAttempts; i++)
-            {
-                try
-                {
-                    using var stream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-                    return; // Arquivo está estável
-                }
-                catch (IOException)
-                {
-                    if (i == maxAttempts - 1) throw;
-                    await Task.Delay(delayMs);
-                }
+                _logger.LogError(ex, "Erro ao processar salvamento de documento");
             }
         }
     }
