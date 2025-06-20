@@ -1,7 +1,7 @@
 // Events/DocumentEventArgs.cs
 using System;
 using CADCompanion.Agent.Models;
-
+using CADCompanion.Shared.Models; // Adicionado para encontrar ProjectInfo
 namespace CADCompanion.Agent.Models
 {
     public class DocumentOpenedEventArgs : EventArgs
