@@ -1,6 +1,0 @@
-C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Agent\obj\x64\Debug\net8.0-windows\CADCompanion.Agent.csproj.AssemblyReference.cache
-C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Agent\obj\x64\Debug\net8.0-windows\CADCompanion.Agent.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Agent\obj\x64\Debug\net8.0-windows\CADCompanion.Agent.AssemblyInfoInputs.cache
-C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Agent\obj\x64\Debug\net8.0-windows\CADCompanion.Agent.AssemblyInfo.cs
-C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Agent\obj\x64\Debug\net8.0-windows\CADCompanion.Agent.csproj.CoreCompileInputs.cache
-C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Agent\obj\x64\Debug\net8.0-windows\CADCompanion.Agent.sourcelink.json

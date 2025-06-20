@@ -1,26 +1,21 @@
-// CADCompanion.Agent/Services/IApiCommunicationService.cs (Corrigido)
+// Services/IApiCommunicationService.cs - CORRIGIDO
+
 using CADCompanion.Agent.Models;
 using CADCompanion.Shared.Contracts;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using CADCompanion.Shared.Models; // Adicionado para encontrar ProjectInfo
-namespace CADCompanion.Agent.Services
+
+namespace CADCompanion.Agent.Services;
+
+public interface IApiCommunicationService
 {
-    /// <summary>
-    /// Interface consolidada para comunicação com a API backend
-    /// </summary>
-    public interface IApiCommunicationService
-    {
-        Task<bool> TestConnectionAsync();
-        Task<List<ProjectInfo>> GetActiveProjectsAsync();
-        Task<bool> SubmitBomAsync(BomSubmissionDto bomSubmission);
-        Task SendActivityAsync(ActivityData activity);
-        Task<bool> RegisterAgentAsync(AgentInfo agentInfo);
-        Task SendWorkSessionEndedAsync(WorkSession session);
-        Task SendWorkSessionUpdatedAsync(WorkSession session, string updateReason);
-        Task SendHeartbeatAsync();
-        Task SendMachineStatusAsync(object machineStatus);
-        Task SendPartDataAsync(object partData);
-        Task SendDocumentActivityAsync(Models.DocumentEvent documentEvent);
-    }
+    // O método principal que já está funcionando no servidor
+    Task<bool> SubmitBomAsync(BomSubmissionDto bomData);
+
+    // Outros métodos que sua aplicação precisa para se comunicar com a API
+    Task SendWorkSessionEndedAsync(WorkSession session);
+    Task SendWorkSessionUpdatedAsync(WorkSession session);
+    Task SendWorkSessionUpdatedAsync(WorkSession session, string updateReason); // Sobrecarga
+    Task SendHeartbeatAsync();
+    Task SendBOMDataAsync(BOMDataWithContext bomData);
+    Task SendPartDataAsync(object partData); // Considere criar um DTO específico em vez de 'object'
+    Task SendDocumentActivityAsync(DocumentEvent documentEvent);
 }

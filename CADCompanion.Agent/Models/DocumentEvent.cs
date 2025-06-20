@@ -1,7 +1,5 @@
-// CADCompanion.Agent/Models/DocumentEvent.cs (Corrigido e Expandido)
+// Models/DocumentEvent.cs - CORRIGIDO
 using System;
-using System.Collections.Generic;
-using System.IO;
 
 namespace CADCompanion.Agent.Models
 {
@@ -10,76 +8,112 @@ namespace CADCompanion.Agent.Models
         Opened,
         Closed,
         Saved,
-        Modified // Adicionado
+        Modified
     }
 
     public enum DocumentType
     {
-        Part,
-        Assembly,
-        Drawing,
-        Presentation,
+        Assembly,      // .iam
+        Part,          // .ipt  
+        Drawing,       // .idw
+        Presentation,  // .ipn
         Unknown
-    }
-
-    public class WorkSession
-    {
-        public Guid Id { get; set; } = Guid.NewGuid();
-        public string MachineName { get; set; } = Environment.MachineName;
-        public string UserName { get; set; } = Environment.UserName;
-        public string Engineer { get; set; } = Environment.UserName;
-        public DateTime StartTime { get; set; } = DateTime.UtcNow;
-        public DateTime? EndTime { get; set; }
-        public DateTime LastActivity { get; set; } = DateTime.UtcNow;
-        public bool IsActive { get; set; } = true;
-        public List<DocumentEvent> DocumentEvents { get; set; } = new List<DocumentEvent>();
-        public string ProjectNumber { get; set; } = "N/A";
-        public int? ProjectId { get; set; }
-        public string? ProjectName { get; set; }
-        public int SaveCount { get; set; } = 0;
-
-        public TimeSpan Duration => (EndTime ?? DateTime.UtcNow) - StartTime;
     }
 
     public class DocumentEvent
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
-        public DateTime Timestamp { get; set; } = DateTime.UtcNow;
+        public string FilePath { get; set; } = string.Empty;
+        public string FileName { get; set; } = string.Empty;
         public DocumentEventType EventType { get; set; }
-        public string DocumentPath { get; set; } = string.Empty;
-        public string FileName => Path.GetFileName(DocumentPath);
-        public DocumentType DocType { get; set; }
-        public Guid SessionId { get; set; }
-        public int? ProjectId { get; set; }
+        public DocumentType DocumentType { get; set; }
+        public DateTime Timestamp { get; set; }
+        public string? ProjectId { get; set; }
         public string? ProjectName { get; set; }
+        public string? Engineer { get; set; }
+        public long FileSizeBytes { get; set; }
+        public string? InventorVersion { get; set; }
+    }
+
+    public class ProjectInfo
+    {
+        public string ProjectId { get; set; } = string.Empty;
+        public string DetectedName { get; set; } = string.Empty;
+        public string FolderPath { get; set; } = string.Empty;
+        public string Phase { get; set; } = string.Empty;
+        public bool IsValidProject { get; set; }
+        public string? Client { get; set; }
+        public DateTime DetectedAt { get; set; } = DateTime.UtcNow;
+    }
+
+    public class WorkSession
+    {
+        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public string FilePath { get; set; } = string.Empty;
+        public string FileName { get; set; } = string.Empty;
+        public string? ProjectId { get; set; }
+        public string? ProjectName { get; set; }
+        public string? Engineer { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime? EndTime { get; set; }
+        public TimeSpan? Duration { get; set; }
+        public int SaveCount { get; set; }
+        public DateTime? LastSave { get; set; }
+        public bool IsActive { get; set; } = true;
+        public string CompanionId { get; set; } = Environment.MachineName;
     }
 
     public class DocumentWatcher : IDisposable
     {
-        public string FullPath { get; set; }
-        public string FileName => Path.GetFileName(FullPath);
-        public DocumentType Type { get; set; }
-        public FileSystemWatcher Watcher { get; set; }
-
-        public DocumentWatcher(string path, DocumentType type)
-        {
-            FullPath = path;
-            Type = type;
-            var directory = Path.GetDirectoryName(path);
-            var fileName = Path.GetFileName(path);
-            if (directory != null)
-            {
-                Watcher = new FileSystemWatcher(directory, fileName);
-            }
-            else
-            {
-                throw new ArgumentException("Caminho do arquivo inválido para o Watcher.", nameof(path));
-            }
-        }
+        public string FilePath { get; set; } = string.Empty;
+        public string FileName { get; set; } = string.Empty;
+        public ProjectInfo? ProjectInfo { get; set; }
+        public FileSystemWatcher? FileWatcher { get; set; }
+        public DateTime OpenedAt { get; set; }
+        public DateTime LastActivity { get; set; }
+        public int SaveCount { get; set; }
+        public string WorkSessionId { get; set; } = string.Empty;
 
         public void Dispose()
         {
-            Watcher?.Dispose();
+            if (FileWatcher != null)
+            {
+                FileWatcher.EnableRaisingEvents = false;
+                FileWatcher.Dispose();
+                FileWatcher = null;
+            }
         }
+    }
+
+    public class BOMDataWithContext
+    {
+        public string ProjectId { get; set; } = string.Empty;
+        public string ProjectName { get; set; } = string.Empty;
+        public string AssemblyFileName { get; set; } = string.Empty;
+        public string AssemblyFilePath { get; set; } = string.Empty;
+        public DateTime ExtractedAt { get; set; }
+        public string ExtractedBy { get; set; } = Environment.MachineName;
+        public string? WorkSessionId { get; set; }
+        public string? Engineer { get; set; }
+        public List<BomItem> BOMItems { get; set; } = new();
+        
+        // Metadata agregado - ✅ FIX: Corrigido tipos double
+        public int TotalItems => BOMItems.Count;
+        public double TotalMass => BOMItems.Sum(b => 
+        {
+            // Converte Quantity para double e Mass para double
+            var quantity = Convert.ToDouble(b.Quantity);
+            var mass = b.Mass;
+            return quantity * mass;
+        });
+        
+        public double TotalVolume => BOMItems.Sum(b => 
+        {
+            // Converte Quantity para double e Volume para double
+            var quantity = Convert.ToDouble(b.Quantity);
+            var volume = b.Volume;
+            return quantity * volume;
+        });
+        
+        public string InventorVersion { get; set; } = string.Empty;
     }
 }

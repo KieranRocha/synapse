@@ -1,9 +1,9 @@
-// CADCompanion.Shared/MachineDtos.cs - DTOs COMPLETOS
+// CADCompanion.Shared/MachineDtos.cs - NOVO ARQUIVO
 using System.ComponentModel.DataAnnotations;
 
 namespace CADCompanion.Shared.Contracts;
 
-// DTO para resposta - dados completos da máquina
+// DTO para resposta completa da máquina
 public class MachineDto
 {
     public int Id { get; set; }
@@ -19,8 +19,31 @@ public class MachineDto
     public DateTime? LastBomExtraction { get; set; }
     public int TotalBomVersions { get; set; }
 
-    // Navegação
-    public List<BomVersionSummaryDto>? BomVersions { get; set; }
+    // Lista de versões de BOM (resumo)
+    public List<BomVersionSummaryDto> BomVersions { get; set; } = new();
+}
+
+// DTO resumido para listagens
+public class MachineSummaryDto
+{
+    public int Id { get; set; }
+    public required string Name { get; set; }
+    public string? OperationNumber { get; set; }
+    public string Status { get; set; } = "Planning";
+    public int TotalBomVersions { get; set; }
+    public DateTime? LastBomExtraction { get; set; }
+
+    // ✅ ADICIONAR StatusColor para compatibilidade com frontend
+    public string StatusColor => Status switch
+    {
+        "Planning" => "blue",
+        "Design" => "yellow",
+        "Review" => "orange",
+        "Manufacturing" => "green",
+        "Testing" => "purple",
+        "Completed" => "gray",
+        _ => "gray"
+    };
 }
 
 // DTO para criação de máquina
@@ -42,7 +65,7 @@ public class CreateMachineDto
     [MaxLength(200)]
     public string? MainAssemblyPath { get; set; }
 
-    [Required]
+    // ✅ IMPORTANTE: ProjectId é setado automaticamente pelo controller
     public int ProjectId { get; set; }
 }
 
@@ -67,23 +90,12 @@ public class UpdateMachineDto
     public string? Status { get; set; }
 }
 
-// DTO resumido para listagens
-public class MachineSummaryDto
-{
-    public int Id { get; set; }
-    public required string Name { get; set; }
-    public string? OperationNumber { get; set; }
-    public string Status { get; set; } = "Planning";
-    public int TotalBomVersions { get; set; }
-    public DateTime? LastBomExtraction { get; set; }
-}
-
-// DTO para versões de BOM (resumido)
+// DTO resumido para versões de BOM
 public class BomVersionSummaryDto
 {
     public int Id { get; set; }
     public int VersionNumber { get; set; }
-    public DateTime ExtractedAt { get; set; }
-    public string ExtractedBy { get; set; } = string.Empty;
-    public int TotalItems { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public string? ExtractedBy { get; set; }
+    public int ItemCount { get; set; }
 }

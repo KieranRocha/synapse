@@ -5,7 +5,7 @@ using CADCompanion.Agent.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Collections.Concurrent;
-using CADCompanion.Shared.Models; // Adicionado para encontrar ProjectInfo
+
 namespace CADCompanion.Agent.Services;
 
 public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDisposable
@@ -31,7 +31,7 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         _documentEventService = documentEventService;
         _documentProcessingService = documentProcessingService;
         _workSessionService = workSessionService;
-
+        
         // Subscreve aos eventos de documentos
         SubscribeToDocumentEvents();
     }
@@ -104,7 +104,7 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
             _logger.LogInformation($"📂 Documento aberto: {e.FileName}");
 
             var documentEvent = CreateDocumentEvent(e.FilePath, e.FileName, DocumentEventType.Opened, e.DocumentType);
-
+            
             // Detecta projeto
             var projectInfo = DetectProjectFromFile(e.FilePath);
             if (projectInfo != null)
@@ -367,11 +367,11 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
             {
                 var regex = new System.Text.RegularExpressions.Regex(pattern);
                 var match = regex.Match(fileName);
-
+                
                 if (match.Success && match.Groups.Count > 1)
                 {
                     var projectId = match.Groups[1].Value;
-
+                    
                     return new ProjectInfo
                     {
                         ProjectId = projectId,
@@ -412,9 +412,9 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         {
             var fileName = Path.GetFileName(filePath);
             var docType = DetermineDocumentType(filePath);
-
+            
             var documentEvent = CreateDocumentEvent(filePath, fileName, eventType, docType);
-
+            
             // Detecta projeto
             var projectInfo = DetectProjectFromFile(filePath);
             if (projectInfo != null)
@@ -480,7 +480,7 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         {
             // Finaliza todas as sessões ativas
             var activeSessions = await _workSessionService.GetActiveWorkSessionsAsync();
-
+            
             foreach (var session in activeSessions)
             {
                 await _workSessionService.EndWorkSessionAsync(session.Id, DateTime.UtcNow);
@@ -499,14 +499,14 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
     public void Dispose()
     {
         StopMonitoring();
-
+        
         // Dispose document watchers
         foreach (var watcher in _documentWatchers.Values)
         {
             watcher.Dispose();
         }
         _documentWatchers.Clear();
-
+        
         GC.SuppressFinalize(this);
     }
 }
