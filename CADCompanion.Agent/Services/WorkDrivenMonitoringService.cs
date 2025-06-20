@@ -127,12 +127,16 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                     // Encontra o objeto do documento que acabou de ser aberto
                     doc = inventorApp.Documents[e.FilePath];
                 }
-                catch (Exception) { /* Ignora se não encontrar, pode acontecer em alguns cenários */ }
+                catch (Exception)
+                {
+                    /* Ignora se não encontrar, pode acontecer em alguns cenários de tempo */
+                }
 
                 if (doc != null)
                 {
                     var machineIdStr = _bomExtractor.GetCustomIProperty(doc, "MachineDB_ID");
-                    if (!string.IsNullOrEmpty(machineIdStr) && int.TryParse(machineIdStr, out int machineId))
+                    int machineId = 0;
+                    if (!string.IsNullOrEmpty(machineIdStr) && int.TryParse(machineIdStr, out machineId))
                     {
                         _logger.LogInformation("Montagem principal da Máquina ID {MachineId} aberta: {FileName}", machineId, e.FileName);
 
@@ -142,13 +146,22 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                         // Notifica o servidor que a máquina está em "Design"
                         await _apiService.UpdateMachineStatusAsync(machineId, "Design", Environment.UserName, e.FileName);
                     }
+                    else
+                    {
+                        // LOG ADICIONADO: Ajuda a diagnosticar por que a leitura da iProperty falhou.
+                        _logger.LogWarning("Não foi possível extrair o MachineDB_ID do arquivo {FileName}. A propriedade existe e tem um valor numérico?", e.FileName);
+                    }
+                }
+                else
+                {
+                    // LOG ADICIONADO: Ajuda a diagnosticar se o documento não foi encontrado a tempo.
+                    _logger.LogWarning("Não foi possível obter o objeto do documento do Inventor para {FileName} no momento da abertura.", e.FileName);
                 }
             }
             // --- Fim da lógica de máquina ---
 
             var documentEvent = CreateDocumentEvent(e.FilePath, e.FileName, DocumentEventType.Opened, e.DocumentType);
 
-            // Detecta projeto
             var projectInfo = DetectProjectFromFile(e.FilePath);
             if (projectInfo != null)
             {
@@ -156,7 +169,6 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                 documentEvent.ProjectName = projectInfo.DetectedName;
             }
 
-            // Inicia sessão de trabalho
             var workSession = new WorkSession
             {
                 FilePath = e.FilePath,
@@ -167,11 +179,7 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
             };
 
             await _workSessionService.StartWorkSessionAsync(workSession);
-
-            // Cria watcher para o documento
             CreateDocumentWatcher(e.FilePath, workSession);
-
-            // Processa evento
             await _documentProcessingService.ProcessDocumentChangeAsync(documentEvent);
         }
         catch (Exception ex)
@@ -217,19 +225,20 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         {
             _logger.LogDebug($"💾 Documento salvo: {e.FileName}");
 
-            // Tenta obter o MachineId do mapa para enriquecer o evento
+            // --- CORREÇÃO DEFINITIVA ---
+            // Usamos TryGetValue. Isso garante que 'machineId' SEMPRE receberá um valor.
+            // Se o arquivo não estiver no mapa, machineId será 0. Se estiver, terá o ID correto.
             _fileToMachineIdMap.TryGetValue(e.FilePath, out int machineId);
 
             var documentEvent = CreateDocumentEvent(e.FilePath, e.FileName, DocumentEventType.Saved, e.DocumentType);
 
-            // Adiciona o machineId ao evento se ele existir no mapa
+            // A checagem agora é segura, pois 'machineId' tem um valor garantido.
             if (machineId > 0)
             {
-                // Supondo que você adicione uma propriedade MachineId em DocumentEvent
-                // documentEvent.MachineId = machineId;
+                _logger.LogInformation("Documento salvo pertence à Máquina ID: {MachineId}", machineId);
+                // Futuramente, você pode adicionar o machineId ao evento aqui.
             }
 
-            // Detecta projeto
             var projectInfo = DetectProjectFromFile(e.FilePath);
             if (projectInfo != null)
             {
@@ -237,7 +246,6 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                 documentEvent.ProjectName = projectInfo.DetectedName;
             }
 
-            // Processa save (inclui extração de BOM se for assembly)
             await _documentProcessingService.ProcessDocumentSaveAsync(documentEvent);
         }
         catch (Exception ex)
@@ -245,6 +253,7 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
             _logger.LogError(ex, $"Erro ao processar save de documento: {e.FileName}");
         }
     }
+
 
     #endregion
 
