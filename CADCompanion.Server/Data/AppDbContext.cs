@@ -69,5 +69,39 @@ public class AppDbContext : DbContext
             //     .HasForeignKey(b => b.ProjectId)
             //     .OnDelete(DeleteBehavior.Cascade);
         });
+        modelBuilder.Entity<Machine>(entity =>
+    {
+        entity.HasKey(e => e.Id);
+
+        entity.Property(e => e.Name)
+            .IsRequired()
+            .HasMaxLength(100);
+
+        entity.Property(e => e.OperationNumber)
+            .HasMaxLength(50);
+
+        entity.Property(e => e.Description)
+            .HasMaxLength(200);
+
+        entity.Property(e => e.FolderPath)
+            .HasMaxLength(500);
+
+        entity.Property(e => e.MainAssemblyPath)
+            .HasMaxLength(200);
+
+        // Conversão do enum para string
+        entity.Property(e => e.Status)
+            .HasConversion<string>();
+
+        // Relacionamento com Project
+        entity.HasOne(e => e.Project)
+            .WithMany(p => p.Machines)
+            .HasForeignKey(e => e.ProjectId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // Índices
+        entity.HasIndex(e => e.ProjectId);
+        entity.HasIndex(e => e.OperationNumber);
+    });
     }
 }

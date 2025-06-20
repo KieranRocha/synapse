@@ -1,4 +1,4 @@
-// CADCompanion.Shared/ProjectDtos.cs - CORRIGIDO
+// CADCompanion.Shared/ProjectDtos.cs - CORRIGIDO (sem duplicação)
 using System.ComponentModel.DataAnnotations;
 
 namespace CADCompanion.Shared.Contracts;
@@ -26,6 +26,9 @@ public class ProjectDto
     public int MachineCount { get; set; }
     public DateTime? LastActivity { get; set; }
     public int TotalBomVersions { get; set; }
+
+    // ✅ ADICIONAR - Lista de máquinas do projeto
+    public List<MachineSummaryDto>? Machines { get; set; }
 
     // Campos calculados para o frontend
     public decimal? BudgetVariance => BudgetValue.HasValue && ActualCost.HasValue
@@ -64,8 +67,8 @@ public class CreateProjectDto
     public decimal? BudgetValue { get; set; }
     public int EstimatedHours { get; set; } = 0;
 
-    // Lista de máquinas iniciais (opcional)
-    public List<string>? InitialMachines { get; set; }
+    // ✅ MANTER APENAS ESTA - Lista de máquinas iniciais (opcional)
+    public List<CreateMachineDto>? InitialMachines { get; set; }
 }
 
 // DTO para atualização de projeto
@@ -112,7 +115,7 @@ public class ProjectSummaryDto
     public int MachineCount { get; set; }
     public DateTime? LastActivity { get; set; }
     public DateTime CreatedAt { get; set; }
-    public DateTime? EndDate { get; set; } // Campo adicionado
+    public DateTime? EndDate { get; set; }
 
     // Indicadores visuais para o frontend
     public bool IsOverdue => EndDate.HasValue && EndDate.Value < DateTime.UtcNow && Status != "Completed";

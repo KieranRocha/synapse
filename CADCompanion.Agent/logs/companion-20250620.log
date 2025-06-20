@@ -1,0 +1,68 @@
+2025-06-20 00:00:51.846 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 00:00:51.855 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 00:00:51.899 -03:00 [INF] Received HTTP response headers after 11.8549ms - 204
+2025-06-20 00:00:51.903 -03:00 [INF] End processing HTTP request after 56.7207ms - 204
+2025-06-20 12:55:58.096 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 12:55:58.098 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 12:55:58.104 -03:00 [INF] Received HTTP response headers after 3.5041ms - 204
+2025-06-20 12:55:58.105 -03:00 [INF] End processing HTTP request after 9.0884ms - 204
+2025-06-20 13:00:58.103 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:00:58.105 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:00:58.108 -03:00 [INF] Received HTTP response headers after 2.828ms - 204
+2025-06-20 13:00:58.109 -03:00 [INF] End processing HTTP request after 6.1977ms - 204
+2025-06-20 13:05:58.108 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:05:58.109 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:05:58.113 -03:00 [INF] Received HTTP response headers after 2.0867ms - 204
+2025-06-20 13:05:58.114 -03:00 [INF] End processing HTTP request after 6.0278ms - 204
+2025-06-20 13:10:58.126 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:10:58.128 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:10:58.132 -03:00 [INF] Received HTTP response headers after 2.4638ms - 204
+2025-06-20 13:10:58.133 -03:00 [INF] End processing HTTP request after 15.8779ms - 204
+2025-06-20 13:15:58.149 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:15:58.151 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:15:58.155 -03:00 [INF] Received HTTP response headers after 2.5857ms - 204
+2025-06-20 13:15:58.156 -03:00 [INF] End processing HTTP request after 6.7256ms - 204
+2025-06-20 13:20:58.173 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:20:58.175 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:20:58.179 -03:00 [INF] Received HTTP response headers after 2.4469ms - 204
+2025-06-20 13:20:58.180 -03:00 [INF] End processing HTTP request after 7.1989ms - 204
+2025-06-20 13:25:58.193 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:25:58.195 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:25:58.198 -03:00 [INF] Received HTTP response headers after 2.2435ms - 204
+2025-06-20 13:25:58.199 -03:00 [INF] End processing HTTP request after 6.7992ms - 204
+2025-06-20 13:30:58.214 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:30:58.216 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:30:58.220 -03:00 [INF] Received HTTP response headers after 2.4047ms - 204
+2025-06-20 13:30:58.220 -03:00 [INF] End processing HTTP request after 6.1504ms - 204
+2025-06-20 13:35:58.225 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:35:58.227 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:35:58.231 -03:00 [INF] Received HTTP response headers after 2.591ms - 204
+2025-06-20 13:35:58.232 -03:00 [INF] End processing HTTP request after 7.0085ms - 204
+2025-06-20 13:40:58.238 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:40:58.239 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:40:58.242 -03:00 [INF] Received HTTP response headers after 1.8992ms - 204
+2025-06-20 13:40:58.243 -03:00 [INF] End processing HTTP request after 4.7483ms - 204
+2025-06-20 13:45:58.249 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:45:58.251 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:45:58.263 -03:00 [INF] Received HTTP response headers after 11.8906ms - 204
+2025-06-20 13:45:58.265 -03:00 [INF] End processing HTTP request after 15.9244ms - 204
+2025-06-20 13:50:58.267 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:50:58.269 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-20 13:51:02.365 -03:00 [ERR] ❌ Erro ao enviar heartbeat
+System.Net.Http.HttpRequestException: Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente. (localhost:5047)
+ ---> System.Net.Sockets.SocketException (10061): Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CADCompanion.Agent.Services.ApiCommunicationService.SendHeartbeatAsync() in C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Agent\Services\ApiCommunicationService.cs:line 110

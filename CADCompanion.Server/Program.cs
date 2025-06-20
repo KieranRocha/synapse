@@ -38,7 +38,7 @@ builder.Services.AddScoped<BomVersioningService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<ISystemHealthService, SystemHealthService>();
-
+builder.Services.AddScoped<IMachineService, MachineService>();
 var app = builder.Build();
 
 // ✅ PIPELINE CORRETO

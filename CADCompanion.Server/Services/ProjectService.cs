@@ -123,14 +123,38 @@ public class ProjectService : IProjectService
             {
                 await CreateProjectFoldersAsync(project.Id, createDto.FolderPath, createDto.InitialMachines);
             }
+            if (createDto.InitialMachines != null && createDto.InitialMachines.Count > 0)
+            {
+                foreach (var machineDto in createDto.InitialMachines)
+                {
+                    var machine = new Machine
+                    {
+                        Name = machineDto.Name,
+                        OperationNumber = machineDto.OperationNumber,
+                        Description = machineDto.Description,
+                        FolderPath = machineDto.FolderPath,
+                        MainAssemblyPath = machineDto.MainAssemblyPath,
+                        ProjectId = project.Id,
+                        Status = MachineStatus.Planning,
+                        CreatedAt = DateTime.UtcNow,
+                        UpdatedAt = DateTime.UtcNow
+                    };
 
+                    _context.Machines.Add(machine);
+                }
+
+                project.MachineCount = createDto.InitialMachines.Count;
+                await _context.SaveChangesAsync();
+            }
             return MapToProjectDto(project);
         }
+
         catch (Exception ex)
         {
             _logger.LogError(ex, "Erro ao criar projeto: {ProjectName}", createDto.Name);
             throw;
         }
+
     }
 
     public async Task<ProjectDto?> UpdateProjectAsync(int id, UpdateProjectDto updateDto)
@@ -305,7 +329,16 @@ public class ProjectService : IProjectService
             ActualHours = project.ActualHours,
             MachineCount = project.MachineCount,
             LastActivity = project.LastActivity,
-            TotalBomVersions = project.TotalBomVersions
+            TotalBomVersions = project.TotalBomVersions,
+            Machines = project.Machines?.Select(m => new MachineSummaryDto
+            {
+                Id = m.Id,
+                Name = m.Name,
+                OperationNumber = m.OperationNumber,
+                Status = m.Status.ToString(),
+                TotalBomVersions = m.TotalBomVersions,
+                LastBomExtraction = m.LastBomExtraction
+            }).ToList()
         };
     }
 

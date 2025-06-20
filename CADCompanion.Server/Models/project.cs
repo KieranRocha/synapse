@@ -47,6 +47,7 @@ public class Project
     public DateTime? LastActivity { get; set; }
     public int TotalBomVersions { get; set; } = 0;
 
+    public virtual ICollection<Machine> Machines { get; set; } = new List<Machine>();
     // Navegação para BOMs
     public virtual ICollection<BomVersion> BomVersions { get; set; } = new List<BomVersion>();
 }
