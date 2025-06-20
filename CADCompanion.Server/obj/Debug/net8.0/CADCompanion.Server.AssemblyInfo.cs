@@ -13,7 +13,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CADCompanion.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+19b3dfb192949a010bc249af877b9e1bed068196")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d07d94a2bbfe6d66b45c4c3f0c39cdebf85f1fef")]
+>>>>>>> parent of eac55eae (machines fixed)
 [assembly: System.Reflection.AssemblyProductAttribute("CADCompanion.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CADCompanion.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

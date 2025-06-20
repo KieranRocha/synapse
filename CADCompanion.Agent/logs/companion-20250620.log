@@ -150,6 +150,7 @@ System.Net.Http.HttpRequestException: Nenhuma conexão pôde ser feita porque a 
 2025-06-20 14:16:18.708 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
 2025-06-20 14:16:18.713 -03:00 [INF] Received HTTP response headers after 3.988ms - 204
 2025-06-20 14:16:18.715 -03:00 [INF] End processing HTTP request after 8.1001ms - 204
+<<<<<<< HEAD
 2025-06-20 14:21:18.727 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
 2025-06-20 14:21:18.728 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
 2025-06-20 14:21:18.732 -03:00 [INF] Received HTTP response headers after 2.8087ms - 204
@@ -370,3 +371,5 @@ System.Net.Http.HttpRequestException: Nenhuma conexão pôde ser feita porque a 
 2025-06-20 18:11:27.613 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
 2025-06-20 18:11:27.618 -03:00 [INF] Received HTTP response headers after 3.5256ms - 204
 2025-06-20 18:11:27.619 -03:00 [INF] End processing HTTP request after 7.7403ms - 204
+=======
+>>>>>>> parent of eac55eae (machines fixed)
