@@ -121,7 +121,8 @@ public class ProjectService : IProjectService
             // TODO: Criar pastas do projeto no sistema de arquivos
             if (!string.IsNullOrEmpty(createDto.FolderPath))
             {
-                await CreateProjectFoldersAsync(project.Id, createDto.FolderPath, createDto.InitialMachines);
+                var machineNames = createDto.InitialMachines?.Select(m => m.Name).ToList();
+                await CreateProjectFoldersAsync(project.Id, createDto.FolderPath, machineNames);
             }
             if (createDto.InitialMachines != null && createDto.InitialMachines.Count > 0)
             {

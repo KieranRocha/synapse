@@ -1,8 +1,9 @@
-// CADCompanion.Shared/MachineDtos.cs - CORRIGIDO
-using System.ComponentModel.DataAnnotations; // ← ADICIONAR ESTA LINHA
+// CADCompanion.Shared/MachineDtos.cs - DTOs COMPLETOS
+using System.ComponentModel.DataAnnotations;
 
 namespace CADCompanion.Shared.Contracts;
 
+// DTO para resposta - dados completos da máquina
 public class MachineDto
 {
     public int Id { get; set; }
@@ -17,8 +18,12 @@ public class MachineDto
     public DateTime UpdatedAt { get; set; }
     public DateTime? LastBomExtraction { get; set; }
     public int TotalBomVersions { get; set; }
+
+    // Navegação
+    public List<BomVersionSummaryDto>? BomVersions { get; set; }
 }
 
+// DTO para criação de máquina
 public class CreateMachineDto
 {
     [Required]
@@ -36,8 +41,12 @@ public class CreateMachineDto
 
     [MaxLength(200)]
     public string? MainAssemblyPath { get; set; }
+
+    [Required]
+    public int ProjectId { get; set; }
 }
 
+// DTO para atualização de máquina
 public class UpdateMachineDto
 {
     [MaxLength(100)]
@@ -58,6 +67,7 @@ public class UpdateMachineDto
     public string? Status { get; set; }
 }
 
+// DTO resumido para listagens
 public class MachineSummaryDto
 {
     public int Id { get; set; }
@@ -66,14 +76,14 @@ public class MachineSummaryDto
     public string Status { get; set; } = "Planning";
     public int TotalBomVersions { get; set; }
     public DateTime? LastBomExtraction { get; set; }
-    public string StatusColor => Status switch
-    {
-        "Planning" => "blue",
-        "Design" => "yellow",
-        "Review" => "orange",
-        "Manufacturing" => "green",
-        "Testing" => "purple",
-        "Completed" => "gray",
-        _ => "gray"
-    };
+}
+
+// DTO para versões de BOM (resumido)
+public class BomVersionSummaryDto
+{
+    public int Id { get; set; }
+    public int VersionNumber { get; set; }
+    public DateTime ExtractedAt { get; set; }
+    public string ExtractedBy { get; set; } = string.Empty;
+    public int TotalItems { get; set; }
 }

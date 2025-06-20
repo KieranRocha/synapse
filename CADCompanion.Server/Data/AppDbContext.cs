@@ -1,4 +1,4 @@
-// CADCompanion.Server/Data/AppDbContext.cs - ATUALIZADO
+// CADCompanion.Server/Data/AppDbContext.cs - CORRIGIDO
 using CADCompanion.Server.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,8 +8,10 @@ public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-    public DbSet<BomVersion> BomVersions { get; set; }
+    // ✅ ADICIONADO: DbSet que estava faltando
     public DbSet<Project> Projects { get; set; }
+    public DbSet<Machine> Machines { get; set; }
+    public DbSet<BomVersion> BomVersions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -60,48 +62,75 @@ public class AppDbContext : DbContext
             entity.HasIndex(e => e.CreatedAt);
         });
 
-        // Configuração do relacionamento Project -> BomVersions
+        // ✅ CONFIGURAÇÃO MACHINE CORRIGIDA
+        modelBuilder.Entity<Machine>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            entity.Property(e => e.OperationNumber)
+                .HasMaxLength(50);
+
+            entity.Property(e => e.Description)
+                .HasMaxLength(200);
+
+            entity.Property(e => e.FolderPath)
+                .HasMaxLength(500);
+
+            entity.Property(e => e.MainAssemblyPath)
+                .HasMaxLength(200);
+
+            // Conversão do enum para string
+            entity.Property(e => e.Status)
+                .HasConversion<string>();
+
+            // ✅ RELACIONAMENTO COM PROJECT
+            entity.HasOne(e => e.Project)
+                .WithMany(p => p.Machines)
+                .HasForeignKey(e => e.ProjectId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Índices para performance
+            entity.HasIndex(e => e.ProjectId);
+            entity.HasIndex(e => e.OperationNumber);
+            entity.HasIndex(e => e.CreatedAt);
+        });
+
+        // ✅ CONFIGURAÇÃO BOMVERSION
         modelBuilder.Entity<BomVersion>(entity =>
         {
-            // Relacionamento com Project (se você quiser implementar depois)
-            // entity.HasOne<Project>()
-            //     .WithMany(p => p.BomVersions)
-            //     .HasForeignKey(b => b.ProjectId)
-            //     .OnDelete(DeleteBehavior.Cascade);
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.ProjectId)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            entity.Property(e => e.MachineId)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            entity.Property(e => e.AssemblyFilePath)
+                .IsRequired()
+                .HasMaxLength(500);
+
+            entity.Property(e => e.ExtractedBy)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            // Campo JSONB para PostgreSQL
+            entity.Property(e => e.Items)
+                .HasColumnType("jsonb")
+                .IsRequired();
+
+            // Índices para queries frequentes
+            entity.HasIndex(e => e.ProjectId);
+            entity.HasIndex(e => e.MachineId);
+            entity.HasIndex(e => e.ExtractedAt);
+            entity.HasIndex(e => new { e.ProjectId, e.MachineId, e.VersionNumber })
+                .IsUnique();
         });
-        modelBuilder.Entity<Machine>(entity =>
-    {
-        entity.HasKey(e => e.Id);
-
-        entity.Property(e => e.Name)
-            .IsRequired()
-            .HasMaxLength(100);
-
-        entity.Property(e => e.OperationNumber)
-            .HasMaxLength(50);
-
-        entity.Property(e => e.Description)
-            .HasMaxLength(200);
-
-        entity.Property(e => e.FolderPath)
-            .HasMaxLength(500);
-
-        entity.Property(e => e.MainAssemblyPath)
-            .HasMaxLength(200);
-
-        // Conversão do enum para string
-        entity.Property(e => e.Status)
-            .HasConversion<string>();
-
-        // Relacionamento com Project
-        entity.HasOne(e => e.Project)
-            .WithMany(p => p.Machines)
-            .HasForeignKey(e => e.ProjectId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        // Índices
-        entity.HasIndex(e => e.ProjectId);
-        entity.HasIndex(e => e.OperationNumber);
-    });
     }
 }
