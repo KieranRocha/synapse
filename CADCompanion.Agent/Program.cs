@@ -16,7 +16,7 @@ IHost host = Host.CreateDefaultBuilder(args)
             .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
             .Enrich.FromLogContext()
             .WriteTo.Console()
-            .WriteTo.File("logs/companion-.log", 
+            .WriteTo.File("logs/companion-.log",
                 rollingInterval: RollingInterval.Day,
                 retainedFileCountLimit: 30);
     })
@@ -43,9 +43,7 @@ IHost host = Host.CreateDefaultBuilder(args)
         services.AddSingleton<WorkSessionService>();
         services.AddSingleton<DocumentProcessingService>();
         services.AddSingleton<IWorkDrivenMonitoringService, WorkDrivenMonitoringService>();
-        
-        
-        // Registra o CompanionWorkerService como o serviço de fundo principal
+
         services.AddHostedService<CompanionWorkerService>();
     })
     .Build();
