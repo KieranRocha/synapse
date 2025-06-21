@@ -125,7 +125,7 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                 try
                 {
                     // Encontra o objeto do documento que acabou de ser aberto
-                    doc = inventorApp.Documents[e.FilePath];
+                    doc = inventorApp?.Documents[e.FilePath];
                 }
                 catch (Exception)
                 {

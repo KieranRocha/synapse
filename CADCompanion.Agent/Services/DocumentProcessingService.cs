@@ -57,15 +57,15 @@ namespace CADCompanion.Agent.Services
                     case DocumentType.Assembly:
                         await ProcessAssemblyDocumentAsync(documentEvent);
                         break;
-                        
+
                     case DocumentType.Part:
                         await ProcessPartDocumentAsync(documentEvent);
                         break;
-                        
+
                     case DocumentType.Drawing:
                         await ProcessDrawingDocumentAsync(documentEvent);
                         break;
-                        
+
                     default:
                         _logger.LogDebug($"Tipo de documento não processado: {documentEvent.DocumentType}");
                         break;
@@ -105,7 +105,7 @@ namespace CADCompanion.Agent.Services
 
                 // Extrai BOM com contexto completo
                 var bomData = await ExtractBOMWithContextAsync(
-                    documentEvent.FilePath, 
+                    documentEvent.FilePath,
                     CreateProjectInfoFromEvent(documentEvent),
                     null // workSessionId será obtido via documentEvent se necessário
                 );
@@ -114,7 +114,7 @@ namespace CADCompanion.Agent.Services
                 {
                     // Envia BOM para API
                     await _apiCommunication.SendBOMDataAsync(bomData);
-                    
+
                     _logger.LogInformation($"✅ BOM enviado: {bomData.TotalItems} itens (Projeto: {bomData.ProjectName})");
                 }
                 else
@@ -214,7 +214,7 @@ namespace CADCompanion.Agent.Services
                     // Aqui poderia usar Inventor API para extrair propriedades da part
                     // Por simplicity, retorna properties básicas
                     var fileInfo = new FileInfo(filePath);
-                    
+
                     return new Dictionary<string, object>
                     {
                         ["FileName"] = fileInfo.Name,
@@ -244,7 +244,7 @@ namespace CADCompanion.Agent.Services
 
                 // Para drawings, registra atividade mas não extrai dados complexos
                 // Futuro: poderia extrair lista de views, dimensões, etc.
-                
+
                 await Task.CompletedTask; // Placeholder
             }
             catch (Exception ex)
@@ -268,7 +268,7 @@ namespace CADCompanion.Agent.Services
                 {
                     // Tenta abrir arquivo exclusivo para verificar se está livre
                     using var fileStream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.None);
-                    
+
                     // Se chegou aqui, arquivo está livre
                     _logger.LogDebug($"Arquivo estável após {attempt + 1} tentativas: {Path.GetFileName(filePath)}");
                     return;
