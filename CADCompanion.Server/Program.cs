@@ -2,12 +2,18 @@
 using CADCompanion.Server.Data;
 using CADCompanion.Server.Services;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ CONFIGURAÇÃO DO BANCO DE DADOS
+// ✅ CONFIGURAÇÃO DO BANCO DE DADOS COM SUPORTE A JSON DINÂMICO
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var dataSourceBuilder = new NpgsqlDataSourceBuilder(connectionString);
+dataSourceBuilder.EnableDynamicJson();
+var dataSource = dataSourceBuilder.Build();
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(dataSource));
 
 // ✅ REGISTRAR MEMORYCACHE - NECESSÁRIO PARA DASHBOARDSERVICE
 builder.Services.AddMemoryCache();

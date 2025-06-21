@@ -112,6 +112,13 @@ namespace CADCompanion.Agent
             }
             finally
             {
+                try
+                {
+                    Marshal.ReleaseComObject(assemblyDoc);
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                }
+                catch { }
                 stopwatch.Stop();
                 result.ProcessingTime = stopwatch.Elapsed.TotalSeconds;
             }
@@ -270,8 +277,20 @@ namespace CADCompanion.Agent
             }
             finally
             {
-                try { doc?.Close(false); }
-                catch (Exception ex) { Console.WriteLine($"⚠️ Erro ao fechar o documento '{Path.GetFileName(assemblyFilePath)}': {ex.Message}"); }
+                try
+                {
+                    if (doc != null)
+                    {
+                        doc.Close(false);
+                        Marshal.ReleaseComObject(doc);
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"⚠️ Erro ao fechar o documento: {ex.Message}");
+                }
             }
         }
 

@@ -110,22 +110,38 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         _documentEventService.DocumentClosed += OnDocumentClosed;
         _documentEventService.DocumentSaved += OnDocumentSaved;
     }
-
+    private readonly HashSet<string> _processedFiles = new();
     private async void OnDocumentOpened(object? sender, DocumentOpenedEventArgs e)
     {
         try
         {
+            // Evita processar o mesmo arquivo múltiplas vezes
+            lock (_processedFiles)
+            {
+                if (_processedFiles.Contains(e.FilePath))
+                    return;
+                _processedFiles.Add(e.FilePath);
+            }
+
             _logger.LogInformation($"📂 Documento aberto: {e.FileName}");
 
             // --- Lógica para identificar a máquina ---
             var inventorApp = _inventorConnection.GetInventorApp();
             if (inventorApp != null && e.DocumentType == DocumentType.Assembly)
             {
+                await Task.Delay(2000);
                 dynamic? doc = null;
                 try
                 {
                     // Encontra o objeto do documento que acabou de ser aberto
-                    doc = inventorApp?.Documents[e.FilePath];
+                    foreach (dynamic document in inventorApp.Documents)
+                    {
+                        if (document.FullFileName == e.FilePath)
+                        {
+                            doc = document;
+                            break;
+                        }
+                    }
                 }
                 catch (Exception)
                 {
@@ -135,6 +151,14 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                 if (doc != null)
                 {
                     var machineIdStr = _bomExtractor.GetCustomIProperty(doc, "MachineDB_ID");
+                    if (!string.IsNullOrEmpty(machineIdStr))
+                    {
+                        _logger.LogInformation($"✅ MachineDB_ID encontrado: {machineIdStr} para {e.FileName}");
+                    }
+                    else
+                    {
+                        _logger.LogWarning($"⚠️ MachineDB_ID não encontrado para {e.FileName}");
+                    }
                     int machineId = 0;
                     if (!string.IsNullOrEmpty(machineIdStr) && int.TryParse(machineIdStr, out machineId))
                     {
