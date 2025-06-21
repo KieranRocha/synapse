@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
+using CADCompanion.Agent.Models;
+using CADCompanion.Agent.Services;
 using OfficeOpenXml; // Certifique-se de que o pacote NuGet 'EPPlus' está instalado
 
 namespace CADCompanion.Agent
@@ -64,22 +68,59 @@ namespace CADCompanion.Agent
         }
     }
 
-    public class InventorBomExtractor
+    // ✅ CORRIGIDO: A classe agora implementa a interface IInventorBOMExtractor
+    public class InventorBomExtractor : IInventorBOMExtractor
     {
         private dynamic? _inventorApp;
 
-        // ✅ CORRIGIDO: Configuração de licença do EPPlus para versão 8+
         static InventorBomExtractor()
         {
             // Para uso não comercial sob a licença Polyform, o EPPlus 8+ não requer
-            // que nenhuma propriedade de licença seja definida. A linha que causava
-            // o erro foi removida. O desenvolvedor deve estar ciente dos termos da licença.
-            // Veja: https://epplussoftware.com/developers/licenseexception
+            // que nenhuma propriedade de licença seja definida.
         }
+
+        /// <summary>
+        /// ✅ NOVO: Implementação do método da interface IInventorBOMExtractor.
+        /// Este método é assíncrono e retorna o tipo BOMExtractionResult.
+        /// </summary>
+        public async Task<BOMExtractionResult> ExtractBOMAsync(dynamic assemblyDoc)
+        {
+            var result = new BOMExtractionResult();
+            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+            try
+            {
+                // Reutiliza o método síncrono existente dentro de uma Task para não bloquear a thread principal.
+                var internalBomItemsDynamic = await Task.Run(() => GetBOMFromDocument(assemblyDoc));
+                var internalBomItems = (internalBomItemsDynamic as IEnumerable<BomItem>)?.ToList() ?? new List<BomItem>();
+
+                // Mapeia da classe 'BomItem' local para a classe 'BOMItem' do namespace Models.
+                result.BomData = internalBomItems.Select(item => new Models.BOMItem
+                {
+                    // O Id será gerado automaticamente pelo construtor do modelo.
+                    PartNumber = item.PartNumber,
+                    Description = item.Description,
+                    Quantity = Convert.ToInt32(item.Quantity) // Garante que a quantidade seja um inteiro.
+                    // Outras propriedades podem ser mapeadas aqui se necessário.
+                }).ToList();
+
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Error = ex.Message;
+            }
+            finally
+            {
+                stopwatch.Stop();
+                result.ProcessingTime = stopwatch.Elapsed.TotalSeconds;
+            }
+            return result;
+        }
+
         [System.Runtime.Versioning.SupportedOSPlatform("windows")]
         public void ConnectToInventor()
         {
-            // Tenta conectar à instância ativa primeiro
             try
             {
                 Console.WriteLine("Tentando conectar à instância ativa...");
@@ -90,14 +131,11 @@ namespace CADCompanion.Agent
                     _inventorApp = activeApp;
                     string versao = _inventorApp.SoftwareVersion.DisplayVersion;
                     Console.WriteLine($"✓ Conectado à instância ativa - Inventor {versao}");
-
-                    // Adicionado: Verifique e torne a instância visível se ela não estiver
-                    // Isso pode ajudar a "reanimar" instâncias em segundo plano para que reportem seus documentos corretamente.
                     if (!_inventorApp.Visible)
                     {
                         Console.WriteLine("  Instância ativa do Inventor não visível. Tentando torná-la visível...");
                         _inventorApp.Visible = true;
-                        System.Threading.Thread.Sleep(2000); // Dê um tempo para o Inventor atualizar seu estado
+                        System.Threading.Thread.Sleep(2000);
                         Console.WriteLine("  Instância agora visível.");
                     }
                     else
@@ -112,25 +150,15 @@ namespace CADCompanion.Agent
                 Console.WriteLine($"Falha ao conectar à instância ativa (erro: {ex.Message}).");
             }
 
-            // Se não conseguiu conectar a uma instância ativa ou a instância não era adequada, cria uma nova.
             try
             {
                 Console.WriteLine("Nenhuma instância ativa adequada encontrada ou falha ao conectar. Criando nova instância...");
                 Type? inventorType = Type.GetTypeFromProgID("Inventor.Application");
-                if (inventorType == null)
-                {
-                    throw new InvalidOperationException("Inventor não está instalado ou ProgID inválido.");
-                }
-
+                if (inventorType == null) throw new InvalidOperationException("Inventor não está instalado ou ProgID inválido.");
                 _inventorApp = Activator.CreateInstance(inventorType);
-                if (_inventorApp == null)
-                {
-                    throw new InvalidOperationException("Não foi possível criar uma nova instância do Inventor.");
-                }
-
+                if (_inventorApp == null) throw new InvalidOperationException("Não foi possível criar uma nova instância do Inventor.");
                 _inventorApp.Visible = true;
-                System.Threading.Thread.Sleep(5000); // Dê mais tempo para a nova instância carregar completamente
-
+                System.Threading.Thread.Sleep(5000);
                 string versao = _inventorApp.SoftwareVersion.DisplayVersion;
                 Console.WriteLine($"✓ Nova instância criada - Inventor {versao}");
             }
@@ -147,25 +175,17 @@ namespace CADCompanion.Agent
         public List<AssemblyInfo> ListAvailableAssemblies()
         {
             var assemblies = new List<AssemblyInfo>();
-
             if (_inventorApp == null) return assemblies;
 
             try
             {
                 dynamic documents = _inventorApp.Documents;
                 int count = documents.Count;
-                Console.WriteLine($"📄 Total de documentos abertos na instância conectada: {count}"); // Log mais descritivo
+                Console.WriteLine($"📄 Total de documentos abertos na instância conectada: {count}");
 
-                // Determina qual é o documento ativo
                 dynamic? activeDoc = null;
-                try
-                {
-                    activeDoc = _inventorApp.ActiveDocument;
-                }
-                catch
-                {
-                    Console.WriteLine("⚠️ Nenhum documento ativo detectado na instância conectada.");
-                }
+                try { activeDoc = _inventorApp.ActiveDocument; }
+                catch { Console.WriteLine("⚠️ Nenhum documento ativo detectado na instância conectada."); }
 
                 if (count > 0)
                 {
@@ -174,47 +194,18 @@ namespace CADCompanion.Agent
                         try
                         {
                             dynamic doc = documents.Item[i];
-                            int docType = doc.DocumentType;
-
-                            // *** CORREÇÃO APLICADA AQUI (MANTIDA) ***
-                            // Só adiciona montagens (tipo 12291 - kAssemblyDocumentObject)
-                            if (docType == 12291)
+                            if (doc.DocumentType == 12291) // kAssemblyDocumentObject
                             {
                                 string displayName = doc.DisplayName?.ToString() ?? "Nome não disponível";
-                                string fullPath = "";
-                                bool isActive = false;
+                                string fullPath = doc.FullFileName?.ToString() ?? "Caminho não disponível";
+                                bool isActive = activeDoc != null && (activeDoc.FullFileName?.ToString() ?? "").Equals(fullPath, StringComparison.OrdinalIgnoreCase);
 
-                                try
-                                {
-                                    fullPath = doc.FullFileName?.ToString() ?? "Caminho não disponível";
-                                }
-                                catch { /* Ignora erro se o caminho não estiver disponível */ }
-
-                                // Verifica se é o documento ativo
-                                try
-                                {
-                                    if (activeDoc != null)
-                                    {
-                                        string activeDocPath = activeDoc.FullFileName?.ToString() ?? "";
-                                        isActive = !string.IsNullOrEmpty(activeDocPath) && activeDocPath.Equals(fullPath, StringComparison.OrdinalIgnoreCase);
-                                    }
-                                }
-                                catch { /* Ignora erro se o documento ativo não puder ser verificado */ }
-
-                                assemblies.Add(new AssemblyInfo
-                                {
-                                    DisplayName = displayName,
-                                    FullPath = fullPath,
-                                    IsActive = isActive,
-                                    Document = doc
-                                });
-
+                                assemblies.Add(new AssemblyInfo { DisplayName = displayName, FullPath = fullPath, IsActive = isActive, Document = doc });
                                 Console.WriteLine($"  ✓ Montagem encontrada: {displayName} {(isActive ? "[ATIVA]" : "")}");
                             }
                             else
                             {
-                                // Log para outros tipos de documentos, apenas para depuração
-                                Console.WriteLine($"  🔍 Documento encontrado, mas não é montagem (Tipo: {docType}): {doc.DisplayName}");
+                                Console.WriteLine($"  🔍 Documento encontrado, mas não é montagem (Tipo: {doc.DocumentType}): {doc.DisplayName}");
                             }
                         }
                         catch (Exception ex)
@@ -223,14 +214,12 @@ namespace CADCompanion.Agent
                         }
                     }
                 }
-
                 Console.WriteLine($"📦 Total de montagens encontradas na instância conectada: {assemblies.Count}");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"❌ Erro ao listar documentos: {ex.Message}");
             }
-
             return assemblies;
         }
 
@@ -249,29 +238,18 @@ namespace CADCompanion.Agent
 
         public List<BomItem> GetBOMFromFile(string assemblyFilePath)
         {
-            if (_inventorApp == null)
-            {
-                throw new InvalidOperationException("Não conectado ao Inventor.");
-            }
+            if (_inventorApp == null) throw new InvalidOperationException("Não conectado ao Inventor.");
 
             dynamic? doc = null;
             try
             {
                 Console.WriteLine($"Abrindo arquivo: {assemblyFilePath}");
-                // O segundo parâmetro 'false' significa que o documento não será visível no Inventor
-                // Mantenha como false para abrir em segundo plano
                 doc = _inventorApp.Documents.Open(assemblyFilePath, false);
-
                 int docType = doc.DocumentType;
                 Console.WriteLine($"Tipo do arquivo aberto: {docType}");
 
-                // *** CORREÇÃO APLICADA AQUI (MANTIDA) ***
-                // kAssemblyDocumentObject = 12291
-                // kPartDocumentObject = 12290
-                if (docType != 12291) // Se NÃO for explicitamente uma montagem
+                if (docType != 12291)
                 {
-                    // Tenta detectar como montagem ou sub-montagem via BOM
-                    // Isso é útil para lidar com arquivos de peça que podem ter uma "lista de materiais" interna
                     try
                     {
                         dynamic compDef = doc.ComponentDefinition;
@@ -280,7 +258,6 @@ namespace CADCompanion.Agent
                     }
                     catch
                     {
-                        // Se não for montagem e não tiver BOM, então não é adequado para extração
                         throw new InvalidOperationException($"Arquivo '{Path.GetFileName(assemblyFilePath)}' não é uma montagem válida para extração de BOM. Tipo detectado: {docType}.");
                     }
                 }
@@ -293,30 +270,14 @@ namespace CADCompanion.Agent
             }
             finally
             {
-                // Sempre tenta fechar o documento que foi aberto pelo programa,
-                // para evitar deixar arquivos abertos no Inventor desnecessariamente.
-                try
-                {
-                    // true = salvar alterações, false = descartar alterações
-                    // Mude para 'false' se não quiser que o programa salve nada ao fechar
-                    doc?.Close(false);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"⚠️ Erro ao fechar o documento '{Path.GetFileName(assemblyFilePath)}': {ex.Message}");
-                }
+                try { doc?.Close(false); }
+                catch (Exception ex) { Console.WriteLine($"⚠️ Erro ao fechar o documento '{Path.GetFileName(assemblyFilePath)}': {ex.Message}"); }
             }
         }
 
-        // ===== NOVOS MÉTODOS PARA WEB API =====
-
-        /// <summary>
-        /// Lista todos os assemblies atualmente abertos no Inventor
-        /// </summary>
         public List<OpenAssemblyInfo> ListOpenAssemblies()
         {
             var assemblies = new List<OpenAssemblyInfo>();
-
             try
             {
                 if (_inventorApp?.Documents == null)
@@ -326,16 +287,12 @@ namespace CADCompanion.Agent
                 }
 
                 Console.WriteLine($"🔍 Verificando {_inventorApp.Documents.Count} documentos abertos...");
-
                 for (int i = 1; i <= _inventorApp.Documents.Count; i++)
                 {
                     try
                     {
                         dynamic doc = _inventorApp.Documents[i];
-                        int docType = doc.DocumentType;
-
-                        // kAssemblyDocumentObject = 12291
-                        if (docType == 12291)
+                        if (doc.DocumentType == 12291) // kAssemblyDocumentObject
                         {
                             var assemblyInfo = new OpenAssemblyInfo
                             {
@@ -345,13 +302,12 @@ namespace CADCompanion.Agent
                                 IsSaved = !doc.Dirty,
                                 DocumentType = "Assembly (.iam)"
                             };
-
                             assemblies.Add(assemblyInfo);
                             Console.WriteLine($"  ✅ Assembly encontrado: {assemblyInfo.FileName} {(assemblyInfo.IsActive ? "[ATIVO]" : "")}");
                         }
                         else
                         {
-                            Console.WriteLine($"  🔍 Documento encontrado, mas não é assembly (Tipo: {docType}): {doc.DisplayName}");
+                            Console.WriteLine($"  🔍 Documento encontrado, mas não é assembly (Tipo: {doc.DocumentType}): {doc.DisplayName}");
                         }
                     }
                     catch (Exception ex)
@@ -359,53 +315,37 @@ namespace CADCompanion.Agent
                         Console.WriteLine($"  ⚠️ Erro ao processar documento {i}: {ex.Message}");
                     }
                 }
-
                 Console.WriteLine($"📦 Total de assemblies encontrados: {assemblies.Count}");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"❌ Erro ao listar assemblies abertos: {ex.Message}");
             }
-
             return assemblies;
         }
 
-        /// <summary>
-        /// Extrai BOM de um assembly específico que já está aberto
-        /// </summary>
         public List<BomItem> GetBOMFromOpenAssembly(string fileName)
         {
             try
             {
-                if (_inventorApp?.Documents == null)
-                {
-                    throw new InvalidOperationException("Inventor não conectado.");
-                }
+                if (_inventorApp?.Documents == null) throw new InvalidOperationException("Inventor não conectado.");
 
                 Console.WriteLine($"🔍 Procurando assembly aberto: {fileName}");
-
-                // Procurar o documento pelo nome
                 for (int i = 1; i <= _inventorApp.Documents.Count; i++)
                 {
                     try
                     {
                         dynamic doc = _inventorApp.Documents[i];
-
-                        // Verificar se é o arquivo que estamos procurando
-                        if (doc.DisplayName.Equals(fileName, StringComparison.OrdinalIgnoreCase) ||
-                            Path.GetFileName(doc.FullFileName ?? "").Equals(fileName, StringComparison.OrdinalIgnoreCase))
+                        if (doc.DisplayName.Equals(fileName, StringComparison.OrdinalIgnoreCase) || Path.GetFileName(doc.FullFileName ?? "").Equals(fileName, StringComparison.OrdinalIgnoreCase))
                         {
-                            int docType = doc.DocumentType;
-
-                            // Verificar se é assembly
-                            if (docType == 12291) // kAssemblyDocumentObject
+                            if (doc.DocumentType == 12291)
                             {
                                 Console.WriteLine($"✅ Assembly encontrado e ativo: {doc.DisplayName}");
                                 return GetBOMFromDocument(doc);
                             }
                             else
                             {
-                                throw new InvalidOperationException($"Documento '{fileName}' não é um assembly (tipo: {docType})");
+                                throw new InvalidOperationException($"Documento '{fileName}' não é um assembly (tipo: {doc.DocumentType})");
                             }
                         }
                     }
@@ -414,7 +354,6 @@ namespace CADCompanion.Agent
                         Console.WriteLine($"⚠️ Erro ao verificar documento {i}: {ex.Message}");
                     }
                 }
-
                 throw new FileNotFoundException($"Assembly '{fileName}' não encontrado nos documentos abertos.");
             }
             catch (Exception ex)
@@ -424,27 +363,15 @@ namespace CADCompanion.Agent
             }
         }
 
-        /// <summary>
-        /// Abre um arquivo no Inventor
-        /// </summary>
         [System.Runtime.Versioning.SupportedOSPlatform("windows")]
         public bool OpenDocument(string filePath)
         {
             try
             {
-                if (_inventorApp == null)
-                {
-                    throw new InvalidOperationException("Inventor não conectado.");
-                }
-
-                if (!File.Exists(filePath))
-                {
-                    throw new FileNotFoundException($"Arquivo não encontrado: {filePath}");
-                }
+                if (_inventorApp == null) throw new InvalidOperationException("Inventor não conectado.");
+                if (!File.Exists(filePath)) throw new FileNotFoundException($"Arquivo não encontrado: {filePath}");
 
                 Console.WriteLine($"📂 Abrindo documento: {filePath}");
-
-                // Verificar se já está aberto
                 for (int i = 1; i <= _inventorApp.Documents.Count; i++)
                 {
                     try
@@ -453,8 +380,6 @@ namespace CADCompanion.Agent
                         if (doc.FullFileName?.Equals(filePath, StringComparison.OrdinalIgnoreCase) == true)
                         {
                             Console.WriteLine($"✅ Documento já está aberto: {doc.DisplayName}");
-
-                            // Ativar o documento
                             _inventorApp.ActiveDocument = doc;
                             return true;
                         }
@@ -465,14 +390,9 @@ namespace CADCompanion.Agent
                     }
                 }
 
-                // Abrir novo documento
-                dynamic openedDoc = _inventorApp.Documents.Open(filePath, true); // true = visível
-
+                dynamic openedDoc = _inventorApp.Documents.Open(filePath, true);
                 Console.WriteLine($"✅ Documento aberto com sucesso: {openedDoc.DisplayName}");
-
-                // Trazer Inventor para frente
                 _inventorApp.Visible = true;
-
                 return true;
             }
             catch (Exception ex)
@@ -481,20 +401,12 @@ namespace CADCompanion.Agent
                 throw;
             }
         }
-        /// <summary>
-        /// Obtém o valor de uma iProperty customizada de um documento do Inventor.
-        /// </summary>
-        /// <param name="document">O objeto do documento do Inventor.</param>
-        /// <param name="propertyName">O nome da iProperty a ser lida.</param>
-        /// <returns>O valor da propriedade como string, ou null se não for encontrada.</returns>
+
         public string? GetCustomIProperty(dynamic document, string propertyName)
         {
             try
             {
-                // PropertySets "User Defined Properties" é onde as iProperties customizadas são armazenadas.
                 dynamic customPropertySet = document.PropertySets["User Defined Properties"];
-
-                // Itera sobre as propriedades para encontrar a que queremos pelo nome.
                 foreach (dynamic prop in customPropertySet)
                 {
                     if (prop.Name.Equals(propertyName, StringComparison.OrdinalIgnoreCase))
@@ -506,40 +418,29 @@ namespace CADCompanion.Agent
             }
             catch (Exception ex)
             {
-                // É normal ocorrer um erro se o conjunto de propriedades ou a propriedade não existirem.
-                // Logamos como Debug para não poluir os logs principais.
                 Console.WriteLine($"[DEBUG] Não foi possível encontrar a iProperty customizada '{propertyName}'. Isso pode ser esperado. Erro: {ex.Message}");
             }
 
             Console.WriteLine($"[WARNING] iProperty customizada '{propertyName}' não encontrada no documento {document.FullFileName}.");
             return null;
         }
-        /// <summary>
-        /// Ativa um documento específico que já está aberto
-        /// </summary>
+
         public bool ActivateDocument(string fileName)
         {
             try
             {
-                if (_inventorApp?.Documents == null)
-                {
-                    throw new InvalidOperationException("Inventor não conectado.");
-                }
+                if (_inventorApp?.Documents == null) throw new InvalidOperationException("Inventor não conectado.");
 
                 Console.WriteLine($"🎯 Ativando documento: {fileName}");
-
                 for (int i = 1; i <= _inventorApp.Documents.Count; i++)
                 {
                     try
                     {
                         dynamic doc = _inventorApp.Documents[i];
-
-                        if (doc.DisplayName.Equals(fileName, StringComparison.OrdinalIgnoreCase) ||
-                            Path.GetFileName(doc.FullFileName ?? "").Equals(fileName, StringComparison.OrdinalIgnoreCase))
+                        if (doc.DisplayName.Equals(fileName, StringComparison.OrdinalIgnoreCase) || Path.GetFileName(doc.FullFileName ?? "").Equals(fileName, StringComparison.OrdinalIgnoreCase))
                         {
                             _inventorApp.ActiveDocument = doc;
                             _inventorApp.Visible = true;
-
                             Console.WriteLine($"✅ Documento ativado: {doc.DisplayName}");
                             return true;
                         }
@@ -549,7 +450,6 @@ namespace CADCompanion.Agent
                         Console.WriteLine($"⚠️ Erro ao verificar documento {i}: {ex.Message}");
                     }
                 }
-
                 throw new FileNotFoundException($"Documento '{fileName}' não encontrado nos documentos abertos.");
             }
             catch (Exception ex)
@@ -559,20 +459,13 @@ namespace CADCompanion.Agent
             }
         }
 
-        /// <summary>
-        /// Obtém informações detalhadas sobre o documento ativo
-        /// </summary>
         public ActiveDocumentInfo? GetActiveDocumentInfo()
         {
             try
             {
-                if (_inventorApp?.ActiveDocument == null)
-                {
-                    return null;
-                }
+                if (_inventorApp?.ActiveDocument == null) return null;
 
                 dynamic activeDoc = _inventorApp.ActiveDocument;
-
                 return new ActiveDocumentInfo
                 {
                     FileName = activeDoc.DisplayName,
@@ -590,54 +483,40 @@ namespace CADCompanion.Agent
             }
         }
 
-        /// <summary>
-        /// Converte tipo numérico do documento em nome legível
-        /// </summary>
         private string GetDocumentTypeName(int documentType)
         {
             return documentType switch
             {
-                12290 => "Part (.ipt)",           // kPartDocumentObject
-                12291 => "Assembly (.iam)",       // kAssemblyDocumentObject
-                12292 => "Drawing (.idw/.dwg)",   // kDrawingDocumentObject
-                12293 => "Presentation (.ipn)",   // kPresentationDocumentObject
+                12290 => "Part (.ipt)",
+                12291 => "Assembly (.iam)",
+                12292 => "Drawing (.idw/.dwg)",
+                12293 => "Presentation (.ipn)",
                 _ => $"Unknown ({documentType})"
             };
         }
 
-        // ===== MÉTODOS ORIGINAIS MANTIDOS =====
-
         private List<BomItem> ExtractBOM(dynamic assemblyDoc)
         {
             var bomItems = new List<BomItem>();
-
             try
             {
                 Console.WriteLine("Acessando ComponentDefinition...");
                 dynamic compDef = assemblyDoc.ComponentDefinition;
-
                 Console.WriteLine("Acessando BOM...");
                 dynamic bom = compDef.BOM;
-
-                Console.WriteLine("Configurando BOM estruturado...");
                 bom.StructuredViewEnabled = true;
-                bom.StructuredViewFirstLevelOnly = false; // Garante que todos os níveis sejam extraídos
-
+                bom.StructuredViewFirstLevelOnly = false;
                 Console.WriteLine("Obtendo vista estruturada...");
                 dynamic bomView = bom.BOMViews["Structured"];
-
                 int rowCount = bomView.BOMRows.Count;
                 Console.WriteLine($"BOM estruturado obtido! Processando {rowCount} itens principais...");
-
-                ProcessBOMRows(bomView.BOMRows, bomItems, 0); // Inicia o processamento recursivo
-
+                ProcessBOMRows(bomView.BOMRows, bomItems, 0);
                 Console.WriteLine($"✓ {bomItems.Count} itens extraídos no total!");
             }
             catch (Exception ex)
             {
                 throw new Exception($"Erro ao extrair BOM: {ex.Message}", ex);
             }
-
             return bomItems;
         }
 
@@ -647,12 +526,9 @@ namespace CADCompanion.Agent
             {
                 try
                 {
-                    // Acessa o ComponentOccurrence associado à linha do BOM
                     dynamic? componentOccurrence = null;
-                    try { componentOccurrence = bomRow.ComponentOccurrence; }
-                    catch { /* Pode não ter ocorrência para linhas de nível superior ou virtual */ }
+                    try { componentOccurrence = bomRow.ComponentOccurrence; } catch { }
 
-                    // Acessa o ComponentDefinition através da ocorrência, ou diretamente da linha do BOM se não houver ocorrência
                     dynamic? componentDefinition = null;
                     if (componentOccurrence != null)
                     {
@@ -660,19 +536,15 @@ namespace CADCompanion.Agent
                     }
                     else
                     {
-                        // Fallback: Tenta pegar o ComponentDefinition diretamente da linha do BOM (para itens "virtuais" ou BOMs de nível superior)
-                        try { componentDefinition = bomRow.ComponentDefinitions[1]; }
-                        catch { /* Ignora se não conseguir */ }
+                        try { componentDefinition = bomRow.ComponentDefinitions[1]; } catch { }
                     }
 
-                    // Se não conseguir um componentDefinition, este item não é um componente válido para extração detalhada
                     if (componentDefinition == null)
                     {
                         Console.WriteLine($"⚠️ Ignorando item sem ComponentDefinition válido: {GetSafeString(() => bomRow.ItemNumber?.ToString())} (Nível: {level})");
-                        continue; // Pula este item e vai para o próximo
+                        continue;
                     }
 
-                    // Extrai as propriedades
                     string partNumber = GetPartNumber(bomRow, componentDefinition);
                     string description = GetDescription(bomRow, componentDefinition);
                     string documentPath = GetDocumentPath(componentDefinition);
@@ -693,14 +565,11 @@ namespace CADCompanion.Agent
                         Mass = mass,
                         Volume = volume
                     };
-
                     bomItems.Add(bomItem);
 
-                    // Log com mais detalhes
                     string indent = new string(' ', level * 2);
                     Console.WriteLine($"{indent}✓ {bomItem.PartNumber} (Qtd: {bomItem.Quantity}) - {bomItem.Description}");
 
-                    // Processa filhos recursivamente
                     try
                     {
                         if (bomRow.ChildRows != null && bomRow.ChildRows.Count > 0)
@@ -716,56 +585,37 @@ namespace CADCompanion.Agent
                 catch (Exception ex)
                 {
                     Console.WriteLine($"⚠️ Erro geral no item nível {level}: {ex.Message}");
-
-                    // Adiciona um item de erro ao BOM para rastreamento
-                    bomItems.Add(new BomItem
-                    {
-                        Level = level,
-                        ItemNumber = "ERRO",
-                        PartNumber = "ERRO",
-                        Description = $"Erro ao processar item: {ex.Message}",
-                        Quantity = 0
-                    });
+                    bomItems.Add(new BomItem { Level = level, ItemNumber = "ERRO", PartNumber = "ERRO", Description = $"Erro ao processar item: {ex.Message}", Quantity = 0 });
                 }
             }
         }
 
-        // Métodos auxiliares para extração segura de propriedades
-
         private string GetSafeString(Func<string?> getter)
         {
-            try { return getter() ?? ""; }
-            catch { return ""; }
+            try { return getter() ?? ""; } catch { return ""; }
         }
 
         private object GetSafeValue(Func<object> getter)
         {
-            try { return getter() ?? 0; }
-            catch { return 0; }
+            try { return getter() ?? 0; } catch { return 0; }
         }
 
         private string GetPartNumber(dynamic bomRow, dynamic componentDefinition)
         {
             try
             {
-                // Tenta obter do PropertySet "Design Tracking Properties"
                 dynamic designProps = componentDefinition.Document.PropertySets["Design Tracking Properties"];
                 string? partNumber = designProps["Part Number"].Value?.ToString();
-                if (!string.IsNullOrEmpty(partNumber))
-                    return partNumber;
+                if (!string.IsNullOrEmpty(partNumber)) return partNumber;
             }
-            catch { /* Ignora e tenta fallback */ }
+            catch { }
 
-            // Fallback para nome do arquivo sem extensão
             try
             {
                 string? fileName = componentDefinition.Document.DisplayName?.ToString();
                 return !string.IsNullOrEmpty(fileName) ? Path.GetFileNameWithoutExtension(fileName) : "N/A";
             }
-            catch
-            {
-                return "N/A";
-            }
+            catch { return "N/A"; }
         }
 
         private string GetDescription(dynamic bomRow, dynamic componentDefinition)
@@ -775,109 +625,62 @@ namespace CADCompanion.Agent
                 dynamic designProps = componentDefinition.Document.PropertySets["Design Tracking Properties"];
                 return designProps["Description"].Value?.ToString() ?? "Sem descrição";
             }
-            catch
-            {
-                return "Sem descrição";
-            }
+            catch { return "Sem descrição"; }
         }
 
         private string GetDocumentPath(dynamic componentDefinition)
         {
-            try
-            {
-                return componentDefinition.Document.FullFileName?.ToString() ?? "N/A";
-            }
-            catch
-            {
-                return "N/A";
-            }
+            try { return componentDefinition.Document.FullFileName?.ToString() ?? "N/A"; }
+            catch { return "N/A"; }
         }
 
         private string GetMaterial(dynamic componentDefinition)
         {
             try
             {
-                // kPartDocumentObject = 12290
-                if (componentDefinition.Document.DocumentType == 12290) // Se for uma peça
+                if (componentDefinition.Document.DocumentType == 12290)
                 {
-                    dynamic material = componentDefinition.Material; // Acessa o material da definição do componente
+                    dynamic material = componentDefinition.Material;
                     return material?.DisplayName?.ToString() ?? "Material não definido";
                 }
-                return "N/A"; // Não aplica material para montagens ou outros tipos
-            }
-            catch
-            {
                 return "N/A";
             }
+            catch { return "N/A"; }
         }
 
         private double GetMass(dynamic componentDefinition)
         {
-            try
-            {
-                // A massa está nas propriedades de massa da definição do componente
-                return Convert.ToDouble(componentDefinition.MassProperties.Mass);
-            }
-            catch
-            {
-                return 0.0;
-            }
+            try { return Convert.ToDouble(componentDefinition.MassProperties.Mass); }
+            catch { return 0.0; }
         }
 
         private double GetVolume(dynamic componentDefinition)
         {
-            try
-            {
-                // O volume está nas propriedades de massa da definição do componente
-                return Convert.ToDouble(componentDefinition.MassProperties.Volume);
-            }
-            catch
-            {
-                return 0.0;
-            }
+            try { return Convert.ToDouble(componentDefinition.MassProperties.Volume); }
+            catch { return 0.0; }
         }
-
-        // Métodos de exportação
 
         public void ExportBOMToCSV(List<BomItem> bomItems, string filePath)
         {
             using var writer = new StreamWriter(filePath, false, Encoding.UTF8);
-
             writer.WriteLine("Nível,Item,Peça,Descrição,Quantidade,Unidades,Material,Massa,Volume,Caminho");
-
             foreach (var item in bomItems)
             {
-                // Removi a indentação no CSV para a coluna Item, pois o Level já indica a hierarquia.
-                // Se quiser de volta, adicione: string indent = new string('-', item.Level * 2);
-                writer.WriteLine($"{item.Level}," +
-                               $"\"{item.ItemNumber}\"," + // Removida indentação no CSV
-                               $"\"{item.PartNumber}\"," +
-                               $"\"{item.Description}\"," +
-                               $"{item.Quantity}," +
-                               $"\"{item.Units}\"," +
-                               $"\"{item.Material}\"," +
-                               $"{item.Mass:F3}," +
-                               $"{item.Volume:F6}," +
-                               $"\"{item.DocumentPath}\"");
+                writer.WriteLine($"{item.Level}," + $"\"{item.ItemNumber}\"," + $"\"{item.PartNumber}\"," + $"\"{item.Description}\"," + $"{item.Quantity}," + $"\"{item.Units}\"," + $"\"{item.Material}\"," + $"{item.Mass:F3}," + $"{item.Volume:F6}," + $"\"{item.DocumentPath}\"");
             }
         }
 
         public void ExportBOMToExcel(List<BomItem> bomItems, string filePath)
         {
-            // ✅ CORRIGIDO: EPPlus 8+ não usa mais ExcelPackage.LicenseContext
-            // A configuração de licença agora é feita no construtor estático
-
             using var package = new ExcelPackage();
             var worksheet = package.Workbook.Worksheets.Add("BOM");
 
-            // Cabeçalhos
             var headers = new[] { "Nível", "Item", "Peça", "Descrição", "Qtd", "Unidades", "Material", "Massa(kg)", "Volume(cm³)", "Arquivo" };
             for (int i = 0; i < headers.Length; i++)
             {
                 worksheet.Cells[1, i + 1].Value = headers[i];
             }
 
-            // Formato cabeçalho
             using (var range = worksheet.Cells[1, 1, 1, headers.Length])
             {
                 range.Style.Font.Bold = true;
@@ -885,12 +688,10 @@ namespace CADCompanion.Agent
                 range.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightBlue);
             }
 
-            // Dados
             for (int i = 0; i < bomItems.Count; i++)
             {
                 var item = bomItems[i];
                 int row = i + 2;
-
                 worksheet.Cells[row, 1].Value = item.Level;
                 worksheet.Cells[row, 2].Value = item.ItemNumber;
                 worksheet.Cells[row, 3].Value = item.PartNumber;
@@ -901,11 +702,8 @@ namespace CADCompanion.Agent
                 worksheet.Cells[row, 8].Value = item.Mass;
                 worksheet.Cells[row, 9].Value = item.Volume;
                 worksheet.Cells[row, 10].Value = item.DocumentPath;
-
-                // Indentação para a coluna "Item" no Excel
                 worksheet.Cells[row, 2].Style.Indent = item.Level;
 
-                // Cor alternada
                 if (i % 2 == 0)
                 {
                     using (var range = worksheet.Cells[row, 1, row, headers.Length])
@@ -917,13 +715,10 @@ namespace CADCompanion.Agent
             }
 
             worksheet.Cells.AutoFitColumns();
-
-            // Informações extras
             worksheet.Cells[bomItems.Count + 3, 1].Value = "Gerado em:";
             worksheet.Cells[bomItems.Count + 3, 2].Value = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             worksheet.Cells[bomItems.Count + 4, 1].Value = "Total:";
             worksheet.Cells[bomItems.Count + 4, 2].Value = bomItems.Count;
-
             package.SaveAs(new FileInfo(filePath));
         }
 
@@ -931,29 +726,17 @@ namespace CADCompanion.Agent
         {
             try
             {
-                if (_inventorApp != null)
-                {
-                    return _inventorApp.SoftwareVersion.DisplayVersion?.ToString();
-                }
+                if (_inventorApp != null) return _inventorApp.SoftwareVersion.DisplayVersion?.ToString();
                 return null;
             }
-            catch
-            {
-                return null;
-            }
+            catch { return null; }
         }
 
         public dynamic? GetInventorApp()
         {
             try
             {
-                // Retorna a aplicação Inventor para subscrição de eventos
-                if (_inventorApp != null)
-                {
-                    return _inventorApp;
-                }
-
-                // Se não existe, tenta conectar
+                if (_inventorApp != null) return _inventorApp;
                 ConnectToInventor();
                 return _inventorApp;
             }
@@ -964,31 +747,27 @@ namespace CADCompanion.Agent
             }
         }
 
-        // ✅ ADICIONAR - Verifica se aplicação está válida
         public bool IsInventorAppValid()
         {
             try
             {
                 if (_inventorApp == null) return false;
-
-                // Testa acesso simples para verificar se ainda está válida
                 var version = _inventorApp.SoftwareVersion;
                 return version != null;
             }
-            catch
-            {
-                return false;
-            }
+            catch { return false; }
         }
     }
 
+    // Esta classe é a definição local usada pelos métodos de extração.
+    // O método ExtractBOMAsync irá mapear desta para a classe em Models.
     public class BomItem
     {
         public int Level { get; set; }
         public string ItemNumber { get; set; } = "";
         public string PartNumber { get; set; } = "";
         public string Description { get; set; } = "";
-        public object Quantity { get; set; } = 0; // Usar 'object' para lidar com Int32 ou Double
+        public object Quantity { get; set; } = 0;
         public string Units { get; set; } = "";
         public string DocumentPath { get; set; } = "";
         public string Material { get; set; } = "";

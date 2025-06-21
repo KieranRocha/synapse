@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CADCompanion.Agent")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aeb48260c62d81cfb7ce7065ef572644e42c6417")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0563ccc9a154b383fb5f934ccfeee21b129fd185")]
 [assembly: System.Reflection.AssemblyProductAttribute("CADCompanion.Agent")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CADCompanion.Agent")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
