@@ -360,7 +360,14 @@ namespace CADCompanion.Server.Services
                 BomVersions = new List<BomVersionSummaryDto>() // ✅ Inicializar vazio
             };
         }
-
+        public async Task<IEnumerable<BomVersion>> GetBomVersionsByAssemblyPathAsync(string assemblyPath)
+        {
+            var fileName = Path.GetFileName(assemblyPath);
+            return await _context.BomVersions
+                .Where(bv => bv.AssemblyFilePath.Contains(fileName))
+                .OrderByDescending(bv => bv.VersionNumber)
+                .ToListAsync();
+        }
         private async Task UpdateProjectMachineCountAsync(int projectId)
         {
             try

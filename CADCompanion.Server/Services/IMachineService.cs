@@ -21,5 +21,6 @@ namespace CADCompanion.Server.Services
         Task<MachineDto?> UpdateMachineInProjectAsync(int projectId, int machineId, UpdateMachineDto updateMachineDto);
         Task<bool> DeleteMachineFromProjectAsync(int projectId, int machineId);
         Task<bool> UpdateMachineStatusAsync(int machineId, string status, string? userName, string? currentFile);
+        Task<IEnumerable<BomVersion>> GetBomVersionsByAssemblyPathAsync(string assemblyPath);
     }
 }

@@ -74,6 +74,7 @@ namespace CADCompanion.Server.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
         [HttpPost("{id}/status")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -94,5 +95,6 @@ namespace CADCompanion.Server.Controllers
 
             return NoContent(); // Indica sucesso na operação
         }
+
     }
 }

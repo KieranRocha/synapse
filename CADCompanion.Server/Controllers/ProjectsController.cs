@@ -2,7 +2,7 @@
 using CADCompanion.Server.Services;
 using CADCompanion.Shared.Contracts;
 using Microsoft.AspNetCore.Mvc;
-
+using System.IO;
 namespace CADCompanion.Server.Controllers;
 
 [ApiController]
@@ -298,7 +298,160 @@ public class ProjectsController : ControllerBase
             return StatusCode(500, "Erro interno do servidor");
         }
     }
+    /// </summary>
+    [HttpGet("{projectId}/machines/{machineId}/live-status")]
+    public async Task<ActionResult<MachineLiveStatusDto>> GetMachineLiveStatus(int projectId, int machineId)
+    {
+        try
+        {
+            _logger.LogInformation("Requisição de status em tempo real: máquina {MachineId} do projeto {ProjectId}",
+                machineId, projectId);
 
+            var machine = await _machineService.GetMachineByProjectAndIdAsync(projectId, machineId);
+            if (machine == null)
+            {
+                return NotFound($"Máquina {machineId} não encontrada no projeto {projectId}");
+            }
+
+            // Buscar dados em tempo real
+            var liveStatus = new MachineLiveStatusDto
+            {
+                Id = machine.Id,
+                Name = machine.Name,
+                Status = machine.Status,
+                IsActive = await IsAgentConnectedAsync(machine.Id),
+                LastBomExtraction = machine.LastBomExtraction,
+                TotalBomVersions = machine.TotalBomVersions,
+                CurrentFile = await GetCurrentFileBeingEditedAsync(machine.Id),
+                LastActivity = await GetLastActivityAsync(machine.Id),
+                UpdatedAt = machine.UpdatedAt,
+
+                QuickStats = new MachineQuickStatsDto
+                {
+                    BomVersionsThisWeek = await GetBomVersionsCountAsync(machine.Id, DateTime.UtcNow.AddDays(-7)),
+                    LastSaveTime = await GetLastSaveTimeAsync(machine.Id),
+                    ActiveUsersCount = await GetActiveUsersCountAsync(machine.Id)
+                }
+            };
+
+            return Ok(liveStatus);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Erro ao buscar status em tempo real da máquina {MachineId}", machineId);
+            return StatusCode(500, "Erro interno do servidor");
+        }
+    }
+
+    #region Helper Methods para Live Status
+
+    private async Task<bool> IsAgentConnectedAsync(int machineId)
+    {
+        // TODO: Implementar verificação real via heartbeat ou cache
+        // Por enquanto, sempre retorna true
+        return await Task.FromResult(true);
+    }
+
+    private async Task<string?> GetCurrentFileBeingEditedAsync(int machineId)
+    {
+        // TODO: Implementar busca do arquivo atual sendo editado
+        // Pode ser via última atividade ou sessão ativa
+        return await Task.FromResult<string?>(null);
+    }
+
+    private async Task<DateTime?> GetLastActivityAsync(int machineId)
+    {
+        try
+        {
+            // Buscar na tabela de atividades (se existir)
+            // Por enquanto, simula com dados recentes
+            return await Task.FromResult(DateTime.UtcNow.AddMinutes(-5));
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private async Task<int> GetBomVersionsCountAsync(int machineId, DateTime since)
+    {
+        try
+        {
+            // Usar o serviço de máquina para buscar versões
+            var versions = await _machineService.GetMachineBomVersionsAsync(machineId);
+            return versions.Count(v => v.ExtractedAt >= since);
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+
+    private async Task<DateTime?> GetLastSaveTimeAsync(int machineId)
+    {
+        // TODO: Implementar busca do último save via atividades
+        return await Task.FromResult(DateTime.UtcNow.AddMinutes(-2));
+    }
+
+    private async Task<int> GetActiveUsersCountAsync(int machineId)
+    {
+        // TODO: Implementar contagem de usuários ativos
+        return await Task.FromResult(1);
+    }
+
+    #endregion
+    /// <summary>
+    /// Obter versões BOM de uma máquina específica
+    /// GET /api/projects/9/machines/2/bom-versions
+    /// </summary>
+    /// <summary>
+    /// Obter versões BOM de uma máquina específica
+    /// GET /api/projects/9/machines/2/bom-versions
+    /// </summary>
+    /// <summary>
+    /// Obter versões BOM de uma máquina específica
+    /// GET /api/projects/9/machines/2/bom-versions
+    /// </summary>
+    [HttpGet("{projectId}/machines/{machineId}/bom-versions")]
+    public async Task<ActionResult<IEnumerable<BomVersionSummaryDto>>> GetMachineBomVersions(int projectId, int machineId)
+    
+    {
+        try
+        {
+            _logger.LogInformation("Requisição para versões BOM da máquina {MachineId} do projeto {ProjectId}",
+                machineId, projectId);
+
+            // Verificar se a máquina existe no projeto
+            var machine = await _machineService.GetMachineByProjectAndIdAsync(projectId, machineId);
+            if (machine == null)
+            {
+                return NotFound($"Máquina {machineId} não encontrada no projeto {projectId}");
+            }
+
+            // Buscar versões BOM da máquina
+            var versions = await _machineService.GetMachineBomVersionsAsync(machineId);
+
+            // Converter para DTOs resumidos (DTO já existe no projeto)
+            var versionDtos = versions.Select(v => new BomVersionSummaryDto
+            {
+                Id = v.Id,
+                VersionNumber = v.VersionNumber,
+                ExtractedAt = v.ExtractedAt,
+                ExtractedBy = v.ExtractedBy,
+                // Outras propriedades conforme definido no DTO existente
+            }).ToList();
+
+            _logger.LogInformation("Retornando {Count} versões BOM para máquina {MachineId}",
+                versionDtos.Count, machineId);
+
+            return Ok(versionDtos);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Erro ao buscar versões BOM da máquina {MachineId}", machineId);
+            return StatusCode(500, "Erro interno do servidor");
+        }
+    }
     /// <summary>
     /// Excluir máquina de um projeto
     /// DELETE /api/projects/9/machines/1
@@ -331,6 +484,7 @@ public class ProjectsController : ControllerBase
                 machineId, projectId);
             return StatusCode(500, "Erro interno do servidor");
         }
+
     }
 
     #endregion
