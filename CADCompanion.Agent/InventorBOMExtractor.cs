@@ -96,11 +96,17 @@ namespace CADCompanion.Agent
                 // Mapeia da classe 'BomItem' local para a classe 'BOMItem' do namespace Models.
                 result.BomData = internalBomItems.Select(item => new Models.BOMItem
                 {
-                    // O Id será gerado automaticamente pelo construtor do modelo.
                     PartNumber = item.PartNumber,
                     Description = item.Description,
-                    Quantity = Convert.ToInt32(item.Quantity) // Garante que a quantidade seja um inteiro.
-                    // Outras propriedades podem ser mapeadas aqui se necessário.
+                    Quantity = Convert.ToInt32(item.Quantity),
+
+                    // ✅ ADICIONAR: Campos hierárquicos
+                    Level = item.Level,
+                    IsAssembly = item.DocumentPath.EndsWith(".iam", StringComparison.OrdinalIgnoreCase),
+                    Material = item.Material,
+                    Weight = item.Mass,
+                    Unit = item.Units,
+                    FilePath = item.DocumentPath
                 }).ToList();
 
                 result.Success = true;

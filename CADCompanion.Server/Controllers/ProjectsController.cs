@@ -439,6 +439,7 @@ public class ProjectsController : ControllerBase
                 ExtractedAt = v.ExtractedAt,
                 ExtractedBy = v.ExtractedBy,
                 ItemCount = v.Items?.Count ?? 0,  // Vai mostrar 27
+                Items = v.Items ?? new List<BomItemDto>(),
                 CreatedAt = v.ExtractedAt          // Vai mostrar data correta
             }).ToList();
 

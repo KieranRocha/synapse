@@ -101,6 +101,8 @@ public class BomVersionSummaryDto
     public string? ExtractedBy { get; set; }
     public int ItemCount { get; set; }
     public DateTime ExtractedAt { get; set; }
+    public List<BomItemDto> Items { get; set; } = new();
+
 }
 public class UpdateStatusRequest
 {

@@ -56,8 +56,13 @@ public class ApiCommunicationService : IApiCommunicationService
                 {
                     PartNumber = item.PartNumber,
                     Description = item.Description,
-                    Quantity = Convert.ToInt32(item.Quantity), // Converte object para int
-                    StockNumber = null // Pode adicionar lógica aqui se necessário
+                    Quantity = Convert.ToInt32(item.Quantity),
+                    StockNumber = null,
+                    // ✅ ADICIONAR campos faltantes:
+                    Level = item.Level,
+                    IsAssembly = item.DocumentPath.EndsWith(".iam", StringComparison.OrdinalIgnoreCase),
+                    Material = item.Material,
+                    Weight = item.Mass
                 }).ToList()
             };
 
