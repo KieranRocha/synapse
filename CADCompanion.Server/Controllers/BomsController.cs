@@ -1,7 +1,10 @@
-// CADCompanion.Server/Controllers/BomsController.cs - COM DIAGNÓSTICO MELHORADO
+using CADCompanion.Server.Data;
 using CADCompanion.Server.Services;
 using CADCompanion.Shared.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+namespace CADCompanion.Server.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -9,11 +12,16 @@ public class BomsController : ControllerBase
 {
     private readonly ILogger<BomsController> _logger;
     private readonly BomVersioningService _versioningService;
+    private readonly AppDbContext _context;
 
-    public BomsController(ILogger<BomsController> logger, BomVersioningService versioningService)
+    public BomsController(
+        ILogger<BomsController> logger,
+        BomVersioningService versioningService,
+        AppDbContext context)
     {
         _logger = logger;
         _versioningService = versioningService;
+        _context = context;
     }
 
     [HttpPost("submit")]
@@ -24,81 +32,92 @@ public class BomsController : ControllerBase
 
         try
         {
-            // ✅ DIAGNÓSTICO: Log dos dados recebidos
-            _logger.LogInformation("📊 Dados recebidos - Projeto: {ProjectId}, Itens: {ItemCount}, Data: {ExtractedAt}",
-                bomData.ProjectId ?? "N/A", bomData.Items?.Count ?? 0, bomData.ExtractedAt);
-
-            // ✅ VALIDAÇÃO: Verifica se os dados básicos estão OK
+            // Validação básica
             if (string.IsNullOrEmpty(bomData.AssemblyFilePath))
-            {
-                _logger.LogWarning("❌ AssemblyFilePath está vazio");
                 return BadRequest("AssemblyFilePath é obrigatório");
-            }
 
             if (string.IsNullOrEmpty(bomData.ExtractedBy))
-            {
-                _logger.LogWarning("❌ ExtractedBy está vazio");
                 return BadRequest("ExtractedBy é obrigatório");
-            }
 
             if (bomData.Items == null || bomData.Items.Count == 0)
-            {
-                _logger.LogWarning("❌ Lista de itens está vazia");
                 return BadRequest("Lista de itens não pode estar vazia");
+
+            // Verificar se há mudanças antes de salvar
+            var lastVersion = await _context.BomVersions
+                .Where(bv => bv.AssemblyFilePath == bomData.AssemblyFilePath)
+                .OrderByDescending(bv => bv.VersionNumber)
+                .FirstOrDefaultAsync();
+
+            if (lastVersion != null)
+            {
+                var hasChanges = _versioningService.HasSignificantChanges(lastVersion.Items, bomData.Items);
+                if (!hasChanges)
+                {
+                    return Ok(new
+                    {
+                        saved = false,
+                        message = "Nenhuma mudança detectada. BOM não foi salva.",
+                        version = lastVersion.VersionNumber
+                    });
+                }
             }
 
-            _logger.LogInformation("✅ Validação básica passou - iniciando processamento no serviço");
-
-            // ✅ PROCESSAMENTO: Chama o serviço com logging detalhado
+            // Salvar nova versão
             var newVersion = await _versioningService.CreateNewVersionAsync(bomData);
 
             _logger.LogInformation("✅ BOM processada com sucesso - Versão: {Version}, ID: {Id}",
                 newVersion.VersionNumber, newVersion.Id);
 
-            return CreatedAtAction(nameof(SubmitNewBom), new { id = newVersion.Id }, newVersion);
-        }
-        catch (Microsoft.EntityFrameworkCore.DbUpdateException dbEx)
-        {
-            _logger.LogError(dbEx, "❌ ERRO DE BANCO DE DADOS ao processar BOM");
-            _logger.LogError("❌ Inner Exception: {InnerException}", dbEx.InnerException?.Message);
-            return StatusCode(500, new
+            return Ok(new
             {
-                error = "Erro de banco de dados",
-                details = dbEx.InnerException?.Message ?? dbEx.Message
-            });
-        }
-        catch (Npgsql.PostgresException pgEx)
-        {
-            _logger.LogError(pgEx, "❌ ERRO POSTGRESQL específico ao processar BOM");
-            _logger.LogError("❌ PostgreSQL Code: {SqlState}, Message: {Message}", pgEx.SqlState, pgEx.MessageText);
-            return StatusCode(500, new
-            {
-                error = "Erro PostgreSQL",
-                code = pgEx.SqlState,
-                details = pgEx.MessageText
-            });
-        }
-        catch (System.Text.Json.JsonException jsonEx)
-        {
-            _logger.LogError(jsonEx, "❌ ERRO DE SERIALIZAÇÃO JSON ao processar BOM");
-            return StatusCode(500, new
-            {
-                error = "Erro de serialização JSON",
-                details = jsonEx.Message
+                saved = true,
+                message = "BOM salva com sucesso",
+                id = newVersion.Id,
+                version = newVersion.VersionNumber
             });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "❌ ERRO GERAL ao processar a submissão da BOM");
-            _logger.LogError("❌ Exception Type: {ExceptionType}", ex.GetType().Name);
-            _logger.LogError("❌ Stack Trace: {StackTrace}", ex.StackTrace);
+            _logger.LogError(ex, "❌ Erro ao processar BOM");
+            return StatusCode(500, new { error = "Erro interno do servidor", details = ex.Message });
+        }
+    }
 
-            return StatusCode(500, new
-            {
-                error = "Erro interno do servidor",
-                type = ex.GetType().Name,
-                details = ex.Message
-            });
+    [HttpGet("machines/{machineId}/versions")]
+    public async Task<ActionResult<List<BomVersionSummaryDto>>> GetMachineVersions(int machineId)
+    {
+        try
+        {
+            var versions = await _versioningService.GetMachineVersionsAsync(machineId);
+            return Ok(versions);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Erro ao buscar versões da máquina {MachineId}", machineId);
+            return StatusCode(500, "Erro interno do servidor");
+        }
+    }
+
+    [HttpGet("machines/{machineId}/compare/{version1}/{version2}")]
+    public async Task<ActionResult<BomComparisonResult>> CompareBomVersions(
+        int machineId, int version1, int version2)
+    {
+        try
+        {
+            _logger.LogInformation("Comparando versões {V1} e {V2} da máquina {MachineId}",
+                version1, version2, machineId);
+
+            var comparison = await _versioningService.CompareBomVersionsAsync(machineId, version1, version2);
+            return Ok(comparison);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Erro ao comparar versões BOM");
+            return StatusCode(500, "Erro interno do servidor");
         }
     }
 }

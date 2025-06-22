@@ -23,3 +23,29 @@ public class BomItemDto
     public double? Weight { get; set; }
     // Adicione outras propriedades que você extrai e quer enviar
 }
+
+public class BomComparisonResult
+{
+    public bool HasChanges { get; set; }
+    public List<BomDiff> Changes { get; set; } = new();
+    public int TotalAdded { get; set; }
+    public int TotalRemoved { get; set; }
+    public int TotalModified { get; set; }
+    public string Summary => $"+{TotalAdded} -{TotalRemoved} ~{TotalModified}";
+}
+
+public class BomDiff
+{
+    public string PartNumber { get; set; } = "";
+    public string Description { get; set; } = "";
+    public string Type { get; set; } = ""; // "Added", "Removed", "Modified"
+    public BomDiffDetail? OldValue { get; set; }
+    public BomDiffDetail? NewValue { get; set; }
+}
+
+public class BomDiffDetail
+{
+    public int Quantity { get; set; }
+    public string? Description { get; set; }
+    public string? StockNumber { get; set; }
+}
