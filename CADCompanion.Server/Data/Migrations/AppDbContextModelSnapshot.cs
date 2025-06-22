@@ -83,7 +83,7 @@ namespace CADCompanion.Server.Data.Migrations
                     b.HasIndex("ProjectId", "MachineId", "VersionNumber")
                         .IsUnique();
 
-                    b.ToTable("BomVersions");
+                    b.ToTable("BomVersions", (string)null);
                 });
 
             modelBuilder.Entity("CADCompanion.Server.Models.Machine", b =>
@@ -142,7 +142,7 @@ namespace CADCompanion.Server.Data.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("Machines");
+                    b.ToTable("Machines", (string)null);
                 });
 
             modelBuilder.Entity("CADCompanion.Server.Models.Project", b =>
@@ -231,7 +231,7 @@ namespace CADCompanion.Server.Data.Migrations
 
                     b.HasIndex("Status");
 
-                    b.ToTable("Projects");
+                    b.ToTable("Projects", (string)null);
                 });
 
             modelBuilder.Entity("CADCompanion.Server.Models.BomVersion", b =>

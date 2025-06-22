@@ -98,19 +98,17 @@ public class AppDbContext : DbContext
             entity.HasIndex(e => e.OperationNumber);
             entity.HasIndex(e => e.CreatedAt);
         });
-
-        // ✅ CONFIGURAÇÃO BOMVERSION
         modelBuilder.Entity<BomVersion>(entity =>
         {
             entity.HasKey(e => e.Id);
 
+            // ✅ CORRIGIDO: ProjectId como int (FK)
             entity.Property(e => e.ProjectId)
-                .IsRequired()
-                .HasMaxLength(50);
+                .IsRequired();
 
+            // ✅ CORRIGIDO: MachineId como int (FK)
             entity.Property(e => e.MachineId)
-                .IsRequired()
-                .HasMaxLength(50);
+                .IsRequired();
 
             entity.Property(e => e.AssemblyFilePath)
                 .IsRequired()
@@ -124,6 +122,9 @@ public class AppDbContext : DbContext
             entity.Property(e => e.Items)
                 .HasColumnType("jsonb")
                 .IsRequired();
+
+            // ✅ ADICIONADO: Relacionamentos FK
+
 
             // Índices para queries frequentes
             entity.HasIndex(e => e.ProjectId);

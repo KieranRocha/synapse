@@ -414,7 +414,7 @@ public class ProjectsController : ControllerBase
     /// </summary>
     [HttpGet("{projectId}/machines/{machineId}/bom-versions")]
     public async Task<ActionResult<IEnumerable<BomVersionSummaryDto>>> GetMachineBomVersions(int projectId, int machineId)
-    
+
     {
         try
         {
@@ -438,7 +438,8 @@ public class ProjectsController : ControllerBase
                 VersionNumber = v.VersionNumber,
                 ExtractedAt = v.ExtractedAt,
                 ExtractedBy = v.ExtractedBy,
-                // Outras propriedades conforme definido no DTO existente
+                ItemCount = v.Items?.Count ?? 0,  // Vai mostrar 27
+                CreatedAt = v.ExtractedAt          // Vai mostrar data correta
             }).ToList();
 
             _logger.LogInformation("Retornando {Count} versões BOM para máquina {MachineId}",
