@@ -404,14 +404,6 @@ public class ProjectsController : ControllerBase
     /// Obter versões BOM de uma máquina específica
     /// GET /api/projects/9/machines/2/bom-versions
     /// </summary>
-    /// <summary>
-    /// Obter versões BOM de uma máquina específica
-    /// GET /api/projects/9/machines/2/bom-versions
-    /// </summary>
-    /// <summary>
-    /// Obter versões BOM de uma máquina específica
-    /// GET /api/projects/9/machines/2/bom-versions
-    /// </summary>
     [HttpGet("{projectId}/machines/{machineId}/bom-versions")]
     public async Task<ActionResult<IEnumerable<BomVersionSummaryDto>>> GetMachineBomVersions(int projectId, int machineId)
 
@@ -432,15 +424,17 @@ public class ProjectsController : ControllerBase
             var versions = await _machineService.GetMachineBomVersionsAsync(machineId);
 
             // Converter para DTOs resumidos (DTO já existe no projeto)
-            var versionDtos = versions.Select(v => new BomVersionSummaryDto
+            var versionDtos = versions
+            .OrderBy(v => v.VersionNumber) // <-- ORDENA AS VERSÕES EM ORDEM CRESCENTE
+            .Select(v => new BomVersionSummaryDto
             {
                 Id = v.Id,
                 VersionNumber = v.VersionNumber,
                 ExtractedAt = v.ExtractedAt,
                 ExtractedBy = v.ExtractedBy,
-                ItemCount = v.Items?.Count ?? 0,  // Vai mostrar 27
+                ItemCount = v.Items?.Count ?? 0,
                 Items = v.Items ?? new List<BomItemDto>(),
-                CreatedAt = v.ExtractedAt          // Vai mostrar data correta
+                CreatedAt = v.ExtractedAt
             }).ToList();
 
             _logger.LogInformation("Retornando {Count} versões BOM para máquina {MachineId}",

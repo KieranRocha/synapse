@@ -1295,3 +1295,15 @@ System.Net.Http.HttpRequestException: Response status code does not indicate suc
 2025-06-22 16:07:34.210 -03:00 [INF] ✅ BOM convertida e enviada: 27 itens
 2025-06-22 16:07:34.211 -03:00 [INF] ✅ BOM enviado: 27 itens (Projeto: Projeto Desconhecido)
 2025-06-22 16:07:34.212 -03:00 [INF] 📝 Atividade de documento: "Saved" - 0345385.iam
+2025-06-22 16:11:51.624 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-22 16:11:51.626 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-22 16:11:51.632 -03:00 [INF] Received HTTP response headers after 4.1831ms - 204
+2025-06-22 16:11:51.634 -03:00 [INF] End processing HTTP request after 10.1611ms - 204
+2025-06-22 16:16:51.642 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-22 16:16:51.644 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-22 16:16:51.649 -03:00 [INF] Received HTTP response headers after 3.7132ms - 204
+2025-06-22 16:16:51.651 -03:00 [INF] End processing HTTP request after 8.613ms - 204
+2025-06-22 16:21:51.652 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-22 16:21:51.654 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-22 16:21:52.743 -03:00 [INF] Received HTTP response headers after 1087.1269ms - 204
+2025-06-22 16:21:52.744 -03:00 [INF] End processing HTTP request after 1091.9844ms - 204
