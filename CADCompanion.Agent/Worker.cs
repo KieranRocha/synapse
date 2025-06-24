@@ -1,5 +1,7 @@
 namespace CADCompanion.Agent;
 
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;

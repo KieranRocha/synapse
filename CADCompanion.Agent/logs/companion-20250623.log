@@ -2530,3 +2530,6 @@ Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: 'System.__ComObject' does
 2025-06-23 22:40:05.186 -03:00 [INF] ✅ Work-Driven Monitoring parado
 2025-06-23 22:40:05.186 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
 2025-06-23 22:40:05.186 -03:00 [INF] 🏁 Work Session finalizada: 111646.ipt - Duração: 00:18:09 - 0 saves
+2025-06-23 23:06:27.572 -03:00 [INF] 🔔 Sistema de notificações Windows inicializado
+2025-06-23 23:06:27.665 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-23 23:06:27.667 -03:00 [INF] Tentando conectar ao Inventor...

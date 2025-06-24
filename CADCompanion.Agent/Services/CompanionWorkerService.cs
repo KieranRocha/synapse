@@ -1,79 +1,76 @@
-// Em Services/CompanionWorkerService.cs - CORRIGIDO
+// CADCompanion.Agent/Services/CompanionWorkerService.cs
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace CADCompanion.Agent.Services;
-
-public class CompanionWorkerService : BackgroundService
+namespace CADCompanion.Agent.Services
 {
-    private readonly ILogger<CompanionWorkerService> _logger;
-    private readonly IWorkDrivenMonitoringService _monitoringService;
-    private readonly IApiCommunicationService _apiCommunicationService;
-    private readonly IInventorConnectionService _inventorConnectionService; // ✅ 1. Adicionar
-
-    public CompanionWorkerService(
-        ILogger<CompanionWorkerService> logger,
-        IWorkDrivenMonitoringService monitoringService,
-        IApiCommunicationService apiCommunicationService,
-        IInventorConnectionService inventorConnectionService) // ✅ 2. Adicionar ao construtor
+    public class CompanionWorkerService : BackgroundService
     {
-        _logger = logger;
-        _monitoringService = monitoringService;
-        _apiCommunicationService = apiCommunicationService;
-        _inventorConnectionService = inventorConnectionService; // ✅ 3. Atribuir
-    }
+        private readonly ILogger<CompanionWorkerService> _logger;
+        private readonly IInventorConnectionService _connectionService;
+        private readonly IInventorDocumentEventService _eventService;
+        private readonly IDocumentProcessingService _processingService;
+        private readonly IWorkDrivenMonitoringService _monitoringService;
 
-    public override async Task StartAsync(CancellationToken cancellationToken) // ✅ 4. Marcar como async
-    {
-        _logger.LogInformation("Companion Worker Service iniciando.");
-        
-        try
+        public CompanionWorkerService(
+            ILogger<CompanionWorkerService> logger,
+            IInventorConnectionService connectionService,
+            IInventorDocumentEventService eventService,
+            IDocumentProcessingService processingService, // Serviço de processamento injetado
+            IWorkDrivenMonitoringService monitoringService)
         {
-            // ✅ 5. Conectar ao Inventor ANTES de qualquer outra coisa
-            await _inventorConnectionService.ConnectAsync();
+            _logger = logger;
+            _connectionService = connectionService;
+            _eventService = eventService;
+            _processingService = processingService;
+            _monitoringService = monitoringService;
         }
-        catch (Exception ex)
-        {
-            _logger.LogCritical(ex, "Falha crítica ao conectar com o Inventor. A aplicação será encerrada.");
-            // Opcional: Você pode querer parar a aplicação aqui se o Inventor for essencial.
-            // _applicationLifetime.StopApplication(); 
-            return;
-        }
-        
-        // Só inicia o monitoramento se a conexão for bem sucedida
-        if (_inventorConnectionService.IsConnected)
-        {
-             _monitoringService.StartMonitoring();
-        }
-        else
-        {
-            _logger.LogWarning("Monitoramento não iniciado pois a conexão com o Inventor falhou.");
-        }
-       
-        await base.StartAsync(cancellationToken); // ✅ 6. Usar await
-    }
 
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-    {
-        // Loop principal para tarefas de fundo, como o heartbeat
-        while (!stoppingToken.IsCancellationRequested)
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _logger.LogDebug("Companion Worker executando tarefas de fundo.");
-            
-            // Só envia heartbeat se o servidor estiver acessível
-            if(_inventorConnectionService.IsConnected)
+            _logger.LogInformation("Companion Worker Service iniciando.");
+
+            try
             {
-               await _apiCommunicationService.SendHeartbeatAsync();
+                // 1. Conecta ao Inventor
+                _connectionService.Connect();
+
+                // 2. ✅ LIGAÇÃO: Inscreve o DocumentProcessingService para ouvir os eventos do Inventor.
+                //    Quando um documento for aberto ou salvo, o método ProcessDocumentEventAsync será chamado.
+                _eventService.DocumentOpened += async (s, e) => await _processingService.ProcessDocumentEventAsync(e, "DocumentOpened");
+                _eventService.DocumentSaved += async (s, e) => await _processingService.ProcessDocumentEventAsync(e, "DocumentSaved");
+                _eventService.DocumentClosed += async (s, e) => await _processingService.ProcessDocumentEventAsync(e, "DocumentClosed");
+
+                // 3. Inicia o monitoramento de eventos do Inventor (que agora acionarão o processador)
+                _eventService.Start();
+
+                // 4. Inicia o monitoramento de arquivos em pastas
+                _monitoringService.StartMonitoring();
+
+                _logger.LogInformation("✅ Todos os serviços foram iniciados e conectados. Agente está ativo.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex, "Falha crítica ao inicializar os serviços do Inventor. O agente será encerrado.");
+                return; // Encerra o serviço se a inicialização falhar
             }
 
-            await Task.Delay(TimeSpan.FromMinutes(5), stoppingToken);
+            // Mantém o serviço rodando em segundo plano
+            await Task.Delay(Timeout.Infinite, stoppingToken);
         }
-    }
 
-    public override Task StopAsync(CancellationToken cancellationToken)
-    {
-        _logger.LogInformation("Companion Worker Service parando.");
-        _monitoringService.StopMonitoring();
-        return base.StopAsync(cancellationToken);
+        public override async Task StopAsync(CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("Companion Worker Service parando.");
+            _monitoringService.StopMonitoring();
+            _eventService.Stop();
+            // Para um serviço singleton que dura a vida toda da app,
+            // a desinscrição de eventos não é crítica, mas é uma boa prática.
+            // Para simplicidade, foi omitida aqui.
+            await base.StopAsync(cancellationToken);
+        }
     }
 }

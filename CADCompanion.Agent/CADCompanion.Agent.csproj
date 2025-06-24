@@ -29,8 +29,8 @@
     <PackageReference Include="EPPlus" Version="7.0.0" />
     
     <!-- ✅ HTTP CLIENT -->
-    <PackageReference Include="System.Net.Http" Version="4.3.4" />
-    <PackageReference Include="System.Text.Json" Version="8.0.0" />
+
+    <PackageReference Include="System.Text.Json" Version="9.0.6" />
   </ItemGroup>
 
   <!-- ✅ REFERÊNCIA DO WINDOWS FORMS -->

@@ -1,6 +1,6 @@
-// Services/DocumentProcessingService.cs - CORRIGIDO
+/ CADCompanion.Agent / Services / DocumentProcessingService.cs
 using Microsoft.Extensions.Logging;
-using CADCompanion.Agent.Models;
+using CADCompanion.Agent.Models; // ✅ CORREÇÃO: Garante que o namespace dos modelos seja importado.
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,9 +11,8 @@ namespace CADCompanion.Agent.Services
 {
     public interface IDocumentProcessingService
     {
-        Task ProcessDocumentSaveAsync(DocumentEvent documentEvent);
-        Task ProcessDocumentChangeAsync(DocumentEvent documentEvent);
-        Task<BOMDataWithContext?> ExtractBOMWithContextAsync(string filePath, ProjectInfo? projectInfo, string? workSessionId = null);
+        // O tipo DocumentEventArgs agora será encontrado.
+        Task ProcessDocumentEventAsync(DocumentEventArgs args, string eventType);
     }
 
     public class DocumentProcessingService : IDocumentProcessingService
@@ -21,105 +20,100 @@ namespace CADCompanion.Agent.Services
         private readonly ILogger<DocumentProcessingService> _logger;
         private readonly IInventorConnectionService _inventorConnection;
         private readonly IApiCommunicationService _apiCommunication;
-        private readonly InventorBomExtractor _bomExtractor;
+        private readonly IWindowsNotificationService _notificationService;
+        private readonly IInventorBOMExtractor _bomExtractor;
 
         public DocumentProcessingService(
             ILogger<DocumentProcessingService> logger,
             IInventorConnectionService inventorConnection,
             IApiCommunicationService apiCommunication,
-            InventorBomExtractor bomExtractor)
+            IInventorBOMExtractor bomExtractor,
+            IWindowsNotificationService notificationService)
         {
             _logger = logger;
             _inventorConnection = inventorConnection;
             _apiCommunication = apiCommunication;
             _bomExtractor = bomExtractor;
+            _notificationService = notificationService;
         }
 
-        public async Task ProcessDocumentSaveAsync(DocumentEvent documentEvent)
+        public async Task ProcessDocumentEventAsync(DocumentEventArgs args, string eventType)
         {
             try
             {
-                _logger.LogInformation($"📄 Processando save: {documentEvent.FileName} (Tipo: {documentEvent.DocumentType})");
+                _logger.LogInformation("🚀 Evento '{EventType}' recebido para: {FileName}", eventType, args.FileName);
 
-                // Verifica se arquivo ainda existe (pode ter sido movido/deletado)
-                if (!File.Exists(documentEvent.FilePath))
+                // Lógica de notificação
+                switch (eventType)
                 {
-                    _logger.LogWarning($"⚠️ Arquivo não encontrado: {documentEvent.FilePath}");
-                    return;
-                }
-
-                // Aguarda arquivo estabilizar (pode ainda estar sendo escrito)
-                await WaitForFileStabilityAsync(documentEvent.FilePath);
-
-                // Processa baseado no tipo de documento
-                switch (documentEvent.DocumentType)
-                {
-                    case DocumentType.Assembly:
-                        await ProcessAssemblyDocumentAsync(documentEvent);
+                    case "DocumentOpened":
+                        _notificationService.ShowDocumentOpenedNotification(args.FileName, args.ProjectName ?? "N/A", 0);
                         break;
-
-                    case DocumentType.Part:
-                        await ProcessPartDocumentAsync(documentEvent);
-                        break;
-
-                    case DocumentType.Drawing:
-                        await ProcessDrawingDocumentAsync(documentEvent);
-                        break;
-
-                    default:
-                        _logger.LogDebug($"Tipo de documento não processado: {documentEvent.DocumentType}");
+                    case "DocumentSaved":
+                        _notificationService.ShowSuccessNotification("Arquivo Salvo", $"{args.FileName} foi salvo.");
                         break;
                 }
 
-                // Sempre envia atividade para API (auditoria)
-                await SendDocumentActivityAsync(documentEvent);
+                // Lógica de processamento de BOM para montagens salvas
+                if (eventType == "DocumentSaved" && args.DocumentType == DocumentType.Assembly)
+                {
+                    await ProcessAssemblyDocumentAsync(args);
+                }
+
+                // Envia a atividade para a API
+                var documentEvent = new DocumentEvent
+                {
+                    EventType = eventType,
+                    FileName = args.FileName,
+                    FilePath = args.FilePath,
+                    DocumentType = args.DocumentType,
+                    Timestamp = DateTime.UtcNow,
+                    MachineName = Environment.MachineName,
+                    Engineer = Environment.UserName,
+                    ProjectId = args.ProjectId,
+                    ProjectName = args.ProjectName
+                };
+                await _apiCommunication.SendDocumentActivityAsync(documentEvent);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Erro ao processar save do documento: {documentEvent.FileName}");
+                _logger.LogError(ex, "Erro ao processar evento de documento. Tipo: {EventType}, Arquivo: {FileName}", eventType, args.FileName);
             }
         }
 
-        public async Task ProcessDocumentChangeAsync(DocumentEvent documentEvent)
-        {
-            try
-            {
-                _logger.LogDebug($"📝 Processando mudança: {documentEvent.FileName}");
-
-                // Para mudanças simples, só registra atividade
-                await SendDocumentActivityAsync(documentEvent);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Erro ao processar mudança do documento: {documentEvent.FileName}");
-            }
-        }
-
-        #region Assembly Processing
-
-        private async Task ProcessAssemblyDocumentAsync(DocumentEvent documentEvent)
+        private async Task ProcessAssemblyDocumentAsync(DocumentEventArgs documentEvent)
         {
             try
             {
                 _logger.LogInformation($"🔧 Extraindo BOM de assembly: {documentEvent.FileName}");
 
-                // Extrai BOM com contexto completo
-                var bomData = await ExtractBOMWithContextAsync(
-                    documentEvent.FilePath,
-                    CreateProjectInfoFromEvent(documentEvent),
-                    null // workSessionId será obtido via documentEvent se necessário
-                );
+                // Aguarda arquivo estabilizar
+                await WaitForFileStabilityAsync(documentEvent.FilePath);
 
-                if (bomData != null && bomData.BOMItems.Count > 0)
+                var bomResult = await _bomExtractor.ExtractBOMAsync(documentEvent.DocumentObject);
+
+                if (bomResult != null && bomResult.Success)
                 {
-                    // Envia BOM para API
-                    await _apiCommunication.SendBOMDataAsync(bomData);
+                    _logger.LogInformation($"✅ BOM extraído com {bomResult.BomData.Count} itens.");
+                    _notificationService.ShowBOMExtractionNotification(documentEvent.FileName, bomResult.BomData.Count);
 
-                    _logger.LogInformation($"✅ BOM enviado: {bomData.TotalItems} itens (Projeto: {bomData.ProjectName})");
+                    var bomDataWithContext = new BOMDataWithContext
+                    {
+                        ProjectId = documentEvent.ProjectId ?? "UNKNOWN",
+                        ProjectName = documentEvent.ProjectName ?? "Projeto Desconhecido",
+                        AssemblyFileName = documentEvent.FileName,
+                        AssemblyFilePath = documentEvent.FilePath,
+                        ExtractedAt = DateTime.UtcNow,
+                        ExtractedBy = Environment.MachineName,
+                        Engineer = Environment.UserName,
+                        BOMItems = bomResult.BomData.Select(i => new Models.BOMItem { PartNumber = i.PartNumber, Description = i.Description, Quantity = i.Quantity, Level = i.Level, IsAssembly = i.IsAssembly, Material = i.Material, Weight = i.Weight, Unit = i.Unit, FilePath = i.FilePath }).ToList()
+                    };
+
+                    await _apiCommunication.SendBOMDataAsync(bomDataWithContext);
                 }
                 else
                 {
-                    _logger.LogWarning($"⚠️ BOM vazio ou erro na extração: {documentEvent.FileName}");
+                    _logger.LogWarning($"⚠️ BOM vazio ou erro na extração: {documentEvent.FileName}. Erro: {bomResult?.Error}");
                 }
             }
             catch (Exception ex)
@@ -128,205 +122,29 @@ namespace CADCompanion.Agent.Services
             }
         }
 
-        public async Task<BOMDataWithContext?> ExtractBOMWithContextAsync(string filePath, ProjectInfo? projectInfo, string? workSessionId = null)
-        {
-            try
-            {
-                if (!_inventorConnection.IsConnected)
-                {
-                    _logger.LogError("Inventor não conectado - não é possível extrair BOM");
-                    return null;
-                }
-
-                // Extrai BOM usando código existente (em background thread)
-                var bomItems = await Task.Run(() => _bomExtractor.GetBOMFromFile(filePath));
-
-                if (bomItems == null || bomItems.Count == 0)
-                {
-                    _logger.LogWarning($"BOM vazio para arquivo: {Path.GetFileName(filePath)}");
-                    return null;
-                }
-
-                // Cria objeto com contexto rico
-                var bomData = new BOMDataWithContext
-                {
-                    ProjectId = projectInfo?.ProjectId ?? "UNKNOWN",
-                    ProjectName = projectInfo?.DetectedName ?? "Projeto Desconhecido",
-                    AssemblyFileName = Path.GetFileName(filePath),
-                    AssemblyFilePath = filePath,
-                    ExtractedAt = DateTime.UtcNow,
-                    ExtractedBy = Environment.MachineName,
-                    WorkSessionId = workSessionId,
-                    Engineer = Environment.UserName,
-                    BOMItems = bomItems,
-                    InventorVersion = _inventorConnection.InventorVersion ?? "Unknown"
-                };
-
-                return bomData;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Erro ao extrair BOM: {filePath}");
-                return null;
-            }
-        }
-
-        #endregion
-
-        #region Part Processing
-
-        private async Task ProcessPartDocumentAsync(DocumentEvent documentEvent)
-        {
-            try
-            {
-                _logger.LogDebug($"🔩 Processando part: {documentEvent.FileName}");
-
-                // Para parts, podemos extrair propriedades básicas
-                var partProperties = await ExtractPartPropertiesAsync(documentEvent.FilePath);
-
-                if (partProperties != null)
-                {
-                    await _apiCommunication.SendPartDataAsync(new PartDataWithContext
-                    {
-                        ProjectId = documentEvent.ProjectId ?? "UNKNOWN",
-                        ProjectName = documentEvent.ProjectName ?? "Projeto Desconhecido",
-                        PartFileName = documentEvent.FileName,
-                        PartFilePath = documentEvent.FilePath,
-                        ExtractedAt = DateTime.UtcNow,
-                        ExtractedBy = Environment.MachineName,
-                        Engineer = documentEvent.Engineer,
-                        Properties = partProperties
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Erro ao processar part: {documentEvent.FileName}");
-            }
-        }
-
-        private async Task<Dictionary<string, object>?> ExtractPartPropertiesAsync(string filePath)
-        {
-            try
-            {
-                return await Task.Run(() =>
-                {
-                    // Aqui poderia usar Inventor API para extrair propriedades da part
-                    // Por simplicity, retorna properties básicas
-                    var fileInfo = new FileInfo(filePath);
-
-                    return new Dictionary<string, object>
-                    {
-                        ["FileName"] = fileInfo.Name,
-                        ["FileSizeBytes"] = fileInfo.Length,
-                        ["LastModified"] = fileInfo.LastWriteTime,
-                        ["Extension"] = fileInfo.Extension
-                        // TODO: Adicionar properties específicas do Inventor (Material, Mass, Volume, etc.)
-                    };
-                });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Erro ao extrair propriedades da part: {filePath}");
-                return null;
-            }
-        }
-
-        #endregion
-
-        #region Drawing Processing
-
-        private async Task ProcessDrawingDocumentAsync(DocumentEvent documentEvent)
-        {
-            try
-            {
-                _logger.LogDebug($"📐 Processando drawing: {documentEvent.FileName}");
-
-                // Para drawings, registra atividade mas não extrai dados complexos
-                // Futuro: poderia extrair lista de views, dimensões, etc.
-
-                await Task.CompletedTask; // Placeholder
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Erro ao processar drawing: {documentEvent.FileName}");
-            }
-        }
-
-        #endregion
-
-        #region Helper Methods
-
         private async Task WaitForFileStabilityAsync(string filePath)
         {
             const int maxAttempts = 10;
             const int delayMs = 500;
-
+            if (!File.Exists(filePath))
+            {
+                _logger.LogWarning("Arquivo não encontrado para verificação de estabilidade: {FilePath}", filePath);
+                return;
+            }
             for (int attempt = 0; attempt < maxAttempts; attempt++)
             {
                 try
                 {
-                    // Tenta abrir arquivo exclusivo para verificar se está livre
                     using var fileStream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.None);
-
-                    // Se chegou aqui, arquivo está livre
-                    _logger.LogDebug($"Arquivo estável após {attempt + 1} tentativas: {Path.GetFileName(filePath)}");
+                    _logger.LogDebug("Arquivo estável após {Attempt} tentativas: {FileName}", attempt + 1, Path.GetFileName(filePath));
                     return;
                 }
                 catch (IOException)
                 {
-                    // Arquivo ainda sendo escrito
-                    _logger.LogDebug($"Arquivo ainda sendo escrito, tentativa {attempt + 1}: {Path.GetFileName(filePath)}");
                     await Task.Delay(delayMs);
                 }
             }
-
-            _logger.LogWarning($"Arquivo pode ainda estar sendo escrito: {Path.GetFileName(filePath)}");
+            _logger.LogWarning("Arquivo pode ainda estar em uso após {MaxAttempts} tentativas: {FileName}", maxAttempts, Path.GetFileName(filePath));
         }
-
-        private ProjectInfo? CreateProjectInfoFromEvent(DocumentEvent documentEvent)
-        {
-            if (string.IsNullOrEmpty(documentEvent.ProjectId))
-                return null;
-
-            return new ProjectInfo
-            {
-                ProjectId = documentEvent.ProjectId,
-                DetectedName = documentEvent.ProjectName ?? "Projeto Desconhecido",
-                FolderPath = Path.GetDirectoryName(documentEvent.FilePath) ?? string.Empty,
-                IsValidProject = true
-            };
-        }
-
-        private async Task SendDocumentActivityAsync(DocumentEvent documentEvent)
-        {
-            try
-            {
-                // ✅ CORRIGIDO: Enviando DocumentEvent diretamente ao invés de DocumentActivity
-                await _apiCommunication.SendDocumentActivityAsync(documentEvent);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Erro ao enviar atividade do documento para API");
-            }
-        }
-
-        #endregion
     }
-
-    #region Supporting Models
-
-    public class PartDataWithContext
-    {
-        public string ProjectId { get; set; } = string.Empty;
-        public string ProjectName { get; set; } = string.Empty;
-        public string PartFileName { get; set; } = string.Empty;
-        public string PartFilePath { get; set; } = string.Empty;
-        public DateTime ExtractedAt { get; set; }
-        public string ExtractedBy { get; set; } = string.Empty;
-        public string? Engineer { get; set; }
-        public Dictionary<string, object> Properties { get; set; } = new();
-    }
-
-    #endregion
 }

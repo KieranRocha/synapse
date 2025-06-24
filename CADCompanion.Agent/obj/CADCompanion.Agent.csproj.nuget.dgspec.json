@@ -91,13 +91,9 @@
               "target": "Package",
               "version": "[5.0.0, )"
             },
-            "System.Net.Http": {
-              "target": "Package",
-              "version": "[4.3.4, )"
-            },
             "System.Text.Json": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[9.0.6, )"
             }
           },
           "imports": [
