@@ -35,7 +35,8 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         WorkSessionService workSessionService,
         IInventorConnectionService inventorConnection, // Adicionado
         IInventorBOMExtractor bomExtractor,           // Adicionado
-        IApiCommunicationService apiService)           // Adicionado
+        IApiCommunicationService apiService, IWindowsNotificationService notificationService)           // Adicionado
+
     {
         _logger = logger;
         _configuration = configuration.Value;
@@ -45,6 +46,7 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         _inventorConnection = inventorConnection;
         _bomExtractor = bomExtractor;
         _apiService = apiService;
+        _notificationService = notificationService;
 
         // Subscreve aos eventos de documentos
         SubscribeToDocumentEvents();
@@ -111,6 +113,7 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         _documentEventService.DocumentSaved += OnDocumentSaved;
     }
     private readonly HashSet<string> _processedFiles = new();
+    private readonly IWindowsNotificationService _notificationService;
     private async void OnDocumentOpened(object? sender, DocumentOpenedEventArgs e)
     {
         try
@@ -161,14 +164,16 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
 
                         if (validationResult.IsValid)
                         {
-                            ShowProjectContextMessage(inventorApp, trackingInfo, validationResult.ProjectName, validationResult.MachineName);
+                            // ✅ NOVA NOTIFICAÇÃO WINDOWS
+                            _notificationService.ShowDocumentOpenedNotification(
+                                e.FileName,
+                                validationResult.ProjectName ?? "Projeto Desconhecido",
+                                trackingInfo.MachineId);
+
                             _fileToMachineIdMap[e.FilePath] = trackingInfo.MachineId;
                             await _apiService.UpdateMachineStatusAsync(trackingInfo.MachineId, "Design", Environment.UserName, e.FileName);
                         }
-                        else
-                        {
-                            ShowValidationErrorMessage(inventorApp, trackingInfo, validationResult);
-                        }
+
                     }
                     else
                     {
@@ -178,12 +183,24 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                         if (!string.IsNullOrEmpty(machineIdStr) && int.TryParse(machineIdStr, out machineId))
                         {
                             _logger.LogInformation("Montagem principal da Máquina ID {MachineId} aberta: {FileName}", machineId, e.FileName);
+
+                            // ✅ NOVA NOTIFICAÇÃO WINDOWS
+                            _notificationService.ShowDocumentOpenedNotification(
+                                e.FileName,
+                                "Projeto Monitorado",
+                                machineId);
+
                             _fileToMachineIdMap[e.FilePath] = machineId;
                             await _apiService.UpdateMachineStatusAsync(machineId, "Design", Environment.UserName, e.FileName);
                         }
                         else
                         {
                             _logger.LogWarning("Não foi possível extrair o MachineDB_ID do arquivo {FileName}", e.FileName);
+
+                            // ✅ NOVA NOTIFICAÇÃO DE AVISO
+                            _notificationService.ShowWarningNotification(
+                                "📄 Arquivo Não Rastreado",
+                                $"Arquivo: {e.FileName}\n\nEste arquivo não possui informações de rastreamento.");
                         }
                     }
                 }
@@ -623,35 +640,10 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         }
     }
 
-    private void ShowProjectContextMessage(dynamic inventorApp, MachineTrackingInfo tracking, string projectName, string machineName)
-    {
-        var message = $"📁 Projeto: {projectName}\n⚙️ Máquina: {machineName}\n🔧 ID: {tracking.MachineId}";
-        inventorApp.ActiveDocument.UserInterfaceManager.DoAlert(message, "CAD Companion", 64);
-    }
 
-    private void ShowValidationErrorMessage(dynamic inventorApp, MachineTrackingInfo tracking, ValidationResult result)
-    {
-        var message = $"⚠️ DIVERGÊNCIA!\n\nArquivo: Projeto {tracking.ProjectId}\nBanco: Projeto {result.ActualProjectId}\n\nCorrigir automaticamente?";
-        var response = inventorApp.ActiveDocument.UserInterfaceManager.DoAlert(message, "CAD Companion", 36);
 
-        if (response == 6) // Yes
-            Task.Run(() => CorrectFileProperties(inventorApp, tracking, result));
-    }
 
-    private async Task CorrectFileProperties(dynamic inventorApp, MachineTrackingInfo old, ValidationResult result)
-    {
-        try
-        {
-            var doc = inventorApp.ActiveDocument;
-            _bomExtractor.SetMachineTrackingProperties(doc, old.MachineId, result.ActualProjectId, $"PROJ-{result.ActualProjectId}");
-            doc.Save();
-            inventorApp.ActiveDocument.UserInterfaceManager.DoAlert("✅ Corrigido!", "CAD Companion", 64);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Erro ao corrigir");
-        }
-    }
+
     #endregion
 
     public void Dispose()

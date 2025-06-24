@@ -1,23 +1,46 @@
-<Project Sdk="Microsoft.NET.Sdk.Worker">
+<!-- CADCompanion.Agent.csproj - TODAS AS DEPENDÊNCIAS CORRIGIDAS -->
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-CADCompanion.Agent-0066e3d1-f28c-4319-8fd7-8d3ed39fae6a</UserSecretsId>
+    <Nullable>enable</Nullable>
+    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPPlus" Version="8.0.5" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+    <!-- ✅ MICROSOFT EXTENSIONS (ILogger, BackgroundService, etc.) -->
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.6" />
-    <PackageReference Include="Serilog.Extensions.Hosting" Version="9.0.0" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
-    <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.0" />
+    
+    <!-- ✅ SERILOG -->
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    
+    <!-- ✅ EPPLUS (Excel/Office) -->
+    <PackageReference Include="EPPlus" Version="7.0.0" />
+    
+    <!-- ✅ HTTP CLIENT -->
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Text.Json" Version="8.0.0" />
   </ItemGroup>
 
+  <!-- ✅ REFERÊNCIA DO WINDOWS FORMS -->
   <ItemGroup>
-    <ProjectReference Include="..\CADCompanion.Shared\CADCompanion.Shared.csproj" />
+    <FrameworkReference Include="Microsoft.WindowsDesktop.App" />
   </ItemGroup>
+
+  <!-- ✅ REFERÊNCIA DO PROJETO SHARED (se existir) -->
+  <ItemGroup>
+    <ProjectReference Include="..\CADCompanion.Shared\CADCompanion.Shared.csproj" Condition="Exists('..\CADCompanion.Shared\CADCompanion.Shared.csproj')" />
+  </ItemGroup>
+
 </Project>

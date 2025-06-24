@@ -1762,3 +1762,771 @@ System.Net.Http.HttpRequestException: Nenhuma conexão pôde ser feita porque a 
    at CADCompanion.Agent.Services.ApiCommunicationService.UpdateMachineStatusAsync(Int32 machineId, String status, String userName, String currentFile) in C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Agent\Services\ApiCommunicationService.cs:line 127
 2025-06-23 22:05:25.219 -03:00 [INF] 🚀 Work Session iniciada: 0345385.iam (ID: 34294461-084b-483c-9037-13bb190242e3)
 2025-06-23 22:05:25.220 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345385.iam
+2025-06-23 22:07:22.227 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-23 22:07:22.258 -03:00 [INF] Tentando conectar ao Inventor...
+2025-06-23 22:07:23.033 -03:00 [INF] ✓ Conectado ao Inventor 2023
+2025-06-23 22:07:23.034 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-23 22:07:23.037 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-23 22:07:23.037 -03:00 [INF] 🔄 Iniciando monitoramento via polling (mais confiável que eventos COM)
+2025-06-23 22:07:23.038 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-23 22:07:23.039 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-23 22:07:23.068 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-23 22:07:23.074 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-23 22:07:23.098 -03:00 [INF] 🔍 Detectando 27 documentos já abertos
+2025-06-23 22:07:23.657 -03:00 [INF] 📂 ABERTO: 0345385.iam
+2025-06-23 22:07:23.664 -03:00 [INF] 📂 Documento aberto: 0345385.iam
+2025-06-23 22:07:24.110 -03:00 [INF] 📂 ABERTO: 089277.ipt
+2025-06-23 22:07:24.111 -03:00 [INF] 📂 Documento aberto: 089277.ipt
+2025-06-23 22:07:24.120 -03:00 [INF] 🚀 Work Session iniciada: 089277.ipt (ID: 7261b12b-e56b-4e25-b476-127ec96e65ab)
+2025-06-23 22:07:24.124 -03:00 [INF] 📝 Atividade de documento: "Opened" - 089277.ipt
+2025-06-23 22:07:24.140 -03:00 [INF] 📂 ABERTO: 0313902.ipt
+2025-06-23 22:07:24.141 -03:00 [INF] 📂 Documento aberto: 0313902.ipt
+2025-06-23 22:07:24.142 -03:00 [INF] 🚀 Work Session iniciada: 0313902.ipt (ID: e817b5de-5461-4cee-ade5-850d53902d5e)
+2025-06-23 22:07:24.143 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0313902.ipt
+2025-06-23 22:07:24.156 -03:00 [INF] 📂 ABERTO: UNI 5589 M16
+2025-06-23 22:07:24.157 -03:00 [INF] 📂 Documento aberto: UNI 5589 M16
+2025-06-23 22:07:24.159 -03:00 [INF] 🚀 Work Session iniciada: UNI 5589 M16 (ID: 2cb45cd3-9cdc-4fb2-abee-2bc870d4740e)
+2025-06-23 22:07:24.160 -03:00 [INF] 📝 Atividade de documento: "Opened" - UNI 5589 M16
+2025-06-23 22:07:24.173 -03:00 [INF] 📂 ABERTO: 0345580.ipt
+2025-06-23 22:07:24.174 -03:00 [INF] 📂 Documento aberto: 0345580.ipt
+2025-06-23 22:07:24.175 -03:00 [INF] 🚀 Work Session iniciada: 0345580.ipt (ID: 5d45509b-1564-4ff8-800e-75d741d0fed3)
+2025-06-23 22:07:24.176 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345580.ipt
+2025-06-23 22:07:24.191 -03:00 [INF] 📂 ABERTO: 0345709.ipt
+2025-06-23 22:07:24.192 -03:00 [INF] 📂 Documento aberto: 0345709.ipt
+2025-06-23 22:07:24.194 -03:00 [INF] 🚀 Work Session iniciada: 0345709.ipt (ID: c66556bb-c5b1-4c36-a6ae-39f30801fc23)
+2025-06-23 22:07:24.204 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345709.ipt
+2025-06-23 22:07:24.221 -03:00 [INF] 📂 ABERTO: 0345710.ipt
+2025-06-23 22:07:24.223 -03:00 [INF] 📂 Documento aberto: 0345710.ipt
+2025-06-23 22:07:24.225 -03:00 [INF] 🚀 Work Session iniciada: 0345710.ipt (ID: 98158942-73c5-4007-aff0-59e4ca992101)
+2025-06-23 22:07:24.226 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345710.ipt
+2025-06-23 22:07:24.245 -03:00 [INF] 📂 ABERTO: 0345707.ipt
+2025-06-23 22:07:24.246 -03:00 [INF] 📂 Documento aberto: 0345707.ipt
+2025-06-23 22:07:24.248 -03:00 [INF] 🚀 Work Session iniciada: 0345707.ipt (ID: ea80a6cb-2b79-4e27-8653-c64de961a5be)
+2025-06-23 22:07:24.249 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345707.ipt
+2025-06-23 22:07:24.264 -03:00 [INF] 📂 ABERTO: 0345708.ipt
+2025-06-23 22:07:24.265 -03:00 [INF] 📂 Documento aberto: 0345708.ipt
+2025-06-23 22:07:24.266 -03:00 [INF] 🚀 Work Session iniciada: 0345708.ipt (ID: 4005d414-1cee-473a-9510-4ae451eecc2c)
+2025-06-23 22:07:24.267 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345708.ipt
+2025-06-23 22:07:24.283 -03:00 [INF] 📂 ABERTO: 0345536.ipt
+2025-06-23 22:07:24.284 -03:00 [INF] 📂 Documento aberto: 0345536.ipt
+2025-06-23 22:07:24.286 -03:00 [INF] 🚀 Work Session iniciada: 0345536.ipt (ID: 7a314087-5b82-40ae-b916-057d37e5103e)
+2025-06-23 22:07:24.287 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345536.ipt
+2025-06-23 22:07:24.300 -03:00 [INF] 📂 ABERTO: 0345538.ipt
+2025-06-23 22:07:24.301 -03:00 [INF] 📂 Documento aberto: 0345538.ipt
+2025-06-23 22:07:24.303 -03:00 [INF] 🚀 Work Session iniciada: 0345538.ipt (ID: 06fa8768-5c25-4bc6-9bf2-58400a70fdaa)
+2025-06-23 22:07:24.304 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345538.ipt
+2025-06-23 22:07:24.316 -03:00 [INF] 📂 ABERTO: 088259.ipt
+2025-06-23 22:07:24.318 -03:00 [INF] 📂 Documento aberto: 088259.ipt
+2025-06-23 22:07:24.320 -03:00 [INF] 🚀 Work Session iniciada: 088259.ipt (ID: c1bda089-1331-4e2b-93fd-c8ff65d7282f)
+2025-06-23 22:07:24.321 -03:00 [INF] 📝 Atividade de documento: "Opened" - 088259.ipt
+2025-06-23 22:07:24.333 -03:00 [INF] 📂 ABERTO: 111646.ipt
+2025-06-23 22:07:24.335 -03:00 [INF] 📂 Documento aberto: 111646.ipt
+2025-06-23 22:07:24.336 -03:00 [INF] 🚀 Work Session iniciada: 111646.ipt (ID: 20416b65-ba6a-418c-8999-2468a23909b7)
+2025-06-23 22:07:24.338 -03:00 [INF] 📝 Atividade de documento: "Opened" - 111646.ipt
+2025-06-23 22:07:24.352 -03:00 [INF] 📂 ABERTO: 0254385.ipt
+2025-06-23 22:07:24.352 -03:00 [INF] 📂 Documento aberto: 0254385.ipt
+2025-06-23 22:07:24.355 -03:00 [INF] 🚀 Work Session iniciada: 0254385.ipt (ID: d2877fa6-93f2-42dc-92a0-93ff551fa342)
+2025-06-23 22:07:24.356 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0254385.ipt
+2025-06-23 22:07:24.368 -03:00 [INF] 📂 ABERTO: 0321862.ipt
+2025-06-23 22:07:24.369 -03:00 [INF] 📂 Documento aberto: 0321862.ipt
+2025-06-23 22:07:24.371 -03:00 [INF] 🚀 Work Session iniciada: 0321862.ipt (ID: a64cc64a-ae62-49ec-95a8-750954327b9d)
+2025-06-23 22:07:24.372 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0321862.ipt
+2025-06-23 22:07:24.384 -03:00 [INF] 📂 ABERTO: 0307215.iam
+2025-06-23 22:07:24.385 -03:00 [INF] 📂 Documento aberto: 0307215.iam
+2025-06-23 22:07:24.399 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_1.ipt
+2025-06-23 22:07:24.400 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_1.ipt
+2025-06-23 22:07:24.402 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_1.ipt (ID: 27e596b6-eb14-4fb4-876e-45bb18291625)
+2025-06-23 22:07:24.403 -03:00 [INF] 📝 Atividade de documento: "Opened" - CP96SDB63-100C_1.ipt
+2025-06-23 22:07:24.416 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_2.ipt
+2025-06-23 22:07:24.417 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_2.ipt
+2025-06-23 22:07:24.420 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_2.ipt (ID: c5f96306-df66-43f1-b137-7fb597e73494)
+2025-06-23 22:07:24.422 -03:00 [INF] 📝 Atividade de documento: "Opened" - CP96SDB63-100C_2.ipt
+2025-06-23 22:07:24.434 -03:00 [INF] 📂 ABERTO: 0345546.ipt
+2025-06-23 22:07:24.435 -03:00 [INF] 📂 Documento aberto: 0345546.ipt
+2025-06-23 22:07:24.437 -03:00 [INF] 🚀 Work Session iniciada: 0345546.ipt (ID: a7ca8738-e9d2-4782-98cf-ad18426f02fc)
+2025-06-23 22:07:24.439 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345546.ipt
+2025-06-23 22:07:24.454 -03:00 [INF] 📂 ABERTO: 0345712.ipt
+2025-06-23 22:07:24.454 -03:00 [INF] 📂 Documento aberto: 0345712.ipt
+2025-06-23 22:07:24.456 -03:00 [INF] 🚀 Work Session iniciada: 0345712.ipt (ID: 5df8fddd-fc63-45df-ac35-297695525344)
+2025-06-23 22:07:24.456 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345712.ipt
+2025-06-23 22:07:24.469 -03:00 [INF] 📂 ABERTO: 0345713.ipt
+2025-06-23 22:07:24.470 -03:00 [INF] 📂 Documento aberto: 0345713.ipt
+2025-06-23 22:07:24.472 -03:00 [INF] 🚀 Work Session iniciada: 0345713.ipt (ID: c5749b34-08ad-4540-96bc-4355496cee60)
+2025-06-23 22:07:24.472 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345713.ipt
+2025-06-23 22:07:24.483 -03:00 [INF] 📂 ABERTO: 0345711.ipt
+2025-06-23 22:07:24.484 -03:00 [INF] 📂 Documento aberto: 0345711.ipt
+2025-06-23 22:07:24.486 -03:00 [INF] 🚀 Work Session iniciada: 0345711.ipt (ID: 35785199-3aff-484e-8479-dc14533de9a8)
+2025-06-23 22:07:24.487 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345711.ipt
+2025-06-23 22:07:24.500 -03:00 [INF] 📂 ABERTO: 0345714.ipt
+2025-06-23 22:07:24.501 -03:00 [INF] 📂 Documento aberto: 0345714.ipt
+2025-06-23 22:07:24.503 -03:00 [INF] 🚀 Work Session iniciada: 0345714.ipt (ID: 8a4b56b5-2a2e-479f-a2a4-d30b2806bec9)
+2025-06-23 22:07:24.504 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345714.ipt
+2025-06-23 22:07:24.518 -03:00 [INF] 📂 ABERTO: 0345715.ipt
+2025-06-23 22:07:24.519 -03:00 [INF] 📂 Documento aberto: 0345715.ipt
+2025-06-23 22:07:24.521 -03:00 [INF] 🚀 Work Session iniciada: 0345715.ipt (ID: bcd885b3-60b1-40f0-bfc5-e3b079211a35)
+2025-06-23 22:07:24.522 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345715.ipt
+2025-06-23 22:07:24.536 -03:00 [INF] 📂 ABERTO: 0345716.ipt
+2025-06-23 22:07:24.537 -03:00 [INF] 📂 Documento aberto: 0345716.ipt
+2025-06-23 22:07:24.539 -03:00 [INF] 🚀 Work Session iniciada: 0345716.ipt (ID: 37787706-623b-40c6-956c-5fff873ed298)
+2025-06-23 22:07:24.540 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345716.ipt
+2025-06-23 22:07:24.552 -03:00 [INF] 📂 ABERTO: 0345718.ipt
+2025-06-23 22:07:24.553 -03:00 [INF] 📂 Documento aberto: 0345718.ipt
+2025-06-23 22:07:24.555 -03:00 [INF] 🚀 Work Session iniciada: 0345718.ipt (ID: 72ee0e68-774c-407a-9af8-8fd8da455f34)
+2025-06-23 22:07:24.556 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345718.ipt
+2025-06-23 22:07:24.570 -03:00 [INF] 📂 ABERTO: 134538.ipt
+2025-06-23 22:07:24.571 -03:00 [INF] 📂 Documento aberto: 134538.ipt
+2025-06-23 22:07:24.573 -03:00 [INF] 🚀 Work Session iniciada: 134538.ipt (ID: 2e538586-d109-40fa-ac15-3f0e57837b4c)
+2025-06-23 22:07:24.574 -03:00 [INF] 📝 Atividade de documento: "Opened" - 134538.ipt
+2025-06-23 22:07:24.575 -03:00 [INF] ✅ Monitoring de documentos ativo via polling
+2025-06-23 22:07:26.333 -03:00 [INF] Montagem principal da Máquina ID 1 aberta: 0345385.iam
+2025-06-23 22:07:26.339 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/machines/1/status
+2025-06-23 22:07:26.340 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/machines/1/status
+2025-06-23 22:07:26.802 -03:00 [WRN] Não foi possível extrair o MachineDB_ID do arquivo 0307215.iam
+2025-06-23 22:07:26.804 -03:00 [INF] 🚀 Work Session iniciada: 0307215.iam (ID: 018864c4-15f0-41b1-a1a4-d28ff2ccd616)
+2025-06-23 22:07:26.804 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0307215.iam
+2025-06-23 22:07:27.164 -03:00 [ERR] ❌ Erro ao enviar heartbeat
+System.Net.Http.HttpRequestException: Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente. (localhost:5047)
+ ---> System.Net.Sockets.SocketException (10061): Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CADCompanion.Agent.Services.ApiCommunicationService.SendHeartbeatAsync() in C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Agent\Services\ApiCommunicationService.cs:line 115
+2025-06-23 22:07:30.413 -03:00 [ERR] Erro de comunicação ao tentar atualizar status da máquina 1.
+System.Net.Http.HttpRequestException: Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente. (localhost:5047)
+ ---> System.Net.Sockets.SocketException (10061): Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CADCompanion.Agent.Services.ApiCommunicationService.UpdateMachineStatusAsync(Int32 machineId, String status, String userName, String currentFile) in C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Agent\Services\ApiCommunicationService.cs:line 127
+2025-06-23 22:07:30.419 -03:00 [INF] 🚀 Work Session iniciada: 0345385.iam (ID: e1b0b41e-fc83-4eba-99a5-2540c40c0edc)
+2025-06-23 22:07:30.420 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345385.iam
+2025-06-23 22:07:50.124 -03:00 [INF] Companion Worker Service parando.
+2025-06-23 22:07:50.126 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-23 22:07:50.127 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-23 22:07:50.128 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-23 22:07:50.131 -03:00 [INF] 🏁 Work Session finalizada: 0345709.ipt - Duração: 00:00:25 - 0 saves
+2025-06-23 22:07:50.132 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-23 22:07:50.133 -03:00 [INF] 🏁 Enviando fim da sessão de trabalho: 0345709.ipt
+2025-06-23 22:07:50.133 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-23 22:07:50.133 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-23 22:07:50.133 -03:00 [INF] 🏁 Work Session finalizada: 088259.ipt - Duração: 00:00:25 - 0 saves
+2025-06-23 22:07:54.208 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-23 22:07:54.241 -03:00 [INF] Tentando conectar ao Inventor...
+2025-06-23 22:07:55.027 -03:00 [INF] ✓ Conectado ao Inventor 2023
+2025-06-23 22:07:55.028 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-23 22:07:55.031 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-23 22:07:55.031 -03:00 [INF] 🔄 Iniciando monitoramento via polling (mais confiável que eventos COM)
+2025-06-23 22:07:55.032 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-23 22:07:55.032 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-23 22:07:55.062 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-23 22:07:55.067 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-23 22:07:55.094 -03:00 [INF] 🔍 Detectando 27 documentos já abertos
+2025-06-23 22:07:55.183 -03:00 [INF] Received HTTP response headers after 113.1623ms - 204
+2025-06-23 22:07:55.189 -03:00 [INF] End processing HTTP request after 132.0206ms - 204
+2025-06-23 22:07:55.455 -03:00 [INF] 📂 ABERTO: 0345385.iam
+2025-06-23 22:07:55.460 -03:00 [INF] 📂 Documento aberto: 0345385.iam
+2025-06-23 22:07:56.034 -03:00 [INF] 📂 ABERTO: 089277.ipt
+2025-06-23 22:07:56.035 -03:00 [INF] 📂 Documento aberto: 089277.ipt
+2025-06-23 22:07:56.045 -03:00 [INF] 🚀 Work Session iniciada: 089277.ipt (ID: 60e4c4ef-4a37-4d0b-843c-b20620644f62)
+2025-06-23 22:07:56.047 -03:00 [INF] 📝 Atividade de documento: "Opened" - 089277.ipt
+2025-06-23 22:07:56.062 -03:00 [INF] 📂 ABERTO: 0313902.ipt
+2025-06-23 22:07:56.063 -03:00 [INF] 📂 Documento aberto: 0313902.ipt
+2025-06-23 22:07:56.065 -03:00 [INF] 🚀 Work Session iniciada: 0313902.ipt (ID: 6db11ee3-724f-4cf7-90b8-a85298063fa7)
+2025-06-23 22:07:56.066 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0313902.ipt
+2025-06-23 22:07:56.079 -03:00 [INF] 📂 ABERTO: UNI 5589 M16
+2025-06-23 22:07:56.080 -03:00 [INF] 📂 Documento aberto: UNI 5589 M16
+2025-06-23 22:07:56.082 -03:00 [INF] 🚀 Work Session iniciada: UNI 5589 M16 (ID: 74057936-2f3d-4252-b011-f2abc431a624)
+2025-06-23 22:07:56.083 -03:00 [INF] 📝 Atividade de documento: "Opened" - UNI 5589 M16
+2025-06-23 22:07:56.096 -03:00 [INF] 📂 ABERTO: 0345580.ipt
+2025-06-23 22:07:56.097 -03:00 [INF] 📂 Documento aberto: 0345580.ipt
+2025-06-23 22:07:56.099 -03:00 [INF] 🚀 Work Session iniciada: 0345580.ipt (ID: 4aa161a1-62a0-4acd-921b-acaa8a39dd84)
+2025-06-23 22:07:56.104 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345580.ipt
+2025-06-23 22:07:56.115 -03:00 [INF] 📂 ABERTO: 0345709.ipt
+2025-06-23 22:07:56.116 -03:00 [INF] 📂 Documento aberto: 0345709.ipt
+2025-06-23 22:07:56.117 -03:00 [INF] 🚀 Work Session iniciada: 0345709.ipt (ID: aafb523a-4a41-4d18-8451-7040376c5c09)
+2025-06-23 22:07:56.118 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345709.ipt
+2025-06-23 22:07:56.130 -03:00 [INF] 📂 ABERTO: 0345710.ipt
+2025-06-23 22:07:56.131 -03:00 [INF] 📂 Documento aberto: 0345710.ipt
+2025-06-23 22:07:56.133 -03:00 [INF] 🚀 Work Session iniciada: 0345710.ipt (ID: e5f155cb-64dd-42a9-8ff9-1bf8c27a5ea1)
+2025-06-23 22:07:56.134 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345710.ipt
+2025-06-23 22:07:56.147 -03:00 [INF] 📂 ABERTO: 0345707.ipt
+2025-06-23 22:07:56.147 -03:00 [INF] 📂 Documento aberto: 0345707.ipt
+2025-06-23 22:07:56.149 -03:00 [INF] 🚀 Work Session iniciada: 0345707.ipt (ID: 97756c67-5200-4ca7-8acc-6b34c4f3ab51)
+2025-06-23 22:07:56.150 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345707.ipt
+2025-06-23 22:07:56.162 -03:00 [INF] 📂 ABERTO: 0345708.ipt
+2025-06-23 22:07:56.163 -03:00 [INF] 📂 Documento aberto: 0345708.ipt
+2025-06-23 22:07:56.165 -03:00 [INF] 🚀 Work Session iniciada: 0345708.ipt (ID: 0d9f5197-2226-4274-b170-b07f14939c7e)
+2025-06-23 22:07:56.166 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345708.ipt
+2025-06-23 22:07:56.178 -03:00 [INF] 📂 ABERTO: 0345536.ipt
+2025-06-23 22:07:56.179 -03:00 [INF] 📂 Documento aberto: 0345536.ipt
+2025-06-23 22:07:56.181 -03:00 [INF] 🚀 Work Session iniciada: 0345536.ipt (ID: 24198060-2547-4da1-9e99-e3b6f3ff1b1c)
+2025-06-23 22:07:56.181 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345536.ipt
+2025-06-23 22:07:56.194 -03:00 [INF] 📂 ABERTO: 0345538.ipt
+2025-06-23 22:07:56.195 -03:00 [INF] 📂 Documento aberto: 0345538.ipt
+2025-06-23 22:07:56.197 -03:00 [INF] 🚀 Work Session iniciada: 0345538.ipt (ID: 0f6d8504-ca73-4094-a038-94c40bd6a4d3)
+2025-06-23 22:07:56.198 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345538.ipt
+2025-06-23 22:07:56.210 -03:00 [INF] 📂 ABERTO: 088259.ipt
+2025-06-23 22:07:56.211 -03:00 [INF] 📂 Documento aberto: 088259.ipt
+2025-06-23 22:07:56.213 -03:00 [INF] 🚀 Work Session iniciada: 088259.ipt (ID: 86e10e3b-42e1-4f23-8e69-4a451551abcb)
+2025-06-23 22:07:56.214 -03:00 [INF] 📝 Atividade de documento: "Opened" - 088259.ipt
+2025-06-23 22:07:56.227 -03:00 [INF] 📂 ABERTO: 111646.ipt
+2025-06-23 22:07:56.229 -03:00 [INF] 📂 Documento aberto: 111646.ipt
+2025-06-23 22:07:56.230 -03:00 [INF] 🚀 Work Session iniciada: 111646.ipt (ID: 72f00f1c-af79-4f04-969f-5cce7b70e626)
+2025-06-23 22:07:56.231 -03:00 [INF] 📝 Atividade de documento: "Opened" - 111646.ipt
+2025-06-23 22:07:56.244 -03:00 [INF] 📂 ABERTO: 0254385.ipt
+2025-06-23 22:07:56.245 -03:00 [INF] 📂 Documento aberto: 0254385.ipt
+2025-06-23 22:07:56.247 -03:00 [INF] 🚀 Work Session iniciada: 0254385.ipt (ID: e04668ee-5212-42f3-84b8-cf676e9c12e8)
+2025-06-23 22:07:56.247 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0254385.ipt
+2025-06-23 22:07:56.260 -03:00 [INF] 📂 ABERTO: 0321862.ipt
+2025-06-23 22:07:56.261 -03:00 [INF] 📂 Documento aberto: 0321862.ipt
+2025-06-23 22:07:56.263 -03:00 [INF] 🚀 Work Session iniciada: 0321862.ipt (ID: 06fd1c94-d82f-49c6-92a3-e772b85d4b69)
+2025-06-23 22:07:56.263 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0321862.ipt
+2025-06-23 22:07:56.276 -03:00 [INF] 📂 ABERTO: 0307215.iam
+2025-06-23 22:07:56.277 -03:00 [INF] 📂 Documento aberto: 0307215.iam
+2025-06-23 22:07:56.290 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_1.ipt
+2025-06-23 22:07:56.291 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_1.ipt
+2025-06-23 22:07:56.293 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_1.ipt (ID: 2c0c4f30-d110-4e47-8623-aa40f3e3bfba)
+2025-06-23 22:07:56.293 -03:00 [INF] 📝 Atividade de documento: "Opened" - CP96SDB63-100C_1.ipt
+2025-06-23 22:07:56.306 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_2.ipt
+2025-06-23 22:07:56.307 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_2.ipt
+2025-06-23 22:07:56.309 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_2.ipt (ID: ebd81d48-df60-4a0d-876e-61d5399ac272)
+2025-06-23 22:07:56.309 -03:00 [INF] 📝 Atividade de documento: "Opened" - CP96SDB63-100C_2.ipt
+2025-06-23 22:07:56.322 -03:00 [INF] 📂 ABERTO: 0345546.ipt
+2025-06-23 22:07:56.323 -03:00 [INF] 📂 Documento aberto: 0345546.ipt
+2025-06-23 22:07:56.325 -03:00 [INF] 🚀 Work Session iniciada: 0345546.ipt (ID: 417fe0d9-ed74-4129-997f-25e2d2e29f3a)
+2025-06-23 22:07:56.325 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345546.ipt
+2025-06-23 22:07:56.338 -03:00 [INF] 📂 ABERTO: 0345712.ipt
+2025-06-23 22:07:56.339 -03:00 [INF] 📂 Documento aberto: 0345712.ipt
+2025-06-23 22:07:56.340 -03:00 [INF] 🚀 Work Session iniciada: 0345712.ipt (ID: 536df289-e526-4f47-8358-1509236a07a4)
+2025-06-23 22:07:56.341 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345712.ipt
+2025-06-23 22:07:56.353 -03:00 [INF] 📂 ABERTO: 0345713.ipt
+2025-06-23 22:07:56.354 -03:00 [INF] 📂 Documento aberto: 0345713.ipt
+2025-06-23 22:07:56.356 -03:00 [INF] 🚀 Work Session iniciada: 0345713.ipt (ID: d5fb83e3-e51d-4339-ae9e-cace9b7c3cd0)
+2025-06-23 22:07:56.356 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345713.ipt
+2025-06-23 22:07:56.368 -03:00 [INF] 📂 ABERTO: 0345711.ipt
+2025-06-23 22:07:56.369 -03:00 [INF] 📂 Documento aberto: 0345711.ipt
+2025-06-23 22:07:56.371 -03:00 [INF] 🚀 Work Session iniciada: 0345711.ipt (ID: eeedc27c-a660-4f14-be82-d5c47208d37f)
+2025-06-23 22:07:56.372 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345711.ipt
+2025-06-23 22:07:56.384 -03:00 [INF] 📂 ABERTO: 0345714.ipt
+2025-06-23 22:07:56.385 -03:00 [INF] 📂 Documento aberto: 0345714.ipt
+2025-06-23 22:07:56.387 -03:00 [INF] 🚀 Work Session iniciada: 0345714.ipt (ID: 77181ece-875d-409b-8cd0-544872dcf908)
+2025-06-23 22:07:56.388 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345714.ipt
+2025-06-23 22:07:56.400 -03:00 [INF] 📂 ABERTO: 0345715.ipt
+2025-06-23 22:07:56.401 -03:00 [INF] 📂 Documento aberto: 0345715.ipt
+2025-06-23 22:07:56.403 -03:00 [INF] 🚀 Work Session iniciada: 0345715.ipt (ID: a7d98767-4c38-4757-8f27-4cf09e5066f1)
+2025-06-23 22:07:56.404 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345715.ipt
+2025-06-23 22:07:56.416 -03:00 [INF] 📂 ABERTO: 0345716.ipt
+2025-06-23 22:07:56.417 -03:00 [INF] 📂 Documento aberto: 0345716.ipt
+2025-06-23 22:07:56.419 -03:00 [INF] 🚀 Work Session iniciada: 0345716.ipt (ID: 7a3bc005-471d-4ffa-82f8-ed690db21148)
+2025-06-23 22:07:56.421 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345716.ipt
+2025-06-23 22:07:56.435 -03:00 [INF] 📂 ABERTO: 0345718.ipt
+2025-06-23 22:07:56.436 -03:00 [INF] 📂 Documento aberto: 0345718.ipt
+2025-06-23 22:07:56.438 -03:00 [INF] 🚀 Work Session iniciada: 0345718.ipt (ID: baa053d6-2fad-43b8-ab1e-3bdc08398a4b)
+2025-06-23 22:07:56.439 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345718.ipt
+2025-06-23 22:07:56.453 -03:00 [INF] 📂 ABERTO: 134538.ipt
+2025-06-23 22:07:56.454 -03:00 [INF] 📂 Documento aberto: 134538.ipt
+2025-06-23 22:07:56.455 -03:00 [INF] 🚀 Work Session iniciada: 134538.ipt (ID: 2bbc6c78-e6d5-4a8f-b63d-deede87895c7)
+2025-06-23 22:07:56.456 -03:00 [INF] 📝 Atividade de documento: "Opened" - 134538.ipt
+2025-06-23 22:07:56.457 -03:00 [INF] ✅ Monitoring de documentos ativo via polling
+2025-06-23 22:07:58.173 -03:00 [INF] Montagem principal da Máquina ID 1 aberta: 0345385.iam
+2025-06-23 22:07:58.177 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/machines/1/status
+2025-06-23 22:07:58.178 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/machines/1/status
+2025-06-23 22:07:58.626 -03:00 [INF] Received HTTP response headers after 447.1955ms - 204
+2025-06-23 22:07:58.628 -03:00 [INF] End processing HTTP request after 451.1161ms - 204
+2025-06-23 22:07:58.629 -03:00 [INF] Status da máquina 1 atualizado para Design no servidor.
+2025-06-23 22:07:58.631 -03:00 [INF] 🚀 Work Session iniciada: 0345385.iam (ID: a4c02334-905b-40bd-83be-19fba7cb9621)
+2025-06-23 22:07:58.631 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345385.iam
+2025-06-23 22:07:58.724 -03:00 [WRN] Não foi possível extrair o MachineDB_ID do arquivo 0307215.iam
+2025-06-23 22:07:58.726 -03:00 [INF] 🚀 Work Session iniciada: 0307215.iam (ID: c737fbb3-4de4-4bed-83f7-f4573a9913fe)
+2025-06-23 22:07:58.727 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0307215.iam
+2025-06-23 22:08:07.471 -03:00 [INF] 📂 FECHADO: 0345385.iam
+2025-06-23 22:08:07.472 -03:00 [INF] 📂 Documento fechado: 0345385.iam
+2025-06-23 22:08:07.474 -03:00 [INF] Arquivo da Máquina ID 1 foi fechado: 0345385.iam
+2025-06-23 22:08:07.476 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345385.iam
+2025-06-23 22:08:07.477 -03:00 [INF] 📂 FECHADO: 089277.ipt
+2025-06-23 22:08:07.478 -03:00 [INF] 📂 Documento fechado: 089277.ipt
+2025-06-23 22:08:07.479 -03:00 [INF] 📝 Atividade de documento: "Closed" - 089277.ipt
+2025-06-23 22:08:07.480 -03:00 [INF] 📂 FECHADO: 0313902.ipt
+2025-06-23 22:08:07.480 -03:00 [INF] 📂 Documento fechado: 0313902.ipt
+2025-06-23 22:08:07.481 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0313902.ipt
+2025-06-23 22:08:07.482 -03:00 [INF] 📂 FECHADO: UNI 5589 - M16 - 2.IPT
+2025-06-23 22:08:07.483 -03:00 [INF] 📂 Documento fechado: UNI 5589 - M16 - 2.IPT
+2025-06-23 22:08:07.484 -03:00 [INF] 📝 Atividade de documento: "Closed" - UNI 5589 - M16 - 2.IPT
+2025-06-23 22:08:07.486 -03:00 [INF] 📂 FECHADO: 0345580.ipt
+2025-06-23 22:08:07.487 -03:00 [INF] 📂 Documento fechado: 0345580.ipt
+2025-06-23 22:08:07.488 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345580.ipt
+2025-06-23 22:08:07.488 -03:00 [INF] 📂 FECHADO: 0345709.ipt
+2025-06-23 22:08:07.489 -03:00 [INF] 📂 Documento fechado: 0345709.ipt
+2025-06-23 22:08:07.490 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345709.ipt
+2025-06-23 22:08:07.491 -03:00 [INF] 📂 FECHADO: 0345710.ipt
+2025-06-23 22:08:07.492 -03:00 [INF] 📂 Documento fechado: 0345710.ipt
+2025-06-23 22:08:07.492 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345710.ipt
+2025-06-23 22:08:07.493 -03:00 [INF] 📂 FECHADO: 0345707.ipt
+2025-06-23 22:08:07.494 -03:00 [INF] 📂 Documento fechado: 0345707.ipt
+2025-06-23 22:08:07.495 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345707.ipt
+2025-06-23 22:08:07.496 -03:00 [INF] 📂 FECHADO: 0345708.ipt
+2025-06-23 22:08:07.497 -03:00 [INF] 📂 Documento fechado: 0345708.ipt
+2025-06-23 22:08:07.498 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345708.ipt
+2025-06-23 22:08:07.498 -03:00 [INF] 📂 FECHADO: 0345536.ipt
+2025-06-23 22:08:07.499 -03:00 [INF] 📂 Documento fechado: 0345536.ipt
+2025-06-23 22:08:07.500 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345536.ipt
+2025-06-23 22:08:07.502 -03:00 [INF] 📂 FECHADO: 0345538.ipt
+2025-06-23 22:08:07.502 -03:00 [INF] 📂 Documento fechado: 0345538.ipt
+2025-06-23 22:08:07.503 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345538.ipt
+2025-06-23 22:08:07.504 -03:00 [INF] 📂 FECHADO: 088259.ipt
+2025-06-23 22:08:07.505 -03:00 [INF] 📂 Documento fechado: 088259.ipt
+2025-06-23 22:08:07.506 -03:00 [INF] 📝 Atividade de documento: "Closed" - 088259.ipt
+2025-06-23 22:08:07.507 -03:00 [INF] 📂 FECHADO: 111646.ipt
+2025-06-23 22:08:07.507 -03:00 [INF] 📂 Documento fechado: 111646.ipt
+2025-06-23 22:08:07.508 -03:00 [INF] 📝 Atividade de documento: "Closed" - 111646.ipt
+2025-06-23 22:08:07.509 -03:00 [INF] 📂 FECHADO: 0254385.ipt
+2025-06-23 22:08:07.509 -03:00 [INF] 📂 Documento fechado: 0254385.ipt
+2025-06-23 22:08:07.510 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0254385.ipt
+2025-06-23 22:08:07.513 -03:00 [INF] 📂 FECHADO: 0321862.ipt
+2025-06-23 22:08:07.513 -03:00 [INF] 📂 Documento fechado: 0321862.ipt
+2025-06-23 22:08:07.514 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0321862.ipt
+2025-06-23 22:08:07.515 -03:00 [INF] 📂 FECHADO: 0307215.iam
+2025-06-23 22:08:07.516 -03:00 [INF] 📂 Documento fechado: 0307215.iam
+2025-06-23 22:08:07.517 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0307215.iam
+2025-06-23 22:08:07.519 -03:00 [INF] 📂 FECHADO: CP96SDB63-100C_1.ipt
+2025-06-23 22:08:07.519 -03:00 [INF] 📂 Documento fechado: CP96SDB63-100C_1.ipt
+2025-06-23 22:08:07.520 -03:00 [INF] 📝 Atividade de documento: "Closed" - CP96SDB63-100C_1.ipt
+2025-06-23 22:08:07.521 -03:00 [INF] 📂 FECHADO: CP96SDB63-100C_2.ipt
+2025-06-23 22:08:07.522 -03:00 [INF] 📂 Documento fechado: CP96SDB63-100C_2.ipt
+2025-06-23 22:08:07.523 -03:00 [INF] 📝 Atividade de documento: "Closed" - CP96SDB63-100C_2.ipt
+2025-06-23 22:08:07.524 -03:00 [INF] 📂 FECHADO: 0345546.ipt
+2025-06-23 22:08:07.525 -03:00 [INF] 📂 Documento fechado: 0345546.ipt
+2025-06-23 22:08:07.526 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345546.ipt
+2025-06-23 22:08:07.527 -03:00 [INF] 📂 FECHADO: 0345712.ipt
+2025-06-23 22:08:07.527 -03:00 [INF] 📂 Documento fechado: 0345712.ipt
+2025-06-23 22:08:07.528 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345712.ipt
+2025-06-23 22:08:07.529 -03:00 [INF] 📂 FECHADO: 0345713.ipt
+2025-06-23 22:08:07.530 -03:00 [INF] 📂 Documento fechado: 0345713.ipt
+2025-06-23 22:08:07.530 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345713.ipt
+2025-06-23 22:08:07.531 -03:00 [INF] 📂 FECHADO: 0345711.ipt
+2025-06-23 22:08:07.532 -03:00 [INF] 📂 Documento fechado: 0345711.ipt
+2025-06-23 22:08:07.533 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345711.ipt
+2025-06-23 22:08:07.534 -03:00 [INF] 📂 FECHADO: 0345714.ipt
+2025-06-23 22:08:07.535 -03:00 [INF] 📂 Documento fechado: 0345714.ipt
+2025-06-23 22:08:07.536 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345714.ipt
+2025-06-23 22:08:07.537 -03:00 [INF] 📂 FECHADO: 0345715.ipt
+2025-06-23 22:08:07.538 -03:00 [INF] 📂 Documento fechado: 0345715.ipt
+2025-06-23 22:08:07.539 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345715.ipt
+2025-06-23 22:08:07.540 -03:00 [INF] 📂 FECHADO: 0345716.ipt
+2025-06-23 22:08:07.541 -03:00 [INF] 📂 Documento fechado: 0345716.ipt
+2025-06-23 22:08:07.542 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345716.ipt
+2025-06-23 22:08:07.543 -03:00 [INF] 📂 FECHADO: 0345718.ipt
+2025-06-23 22:08:07.543 -03:00 [INF] 📂 Documento fechado: 0345718.ipt
+2025-06-23 22:08:07.544 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345718.ipt
+2025-06-23 22:08:07.545 -03:00 [INF] 📂 FECHADO: 134538.ipt
+2025-06-23 22:08:07.546 -03:00 [INF] 📂 Documento fechado: 134538.ipt
+2025-06-23 22:08:07.546 -03:00 [INF] 📝 Atividade de documento: "Closed" - 134538.ipt
+2025-06-23 22:08:10.493 -03:00 [INF] 📂 ABERTO: 0345385.iam
+2025-06-23 22:08:10.494 -03:00 [INF] 📂 Documento aberto: 0345385.iam
+2025-06-23 22:08:10.497 -03:00 [INF] 📂 ABERTO: 089277.ipt
+2025-06-23 22:08:10.497 -03:00 [INF] 📂 Documento aberto: 089277.ipt
+2025-06-23 22:08:10.498 -03:00 [INF] 🚀 Work Session iniciada: 089277.ipt (ID: 19d2e87b-82b6-4922-94b2-f1c1ff21cd61)
+2025-06-23 22:08:10.500 -03:00 [INF] 📝 Atividade de documento: "Opened" - 089277.ipt
+2025-06-23 22:08:10.711 -03:00 [INF] 📂 ABERTO: 0313902.ipt
+2025-06-23 22:08:10.711 -03:00 [INF] 📂 Documento aberto: 0313902.ipt
+2025-06-23 22:08:10.713 -03:00 [INF] 🚀 Work Session iniciada: 0313902.ipt (ID: 9a640775-6ef2-4636-91e8-ef59064172cf)
+2025-06-23 22:08:10.713 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0313902.ipt
+2025-06-23 22:08:10.798 -03:00 [INF] 📂 ABERTO: UNI 5589 M16
+2025-06-23 22:08:10.799 -03:00 [INF] 📂 Documento aberto: UNI 5589 M16
+2025-06-23 22:08:10.801 -03:00 [INF] 🚀 Work Session iniciada: UNI 5589 M16 (ID: a898ecde-fdcf-42df-bf58-720bce5f05c2)
+2025-06-23 22:08:10.802 -03:00 [INF] 📝 Atividade de documento: "Opened" - UNI 5589 M16
+2025-06-23 22:08:10.805 -03:00 [INF] 📂 ABERTO: 0345580.ipt
+2025-06-23 22:08:10.806 -03:00 [INF] 📂 Documento aberto: 0345580.ipt
+2025-06-23 22:08:10.807 -03:00 [INF] 🚀 Work Session iniciada: 0345580.ipt (ID: 61ad069c-6bf5-4d58-ba95-b735d0db2566)
+2025-06-23 22:08:10.808 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345580.ipt
+2025-06-23 22:08:10.960 -03:00 [INF] 📂 ABERTO: 0345709.ipt
+2025-06-23 22:08:10.960 -03:00 [INF] 📂 Documento aberto: 0345709.ipt
+2025-06-23 22:08:10.962 -03:00 [INF] 🚀 Work Session iniciada: 0345709.ipt (ID: 42da71ef-bf86-4409-b0ba-0dcdfb8f76cc)
+2025-06-23 22:08:10.963 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345709.ipt
+2025-06-23 22:08:10.969 -03:00 [INF] 📂 ABERTO: 0345710.ipt
+2025-06-23 22:08:10.970 -03:00 [INF] 📂 Documento aberto: 0345710.ipt
+2025-06-23 22:08:10.971 -03:00 [INF] 🚀 Work Session iniciada: 0345710.ipt (ID: 92b40245-cc99-4158-bbaa-87204d8aafbd)
+2025-06-23 22:08:10.972 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345710.ipt
+2025-06-23 22:08:11.268 -03:00 [INF] 📂 ABERTO: 0345707.ipt
+2025-06-23 22:08:11.269 -03:00 [INF] 📂 Documento aberto: 0345707.ipt
+2025-06-23 22:08:11.270 -03:00 [INF] 🚀 Work Session iniciada: 0345707.ipt (ID: 70e0e64e-142c-46d1-990e-25386515ce40)
+2025-06-23 22:08:11.271 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345707.ipt
+2025-06-23 22:08:11.279 -03:00 [INF] 📂 ABERTO: 0345708.ipt
+2025-06-23 22:08:11.280 -03:00 [INF] 📂 Documento aberto: 0345708.ipt
+2025-06-23 22:08:11.281 -03:00 [INF] 🚀 Work Session iniciada: 0345708.ipt (ID: 208d6b91-d8e5-42cc-8989-99b42d60b4da)
+2025-06-23 22:08:11.282 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345708.ipt
+2025-06-23 22:08:11.499 -03:00 [INF] 📂 ABERTO: 0345536.ipt
+2025-06-23 22:08:11.500 -03:00 [INF] 📂 Documento aberto: 0345536.ipt
+2025-06-23 22:08:11.502 -03:00 [INF] 🚀 Work Session iniciada: 0345536.ipt (ID: 24351c89-1d1d-443d-af6c-82e2a77d06a9)
+2025-06-23 22:08:11.503 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345536.ipt
+2025-06-23 22:08:11.517 -03:00 [INF] 📂 ABERTO: 0345538.ipt
+2025-06-23 22:08:11.518 -03:00 [INF] 📂 Documento aberto: 0345538.ipt
+2025-06-23 22:08:11.519 -03:00 [INF] 🚀 Work Session iniciada: 0345538.ipt (ID: d58ce959-915c-46a1-9982-3d7ee5816d4e)
+2025-06-23 22:08:11.520 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345538.ipt
+2025-06-23 22:08:11.534 -03:00 [INF] 📂 ABERTO: 088259.ipt
+2025-06-23 22:08:11.535 -03:00 [INF] 📂 Documento aberto: 088259.ipt
+2025-06-23 22:08:11.536 -03:00 [INF] 🚀 Work Session iniciada: 088259.ipt (ID: abafeac9-677a-4a1f-94d9-2153b48ce352)
+2025-06-23 22:08:11.537 -03:00 [INF] 📝 Atividade de documento: "Opened" - 088259.ipt
+2025-06-23 22:08:11.554 -03:00 [INF] 📂 ABERTO: 111646.ipt
+2025-06-23 22:08:11.554 -03:00 [INF] 📂 Documento aberto: 111646.ipt
+2025-06-23 22:08:11.556 -03:00 [INF] 🚀 Work Session iniciada: 111646.ipt (ID: 3b2b48be-70fc-4d21-827b-cf0f87d5216e)
+2025-06-23 22:08:11.557 -03:00 [INF] 📝 Atividade de documento: "Opened" - 111646.ipt
+2025-06-23 22:08:11.749 -03:00 [INF] 📂 ABERTO: 0254385.ipt
+2025-06-23 22:08:11.750 -03:00 [INF] 📂 Documento aberto: 0254385.ipt
+2025-06-23 22:08:11.751 -03:00 [INF] 🚀 Work Session iniciada: 0254385.ipt (ID: 5c8ed4d9-8ff8-4c48-829a-a6557dc25b72)
+2025-06-23 22:08:11.752 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0254385.ipt
+2025-06-23 22:08:11.769 -03:00 [INF] 📂 ABERTO: 0321862.ipt
+2025-06-23 22:08:11.769 -03:00 [INF] 📂 Documento aberto: 0321862.ipt
+2025-06-23 22:08:11.770 -03:00 [INF] 🚀 Work Session iniciada: 0321862.ipt (ID: 1cbcb8d1-8cf7-48f7-8546-93d67b01560f)
+2025-06-23 22:08:11.771 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0321862.ipt
+2025-06-23 22:08:11.785 -03:00 [INF] 📂 ABERTO: 0307215.iam
+2025-06-23 22:08:11.786 -03:00 [INF] 📂 Documento aberto: 0307215.iam
+2025-06-23 22:08:11.798 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_1.ipt
+2025-06-23 22:08:11.799 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_1.ipt
+2025-06-23 22:08:11.800 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_1.ipt (ID: 5a60b211-38fd-4a40-9a5c-95e5ef59c161)
+2025-06-23 22:08:11.801 -03:00 [INF] 📝 Atividade de documento: "Opened" - CP96SDB63-100C_1.ipt
+2025-06-23 22:08:11.812 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_2.ipt
+2025-06-23 22:08:11.813 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_2.ipt
+2025-06-23 22:08:11.815 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_2.ipt (ID: 107e46b0-c422-4975-9299-25c1fe111191)
+2025-06-23 22:08:11.815 -03:00 [INF] 📝 Atividade de documento: "Opened" - CP96SDB63-100C_2.ipt
+2025-06-23 22:08:11.828 -03:00 [INF] 📂 ABERTO: 0345546.ipt
+2025-06-23 22:08:11.829 -03:00 [INF] 📂 Documento aberto: 0345546.ipt
+2025-06-23 22:08:11.830 -03:00 [INF] 🚀 Work Session iniciada: 0345546.ipt (ID: 246e77b6-5f37-4979-9320-fc87c57ee68a)
+2025-06-23 22:08:11.831 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345546.ipt
+2025-06-23 22:08:11.846 -03:00 [INF] 📂 ABERTO: 0345712.ipt
+2025-06-23 22:08:11.847 -03:00 [INF] 📂 Documento aberto: 0345712.ipt
+2025-06-23 22:08:11.848 -03:00 [INF] 🚀 Work Session iniciada: 0345712.ipt (ID: 10d72315-23df-48ff-8ce4-0e9e781751e9)
+2025-06-23 22:08:11.849 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345712.ipt
+2025-06-23 22:08:11.861 -03:00 [INF] 📂 ABERTO: 0345713.ipt
+2025-06-23 22:08:11.862 -03:00 [INF] 📂 Documento aberto: 0345713.ipt
+2025-06-23 22:08:11.863 -03:00 [INF] 🚀 Work Session iniciada: 0345713.ipt (ID: ac27bca1-5723-4df9-850d-397c5703003c)
+2025-06-23 22:08:11.864 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345713.ipt
+2025-06-23 22:08:11.879 -03:00 [INF] 📂 ABERTO: 0345711.ipt
+2025-06-23 22:08:11.879 -03:00 [INF] 📂 Documento aberto: 0345711.ipt
+2025-06-23 22:08:11.881 -03:00 [INF] 🚀 Work Session iniciada: 0345711.ipt (ID: 43eab00d-c285-4d98-85e3-041ecd73f8d9)
+2025-06-23 22:08:11.881 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345711.ipt
+2025-06-23 22:08:11.894 -03:00 [INF] 📂 ABERTO: 0345714.ipt
+2025-06-23 22:08:11.895 -03:00 [INF] 📂 Documento aberto: 0345714.ipt
+2025-06-23 22:08:11.896 -03:00 [INF] 🚀 Work Session iniciada: 0345714.ipt (ID: 6c865d2e-f6c7-408c-99f7-0506bc1250bc)
+2025-06-23 22:08:11.896 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345714.ipt
+2025-06-23 22:08:11.904 -03:00 [INF] 📂 ABERTO: 0345715.ipt
+2025-06-23 22:08:11.905 -03:00 [INF] 📂 Documento aberto: 0345715.ipt
+2025-06-23 22:08:11.906 -03:00 [INF] 🚀 Work Session iniciada: 0345715.ipt (ID: e646a593-b0ca-41f1-8669-6ef652d9e5c5)
+2025-06-23 22:08:11.906 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345715.ipt
+2025-06-23 22:08:11.989 -03:00 [INF] 📂 ABERTO: 0345716.ipt
+2025-06-23 22:08:11.990 -03:00 [INF] 📂 Documento aberto: 0345716.ipt
+2025-06-23 22:08:11.990 -03:00 [INF] 🚀 Work Session iniciada: 0345716.ipt (ID: 5eefe2da-2aae-4975-a616-91c1d75946fc)
+2025-06-23 22:08:11.991 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345716.ipt
+2025-06-23 22:08:11.993 -03:00 [INF] 📂 ABERTO: 0345718.ipt
+2025-06-23 22:08:11.994 -03:00 [INF] 📂 Documento aberto: 0345718.ipt
+2025-06-23 22:08:11.995 -03:00 [INF] 🚀 Work Session iniciada: 0345718.ipt (ID: 52c944c3-cb1f-475e-aa6b-ab6780e20b89)
+2025-06-23 22:08:11.996 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345718.ipt
+2025-06-23 22:08:12.050 -03:00 [INF] 📂 ABERTO: 134538.ipt
+2025-06-23 22:08:12.051 -03:00 [INF] 📂 Documento aberto: 134538.ipt
+2025-06-23 22:08:12.052 -03:00 [INF] 🚀 Work Session iniciada: 134538.ipt (ID: 5efb0d99-a553-4f45-861c-82c4e6e129c5)
+2025-06-23 22:08:12.053 -03:00 [INF] 📝 Atividade de documento: "Opened" - 134538.ipt
+2025-06-23 22:08:12.700 -03:00 [INF] Montagem principal da Máquina ID 1 aberta: 0345385.iam
+2025-06-23 22:08:12.702 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/machines/1/status
+2025-06-23 22:08:12.702 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/machines/1/status
+2025-06-23 22:08:12.757 -03:00 [INF] Received HTTP response headers after 53.5005ms - 204
+2025-06-23 22:08:12.758 -03:00 [INF] End processing HTTP request after 56.711ms - 204
+2025-06-23 22:08:12.760 -03:00 [INF] Status da máquina 1 atualizado para Design no servidor.
+2025-06-23 22:08:12.761 -03:00 [INF] 🚀 Work Session iniciada: 0345385.iam (ID: 3103b28b-0d46-42ab-958a-eb55b5014163)
+2025-06-23 22:08:12.762 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345385.iam
+2025-06-23 22:08:14.305 -03:00 [WRN] Não foi possível extrair o MachineDB_ID do arquivo 0307215.iam
+2025-06-23 22:08:14.306 -03:00 [INF] 🚀 Work Session iniciada: 0307215.iam (ID: 845516a9-5969-421c-a647-33dc6f39ad1b)
+2025-06-23 22:08:14.307 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0307215.iam
+2025-06-23 22:12:55.197 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-23 22:12:55.200 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-23 22:12:55.204 -03:00 [INF] Received HTTP response headers after 2.6378ms - 204
+2025-06-23 22:12:55.205 -03:00 [INF] End processing HTTP request after 7.1766ms - 204
+2025-06-23 22:17:55.214 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-23 22:17:55.216 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-23 22:17:55.220 -03:00 [INF] Received HTTP response headers after 3.5041ms - 204
+2025-06-23 22:17:55.222 -03:00 [INF] End processing HTTP request after 7.4205ms - 204
+2025-06-23 22:21:43.494 -03:00 [INF] Companion Worker Service parando.
+2025-06-23 22:21:43.495 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-23 22:21:43.497 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-23 22:21:43.497 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-23 22:21:43.500 -03:00 [INF] 🏁 Work Session finalizada: 0254385.ipt - Duração: 00:13:47 - 0 saves
+2025-06-23 22:21:43.501 -03:00 [INF] 🏁 Enviando fim da sessão de trabalho: 0254385.ipt
+2025-06-23 22:21:43.502 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-23 22:21:43.502 -03:00 [INF] 📂 ABERTO: 0345710.ipt
+2025-06-23 22:21:43.503 -03:00 [INF] 🏁 Work Session finalizada: 0345709.ipt - Duração: 00:13:32 - 0 saves
+2025-06-23 22:21:43.504 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-23 22:21:43.504 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-23 22:21:43.504 -03:00 [INF] 🏁 Work Session finalizada: 0307215.iam - Duração: 00:13:44 - 0 saves
+2025-06-23 22:21:53.131 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-23 22:21:53.160 -03:00 [INF] Tentando conectar ao Inventor...
+2025-06-23 22:21:54.059 -03:00 [INF] ✓ Conectado ao Inventor 2023
+2025-06-23 22:21:54.061 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-23 22:21:54.063 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-23 22:21:54.063 -03:00 [INF] 🔄 Iniciando monitoramento via polling (mais confiável que eventos COM)
+2025-06-23 22:21:54.064 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-23 22:21:54.065 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-23 22:21:54.095 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-23 22:21:54.102 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-23 22:21:54.130 -03:00 [INF] 🔍 Detectando 27 documentos já abertos
+2025-06-23 22:21:54.159 -03:00 [INF] Received HTTP response headers after 53.4269ms - 204
+2025-06-23 22:21:54.165 -03:00 [INF] End processing HTTP request after 75.1774ms - 204
+2025-06-23 22:21:54.671 -03:00 [INF] 📂 ABERTO: 0345385.iam
+2025-06-23 22:21:54.678 -03:00 [INF] 📂 Documento aberto: 0345385.iam
+2025-06-23 22:21:54.681 -03:00 [INF] 🔍 DocumentType: Assembly
+2025-06-23 22:21:54.685 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.283 -03:00 [INF] 📂 ABERTO: 089277.ipt
+2025-06-23 22:21:55.285 -03:00 [INF] 📂 Documento aberto: 089277.ipt
+2025-06-23 22:21:55.286 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.287 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.288 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.297 -03:00 [INF] 🚀 Work Session iniciada: 089277.ipt (ID: 1537007e-0133-4b3a-8c3a-24563dcf355b)
+2025-06-23 22:21:55.300 -03:00 [INF] 📝 Atividade de documento: "Opened" - 089277.ipt
+2025-06-23 22:21:55.314 -03:00 [INF] 📂 ABERTO: 0313902.ipt
+2025-06-23 22:21:55.315 -03:00 [INF] 📂 Documento aberto: 0313902.ipt
+2025-06-23 22:21:55.316 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.316 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.317 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.318 -03:00 [INF] 🚀 Work Session iniciada: 0313902.ipt (ID: 7d6ebb9d-7229-4f6e-aab3-40e811f39659)
+2025-06-23 22:21:55.319 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0313902.ipt
+2025-06-23 22:21:55.333 -03:00 [INF] 📂 ABERTO: UNI 5589 M16
+2025-06-23 22:21:55.334 -03:00 [INF] 📂 Documento aberto: UNI 5589 M16
+2025-06-23 22:21:55.335 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.336 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.337 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.339 -03:00 [INF] 🚀 Work Session iniciada: UNI 5589 M16 (ID: c8f426ec-63c6-4b31-8a10-1c6c243977c3)
+2025-06-23 22:21:55.339 -03:00 [INF] 📝 Atividade de documento: "Opened" - UNI 5589 M16
+2025-06-23 22:21:55.351 -03:00 [INF] 📂 ABERTO: 0345580.ipt
+2025-06-23 22:21:55.352 -03:00 [INF] 📂 Documento aberto: 0345580.ipt
+2025-06-23 22:21:55.352 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.353 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.354 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.359 -03:00 [INF] 🚀 Work Session iniciada: 0345580.ipt (ID: c46185e6-4c73-49fb-9e1c-becf35a8d322)
+2025-06-23 22:21:55.359 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345580.ipt
+2025-06-23 22:21:55.365 -03:00 [INF] 📂 ABERTO: 0345709.ipt
+2025-06-23 22:21:55.366 -03:00 [INF] 📂 Documento aberto: 0345709.ipt
+2025-06-23 22:21:55.367 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.368 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.368 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.369 -03:00 [INF] 🚀 Work Session iniciada: 0345709.ipt (ID: 2f26363b-319f-4042-8e27-25a8b98f8fc4)
+2025-06-23 22:21:55.370 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345709.ipt
+2025-06-23 22:21:55.383 -03:00 [INF] 📂 ABERTO: 0345710.ipt
+2025-06-23 22:21:55.385 -03:00 [INF] 📂 Documento aberto: 0345710.ipt
+2025-06-23 22:21:55.385 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.386 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.387 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.388 -03:00 [INF] 🚀 Work Session iniciada: 0345710.ipt (ID: 4182e60e-8ef6-46bb-b57d-594bd5671e02)
+2025-06-23 22:21:55.389 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345710.ipt
+2025-06-23 22:21:55.400 -03:00 [INF] 📂 ABERTO: 0345707.ipt
+2025-06-23 22:21:55.401 -03:00 [INF] 📂 Documento aberto: 0345707.ipt
+2025-06-23 22:21:55.401 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.402 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.402 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.404 -03:00 [INF] 🚀 Work Session iniciada: 0345707.ipt (ID: c25e9142-32db-47c5-b2d7-b8418b18562e)
+2025-06-23 22:21:55.405 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345707.ipt
+2025-06-23 22:21:55.416 -03:00 [INF] 📂 ABERTO: 0345708.ipt
+2025-06-23 22:21:55.417 -03:00 [INF] 📂 Documento aberto: 0345708.ipt
+2025-06-23 22:21:55.417 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.419 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.420 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.421 -03:00 [INF] 🚀 Work Session iniciada: 0345708.ipt (ID: 269fc369-5590-4d20-9bc2-a1bdf0014c16)
+2025-06-23 22:21:55.422 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345708.ipt
+2025-06-23 22:21:55.435 -03:00 [INF] 📂 ABERTO: 0345536.ipt
+2025-06-23 22:21:55.436 -03:00 [INF] 📂 Documento aberto: 0345536.ipt
+2025-06-23 22:21:55.438 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.439 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.439 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.440 -03:00 [INF] 🚀 Work Session iniciada: 0345536.ipt (ID: 5a5667de-d6d6-41b6-ae09-2978ec4ed782)
+2025-06-23 22:21:55.441 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345536.ipt
+2025-06-23 22:21:55.454 -03:00 [INF] 📂 ABERTO: 0345538.ipt
+2025-06-23 22:21:55.455 -03:00 [INF] 📂 Documento aberto: 0345538.ipt
+2025-06-23 22:21:55.456 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.457 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.457 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.458 -03:00 [INF] 🚀 Work Session iniciada: 0345538.ipt (ID: 04280479-48a7-473e-a9c2-1c1f9c7499c5)
+2025-06-23 22:21:55.459 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345538.ipt
+2025-06-23 22:21:55.472 -03:00 [INF] 📂 ABERTO: 088259.ipt
+2025-06-23 22:21:55.473 -03:00 [INF] 📂 Documento aberto: 088259.ipt
+2025-06-23 22:21:55.474 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.474 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.475 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.476 -03:00 [INF] 🚀 Work Session iniciada: 088259.ipt (ID: c70cecb7-2c37-43c0-935d-e89479c85456)
+2025-06-23 22:21:55.485 -03:00 [INF] 📝 Atividade de documento: "Opened" - 088259.ipt
+2025-06-23 22:21:55.498 -03:00 [INF] 📂 ABERTO: 111646.ipt
+2025-06-23 22:21:55.499 -03:00 [INF] 📂 Documento aberto: 111646.ipt
+2025-06-23 22:21:55.500 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.500 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.501 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.502 -03:00 [INF] 🚀 Work Session iniciada: 111646.ipt (ID: dd86c292-d1e6-4806-b781-ab04064d8554)
+2025-06-23 22:21:55.503 -03:00 [INF] 📝 Atividade de documento: "Opened" - 111646.ipt
+2025-06-23 22:21:55.515 -03:00 [INF] 📂 ABERTO: 0254385.ipt
+2025-06-23 22:21:55.516 -03:00 [INF] 📂 Documento aberto: 0254385.ipt
+2025-06-23 22:21:55.517 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.517 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.518 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.519 -03:00 [INF] 🚀 Work Session iniciada: 0254385.ipt (ID: 7d0e0e41-924c-4667-9db4-a53b428a7ae1)
+2025-06-23 22:21:55.520 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0254385.ipt
+2025-06-23 22:21:55.533 -03:00 [INF] 📂 ABERTO: 0321862.ipt
+2025-06-23 22:21:55.534 -03:00 [INF] 📂 Documento aberto: 0321862.ipt
+2025-06-23 22:21:55.534 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.535 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.536 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.538 -03:00 [INF] 🚀 Work Session iniciada: 0321862.ipt (ID: 5af775ad-9631-4182-9f9a-7951b8b7ae11)
+2025-06-23 22:21:55.539 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0321862.ipt
+2025-06-23 22:21:55.552 -03:00 [INF] 📂 ABERTO: 0307215.iam
+2025-06-23 22:21:55.553 -03:00 [INF] 📂 Documento aberto: 0307215.iam
+2025-06-23 22:21:55.554 -03:00 [INF] 🔍 DocumentType: Assembly
+2025-06-23 22:21:55.555 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.568 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_1.ipt
+2025-06-23 22:21:55.569 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_1.ipt
+2025-06-23 22:21:55.570 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.572 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.573 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.574 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_1.ipt (ID: 30bcdc1b-d516-44cc-8044-f92e96c0a384)
+2025-06-23 22:21:55.574 -03:00 [INF] 📝 Atividade de documento: "Opened" - CP96SDB63-100C_1.ipt
+2025-06-23 22:21:55.587 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_2.ipt
+2025-06-23 22:21:55.588 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_2.ipt
+2025-06-23 22:21:55.589 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.590 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.590 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.591 -03:00 [INF] 🚀 Work Session iniciada: CP96SDB63-100C_2.ipt (ID: 1f494615-7277-43a8-9198-fe3cc0cbcf77)
+2025-06-23 22:21:55.592 -03:00 [INF] 📝 Atividade de documento: "Opened" - CP96SDB63-100C_2.ipt
+2025-06-23 22:21:55.604 -03:00 [INF] 📂 ABERTO: 0345546.ipt
+2025-06-23 22:21:55.605 -03:00 [INF] 📂 Documento aberto: 0345546.ipt
+2025-06-23 22:21:55.606 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.607 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.607 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.608 -03:00 [INF] 🚀 Work Session iniciada: 0345546.ipt (ID: b8cf28c7-4317-4f22-bb9f-8ad1b30108f7)
+2025-06-23 22:21:55.609 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345546.ipt
+2025-06-23 22:21:55.621 -03:00 [INF] 📂 ABERTO: 0345712.ipt
+2025-06-23 22:21:55.623 -03:00 [INF] 📂 Documento aberto: 0345712.ipt
+2025-06-23 22:21:55.623 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.624 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.624 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.625 -03:00 [INF] 🚀 Work Session iniciada: 0345712.ipt (ID: 9f40d1fd-6f75-4001-8eaf-caf97b5a8151)
+2025-06-23 22:21:55.626 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345712.ipt
+2025-06-23 22:21:55.639 -03:00 [INF] 📂 ABERTO: 0345713.ipt
+2025-06-23 22:21:55.639 -03:00 [INF] 📂 Documento aberto: 0345713.ipt
+2025-06-23 22:21:55.640 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.641 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.641 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.642 -03:00 [INF] 🚀 Work Session iniciada: 0345713.ipt (ID: b95c368f-e27e-41d0-8b46-30f42b42b8b1)
+2025-06-23 22:21:55.643 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345713.ipt
+2025-06-23 22:21:55.655 -03:00 [INF] 📂 ABERTO: 0345711.ipt
+2025-06-23 22:21:55.656 -03:00 [INF] 📂 Documento aberto: 0345711.ipt
+2025-06-23 22:21:55.657 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.657 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.658 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.659 -03:00 [INF] 🚀 Work Session iniciada: 0345711.ipt (ID: 074812ef-eb89-4d93-b0b0-8d658823bd86)
+2025-06-23 22:21:55.659 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345711.ipt
+2025-06-23 22:21:55.672 -03:00 [INF] 📂 ABERTO: 0345714.ipt
+2025-06-23 22:21:55.673 -03:00 [INF] 📂 Documento aberto: 0345714.ipt
+2025-06-23 22:21:55.673 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.674 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.675 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.676 -03:00 [INF] 🚀 Work Session iniciada: 0345714.ipt (ID: f16dac64-be11-4bbe-b8a1-b2799b298da3)
+2025-06-23 22:21:55.676 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345714.ipt
+2025-06-23 22:21:55.690 -03:00 [INF] 📂 ABERTO: 0345715.ipt
+2025-06-23 22:21:55.690 -03:00 [INF] 📂 Documento aberto: 0345715.ipt
+2025-06-23 22:21:55.691 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.692 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.692 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.693 -03:00 [INF] 🚀 Work Session iniciada: 0345715.ipt (ID: 201612fd-8fd0-4f42-bb40-3feaf279da3b)
+2025-06-23 22:21:55.693 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345715.ipt
+2025-06-23 22:21:55.706 -03:00 [INF] 📂 ABERTO: 0345716.ipt
+2025-06-23 22:21:55.707 -03:00 [INF] 📂 Documento aberto: 0345716.ipt
+2025-06-23 22:21:55.707 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.707 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.708 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.709 -03:00 [INF] 🚀 Work Session iniciada: 0345716.ipt (ID: c882c5d8-4d68-470e-8b62-957809417f3f)
+2025-06-23 22:21:55.709 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345716.ipt
+2025-06-23 22:21:55.722 -03:00 [INF] 📂 ABERTO: 0345718.ipt
+2025-06-23 22:21:55.722 -03:00 [INF] 📂 Documento aberto: 0345718.ipt
+2025-06-23 22:21:55.723 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.724 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.724 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.725 -03:00 [INF] 🚀 Work Session iniciada: 0345718.ipt (ID: 8b4cd663-d687-44da-8385-da7da0529b95)
+2025-06-23 22:21:55.725 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345718.ipt
+2025-06-23 22:21:55.738 -03:00 [INF] 📂 ABERTO: 134538.ipt
+2025-06-23 22:21:55.739 -03:00 [INF] 📂 Documento aberto: 134538.ipt
+2025-06-23 22:21:55.740 -03:00 [INF] 🔍 DocumentType: Part
+2025-06-23 22:21:55.741 -03:00 [INF] 🔍 InventorApp obtido: True
+2025-06-23 22:21:55.741 -03:00 [INF] 🔍 Condições não atendidas - InventorApp: True, DocumentType: Part
+2025-06-23 22:21:55.742 -03:00 [INF] 🚀 Work Session iniciada: 134538.ipt (ID: 8dfe8b6b-2b62-4e85-9382-84febdbb83d3)
+2025-06-23 22:21:55.742 -03:00 [INF] 📝 Atividade de documento: "Opened" - 134538.ipt
+2025-06-23 22:21:55.743 -03:00 [INF] ✅ Monitoring de documentos ativo via polling
+2025-06-23 22:21:56.731 -03:00 [INF] 🔍 Documento encontrado: True
+2025-06-23 22:21:57.289 -03:00 [INF] 🔍 TrackingInfo obtido - IsValid: False, MachineId: 0, ProjectId: 0
+2025-06-23 22:21:57.291 -03:00 [INF] 🔍 TrackingInfo inválido, usando fallback MachineDB_ID
+2025-06-23 22:21:57.383 -03:00 [INF] 🔍 MachineDB_ID encontrado: '1'
+2025-06-23 22:21:57.394 -03:00 [INF] Montagem principal da Máquina ID 1 aberta: 0345385.iam
+2025-06-23 22:21:57.399 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/machines/1/status
+2025-06-23 22:21:57.400 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/machines/1/status
+2025-06-23 22:21:57.416 -03:00 [INF] Received HTTP response headers after 15.9753ms - 204
+2025-06-23 22:21:57.418 -03:00 [INF] End processing HTTP request after 19.1218ms - 204
+2025-06-23 22:21:57.419 -03:00 [INF] Status da máquina 1 atualizado para Design no servidor.
+2025-06-23 22:21:57.461 -03:00 [ERR] ❌ Erro ao mostrar notificação simples
+Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: 'System.__ComObject' does not contain a definition for 'UserInterfaceManager'
+   at CallSite.Target(Closure, CallSite, ComObject)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at CADCompanion.Agent.Services.WorkDrivenMonitoringService.OnDocumentOpened(Object sender, DocumentOpenedEventArgs e) in C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Agent\Services\WorkDrivenMonitoringService.cs:line 201
+2025-06-23 22:21:57.483 -03:00 [INF] 🚀 Work Session iniciada: 0345385.iam (ID: 6f98b563-cffe-479c-b9f0-99016a121ee5)
+2025-06-23 22:21:57.483 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345385.iam
+2025-06-23 22:21:57.635 -03:00 [INF] 🔍 Documento encontrado: True
+2025-06-23 22:21:57.928 -03:00 [INF] 🔍 TrackingInfo obtido - IsValid: False, MachineId: 0, ProjectId: 0
+2025-06-23 22:21:57.930 -03:00 [INF] 🔍 TrackingInfo inválido, usando fallback MachineDB_ID
+2025-06-23 22:21:57.992 -03:00 [INF] 🔍 MachineDB_ID encontrado: ''
+2025-06-23 22:21:57.993 -03:00 [WRN] Não foi possível extrair o MachineDB_ID do arquivo 0307215.iam
+2025-06-23 22:21:57.995 -03:00 [ERR] ❌ Erro ao mostrar notificação de aviso
+Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: 'System.__ComObject' does not contain a definition for 'UserInterfaceManager'
+   at CallSite.Target(Closure, CallSite, ComObject)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at CADCompanion.Agent.Services.WorkDrivenMonitoringService.OnDocumentOpened(Object sender, DocumentOpenedEventArgs e) in C:\Users\kiera\OneDrive\Projetos\Synapse\CADCompanion.Agent\Services\WorkDrivenMonitoringService.cs:line 217
+2025-06-23 22:21:57.997 -03:00 [INF] 🚀 Work Session iniciada: 0307215.iam (ID: 38ea336e-d1ef-482d-8fff-c05707446ea9)
+2025-06-23 22:21:57.998 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0307215.iam
+2025-06-23 22:26:54.182 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-23 22:26:54.184 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-23 22:26:54.189 -03:00 [INF] Received HTTP response headers after 3.7468ms - 204
+2025-06-23 22:26:54.191 -03:00 [INF] End processing HTTP request after 8.5904ms - 204
+2025-06-23 22:31:54.196 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-23 22:31:54.198 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-23 22:31:54.202 -03:00 [INF] Received HTTP response headers after 2.4159ms - 204
+2025-06-23 22:31:54.203 -03:00 [INF] End processing HTTP request after 7.3823ms - 204
+2025-06-23 22:36:54.215 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-23 22:36:54.216 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-23 22:36:54.223 -03:00 [INF] Received HTTP response headers after 3.7751ms - 204
+2025-06-23 22:36:54.225 -03:00 [INF] End processing HTTP request after 9.9589ms - 204
+2025-06-23 22:40:05.175 -03:00 [INF] Companion Worker Service parando.
+2025-06-23 22:40:05.176 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-23 22:40:05.178 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-23 22:40:05.178 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-23 22:40:05.182 -03:00 [INF] 🏁 Work Session finalizada: CP96SDB63-100C_2.ipt - Duração: 00:18:09 - 0 saves
+2025-06-23 22:40:05.183 -03:00 [INF] 🏁 Enviando fim da sessão de trabalho: CP96SDB63-100C_2.ipt
+2025-06-23 22:40:05.184 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-23 22:40:05.185 -03:00 [INF] 🏁 Work Session finalizada: 0345711.ipt - Duração: 00:18:09 - 0 saves
+2025-06-23 22:40:05.186 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-23 22:40:05.186 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-23 22:40:05.186 -03:00 [INF] 🏁 Work Session finalizada: 111646.ipt - Duração: 00:18:09 - 0 saves
