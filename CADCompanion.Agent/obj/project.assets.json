@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {
+    "net8.0-windows7.0": {
       "EPPlus/8.0.5": {
         "type": "package",
         "dependencies": {
@@ -2325,7 +2325,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net8.0": [
+    "net8.0-windows7.0": [
       "CADCompanion.Shared >= 1.0.0",
       "EPPlus >= 8.0.5",
       "Microsoft.Extensions.Hosting >= 8.0.1",
@@ -2352,14 +2352,14 @@
         "C:\\Users\\kiera\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "net8.0"
+        "net8.0-windows"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
           "projectReferences": {
             "C:\\Users\\kiera\\OneDrive\\Projetos\\Synapse\\CADCompanion.Shared\\CADCompanion.Shared.csproj": {
               "projectPath": "C:\\Users\\kiera\\OneDrive\\Projetos\\Synapse\\CADCompanion.Shared\\CADCompanion.Shared.csproj"
@@ -2379,8 +2379,8 @@
       }
     },
     "frameworks": {
-      "net8.0": {
-        "targetAlias": "net8.0",
+      "net8.0-windows7.0": {
+        "targetAlias": "net8.0-windows",
         "dependencies": {
           "EPPlus": {
             "target": "Package",

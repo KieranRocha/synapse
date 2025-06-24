@@ -10,13 +10,16 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("CADCompanion.Server")]
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("dotnet-CADCompanion.Agent-0066e3d1-f28c-4319-8fd7-8d3ed39fae6a")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("CADCompanion.Agent")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6efb8e32f046046e2bd32ce93e19a2ab5214f157")]
-[assembly: System.Reflection.AssemblyProductAttribute("CADCompanion.Server")]
-[assembly: System.Reflection.AssemblyTitleAttribute("CADCompanion.Server")]
+[assembly: System.Reflection.AssemblyProductAttribute("CADCompanion.Agent")]
+[assembly: System.Reflection.AssemblyTitleAttribute("CADCompanion.Agent")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
+[assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
 
 // Gerado pela classe WriteCodeFragment do MSBuild.
 

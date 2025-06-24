@@ -1,10 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dotnet-CADCompanion.Agent-0066e3d1-f28c-4319-8fd7-8d3ed39fae6a</UserSecretsId>
+    
+    <!-- ✅ CONFIGURAÇÕES PARA SYSTEM TRAY -->
+    
+    <UseWPF>false</UseWPF>
+    <OutputType>WinExe</OutputType>
+    
+    <!-- ✅ CONFIGURAÇÕES ADICIONAIS PARA WINDOWS APP -->
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,9 +24,12 @@
     <PackageReference Include="Serilog.Extensions.Hosting" Version="9.0.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+    
+    <!-- ✅ DEPENDÊNCIA PARA WINDOWS FORMS -->
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CADCompanion.Shared\CADCompanion.Shared.csproj" />
   </ItemGroup>
+
 </Project>
