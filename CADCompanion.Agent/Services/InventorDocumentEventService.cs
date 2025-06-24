@@ -181,7 +181,9 @@ namespace CADCompanion.Agent.Services
                 {
                     FireDocumentClosed(closedPath);
                 }
-
+var reopenedDocuments = currentDocuments.Keys
+            .Where(path => !_lastKnownDocuments.ContainsKey(path))
+            .ToList();
                 // Atualiza cache
                 _lastKnownDocuments.Clear();
                 foreach (var kvp in currentDocuments)

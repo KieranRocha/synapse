@@ -209,4 +209,31 @@ public class ApiCommunicationService : IApiCommunicationService
             _logger.LogError(ex, "❌ Erro ao enviar atualização da sessão de trabalho");
         }
     }
+    public async Task<dynamic?> GetMachineAsync(int machineId)
+{
+    try
+    {
+        var response = await _httpClient.GetFromJsonAsync<dynamic>($"api/machines/{machineId}");
+        return response;
+    }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "Erro ao buscar máquina {MachineId}", machineId);
+        return null;
+    }
+}
+
+public async Task<dynamic?> GetProjectAsync(int projectId)
+{
+    try
+    {
+        var response = await _httpClient.GetFromJsonAsync<dynamic>($"api/projects/{projectId}");
+        return response;
+    }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "Erro ao buscar projeto {ProjectId}", projectId);
+        return null;
+    }
+}
 }
