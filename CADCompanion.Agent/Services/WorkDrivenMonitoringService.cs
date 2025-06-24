@@ -35,8 +35,7 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         WorkSessionService workSessionService,
         IInventorConnectionService inventorConnection, // Adicionado
         IInventorBOMExtractor bomExtractor,           // Adicionado
-        IApiCommunicationService apiService, IWindowsNotificationService notificationService)           // Adicionado
-
+        IApiCommunicationService apiService)           // Adicionado
     {
         _logger = logger;
         _configuration = configuration.Value;
@@ -46,7 +45,6 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         _inventorConnection = inventorConnection;
         _bomExtractor = bomExtractor;
         _apiService = apiService;
-        _notificationService = notificationService;
 
         // Subscreve aos eventos de documentos
         SubscribeToDocumentEvents();
@@ -113,7 +111,6 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         _documentEventService.DocumentSaved += OnDocumentSaved;
     }
     private readonly HashSet<string> _processedFiles = new();
-    private readonly IWindowsNotificationService _notificationService;
     private async void OnDocumentOpened(object? sender, DocumentOpenedEventArgs e)
     {
         try
@@ -128,7 +125,7 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
 
             _logger.LogInformation($"📂 Documento aberto: {e.FileName}");
 
-            // --- Lógica NOVA para identificar a máquina ---
+            // --- Lógica para identificar a máquina ---
             var inventorApp = _inventorConnection.GetInventorApp();
             if (inventorApp != null && e.DocumentType == DocumentType.Assembly)
             {
@@ -153,60 +150,36 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
 
                 if (doc != null)
                 {
-                    var trackingInfo = _bomExtractor.GetMachineTrackingInfo(doc);
-
-                    if (trackingInfo.IsValid)
+                    var machineIdStr = _bomExtractor.GetCustomIProperty(doc, "MachineDB_ID");
+                    if (!string.IsNullOrEmpty(machineIdStr))
                     {
-                        _logger.LogInformation("🔍 Validando tracking: Machine={MachineId}, Project={ProjectId}",
-                            (object)trackingInfo.MachineId, (object)trackingInfo.ProjectId);
-
-                        var validationResult = await ValidateTrackingInfo(trackingInfo);
-
-                        if (validationResult.IsValid)
-                        {
-                            // ✅ NOVA NOTIFICAÇÃO WINDOWS
-                            _notificationService.ShowDocumentOpenedNotification(
-                                e.FileName,
-                                validationResult.ProjectName ?? "Projeto Desconhecido",
-                                trackingInfo.MachineId);
-
-                            _fileToMachineIdMap[e.FilePath] = trackingInfo.MachineId;
-                            await _apiService.UpdateMachineStatusAsync(trackingInfo.MachineId, "Design", Environment.UserName, e.FileName);
-                        }
-
+                        _logger.LogInformation($"✅ MachineDB_ID encontrado: {machineIdStr} para {e.FileName}");
                     }
                     else
                     {
-                        // Fallback para método atual (MachineDB_ID)
-                        var machineIdStr = _bomExtractor.GetCustomIProperty(doc, "MachineDB_ID");
-                        int machineId = 0;
-                        if (!string.IsNullOrEmpty(machineIdStr) && int.TryParse(machineIdStr, out machineId))
-                        {
-                            _logger.LogInformation("Montagem principal da Máquina ID {MachineId} aberta: {FileName}", machineId, e.FileName);
+                        _logger.LogWarning($"⚠️ MachineDB_ID não encontrado para {e.FileName}");
+                    }
+                    int machineId = 0;
+                    if (!string.IsNullOrEmpty(machineIdStr) && int.TryParse(machineIdStr, out machineId))
+                    {
+                        _logger.LogInformation("Montagem principal da Máquina ID {MachineId} aberta: {FileName}", machineId, e.FileName);
 
-                            // ✅ NOVA NOTIFICAÇÃO WINDOWS
-                            _notificationService.ShowDocumentOpenedNotification(
-                                e.FileName,
-                                "Projeto Monitorado",
-                                machineId);
+                        // Mapeia o caminho do arquivo ao ID da máquina
+                        _fileToMachineIdMap[e.FilePath] = machineId;
 
-                            _fileToMachineIdMap[e.FilePath] = machineId;
-                            await _apiService.UpdateMachineStatusAsync(machineId, "Design", Environment.UserName, e.FileName);
-                        }
-                        else
-                        {
-                            _logger.LogWarning("Não foi possível extrair o MachineDB_ID do arquivo {FileName}", e.FileName);
-
-                            // ✅ NOVA NOTIFICAÇÃO DE AVISO
-                            _notificationService.ShowWarningNotification(
-                                "📄 Arquivo Não Rastreado",
-                                $"Arquivo: {e.FileName}\n\nEste arquivo não possui informações de rastreamento.");
-                        }
+                        // Notifica o servidor que a máquina está em "Design"
+                        await _apiService.UpdateMachineStatusAsync(machineId, "Design", Environment.UserName, e.FileName);
+                    }
+                    else
+                    {
+                        // LOG ADICIONADO: Ajuda a diagnosticar por que a leitura da iProperty falhou.
+                        _logger.LogWarning("Não foi possível extrair o MachineDB_ID do arquivo {FileName}. A propriedade existe e tem um valor numérico?", e.FileName);
                     }
                 }
                 else
                 {
-                    _logger.LogWarning("Não foi possível obter o objeto do documento do Inventor para {FileName}", e.FileName);
+                    // LOG ADICIONADO: Ajuda a diagnosticar se o documento não foi encontrado a tempo.
+                    _logger.LogWarning("Não foi possível obter o objeto do documento do Inventor para {FileName} no momento da abertura.", e.FileName);
                 }
             }
             // --- Fim da lógica de máquina ---
@@ -243,11 +216,6 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
     {
         try
         {
-            lock (_processedFiles)
-            {
-                _processedFiles.Remove(e.FilePath);
-            }
-
             _logger.LogInformation($"📂 Documento fechado: {e.FileName}");
 
             // --- Lógica para limpar o mapeamento da máquina ---
@@ -606,43 +574,6 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
             _logger.LogError(ex, "Erro ao finalizar sessões ativas");
         }
     }
-    private async Task<ValidationResult> ValidateTrackingInfo(MachineTrackingInfo trackingInfo)
-    {
-        try
-        {
-            var machine = await _apiService.GetMachineAsync(trackingInfo.MachineId);
-            if (machine == null)
-                return new ValidationResult { IsValid = false, ErrorMessage = "Máquina não encontrada" };
-
-            var project = await _apiService.GetProjectAsync(trackingInfo.ProjectId);
-
-            if (machine.ProjectId != trackingInfo.ProjectId)
-            {
-                var actualProject = await _apiService.GetProjectAsync(machine.ProjectId);
-                return new ValidationResult
-                {
-                    IsValid = false,
-                    ActualProjectId = machine.ProjectId,
-                    ActualProjectName = actualProject?.Name
-                };
-            }
-
-            return new ValidationResult
-            {
-                IsValid = true,
-                ProjectName = project?.Name,
-                MachineName = machine.Name
-            };
-        }
-        catch
-        {
-            return new ValidationResult { IsValid = false, ErrorMessage = "Erro de validação" };
-        }
-    }
-
-
-
-
 
     #endregion
 

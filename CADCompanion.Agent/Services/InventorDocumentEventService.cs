@@ -1,14 +1,10 @@
-// CADCompanion.Agent/Services/InventorDocumentEventService.cs
-// CORREÇÃO DO CONFLITO DE Timer
-
+// Services/InventorDocumentEventService.cs - CORRIGIDO
 using Microsoft.Extensions.Logging;
 using CADCompanion.Agent.Models;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CADCompanion.Agent.Services
 {
@@ -17,7 +13,7 @@ namespace CADCompanion.Agent.Services
         event EventHandler<DocumentOpenedEventArgs>? DocumentOpened;
         event EventHandler<DocumentClosedEventArgs>? DocumentClosed;
         event EventHandler<DocumentSavedEventArgs>? DocumentSaved;
-
+        
         Task<bool> SubscribeToDocumentEventsAsync();
         Task UnsubscribeFromDocumentEventsAsync();
         bool IsSubscribed { get; }
@@ -28,9 +24,7 @@ namespace CADCompanion.Agent.Services
         private readonly ILogger<InventorDocumentEventService> _logger;
         private readonly IInventorConnectionService _inventorConnection;
         private bool _isSubscribed = false;
-
-        // ✅ CORRIGIDO: Especifica qual Timer usar
-        private System.Threading.Timer? _documentPollingTimer;
+        private Timer? _documentPollingTimer;
         private readonly Dictionary<string, DateTime> _lastKnownDocuments = new();
 
         // Eventos públicos
@@ -64,18 +58,22 @@ namespace CADCompanion.Agent.Services
                     return false;
                 }
 
-                _logger.LogInformation("🔄 Iniciando monitoramento via polling");
-
+                // ✅ FIX: Usa polling ao invés de eventos COM diretos
+                // Eventos COM do Inventor são problemáticos com .NET moderno
+                _logger.LogInformation("🔄 Iniciando monitoramento via polling (mais confiável que eventos COM)");
+                
+                // Detecta documentos já abertos
                 await DetectAlreadyOpenDocumentsAsync();
-
-                // ✅ CORRIGIDO: Usa System.Threading.Timer explicitamente
-                _documentPollingTimer = new System.Threading.Timer(PollDocumentChanges, null,
-                    TimeSpan.FromSeconds(2),
-                    TimeSpan.FromSeconds(3));
+                
+                // Inicia timer para polling de documentos
+                _documentPollingTimer = new Timer(PollDocumentChanges, null, 
+                    TimeSpan.FromSeconds(2), // Initial delay
+                    TimeSpan.FromSeconds(3)  // Interval - check every 3 seconds
+                );
 
                 _isSubscribed = true;
                 _logger.LogInformation("✅ Monitoring de documentos ativo via polling");
-
+                
                 return true;
             }
             catch (Exception ex)
@@ -91,19 +89,21 @@ namespace CADCompanion.Agent.Services
             {
                 _documentPollingTimer?.Dispose();
                 _documentPollingTimer = null;
-
+                
                 _lastKnownDocuments.Clear();
                 _isSubscribed = false;
-
+                
                 _logger.LogInformation("🔌 Desconectado do monitoring de documentos");
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erro ao desconectar monitoring de documentos");
             }
-
+            
             return Task.CompletedTask;
         }
+
+        #region Polling-Based Document Detection
 
         private async void PollDocumentChanges(object? state)
         {
@@ -120,18 +120,17 @@ namespace CADCompanion.Agent.Services
             }
         }
 
-        // ... resto dos métodos permanecem iguais ...
-
         private void DetectDocumentChanges()
         {
             try
             {
                 var inventorApp = _inventorConnection.GetInventorApp();
-                if (inventorApp == null)
+                if (inventorApp == null) 
                     return;
 
                 var currentDocuments = new Dictionary<string, DateTime>();
 
+                // Itera pelos documentos atualmente abertos
                 try
                 {
                     var documents = inventorApp.Documents;
@@ -143,16 +142,18 @@ namespace CADCompanion.Agent.Services
                         {
                             var doc = documents[i];
                             var filePath = doc.FullFileName?.ToString() ?? string.Empty;
-
+                            
                             if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
                             {
                                 var lastWrite = File.GetLastWriteTime(filePath);
                                 currentDocuments[filePath] = lastWrite;
 
+                                // Verifica se é documento novo (aberto)
                                 if (!_lastKnownDocuments.ContainsKey(filePath))
                                 {
                                     FireDocumentOpened(filePath, doc);
                                 }
+                                // Verifica se foi modificado (salvo)
                                 else if (_lastKnownDocuments[filePath] != lastWrite)
                                 {
                                     FireDocumentSaved(filePath, doc);
@@ -171,6 +172,7 @@ namespace CADCompanion.Agent.Services
                     return;
                 }
 
+                // Detecta documentos fechados
                 var closedDocuments = _lastKnownDocuments.Keys
                     .Where(path => !currentDocuments.ContainsKey(path))
                     .ToList();
@@ -180,6 +182,7 @@ namespace CADCompanion.Agent.Services
                     FireDocumentClosed(closedPath);
                 }
 
+                // Atualiza cache
                 _lastKnownDocuments.Clear();
                 foreach (var kvp in currentDocuments)
                 {
@@ -192,12 +195,16 @@ namespace CADCompanion.Agent.Services
             }
         }
 
+        #endregion
+
+        #region Event Firing Methods
+
         private void FireDocumentOpened(string filePath, dynamic doc)
         {
             try
             {
                 var fileName = doc?.DisplayName?.ToString() ?? Path.GetFileName(filePath);
-
+                
                 var eventArgs = new DocumentOpenedEventArgs
                 {
                     FilePath = filePath,
@@ -221,7 +228,7 @@ namespace CADCompanion.Agent.Services
             try
             {
                 var fileName = Path.GetFileName(filePath);
-
+                
                 var eventArgs = new DocumentClosedEventArgs
                 {
                     FilePath = filePath,
@@ -244,7 +251,7 @@ namespace CADCompanion.Agent.Services
             try
             {
                 var fileName = doc?.DisplayName?.ToString() ?? Path.GetFileName(filePath);
-
+                
                 var eventArgs = new DocumentSavedEventArgs
                 {
                     FilePath = filePath,
@@ -262,6 +269,10 @@ namespace CADCompanion.Agent.Services
                 _logger.LogError(ex, $"Erro ao disparar evento DocumentSaved: {filePath}");
             }
         }
+
+        #endregion
+
+        #region Helper Methods
 
         private DocumentType DetermineDocumentType(string filePath)
         {
@@ -299,7 +310,7 @@ namespace CADCompanion.Agent.Services
                 await Task.Run(() =>
                 {
                     var inventorApp = _inventorConnection.GetInventorApp();
-                    if (inventorApp == null)
+                    if (inventorApp == null) 
                         return;
 
                     try
@@ -320,7 +331,7 @@ namespace CADCompanion.Agent.Services
                                 {
                                     var lastWrite = File.GetLastWriteTime(filePath);
                                     _lastKnownDocuments[filePath] = lastWrite;
-
+                                    
                                     FireDocumentOpened(filePath, doc);
                                 }
                             }
@@ -341,5 +352,7 @@ namespace CADCompanion.Agent.Services
                 _logger.LogError(ex, "Erro ao detectar documentos já abertos");
             }
         }
+
+        #endregion
     }
 }

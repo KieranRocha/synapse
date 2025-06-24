@@ -16,8 +16,5 @@ namespace CADCompanion.Agent.Services
         /// Obtém o valor de uma iProperty customizada de um documento do Inventor.
         /// </summary>
         string? GetCustomIProperty(dynamic document, string propertyName);
-        void SetCustomIProperty(dynamic document, string propertyName, string value);
-void SetMachineTrackingProperties(dynamic document, int machineId, int projectId, string projectCode);
-MachineTrackingInfo GetMachineTrackingInfo(dynamic document);
     }
 }

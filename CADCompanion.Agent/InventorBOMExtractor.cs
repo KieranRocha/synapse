@@ -449,57 +449,7 @@ namespace CADCompanion.Agent
             Console.WriteLine($"[WARNING] iProperty customizada '{propertyName}' não encontrada no documento {document.FullFileName}.");
             return null;
         }
-public void SetCustomIProperty(dynamic document, string propertyName, string value)
-{
-    try
-    {
-        dynamic customPropertySet = document.PropertySets["User Defined Properties"];
-        
-        // Tenta encontrar propriedade existente
-        foreach (dynamic prop in customPropertySet)
-        {
-            if (prop.Name.Equals(propertyName, StringComparison.OrdinalIgnoreCase))
-            {
-                prop.Value = value;
-                Console.WriteLine($"✅ iProperty '{propertyName}' atualizada: '{value}'");
-                return;
-            }
-        }
-        
-        // Se não existe, cria nova
-        customPropertySet.Add(value, propertyName);
-        Console.WriteLine($"✅ iProperty '{propertyName}' criada: '{value}'");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"❌ Erro ao setar iProperty '{propertyName}': {ex.Message}");
-        throw;
-    }
-}
 
-public void SetMachineTrackingProperties(dynamic document, int machineId, int projectId, string projectCode)
-{
-    SetCustomIProperty(document, "CADCompanion_MachineId", machineId.ToString());
-    SetCustomIProperty(document, "CADCompanion_ProjectId", projectId.ToString());
-    SetCustomIProperty(document, "CADCompanion_ProjectCode", projectCode);
-    SetCustomIProperty(document, "CADCompanion_LastSync", DateTime.UtcNow.ToString("O"));
-    Console.WriteLine($"✅ Tracking completo setado: Machine {machineId}, Project {projectId}");
-}
-
-public MachineTrackingInfo GetMachineTrackingInfo(dynamic document)
-{
-    var machineIdStr = GetCustomIProperty(document, "CADCompanion_MachineId");
-    var projectIdStr = GetCustomIProperty(document, "CADCompanion_ProjectId");
-    var lastSyncStr = GetCustomIProperty(document, "CADCompanion_LastSync");
-    
-    return new MachineTrackingInfo
-    {
-        MachineId = string.IsNullOrEmpty(machineIdStr) ? 0 : (int.TryParse(machineIdStr, out int mId) ? mId : 0),
-        ProjectId = string.IsNullOrEmpty(projectIdStr) ? 0 : (int.TryParse(projectIdStr, out int pId) ? pId : 0),
-        ProjectCode = GetCustomIProperty(document, "CADCompanion_ProjectCode"),
-        LastSync = string.IsNullOrEmpty(lastSyncStr) ? null : (DateTime.TryParse(lastSyncStr, out DateTime sync) ? sync : null)
-    };
-}
         public bool ActivateDocument(string fileName)
         {
             try
@@ -836,24 +786,6 @@ public MachineTrackingInfo GetMachineTrackingInfo(dynamic document)
 
     // Esta classe é a definição local usada pelos métodos de extração.
     // O método ExtractBOMAsync irá mapear desta para a classe em Models.
-    public class MachineTrackingInfo
-{
-    public int MachineId { get; set; }
-    public int ProjectId { get; set; }
-    public string? ProjectCode { get; set; }
-    public DateTime? LastSync { get; set; }
-    public bool IsValid => MachineId > 0 && ProjectId > 0;
-}
-
-public class ValidationResult
-{
-    public bool IsValid { get; set; }
-    public string? ProjectName { get; set; }
-    public string? MachineName { get; set; }
-    public int ActualProjectId { get; set; }
-    public string? ActualProjectName { get; set; }
-    public string? ErrorMessage { get; set; }
-}
     public class BomItem
     {
         public int Level { get; set; }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CADCompanion.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd82b79a8681998352941c95ad87444f57dc8816")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e755242a34fbc25e5f61e0d4e27d23f0f99ac535")]
 [assembly: System.Reflection.AssemblyProductAttribute("CADCompanion.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CADCompanion.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

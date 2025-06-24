@@ -17,14 +17,14 @@
           "C:\\Users\\kiera\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net8.0-windows"
+          "net8.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0-windows7.0": {
-            "targetAlias": "net8.0-windows",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {
               "C:\\Users\\kiera\\OneDrive\\Projetos\\Synapse\\CADCompanion.Shared\\CADCompanion.Shared.csproj": {
                 "projectPath": "C:\\Users\\kiera\\OneDrive\\Projetos\\Synapse\\CADCompanion.Shared\\CADCompanion.Shared.csproj"
@@ -44,20 +44,16 @@
         }
       },
       "frameworks": {
-        "net8.0-windows7.0": {
-          "targetAlias": "net8.0-windows",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "EPPlus": {
               "target": "Package",
-              "version": "[7.0.0, )"
-            },
-            "Microsoft.Extensions.Configuration": {
-              "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.5, )"
             },
             "Microsoft.Extensions.Hosting": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.1, )"
             },
             "Microsoft.Extensions.Hosting.WindowsServices": {
               "target": "Package",
@@ -65,35 +61,19 @@
             },
             "Microsoft.Extensions.Http": {
               "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Microsoft.Extensions.Logging": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Microsoft.Extensions.Logging.Console": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Microsoft.Extensions.Options": {
-              "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[9.0.6, )"
             },
             "Serilog.Extensions.Hosting": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[9.0.0, )"
             },
             "Serilog.Sinks.Console": {
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[6.0.0, )"
             },
             "Serilog.Sinks.File": {
               "target": "Package",
-              "version": "[5.0.0, )"
-            },
-            "System.Text.Json": {
-              "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -110,12 +90,6 @@
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
-            },
-            "Microsoft.WindowsDesktop.App": {
-              "privateAssets": "none"
-            },
-            "Microsoft.WindowsDesktop.App.WindowsForms": {
-              "privateAssets": "none"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.411/PortableRuntimeIdentifierGraph.json"
