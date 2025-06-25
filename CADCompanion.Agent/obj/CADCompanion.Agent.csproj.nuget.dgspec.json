@@ -17,14 +17,14 @@
           "C:\\Users\\kiera\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net8.0"
+          "net8.0-windows10.0.17763.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
+          "net8.0-windows10.0.17763": {
+            "targetAlias": "net8.0-windows10.0.17763.0",
             "projectReferences": {
               "C:\\Users\\kiera\\OneDrive\\Projetos\\Synapse\\CADCompanion.Shared\\CADCompanion.Shared.csproj": {
                 "projectPath": "C:\\Users\\kiera\\OneDrive\\Projetos\\Synapse\\CADCompanion.Shared\\CADCompanion.Shared.csproj"
@@ -44,9 +44,13 @@
         }
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net8.0-windows10.0.17763": {
+          "targetAlias": "net8.0-windows10.0.17763.0",
           "dependencies": {
+            "CommunityToolkit.WinUI.Notifications": {
+              "target": "Package",
+              "version": "[7.1.2, )"
+            },
             "EPPlus": {
               "target": "Package",
               "version": "[8.0.5, )"
@@ -62,6 +66,10 @@
             "Microsoft.Extensions.Http": {
               "target": "Package",
               "version": "[9.0.6, )"
+            },
+            "Microsoft.Toolkit.Uwp.Notifications": {
+              "target": "Package",
+              "version": "[7.1.3, )"
             },
             "Serilog.Extensions.Hosting": {
               "target": "Package",
@@ -87,9 +95,21 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.Windows.SDK.NET.Ref",
+              "version": "[10.0.17763.56, 10.0.17763.56]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
+            },
+            "Microsoft.Windows.SDK.NET.Ref": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WindowsForms": {
+              "privateAssets": "none"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.411/PortableRuntimeIdentifierGraph.json"

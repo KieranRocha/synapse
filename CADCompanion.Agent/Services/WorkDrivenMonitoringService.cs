@@ -1,6 +1,5 @@
 using CADCompanion.Agent.Configuration;
 using CADCompanion.Agent.Models;
-
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Collections.Concurrent;
@@ -17,6 +16,7 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
     private readonly DocumentProcessingService _documentProcessingService;
     private readonly WorkSessionService _workSessionService;
     private readonly CompanionConfiguration _configuration;
+    private readonly INotificationService _notificationService; // ✅ ADICIONADO
 
     // Serviços injetados que são necessários para a nova lógica
     private readonly IInventorConnectionService _inventorConnection;
@@ -26,16 +26,17 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
     private readonly ConcurrentDictionary<string, FileSystemWatcher> _watchers = new();
     private readonly ConcurrentDictionary<string, DocumentWatcher> _documentWatchers = new();
     private bool _isMonitoring = false;
-
+    private DateTime _lastDocumentOpenTime = DateTime.MinValue;
     public WorkDrivenMonitoringService(
         ILogger<WorkDrivenMonitoringService> logger,
         IOptions<CompanionConfiguration> configuration,
         IInventorDocumentEventService documentEventService,
         DocumentProcessingService documentProcessingService,
         WorkSessionService workSessionService,
-        IInventorConnectionService inventorConnection, // Adicionado
-        IInventorBOMExtractor bomExtractor,           // Adicionado
-        IApiCommunicationService apiService)           // Adicionado
+        IInventorConnectionService inventorConnection,
+        IInventorBOMExtractor bomExtractor,
+        IApiCommunicationService apiService,
+        INotificationService notificationService) // ✅ ADICIONADO
     {
         _logger = logger;
         _configuration = configuration.Value;
@@ -45,6 +46,7 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         _inventorConnection = inventorConnection;
         _bomExtractor = bomExtractor;
         _apiService = apiService;
+        _notificationService = notificationService; // ✅ ADICIONADO
 
         // Subscreve aos eventos de documentos
         SubscribeToDocumentEvents();
@@ -110,9 +112,13 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         _documentEventService.DocumentClosed += OnDocumentClosed;
         _documentEventService.DocumentSaved += OnDocumentSaved;
     }
+
     private readonly HashSet<string> _processedFiles = new();
+
     private async void OnDocumentOpened(object? sender, DocumentOpenedEventArgs e)
     {
+        var now = DateTime.UtcNow;
+        var timeSinceLastOpen = (now - _lastDocumentOpenTime).TotalSeconds;
         try
         {
             // Evita processar o mesmo arquivo múltiplas vezes
@@ -124,6 +130,18 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
             }
 
             _logger.LogInformation($"📂 Documento aberto: {e.FileName}");
+
+            // ✅ NOTIFICAÇÃO PARA ABERTURA DE DOCUMENTO
+            if (timeSinceLastOpen > 3)
+            {
+                var fileName = e.FileName ?? Path.GetFileName(e.FilePath);
+                var documentType = e.DocumentType.ToString();
+
+                // Verifica se é uma montagem principal com projeto
+
+            }
+
+            _lastDocumentOpenTime = now;
 
             // --- Lógica para identificar a máquina ---
             var inventorApp = _inventorConnection.GetInventorApp();
@@ -151,18 +169,16 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                 if (doc != null)
                 {
                     var machineIdStr = _bomExtractor.GetCustomIProperty(doc, "MachineDB_ID");
-                    if (!string.IsNullOrEmpty(machineIdStr))
-                    {
-                        _logger.LogInformation($"✅ MachineDB_ID encontrado: {machineIdStr} para {e.FileName}");
-                    }
-                    else
-                    {
-                        _logger.LogWarning($"⚠️ MachineDB_ID não encontrado para {e.FileName}");
-                    }
                     int machineId = 0;
                     if (!string.IsNullOrEmpty(machineIdStr) && int.TryParse(machineIdStr, out machineId))
                     {
-                        _logger.LogInformation("Montagem principal da Máquina ID {MachineId} aberta: {FileName}", machineId, e.FileName);
+                        if (timeSinceLastOpen > 3)
+                        {
+                            await _notificationService.ShowInfoAsync(
+                                "Máquina Aberta",
+                                $"Máquina ID: {machineId} - {e.FileName}"
+                            );
+                        }
 
                         // Mapeia o caminho do arquivo ao ID da máquina
                         _fileToMachineIdMap[e.FilePath] = machineId;
@@ -172,14 +188,24 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                     }
                     else
                     {
-                        // LOG ADICIONADO: Ajuda a diagnosticar por que a leitura da iProperty falhou.
-                        _logger.LogWarning("Não foi possível extrair o MachineDB_ID do arquivo {FileName}. A propriedade existe e tem um valor numérico?", e.FileName);
+                        if (timeSinceLastOpen > 3)
+                        {
+                            await _notificationService.ShowInfoAsync(
+                                "Documento Aberto",
+                                $"Assembly: {e.FileName}"
+                            );
+                        }
                     }
                 }
                 else
                 {
-                    // LOG ADICIONADO: Ajuda a diagnosticar se o documento não foi encontrado a tempo.
-                    _logger.LogWarning("Não foi possível obter o objeto do documento do Inventor para {FileName} no momento da abertura.", e.FileName);
+                    if (timeSinceLastOpen > 3)
+                    {
+                        await _notificationService.ShowInfoAsync(
+                            "Documento Aberto",
+                            $"{e.DocumentType}: {e.FileName}"
+                        );
+                    }
                 }
             }
             // --- Fim da lógica de máquina ---
@@ -277,7 +303,6 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
             _logger.LogError(ex, $"Erro ao processar save de documento: {e.FileName}");
         }
     }
-
 
     #endregion
 
@@ -452,6 +477,7 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
 
             var fileName = System.IO.Path.GetFileNameWithoutExtension(filePath);
             var directoryPath = System.IO.Path.GetDirectoryName(filePath) ?? "";
+
 
             foreach (var pattern in _configuration.Settings.ProjectDetection.ProjectIdPatterns)
             {

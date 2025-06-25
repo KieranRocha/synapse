@@ -1,4 +1,4 @@
-// Program.cs - CORRIGIDO v3
+// Program.cs - CORRIGIDO v4 - COM NOTIFICAÇÕES
 using CADCompanion.Agent.Configuration;
 using CADCompanion.Agent.Services;
 using CADCompanion.Agent; // Para InventorBomExtractor
@@ -35,6 +35,10 @@ IHost host = Host.CreateDefaultBuilder(args)
             }
             client.BaseAddress = new Uri(serverUrl);
         });
+
+        // ✅ SERVIÇOS DE NOTIFICAÇÃO ADICIONADOS
+        services.AddSingleton<INotificationService, NotificationService>();
+        services.AddSingleton<ISystemTrayService, SystemTrayService>();
 
         // Registra os serviços como Singleton (uma única instância para toda a aplicação)
 

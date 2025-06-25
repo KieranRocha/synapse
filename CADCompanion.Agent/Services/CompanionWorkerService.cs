@@ -26,7 +26,7 @@ public class CompanionWorkerService : BackgroundService
     public override async Task StartAsync(CancellationToken cancellationToken) // ✅ 4. Marcar como async
     {
         _logger.LogInformation("Companion Worker Service iniciando.");
-        
+
         try
         {
             // ✅ 5. Conectar ao Inventor ANTES de qualquer outra coisa
@@ -39,17 +39,17 @@ public class CompanionWorkerService : BackgroundService
             // _applicationLifetime.StopApplication(); 
             return;
         }
-        
+
         // Só inicia o monitoramento se a conexão for bem sucedida
         if (_inventorConnectionService.IsConnected)
         {
-             _monitoringService.StartMonitoring();
+            _monitoringService.StartMonitoring();
         }
         else
         {
             _logger.LogWarning("Monitoramento não iniciado pois a conexão com o Inventor falhou.");
         }
-       
+
         await base.StartAsync(cancellationToken); // ✅ 6. Usar await
     }
 
@@ -59,11 +59,11 @@ public class CompanionWorkerService : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             _logger.LogDebug("Companion Worker executando tarefas de fundo.");
-            
+
             // Só envia heartbeat se o servidor estiver acessível
-            if(_inventorConnectionService.IsConnected)
+            if (_inventorConnectionService.IsConnected)
             {
-               await _apiCommunicationService.SendHeartbeatAsync();
+                await _apiCommunicationService.SendHeartbeatAsync();
             }
 
             await Task.Delay(TimeSpan.FromMinutes(5), stoppingToken);

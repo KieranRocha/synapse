@@ -208,5 +208,6 @@ public class ApiCommunicationService : IApiCommunicationService
         {
             _logger.LogError(ex, "❌ Erro ao enviar atualização da sessão de trabalho");
         }
+
     }
 }
