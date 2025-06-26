@@ -16,6 +16,8 @@ namespace CADCompanion.Shared.Contracts
         public DateTime? LastActivity { get; set; }
         public DateTime UpdatedAt { get; set; }
         public MachineQuickStatsDto QuickStats { get; set; } = new();
+        public int ProjectId { get; set; }
+        public string? ProjectName { get; set; }
     }
 
     public class MachineQuickStatsDto

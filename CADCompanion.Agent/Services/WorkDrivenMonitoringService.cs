@@ -182,7 +182,7 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                         {
                             await _notificationService.ShowInfoAsync(
                                 "Máquina Aberta",
-                                $"OP: {machineInfo.OperationNumber} - {machineInfo.Name}\nProjeto ID: {machineInfo.ProjectId}"
+                                $"OP: {machineInfo.OperationNumber} - {machineInfo.Name}\nProjeto: {machineInfo.ProjectName}"
                             );
                         }
                     }

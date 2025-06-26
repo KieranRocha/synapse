@@ -325,6 +325,8 @@ public class ProjectsController : ControllerBase
                 CurrentFile = await GetCurrentFileBeingEditedAsync(machine.Id),
                 LastActivity = await GetLastActivityAsync(machine.Id),
                 UpdatedAt = machine.UpdatedAt,
+                ProjectId = machine.ProjectId,
+                ProjectName = machine.ProjectName,
 
                 QuickStats = new MachineQuickStatsDto
                 {

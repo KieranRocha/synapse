@@ -1,0 +1,85 @@
+2025-06-26 12:03:18.101 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-26 12:03:18.135 -03:00 [INF] Tentando conectar ao Inventor...
+2025-06-26 12:03:18.316 -03:00 [INF] ✓ Conectado ao Inventor 2023
+2025-06-26 12:03:18.317 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-26 12:03:18.320 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-26 12:03:18.322 -03:00 [INF] 🔄 Iniciando monitoramento via polling (mais confiável que eventos COM)
+2025-06-26 12:03:18.337 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-26 12:03:18.338 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-26 12:03:18.364 -03:00 [INF] ✅ Monitoring de documentos ativo via polling
+2025-06-26 12:03:18.411 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-26 12:03:18.419 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-26 12:03:18.624 -03:00 [INF] Received HTTP response headers after 201.0812ms - 204
+2025-06-26 12:03:18.630 -03:00 [INF] End processing HTTP request after 230.104ms - 204
+2025-06-26 12:03:40.624 -03:00 [INF] 📂 ABERTO: 0345385.iam
+2025-06-26 12:03:40.624 -03:00 [INF] 📂 ABERTO: 0345385.iam
+2025-06-26 12:03:40.697 -03:00 [INF] 📂 Documento aberto: 0345385.iam
+2025-06-26 12:03:40.923 -03:00 [INF] 📂 ABERTO: 089277.ipt
+2025-06-26 12:03:40.924 -03:00 [INF] 📂 Documento aberto: 089277.ipt
+2025-06-26 12:03:40.926 -03:00 [INF] 📂 ABERTO: 089277.ipt
+2025-06-26 12:03:40.933 -03:00 [INF] 📂 ABERTO: 0313902.ipt
+2025-06-26 12:03:40.933 -03:00 [INF] 📂 Documento aberto: 0313902.ipt
+2025-06-26 12:03:40.941 -03:00 [INF] 📂 ABERTO: UNI 5589 M16
+2025-06-26 12:03:40.942 -03:00 [INF] 📂 Documento aberto: UNI 5589 M16
+2025-06-26 12:03:40.950 -03:00 [INF] 📂 ABERTO: 0345580.ipt
+2025-06-26 12:03:40.951 -03:00 [INF] 📂 Documento aberto: 0345580.ipt
+2025-06-26 12:03:40.957 -03:00 [INF] 📂 ABERTO: 0345709.ipt
+2025-06-26 12:03:40.958 -03:00 [INF] 📂 Documento aberto: 0345709.ipt
+2025-06-26 12:03:40.967 -03:00 [INF] 📂 ABERTO: 0345710.ipt
+2025-06-26 12:03:40.968 -03:00 [INF] 📂 Documento aberto: 0345710.ipt
+2025-06-26 12:03:40.977 -03:00 [INF] 📂 ABERTO: 0345707.ipt
+2025-06-26 12:03:40.978 -03:00 [INF] 📂 Documento aberto: 0345707.ipt
+2025-06-26 12:03:40.987 -03:00 [INF] 📂 ABERTO: 0345708.ipt
+2025-06-26 12:03:40.988 -03:00 [INF] 📂 Documento aberto: 0345708.ipt
+2025-06-26 12:03:40.997 -03:00 [INF] 📂 ABERTO: 0345536.ipt
+2025-06-26 12:03:40.998 -03:00 [INF] 📂 Documento aberto: 0345536.ipt
+2025-06-26 12:03:41.006 -03:00 [INF] 📂 ABERTO: 0345538.ipt
+2025-06-26 12:03:41.007 -03:00 [INF] 📂 Documento aberto: 0345538.ipt
+2025-06-26 12:03:41.013 -03:00 [INF] 📂 ABERTO: 088259.ipt
+2025-06-26 12:03:41.014 -03:00 [INF] 📂 Documento aberto: 088259.ipt
+2025-06-26 12:03:41.022 -03:00 [INF] 📂 ABERTO: 111646.ipt
+2025-06-26 12:03:41.023 -03:00 [INF] 📂 Documento aberto: 111646.ipt
+2025-06-26 12:03:41.029 -03:00 [INF] 📂 ABERTO: 0254385.ipt
+2025-06-26 12:03:41.030 -03:00 [INF] 📂 Documento aberto: 0254385.ipt
+2025-06-26 12:03:41.040 -03:00 [INF] 📂 ABERTO: 0321862.ipt
+2025-06-26 12:03:41.040 -03:00 [INF] 📂 Documento aberto: 0321862.ipt
+2025-06-26 12:03:41.047 -03:00 [INF] 📂 ABERTO: 0307215.iam
+2025-06-26 12:03:41.047 -03:00 [INF] 📂 Documento aberto: 0307215.iam
+2025-06-26 12:03:41.054 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_1.ipt
+2025-06-26 12:03:41.055 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_1.ipt
+2025-06-26 12:03:41.067 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_2.ipt
+2025-06-26 12:03:41.068 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_2.ipt
+2025-06-26 12:03:41.076 -03:00 [INF] 📂 ABERTO: 0345546.ipt
+2025-06-26 12:03:41.077 -03:00 [INF] 📂 Documento aberto: 0345546.ipt
+2025-06-26 12:03:41.084 -03:00 [INF] 📂 ABERTO: 0345712.ipt
+2025-06-26 12:03:41.085 -03:00 [INF] 📂 Documento aberto: 0345712.ipt
+2025-06-26 12:03:41.094 -03:00 [INF] 📂 ABERTO: 0345713.ipt
+2025-06-26 12:03:41.095 -03:00 [INF] 📂 Documento aberto: 0345713.ipt
+2025-06-26 12:03:41.101 -03:00 [INF] 📂 ABERTO: 0345711.ipt
+2025-06-26 12:03:41.102 -03:00 [INF] 📂 Documento aberto: 0345711.ipt
+2025-06-26 12:03:41.111 -03:00 [INF] 📂 ABERTO: 0345714.ipt
+2025-06-26 12:03:41.112 -03:00 [INF] 📂 Documento aberto: 0345714.ipt
+2025-06-26 12:03:41.121 -03:00 [INF] 📂 ABERTO: 0345715.ipt
+2025-06-26 12:03:41.122 -03:00 [INF] 📂 Documento aberto: 0345715.ipt
+2025-06-26 12:03:41.129 -03:00 [INF] 📂 ABERTO: 0345716.ipt
+2025-06-26 12:03:41.130 -03:00 [INF] 📂 Documento aberto: 0345716.ipt
+2025-06-26 12:03:41.136 -03:00 [INF] 📂 ABERTO: 0345717.ipt
+2025-06-26 12:03:41.138 -03:00 [INF] 📂 Documento aberto: 0345717.ipt
+2025-06-26 12:03:41.146 -03:00 [INF] 📂 ABERTO: 0345718.ipt
+2025-06-26 12:03:41.146 -03:00 [INF] 📂 Documento aberto: 0345718.ipt
+2025-06-26 12:03:41.154 -03:00 [INF] 📂 ABERTO: 134538.ipt
+2025-06-26 12:03:41.155 -03:00 [INF] 📂 Documento aberto: 134538.ipt
+2025-06-26 12:03:44.877 -03:00 [INF] Start processing HTTP request GET http://localhost:5047/api/machines/0
+2025-06-26 12:03:44.878 -03:00 [INF] Sending HTTP request GET http://localhost:5047/api/machines/0
+2025-06-26 12:03:44.898 -03:00 [INF] Start processing HTTP request GET http://localhost:5047/api/machines/1
+2025-06-26 12:03:44.900 -03:00 [INF] Sending HTTP request GET http://localhost:5047/api/machines/1
+2025-06-26 12:03:45.416 -03:00 [INF] Received HTTP response headers after 535.9005ms - 404
+2025-06-26 12:03:45.417 -03:00 [INF] End processing HTTP request after 541.0736ms - 404
+2025-06-26 12:03:45.420 -03:00 [WRN] ❌ Máquina ID 0 não encontrada no servidor
+2025-06-26 12:03:45.433 -03:00 [INF] 🚀 Work Session iniciada: 0307215.iam (ID: d15b567c-2139-444c-bc0b-420241769972)
+2025-06-26 12:03:45.445 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0307215.iam
+2025-06-26 12:03:45.454 -03:00 [INF] Received HTTP response headers after 551.4871ms - 200
+2025-06-26 12:03:45.456 -03:00 [INF] End processing HTTP request after 557.4336ms - 200
+2025-06-26 12:03:45.487 -03:00 [INF] 🔧 Máquina encontrada - ID: 1, Nome: MAQUINA 1, OP: 0001, Projeto: 1
+2025-06-26 12:03:45.536 -03:00 [INF] 🚀 Work Session iniciada: 0345385.iam (ID: bae7baec-6520-4dda-abf6-5d958879b2a0)
+2025-06-26 12:03:45.538 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345385.iam

@@ -14,15 +14,13 @@ public class MachineDto
     public string? MainAssemblyPath { get; set; }
     public string Status { get; set; } = "Planning";
     public int ProjectId { get; set; }
+    public string? ProjectName { get; set; } // <-- ADICIONE ESTA LINHA
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public DateTime? LastBomExtraction { get; set; }
     public int TotalBomVersions { get; set; }
-
-    // Lista de versões de BOM (resumo)
     public List<BomVersionSummaryDto> BomVersions { get; set; } = new();
 }
-
 // DTO resumido para listagens
 
 
@@ -69,6 +67,8 @@ public class CreateMachineDto
 
     // ✅ IMPORTANTE: ProjectId é setado automaticamente pelo controller
     public int ProjectId { get; set; }
+   
+    public string? ProjectName { get; set; } 
 }
 
 // DTO para atualização de máquina

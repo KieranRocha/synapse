@@ -343,24 +343,25 @@ namespace CADCompanion.Server.Services
         #region Helper Methods
 
         private static MachineDto ToMachineDto(Machine machine)
-        {
-            return new MachineDto
-            {
-                Id = machine.Id,
-                Name = machine.Name,
-                OperationNumber = machine.OperationNumber,
-                Description = machine.Description,
-                FolderPath = machine.FolderPath,
-                MainAssemblyPath = machine.MainAssemblyPath,
-                Status = machine.Status.ToString(),
-                ProjectId = machine.ProjectId,
-                CreatedAt = machine.CreatedAt,
-                UpdatedAt = machine.UpdatedAt,
-                LastBomExtraction = machine.LastBomExtraction,
-                TotalBomVersions = machine.TotalBomVersions,
-                BomVersions = new List<BomVersionSummaryDto>() // ✅ Inicializar vazio
-            };
-        }
+{
+    return new MachineDto
+    {
+        Id = machine.Id,
+        Name = machine.Name,
+        OperationNumber = machine.OperationNumber,
+        Description = machine.Description,
+        FolderPath = machine.FolderPath,
+        MainAssemblyPath = machine.MainAssemblyPath,
+        Status = machine.Status.ToString(),
+        ProjectId = machine.ProjectId,
+        ProjectName = machine.Project?.Name,
+        CreatedAt = machine.CreatedAt,
+        UpdatedAt = machine.UpdatedAt,
+        LastBomExtraction = machine.LastBomExtraction,
+        TotalBomVersions = machine.TotalBomVersions,
+        BomVersions = new List<BomVersionSummaryDto>()
+    };
+}
         public async Task<IEnumerable<BomVersion>> GetBomVersionsByAssemblyPathAsync(string assemblyPath)
         {
             var fileName = Path.GetFileName(assemblyPath);
