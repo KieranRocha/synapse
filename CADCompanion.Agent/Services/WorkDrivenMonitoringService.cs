@@ -169,9 +169,27 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                 if (doc != null)
                 {
                     var machineIdStr = _bomExtractor.GetCustomIProperty(doc, "MachineDB_ID");
-                    int machineId = 0;
-                    if (!string.IsNullOrEmpty(machineIdStr) && int.TryParse(machineIdStr, out machineId))
+
+                    int machineId = machineIdStr != null ? int.Parse(machineIdStr) : 0;
+                    var machineInfo = await _apiService.GetMachineAsync(machineId);
+
+                    if (machineInfo != null)
                     {
+                        _logger.LogInformation("🔧 Máquina encontrada - ID: {Id}, Nome: {Name}, OP: {OperationNumber}, Projeto: {ProjectId}",
+                            machineInfo.Id, machineInfo.Name, machineInfo.OperationNumber, machineInfo.ProjectId);
+
+                        if (timeSinceLastOpen > 3)
+                        {
+                            await _notificationService.ShowInfoAsync(
+                                "Máquina Aberta",
+                                $"OP: {machineInfo.OperationNumber} - {machineInfo.Name}\nProjeto ID: {machineInfo.ProjectId}"
+                            );
+                        }
+                    }
+                    else
+                    {
+                        _logger.LogWarning("❌ Máquina ID {MachineId} não encontrada no servidor", machineId);
+
                         if (timeSinceLastOpen > 3)
                         {
                             await _notificationService.ShowInfoAsync(
@@ -179,58 +197,32 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                                 $"Máquina ID: {machineId} - {e.FileName}"
                             );
                         }
-
-                        // Mapeia o caminho do arquivo ao ID da máquina
-                        _fileToMachineIdMap[e.FilePath] = machineId;
-
-                        // Notifica o servidor que a máquina está em "Design"
-                        await _apiService.UpdateMachineStatusAsync(machineId, "Design", Environment.UserName, e.FileName);
-                    }
-                    else
-                    {
-                        if (timeSinceLastOpen > 3)
-                        {
-                            await _notificationService.ShowInfoAsync(
-                                "Documento Aberto",
-                                $"Assembly: {e.FileName}"
-                            );
-                        }
                     }
                 }
-                else
+                // --- Fim da lógica de máquina ---
+
+                var documentEvent = CreateDocumentEvent(e.FilePath, e.FileName, DocumentEventType.Opened, e.DocumentType);
+
+                var projectInfo = DetectProjectFromFile(e.FilePath);
+                if (projectInfo != null)
                 {
-                    if (timeSinceLastOpen > 3)
-                    {
-                        await _notificationService.ShowInfoAsync(
-                            "Documento Aberto",
-                            $"{e.DocumentType}: {e.FileName}"
-                        );
-                    }
+                    documentEvent.ProjectId = projectInfo.ProjectId;
+                    documentEvent.ProjectName = projectInfo.DetectedName;
                 }
+
+                var workSession = new WorkSession
+                {
+                    FilePath = e.FilePath,
+                    FileName = e.FileName,
+                    ProjectId = projectInfo?.ProjectId,
+                    ProjectName = projectInfo?.DetectedName,
+                    Engineer = Environment.UserName
+                };
+
+                await _workSessionService.StartWorkSessionAsync(workSession);
+                CreateDocumentWatcher(e.FilePath, workSession);
+                await _documentProcessingService.ProcessDocumentChangeAsync(documentEvent);
             }
-            // --- Fim da lógica de máquina ---
-
-            var documentEvent = CreateDocumentEvent(e.FilePath, e.FileName, DocumentEventType.Opened, e.DocumentType);
-
-            var projectInfo = DetectProjectFromFile(e.FilePath);
-            if (projectInfo != null)
-            {
-                documentEvent.ProjectId = projectInfo.ProjectId;
-                documentEvent.ProjectName = projectInfo.DetectedName;
-            }
-
-            var workSession = new WorkSession
-            {
-                FilePath = e.FilePath,
-                FileName = e.FileName,
-                ProjectId = projectInfo?.ProjectId,
-                ProjectName = projectInfo?.DetectedName,
-                Engineer = Environment.UserName
-            };
-
-            await _workSessionService.StartWorkSessionAsync(workSession);
-            CreateDocumentWatcher(e.FilePath, workSession);
-            await _documentProcessingService.ProcessDocumentChangeAsync(documentEvent);
         }
         catch (Exception ex)
         {
@@ -243,6 +235,10 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         try
         {
             _logger.LogInformation($"📂 Documento fechado: {e.FileName}");
+            lock (_processedFiles)
+            {
+                _processedFiles.Remove(e.FilePath);
+            }
 
             // --- Lógica para limpar o mapeamento da máquina ---
             if (_fileToMachineIdMap.TryRemove(e.FilePath, out int machineId))

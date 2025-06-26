@@ -19,4 +19,5 @@ public interface IApiCommunicationService
     Task SendPartDataAsync(object partData); // Considere criar um DTO específico em vez de 'object'
     Task SendDocumentActivityAsync(DocumentEvent documentEvent);
     Task UpdateMachineStatusAsync(int machineId, string status, string userName, string currentFile);
+    Task<MachineDto> GetMachineAsync(int machineId);
 }

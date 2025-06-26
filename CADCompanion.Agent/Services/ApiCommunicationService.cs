@@ -4,6 +4,7 @@ using CADCompanion.Agent.Models;
 using CADCompanion.Shared.Contracts;
 using Microsoft.Extensions.Logging;
 using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace CADCompanion.Agent.Services;
 
@@ -209,5 +210,28 @@ public class ApiCommunicationService : IApiCommunicationService
             _logger.LogError(ex, "❌ Erro ao enviar atualização da sessão de trabalho");
         }
 
+    }
+    public async Task<MachineDto> GetMachineAsync(int machineId)
+    {
+        try
+        {
+            var response = await _httpClient.GetAsync($"api/machines/{machineId}");
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                };
+                return JsonSerializer.Deserialize<MachineDto>(json, options);
+            }
+            return null;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "❌ Erro ao buscar dados da máquina {MachineId}", machineId);
+            return null;
+        }
     }
 }

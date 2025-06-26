@@ -47,6 +47,7 @@ namespace CADCompanion.Server.Services
         {
             try
             {
+
                 var machine = await _context.Machines
                     .Include(m => m.Project)
                     .FirstOrDefaultAsync(m => m.Id == id);
