@@ -136,14 +136,12 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
             {
                 var fileName = e.FileName ?? Path.GetFileName(e.FilePath);
                 var documentType = e.DocumentType.ToString();
-
-                // Verifica se é uma montagem principal com projeto
-
+                // A validação principal será feita abaixo, após obter o doc do Inventor
             }
 
             _lastDocumentOpenTime = now;
 
-            // --- Lógica para identificar a máquina ---
+            // --- Lógica para identificar a máquina e OP ---
             var inventorApp = _inventorConnection.GetInventorApp();
             if (inventorApp != null && e.DocumentType == DocumentType.Assembly)
             {
@@ -169,37 +167,86 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                 if (doc != null)
                 {
                     var machineIdStr = _bomExtractor.GetCustomIProperty(doc, "MachineDB_ID");
+                    var opStr = _bomExtractor.GetCustomIProperty(doc, "OP");
 
-                    int machineId = machineIdStr != null ? int.Parse(machineIdStr) : 0;
-                    var machineInfo = await _apiService.GetMachineAsync(machineId);
+                    bool hasMachineId = !string.IsNullOrWhiteSpace(machineIdStr);
+                    bool hasOp = !string.IsNullOrWhiteSpace(opStr);
 
-                    if (machineInfo != null)
+                    if (hasMachineId && hasOp)
                     {
-                        _logger.LogInformation("🔧 Máquina encontrada - ID: {Id}, Nome: {Name}, OP: {OperationNumber}, Projeto: {ProjectId}",
-                            machineInfo.Id, machineInfo.Name, machineInfo.OperationNumber, machineInfo.ProjectId);
+                        int machineId = int.Parse(machineIdStr);
+                        var machineInfo = await _apiService.GetMachineAsync(machineId);
+                        if (machineInfo != null)
+                        {
+                            // Log detalhado das propriedades da máquina
+                            Console.WriteLine("[DEBUG] Propriedades da máquina carregadas do banco:");
+                            Console.WriteLine($"  Id: {machineInfo.Id}");
+                            Console.WriteLine($"  Name: {machineInfo.Name}");
+                            Console.WriteLine($"  OperationNumber: {machineInfo.OperationNumber}");
+                            Console.WriteLine($"  ProjectId: {machineInfo.ProjectId}");
+                            Console.WriteLine($"  ProjectName: {machineInfo.ProjectName}");
+                            Console.WriteLine($"  Status: {machineInfo.Status}");
+                            Console.WriteLine($"  Description: {machineInfo.Description}");
+                            // Adicione mais propriedades conforme necessário
+                            _logger.LogInformation("🔧 Máquina encontrada - ID: {Id}, Nome: {Name}, OP: {OperationNumber}, Projeto: {ProjectId}",
+                                machineInfo.Id, machineInfo.Name, machineInfo.OperationNumber, machineInfo.ProjectId);
 
+                            if (!string.Equals(opStr, machineInfo.OperationNumber, StringComparison.OrdinalIgnoreCase))
+                            {
+                                if (timeSinceLastOpen > 3)
+                                {
+                                    await _notificationService.ShowWarningAsync(
+                                        "Inconsistência de OP",
+                                        $"A OP da iProperty ('{opStr}') é diferente da OP da máquina no sistema ('{machineInfo.OperationNumber}')."
+                                    );
+                                }
+                            }
+                            else if (timeSinceLastOpen > 3)
+                            {
+                                await _notificationService.ShowInfoAsync(
+                                    "Máquina Aberta",
+                                    $"OP: {machineInfo.OperationNumber} - {machineInfo.Name}\nProjeto: {machineInfo.ProjectName}"
+                                );
+                            }
+                        }
+                        else
+                        {
+                            _logger.LogWarning("❌ Máquina ID {MachineId} não encontrada no servidor", machineId);
+                            if (timeSinceLastOpen > 3)
+                            {
+                                await _notificationService.ShowInfoAsync(
+                                    "Máquina Aberta",
+                                    $"Máquina ID: {machineId} - {e.FileName}"
+                                );
+                            }
+                        }
+                    }
+                    else if (hasMachineId && !hasOp)
+                    {
+                        int machineId = int.Parse(machineIdStr);
+                        var machineInfo = await _apiService.GetMachineAsync(machineId);
+                        string machineName = machineInfo?.Name ?? $"ID: {machineId}";
                         if (timeSinceLastOpen > 3)
                         {
-                            await _notificationService.ShowInfoAsync(
-                                "Máquina Aberta",
-                                $"OP: {machineInfo.OperationNumber} - {machineInfo.Name}\nProjeto: {machineInfo.ProjectName}"
+                            await _notificationService.ShowWarningAsync(
+                                "Atenção",
+                                $"Máquina: {machineName} não possui OP definida."
                             );
                         }
                     }
-                    else
+                    else if (!hasMachineId && hasOp)
                     {
-                        _logger.LogWarning("❌ Máquina ID {MachineId} não encontrada no servidor", machineId);
-
                         if (timeSinceLastOpen > 3)
                         {
-                            await _notificationService.ShowInfoAsync(
-                                "Máquina Aberta",
-                                $"Máquina ID: {machineId} - {e.FileName}"
+                            await _notificationService.ShowWarningAsync(
+                                "Atenção",
+                                $"OP: {opStr} não possui máquina definida."
                             );
                         }
                     }
+                    // Se não tem nenhum dos dois, não é montagem principal, segue fluxo normal sem notificação extra
                 }
-                // --- Fim da lógica de máquina ---
+                // --- Fim da lógica de máquina/OP ---
 
                 var documentEvent = CreateDocumentEvent(e.FilePath, e.FileName, DocumentEventType.Opened, e.DocumentType);
 
