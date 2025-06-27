@@ -11,6 +11,9 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
     // Mapa para associar um arquivo aberto ao ID da máquina correspondente
     private readonly ConcurrentDictionary<string, int> _fileToMachineIdMap = new();
 
+    // Dicionário para armazenar o hash do BOM por arquivo aberto
+    private readonly ConcurrentDictionary<string, string> _lastBomHashByFile = new();
+
     private readonly ILogger<WorkDrivenMonitoringService> _logger;
     private readonly IInventorDocumentEventService _documentEventService;
     private readonly DocumentProcessingService _documentProcessingService;
@@ -318,20 +321,12 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
         {
             _logger.LogDebug($"💾 Documento salvo: {e.FileName}");
 
-            // --- CORREÇÃO DEFINITIVA ---
-            // Usamos TryGetValue. Isso garante que 'machineId' SEMPRE receberá um valor.
-            // Se o arquivo não estiver no mapa, machineId será 0. Se estiver, terá o ID correto.
             _fileToMachineIdMap.TryGetValue(e.FilePath, out int machineId);
-
             var documentEvent = CreateDocumentEvent(e.FilePath, e.FileName, DocumentEventType.Saved, e.DocumentType);
-
-            // A checagem agora é segura, pois 'machineId' tem um valor garantido.
             if (machineId > 0)
             {
                 _logger.LogInformation("Documento salvo pertence à Máquina ID: {MachineId}", machineId);
-                // Futuramente, você pode adicionar o machineId ao evento aqui.
             }
-
             var projectInfo = DetectProjectFromFile(e.FilePath);
             if (projectInfo != null)
             {
@@ -339,6 +334,45 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                 documentEvent.ProjectName = projectInfo.DetectedName;
             }
 
+            // --- NOVA LÓGICA: Só exporta/processa BOM se mudou ---
+            if (e.DocumentType == DocumentType.Assembly)
+            {
+                var inventorApp = _inventorConnection.GetInventorApp();
+                if (inventorApp != null)
+                {
+                    dynamic? doc = null;
+                    try
+                    {
+                        foreach (dynamic document in inventorApp.Documents)
+                        {
+                            if (document.FullFileName == e.FilePath)
+                            {
+                                doc = document;
+                                break;
+                            }
+                        }
+                    }
+                    catch { }
+                    if (doc != null)
+                    {
+                        var bomItems = _bomExtractor.GetBOMFromDocument(doc);
+                        var bomHash = _bomExtractor.GetBOMHash(bomItems);
+                        _lastBomHashByFile.TryGetValue(e.FilePath, out var lastHash);
+                        if (lastHash != bomHash)
+                        {
+                            _lastBomHashByFile[e.FilePath] = bomHash;
+                            // Só processa/exporta BOM se mudou
+                            await _documentProcessingService.ProcessDocumentSaveAsync(documentEvent);
+                        }
+                        else
+                        {
+                            _logger.LogInformation($"BOM não mudou para {e.FileName}, não será exportado novamente.");
+                        }
+                        return;
+                    }
+                }
+            }
+            // Para outros casos, segue fluxo normal
             await _documentProcessingService.ProcessDocumentSaveAsync(documentEvent);
         }
         catch (Exception ex)

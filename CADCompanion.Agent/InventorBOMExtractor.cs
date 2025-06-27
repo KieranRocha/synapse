@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using CADCompanion.Agent.Models;
 using CADCompanion.Agent.Services;
 using OfficeOpenXml; // Certifique-se de que o pacote NuGet 'EPPlus' está instalado
+using System.Security.Cryptography;
+using System.Text.Json;
 
 namespace CADCompanion.Agent
 {
@@ -236,18 +238,7 @@ namespace CADCompanion.Agent
             return assemblies;
         }
 
-        public List<BomItem> GetBOMFromDocument(dynamic assemblyDoc)
-        {
-            try
-            {
-                Console.WriteLine($"Processando documento: {assemblyDoc.DisplayName}");
-                return ExtractBOM(assemblyDoc);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Erro ao processar documento: {ex.Message}", ex);
-            }
-        }
+        List<BomItem> IInventorBOMExtractor.GetBOMFromDocument(dynamic assemblyDoc) => GetBOMFromDocument(assemblyDoc);
 
         public List<BomItem> GetBOMFromFile(string assemblyFilePath)
         {
@@ -781,6 +772,30 @@ namespace CADCompanion.Agent
                 return version != null;
             }
             catch { return false; }
+        }
+
+        string IInventorBOMExtractor.GetBOMHash(List<BomItem> bomItems) => GetBOMHash(bomItems);
+
+        public string GetBOMHash(List<BomItem> bomItems)
+        {
+            var json = JsonSerializer.Serialize(bomItems);
+            using var sha256 = SHA256.Create();
+            var hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(json));
+            return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+        }
+
+        // Método privado para uso interno e da interface
+        private List<BomItem> GetBOMFromDocument(dynamic assemblyDoc)
+        {
+            try
+            {
+                Console.WriteLine($"Processando documento: {assemblyDoc.DisplayName}");
+                return ExtractBOM(assemblyDoc);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao processar documento: {ex.Message}", ex);
+            }
         }
     }
 

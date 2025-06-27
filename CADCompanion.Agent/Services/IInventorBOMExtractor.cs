@@ -16,5 +16,15 @@ namespace CADCompanion.Agent.Services
         /// Obtém o valor de uma iProperty customizada de um documento do Inventor.
         /// </summary>
         string? GetCustomIProperty(dynamic document, string propertyName);
+
+        /// <summary>
+        /// Extrai o BOM de um documento assembly do Inventor.
+        /// </summary>
+        List<BomItem> GetBOMFromDocument(dynamic assemblyDoc);
+
+        /// <summary>
+        /// Gera um hash SHA256 do BOM serializado.
+        /// </summary>
+        string GetBOMHash(List<BomItem> bomItems);
     }
 }

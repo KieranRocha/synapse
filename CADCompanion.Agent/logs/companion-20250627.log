@@ -939,3 +939,285 @@ System.ArgumentException: Value does not fall within the expected range.
 2025-06-27 11:48:22.971 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345385.iam
 2025-06-27 11:48:24.467 -03:00 [INF] 🚀 Work Session iniciada: 0307215.iam (ID: b0644c52-8d8c-4faa-b6d3-00b37a1ec7a2)
 2025-06-27 11:48:24.468 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0307215.iam
+2025-06-27 11:52:12.350 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 11:52:12.353 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 11:52:12.362 -03:00 [INF] Received HTTP response headers after 6.9684ms - 204
+2025-06-27 11:52:12.363 -03:00 [INF] End processing HTTP request after 13.2584ms - 204
+2025-06-27 11:56:38.770 -03:00 [INF] Companion Worker Service parando.
+2025-06-27 11:56:38.772 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-27 11:56:38.774 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-27 11:56:38.774 -03:00 [INF] 🔌 Desconectado do monitoring de documentos
+2025-06-27 11:56:38.781 -03:00 [INF] 🏁 Work Session finalizada: 0307215.iam - Duração: 00:09:09 - 0 saves
+2025-06-27 11:56:38.785 -03:00 [INF] 🏁 Enviando fim da sessão de trabalho: 0307215.iam
+2025-06-27 11:56:38.785 -03:00 [INF] 🛑 Parando Work-Driven Monitoring...
+2025-06-27 11:56:38.788 -03:00 [INF] ✅ Work-Driven Monitoring parado
+2025-06-27 11:56:38.787 -03:00 [INF] 🏁 Work Session finalizada: 0345385.iam - Duração: 00:09:22 - 0 saves
+2025-06-27 11:58:12.553 -03:00 [INF] Companion Worker Service iniciando.
+2025-06-27 11:58:12.609 -03:00 [INF] Tentando conectar ao Inventor...
+2025-06-27 11:58:16.441 -03:00 [INF] ✓ Conectado ao Inventor 2023
+2025-06-27 11:58:16.443 -03:00 [INF] 🚀 Iniciando Work-Driven Monitoring...
+2025-06-27 11:58:16.447 -03:00 [WRN] Pasta não existe: C:\Projetos\CAD
+2025-06-27 11:58:16.448 -03:00 [INF] 🔄 Iniciando monitoramento via polling (mais confiável que eventos COM)
+2025-06-27 11:58:16.449 -03:00 [WRN] Pasta não existe: C:\Users\Public\Documents\Autodesk\Inventor\Samples
+2025-06-27 11:58:16.452 -03:00 [INF] ✅ Work-Driven Monitoring ativo
+2025-06-27 11:58:16.511 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 11:58:16.521 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 11:58:16.619 -03:00 [INF] Received HTTP response headers after 93.1478ms - 204
+2025-06-27 11:58:16.628 -03:00 [INF] End processing HTTP request after 130.6431ms - 204
+2025-06-27 11:58:19.534 -03:00 [INF] 📂 ABERTO: 0345385.iam
+2025-06-27 11:58:19.694 -03:00 [INF] 📂 Documento aberto: 0345385.iam
+2025-06-27 11:58:21.946 -03:00 [INF] 📂 ABERTO: 089277.ipt
+2025-06-27 11:58:21.948 -03:00 [INF] 📂 Documento aberto: 089277.ipt
+2025-06-27 11:58:21.978 -03:00 [INF] 📂 ABERTO: 0313902.ipt
+2025-06-27 11:58:21.981 -03:00 [INF] 📂 Documento aberto: 0313902.ipt
+2025-06-27 11:58:22.017 -03:00 [INF] 📂 ABERTO: UNI 5589 M16
+2025-06-27 11:58:22.018 -03:00 [INF] 📂 Documento aberto: UNI 5589 M16
+2025-06-27 11:58:22.039 -03:00 [INF] 📂 ABERTO: 0345580.ipt
+2025-06-27 11:58:22.040 -03:00 [INF] 📂 Documento aberto: 0345580.ipt
+2025-06-27 11:58:22.072 -03:00 [INF] 📂 ABERTO: 0345709.ipt
+2025-06-27 11:58:22.074 -03:00 [INF] 📂 Documento aberto: 0345709.ipt
+2025-06-27 11:58:22.097 -03:00 [INF] 📂 ABERTO: 0345710.ipt
+2025-06-27 11:58:22.100 -03:00 [INF] 📂 Documento aberto: 0345710.ipt
+2025-06-27 11:58:22.129 -03:00 [INF] 📂 ABERTO: 0345707.ipt
+2025-06-27 11:58:22.131 -03:00 [INF] 📂 Documento aberto: 0345707.ipt
+2025-06-27 11:58:22.153 -03:00 [INF] 📂 ABERTO: 0345708.ipt
+2025-06-27 11:58:22.154 -03:00 [INF] 📂 Documento aberto: 0345708.ipt
+2025-06-27 11:58:22.186 -03:00 [INF] 📂 ABERTO: 0345536.ipt
+2025-06-27 11:58:22.188 -03:00 [INF] 📂 Documento aberto: 0345536.ipt
+2025-06-27 11:58:22.209 -03:00 [INF] 📂 ABERTO: 0345538.ipt
+2025-06-27 11:58:22.211 -03:00 [INF] 📂 Documento aberto: 0345538.ipt
+2025-06-27 11:58:22.248 -03:00 [INF] 📂 ABERTO: 088259.ipt
+2025-06-27 11:58:22.249 -03:00 [INF] 📂 Documento aberto: 088259.ipt
+2025-06-27 11:58:22.293 -03:00 [INF] 📂 ABERTO: 111646.ipt
+2025-06-27 11:58:22.295 -03:00 [INF] 📂 Documento aberto: 111646.ipt
+2025-06-27 11:58:22.317 -03:00 [INF] 📂 ABERTO: 0254385.ipt
+2025-06-27 11:58:22.318 -03:00 [INF] 📂 Documento aberto: 0254385.ipt
+2025-06-27 11:58:22.338 -03:00 [INF] 📂 ABERTO: 0321862.ipt
+2025-06-27 11:58:22.340 -03:00 [INF] 📂 Documento aberto: 0321862.ipt
+2025-06-27 11:58:22.367 -03:00 [INF] 📂 ABERTO: 0307215.iam
+2025-06-27 11:58:22.369 -03:00 [INF] 📂 Documento aberto: 0307215.iam
+2025-06-27 11:58:22.392 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_1.ipt
+2025-06-27 11:58:22.394 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_1.ipt
+2025-06-27 11:58:22.447 -03:00 [INF] Start processing HTTP request GET http://localhost:5047/api/machines/1
+2025-06-27 11:58:22.449 -03:00 [INF] Sending HTTP request GET http://localhost:5047/api/machines/1
+2025-06-27 11:58:22.452 -03:00 [INF] 📂 ABERTO: CP96SDB63-100C_2.ipt
+2025-06-27 11:58:22.454 -03:00 [INF] 📂 Documento aberto: CP96SDB63-100C_2.ipt
+2025-06-27 11:58:22.545 -03:00 [INF] Received HTTP response headers after 93.327ms - 200
+2025-06-27 11:58:22.549 -03:00 [INF] End processing HTTP request after 102.8482ms - 200
+2025-06-27 11:58:22.611 -03:00 [INF] 📂 ABERTO: 0345546.ipt
+2025-06-27 11:58:22.612 -03:00 [INF] 📂 Documento aberto: 0345546.ipt
+2025-06-27 11:58:22.621 -03:00 [INF] 🔧 Máquina encontrada - ID: 1, Nome: MAQUINA 1, OP: 0001, Projeto: 1
+2025-06-27 11:58:22.679 -03:00 [INF] 📂 ABERTO: 0345712.ipt
+2025-06-27 11:58:22.681 -03:00 [INF] 📂 Documento aberto: 0345712.ipt
+2025-06-27 11:58:22.710 -03:00 [INF] 🚀 Work Session iniciada: 0345385.iam (ID: f78e8a43-c69e-414a-89f8-11bb0048d1e2)
+2025-06-27 11:58:22.717 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0345385.iam
+2025-06-27 11:58:22.744 -03:00 [INF] 📂 ABERTO: 0345713.ipt
+2025-06-27 11:58:22.746 -03:00 [INF] 📂 Documento aberto: 0345713.ipt
+2025-06-27 11:58:22.823 -03:00 [INF] 📂 ABERTO: 0345711.ipt
+2025-06-27 11:58:22.825 -03:00 [INF] 📂 Documento aberto: 0345711.ipt
+2025-06-27 11:58:22.846 -03:00 [INF] 📂 ABERTO: 0345714.ipt
+2025-06-27 11:58:22.847 -03:00 [INF] 📂 Documento aberto: 0345714.ipt
+2025-06-27 11:58:22.908 -03:00 [INF] 📂 ABERTO: 0345715.ipt
+2025-06-27 11:58:22.908 -03:00 [INF] 📂 Documento aberto: 0345715.ipt
+2025-06-27 11:58:22.961 -03:00 [INF] 📂 ABERTO: 0345716.ipt
+2025-06-27 11:58:22.962 -03:00 [INF] 📂 Documento aberto: 0345716.ipt
+2025-06-27 11:58:23.003 -03:00 [INF] 📂 ABERTO: 0345717.ipt
+2025-06-27 11:58:23.004 -03:00 [INF] 📂 Documento aberto: 0345717.ipt
+2025-06-27 11:58:23.044 -03:00 [INF] 📂 ABERTO: 0345718.ipt
+2025-06-27 11:58:23.045 -03:00 [INF] 📂 Documento aberto: 0345718.ipt
+2025-06-27 11:58:23.082 -03:00 [INF] 📂 ABERTO: 134538.ipt
+2025-06-27 11:58:23.084 -03:00 [INF] 📂 Documento aberto: 134538.ipt
+2025-06-27 11:58:23.085 -03:00 [INF] ✅ Monitoring de documentos ativo via polling
+2025-06-27 11:58:25.385 -03:00 [INF] 🚀 Work Session iniciada: 0307215.iam (ID: d7a53d4a-8dd3-45d2-9ee0-f5e72ac477b2)
+2025-06-27 11:58:25.386 -03:00 [INF] 📝 Atividade de documento: "Opened" - 0307215.iam
+2025-06-27 11:59:13.138 -03:00 [INF] 💾 SALVO: 0345385.iam
+2025-06-27 11:59:16.095 -03:00 [INF] 💾 SALVO: 0345385.iam
+2025-06-27 11:59:19.100 -03:00 [INF] 💾 SALVO: 0345385.iam
+2025-06-27 11:59:20.024 -03:00 [INF] 📄 Processando save: 0345385.iam (Tipo: Assembly)
+2025-06-27 11:59:20.029 -03:00 [INF] 🔧 Extraindo BOM de assembly: 0345385.iam
+2025-06-27 11:59:20.110 -03:00 [INF] BOM não mudou para 0345385.iam, não será exportado novamente.
+2025-06-27 11:59:20.321 -03:00 [INF] BOM não mudou para 0345385.iam, não será exportado novamente.
+2025-06-27 11:59:41.606 -03:00 [INF] 📤 Convertendo e enviando dados de BOM: 0345385.iam
+2025-06-27 11:59:41.610 -03:00 [INF] Enviando BOM para o servidor: C:\Users\kiera\OneDrive\Trabalho\Manuais e OPs\C446\200.075\0345385.iam
+2025-06-27 11:59:41.618 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/boms/submit
+2025-06-27 11:59:41.620 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/boms/submit
+2025-06-27 11:59:41.650 -03:00 [INF] Received HTTP response headers after 28.2623ms - 200
+2025-06-27 11:59:41.651 -03:00 [INF] End processing HTTP request after 33.2869ms - 200
+2025-06-27 11:59:41.653 -03:00 [INF] ✅ BOM enviada com sucesso para C:\Users\kiera\OneDrive\Trabalho\Manuais e OPs\C446\200.075\0345385.iam.
+2025-06-27 11:59:41.655 -03:00 [INF] ✅ BOM convertida e enviada: 27 itens
+2025-06-27 11:59:41.657 -03:00 [INF] ✅ BOM enviado: 27 itens (Projeto: Projeto Desconhecido)
+2025-06-27 11:59:41.658 -03:00 [INF] 📝 Atividade de documento: "Saved" - 0345385.iam
+2025-06-27 12:00:01.257 -03:00 [INF] 💾 SALVO: 0345385.iam
+2025-06-27 12:00:04.095 -03:00 [INF] 💾 SALVO: 0345385.iam
+2025-06-27 12:00:04.806 -03:00 [INF] BOM não mudou para 0345385.iam, não será exportado novamente.
+2025-06-27 12:00:04.892 -03:00 [INF] BOM não mudou para 0345385.iam, não será exportado novamente.
+2025-06-27 12:00:22.110 -03:00 [INF] 💾 SALVO: 0345385.iam
+2025-06-27 12:00:25.106 -03:00 [INF] 💾 SALVO: 0345385.iam
+2025-06-27 12:00:25.893 -03:00 [INF] BOM não mudou para 0345385.iam, não será exportado novamente.
+2025-06-27 12:00:28.272 -03:00 [INF] BOM não mudou para 0345385.iam, não será exportado novamente.
+2025-06-27 12:02:34.125 -03:00 [INF] 💾 SALVO: 0345385.iam
+2025-06-27 12:02:37.103 -03:00 [INF] 💾 SALVO: 0345385.iam
+2025-06-27 12:02:37.862 -03:00 [INF] BOM não mudou para 0345385.iam, não será exportado novamente.
+2025-06-27 12:02:38.119 -03:00 [INF] BOM não mudou para 0345385.iam, não será exportado novamente.
+2025-06-27 12:03:07.190 -03:00 [INF] 📂 FECHADO: 0345715.ipt
+2025-06-27 12:03:07.194 -03:00 [INF] 📂 Documento fechado: 0345715.ipt
+2025-06-27 12:03:07.199 -03:00 [INF] 📝 Atividade de documento: "Closed" - 0345715.ipt
+2025-06-27 12:03:10.639 -03:00 [INF] 💾 SALVO: 0345385.iam
+2025-06-27 12:03:13.098 -03:00 [INF] 💾 SALVO: 0345385.iam
+2025-06-27 12:03:13.801 -03:00 [INF] 📄 Processando save: 0345385.iam (Tipo: Assembly)
+2025-06-27 12:03:13.802 -03:00 [INF] 🔧 Extraindo BOM de assembly: 0345385.iam
+2025-06-27 12:03:14.184 -03:00 [INF] BOM não mudou para 0345385.iam, não será exportado novamente.
+2025-06-27 12:03:16.641 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:03:16.644 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:03:16.650 -03:00 [INF] Received HTTP response headers after 3.5898ms - 204
+2025-06-27 12:03:16.653 -03:00 [INF] End processing HTTP request after 12.3272ms - 204
+2025-06-27 12:03:25.609 -03:00 [INF] 📤 Convertendo e enviando dados de BOM: 0345385.iam
+2025-06-27 12:03:25.611 -03:00 [INF] Enviando BOM para o servidor: C:\Users\kiera\OneDrive\Trabalho\Manuais e OPs\C446\200.075\0345385.iam
+2025-06-27 12:03:25.612 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/boms/submit
+2025-06-27 12:03:25.614 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/boms/submit
+2025-06-27 12:03:26.025 -03:00 [INF] Received HTTP response headers after 409.2761ms - 200
+2025-06-27 12:03:26.027 -03:00 [INF] End processing HTTP request after 414.4423ms - 200
+2025-06-27 12:03:26.029 -03:00 [INF] ✅ BOM enviada com sucesso para C:\Users\kiera\OneDrive\Trabalho\Manuais e OPs\C446\200.075\0345385.iam.
+2025-06-27 12:03:26.031 -03:00 [INF] ✅ BOM convertida e enviada: 26 itens
+2025-06-27 12:03:26.032 -03:00 [INF] ✅ BOM enviado: 26 itens (Projeto: Projeto Desconhecido)
+2025-06-27 12:03:26.033 -03:00 [INF] 📝 Atividade de documento: "Saved" - 0345385.iam
+2025-06-27 12:08:16.671 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:08:16.674 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:08:16.680 -03:00 [INF] Received HTTP response headers after 4.1867ms - 204
+2025-06-27 12:08:16.689 -03:00 [INF] End processing HTTP request after 18.1595ms - 204
+2025-06-27 12:13:16.694 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:13:16.697 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:13:16.706 -03:00 [INF] Received HTTP response headers after 6.2777ms - 204
+2025-06-27 12:13:16.714 -03:00 [INF] End processing HTTP request after 20.0165ms - 204
+2025-06-27 12:18:16.722 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:18:16.725 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:18:16.733 -03:00 [INF] Received HTTP response headers after 5.7486ms - 204
+2025-06-27 12:18:16.739 -03:00 [INF] End processing HTTP request after 17.1044ms - 204
+2025-06-27 12:23:16.747 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:23:16.749 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:23:16.756 -03:00 [INF] Received HTTP response headers after 4.2553ms - 204
+2025-06-27 12:23:16.759 -03:00 [INF] End processing HTTP request after 12.379ms - 204
+2025-06-27 12:28:16.768 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:28:16.771 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:28:16.779 -03:00 [INF] Received HTTP response headers after 6.0148ms - 204
+2025-06-27 12:28:16.816 -03:00 [INF] End processing HTTP request after 47.2417ms - 204
+2025-06-27 12:33:16.846 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:33:16.848 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:33:16.857 -03:00 [INF] Received HTTP response headers after 7.0802ms - 204
+2025-06-27 12:33:16.878 -03:00 [INF] End processing HTTP request after 32.1432ms - 204
+2025-06-27 12:38:16.880 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:38:16.882 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:38:16.888 -03:00 [INF] Received HTTP response headers after 4.4233ms - 204
+2025-06-27 12:38:16.920 -03:00 [INF] End processing HTTP request after 40.1759ms - 204
+2025-06-27 12:43:16.931 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:43:16.933 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:43:16.942 -03:00 [INF] Received HTTP response headers after 6.2923ms - 204
+2025-06-27 12:43:16.966 -03:00 [INF] End processing HTTP request after 35.1719ms - 204
+2025-06-27 12:48:16.975 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:48:16.978 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:48:16.985 -03:00 [INF] Received HTTP response headers after 4.7053ms - 204
+2025-06-27 12:48:16.988 -03:00 [INF] End processing HTTP request after 12.506ms - 204
+2025-06-27 12:53:16.993 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:53:16.995 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:53:16.998 -03:00 [INF] Received HTTP response headers after 2.4046ms - 204
+2025-06-27 12:53:17.000 -03:00 [INF] End processing HTTP request after 6.8337ms - 204
+2025-06-27 12:58:17.001 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:58:17.003 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 12:58:17.011 -03:00 [INF] Received HTTP response headers after 6.3313ms - 204
+2025-06-27 12:58:17.016 -03:00 [INF] End processing HTTP request after 14.2466ms - 204
+2025-06-27 13:03:17.017 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 13:03:17.019 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 13:03:17.027 -03:00 [INF] Received HTTP response headers after 5.3538ms - 204
+2025-06-27 13:03:17.044 -03:00 [INF] End processing HTTP request after 27.1958ms - 204
+2025-06-27 18:27:28.700 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 18:27:28.702 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 18:27:28.710 -03:00 [INF] Received HTTP response headers after 5.6902ms - 204
+2025-06-27 18:27:28.711 -03:00 [INF] End processing HTTP request after 11.2837ms - 204
+2025-06-27 18:32:28.718 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 18:32:28.720 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 18:32:28.724 -03:00 [INF] Received HTTP response headers after 2.7752ms - 204
+2025-06-27 18:32:28.725 -03:00 [INF] End processing HTTP request after 7.2803ms - 204
+2025-06-27 18:37:28.741 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 18:37:28.743 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 18:37:28.747 -03:00 [INF] Received HTTP response headers after 2.8273ms - 204
+2025-06-27 18:37:28.749 -03:00 [INF] End processing HTTP request after 8.2611ms - 204
+2025-06-27 18:42:28.752 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 18:42:28.754 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 18:42:28.758 -03:00 [INF] Received HTTP response headers after 3.102ms - 204
+2025-06-27 18:42:28.759 -03:00 [INF] End processing HTTP request after 7.1024ms - 204
+2025-06-27 18:47:28.765 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 18:47:28.767 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 18:47:28.771 -03:00 [INF] Received HTTP response headers after 2.5568ms - 204
+2025-06-27 18:47:28.772 -03:00 [INF] End processing HTTP request after 7.5401ms - 204
+2025-06-27 18:52:28.788 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 18:52:28.790 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 18:52:28.794 -03:00 [INF] Received HTTP response headers after 2.668ms - 204
+2025-06-27 18:52:28.795 -03:00 [INF] End processing HTTP request after 6.9528ms - 204
+2025-06-27 18:57:28.801 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 18:57:28.802 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 18:57:28.806 -03:00 [INF] Received HTTP response headers after 2.4919ms - 204
+2025-06-27 18:57:28.807 -03:00 [INF] End processing HTTP request after 6.6112ms - 204
+2025-06-27 19:02:28.811 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:02:28.813 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:02:28.817 -03:00 [INF] Received HTTP response headers after 2.7118ms - 204
+2025-06-27 19:02:28.818 -03:00 [INF] End processing HTTP request after 6.9242ms - 204
+2025-06-27 19:07:28.828 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:07:28.830 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:07:28.834 -03:00 [INF] Received HTTP response headers after 2.7037ms - 204
+2025-06-27 19:07:28.835 -03:00 [INF] End processing HTTP request after 7.1335ms - 204
+2025-06-27 19:12:28.836 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:12:28.837 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:12:28.841 -03:00 [INF] Received HTTP response headers after 3.0586ms - 204
+2025-06-27 19:12:28.843 -03:00 [INF] End processing HTTP request after 6.7678ms - 204
+2025-06-27 19:17:28.852 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:17:28.855 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:17:28.859 -03:00 [INF] Received HTTP response headers after 3.1697ms - 204
+2025-06-27 19:17:28.860 -03:00 [INF] End processing HTTP request after 7.6655ms - 204
+2025-06-27 19:22:28.863 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:22:28.865 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:22:28.869 -03:00 [INF] Received HTTP response headers after 3.5046ms - 204
+2025-06-27 19:22:28.870 -03:00 [INF] End processing HTTP request after 7.6455ms - 204
+2025-06-27 19:27:28.883 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:27:28.885 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:27:28.889 -03:00 [INF] Received HTTP response headers after 2.6253ms - 204
+2025-06-27 19:27:28.891 -03:00 [INF] End processing HTTP request after 7.8306ms - 204
+2025-06-27 19:32:28.905 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:32:28.907 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:32:28.911 -03:00 [INF] Received HTTP response headers after 3.2255ms - 204
+2025-06-27 19:32:28.913 -03:00 [INF] End processing HTTP request after 7.1983ms - 204
+2025-06-27 19:37:28.928 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:37:28.930 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:37:28.943 -03:00 [INF] Received HTTP response headers after 6.5533ms - 204
+2025-06-27 19:37:28.945 -03:00 [INF] End processing HTTP request after 17.0693ms - 204
+2025-06-27 19:42:28.960 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:42:28.962 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:42:28.967 -03:00 [INF] Received HTTP response headers after 3.2156ms - 204
+2025-06-27 19:42:28.967 -03:00 [INF] End processing HTTP request after 7.9085ms - 204
+2025-06-27 19:47:28.983 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:47:28.985 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:47:28.990 -03:00 [INF] Received HTTP response headers after 3.3926ms - 204
+2025-06-27 19:47:28.991 -03:00 [INF] End processing HTTP request after 8.3809ms - 204
+2025-06-27 19:52:29.004 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:52:29.006 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:52:29.018 -03:00 [INF] Received HTTP response headers after 11.2728ms - 204
+2025-06-27 19:52:29.020 -03:00 [INF] End processing HTTP request after 16.362ms - 204
+2025-06-27 19:57:29.022 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:57:29.024 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 19:57:29.027 -03:00 [INF] Received HTTP response headers after 2.4863ms - 204
+2025-06-27 19:57:29.029 -03:00 [INF] End processing HTTP request after 6.6033ms - 204
+2025-06-27 20:02:29.031 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 20:02:29.034 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 20:02:29.037 -03:00 [INF] Received HTTP response headers after 2.1358ms - 204
+2025-06-27 20:02:29.039 -03:00 [INF] End processing HTTP request after 7.4113ms - 204
+2025-06-27 20:07:29.044 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 20:07:29.047 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 20:07:29.062 -03:00 [INF] Received HTTP response headers after 13.8373ms - 204
+2025-06-27 20:07:29.063 -03:00 [INF] End processing HTTP request after 19.0266ms - 204
+2025-06-27 20:12:29.079 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 20:12:29.081 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 20:12:29.084 -03:00 [INF] Received HTTP response headers after 1.9053ms - 204
+2025-06-27 20:12:29.086 -03:00 [INF] End processing HTTP request after 6.7226ms - 204
+2025-06-27 20:17:29.097 -03:00 [INF] Start processing HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 20:17:29.099 -03:00 [INF] Sending HTTP request POST http://localhost:5047/api/session/heartbeat
+2025-06-27 20:17:29.102 -03:00 [INF] Received HTTP response headers after 2.1057ms - 204
+2025-06-27 20:17:29.109 -03:00 [INF] End processing HTTP request after 12.467ms - 204
