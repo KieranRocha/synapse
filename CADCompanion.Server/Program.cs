@@ -35,6 +35,10 @@ builder.Services.AddScoped<ISystemHealthService, SystemHealthService>(); // Desc
 // ✅ CONFIGURAÇÃO DE CONTROLLERS
 builder.Services.AddControllers();
 
+// Registrar novos serviços do sistema de peças
+builder.Services.AddScoped<IPartService, PartService>();
+
+builder.Services.AddScoped<BomVersioningService>();
 // ✅ CONFIGURAÇÃO DE CORS PARA DESENVOLVIMENTO
 builder.Services.AddCors(options =>
 {

@@ -111,11 +111,26 @@ public class ProjectSummaryDto
     public string? ContractNumber { get; set; }
     public string Status { get; set; } = "Active";
     public string? Client { get; set; }
+    
+    // ✅ CAMPOS ADICIONADOS PARA A TABELA
+    public string? ResponsibleEngineer { get; set; }
+    
     public decimal ProgressPercentage { get; set; }
     public int MachineCount { get; set; }
     public DateTime? LastActivity { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? EndDate { get; set; }
+    
+    // ✅ CAMPOS FINANCEIROS (para coluna Orçamento)
+    public decimal? BudgetValue { get; set; }
+    public decimal? ActualCost { get; set; }
+    
+    // ✅ CAMPOS DE HORAS (para coluna Horas)
+    public int EstimatedHours { get; set; }
+    public int ActualHours { get; set; }
+    
+    // ✅ CONTADOR DE BOMs (para coluna BOMs)
+    public int TotalBomVersions { get; set; }
 
     // Indicadores visuais para o frontend
     public bool IsOverdue => EndDate.HasValue && EndDate.Value < DateTime.UtcNow && Status != "Completed";
@@ -130,4 +145,13 @@ public class ProjectSummaryDto
         "Cancelled" => "red",
         _ => "gray"
     };
+    
+    // ✅ CAMPOS CALCULADOS (para indicadores visuais na tabela)
+    public decimal? BudgetVariance => BudgetValue.HasValue && ActualCost.HasValue
+        ? ActualCost.Value - BudgetValue.Value  // Diferença em valor absoluto
+        : null;
+
+    public int? HourVariance => EstimatedHours > 0
+        ? ActualHours - EstimatedHours  // Diferença em horas
+        : null;
 }

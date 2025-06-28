@@ -30,34 +30,50 @@ public class ProjectService : IProjectService
     }
 
     public async Task<List<ProjectSummaryDto>> GetAllProjectsAsync()
+{
+    try
     {
-        try
-        {
-            var projects = await _context.Projects
-                .OrderByDescending(p => p.LastActivity ?? p.CreatedAt)
-                .Select(p => new ProjectSummaryDto
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    ContractNumber = p.ContractNumber,
-                    Status = p.Status.ToString(),
-                    Client = p.Client,
-                    ProgressPercentage = p.ProgressPercentage,
-                    MachineCount = p.MachineCount,
-                    LastActivity = p.LastActivity,
-                    CreatedAt = p.CreatedAt
-                })
-                .ToListAsync();
+        var projects = await _context.Projects
+            .OrderByDescending(p => p.LastActivity ?? p.CreatedAt)
+            .Select(p => new ProjectSummaryDto
+            {
+                Id = p.Id,
+                Name = p.Name,
+                ContractNumber = p.ContractNumber,
+                Status = p.Status.ToString(),
+                Client = p.Client,
+                
+                // ✅ CAMPOS ADICIONADOS PARA A TABELA
+                ResponsibleEngineer = p.ResponsibleEngineer,
+                
+                ProgressPercentage = p.ProgressPercentage,
+                MachineCount = p.MachineCount,
+                LastActivity = p.LastActivity,
+                CreatedAt = p.CreatedAt,
+                EndDate = p.EndDate,
+                
+                // ✅ CAMPOS FINANCEIROS
+                BudgetValue = p.BudgetValue,
+                ActualCost = p.ActualCost,
+                
+                // ✅ CAMPOS DE HORAS
+                EstimatedHours = p.EstimatedHours,
+                ActualHours = p.ActualHours,
+                
+                // ✅ CONTADOR DE BOMs
+                TotalBomVersions = p.TotalBomVersions
+            })
+            .ToListAsync();
 
-            _logger.LogInformation("Retornados {Count} projetos", projects.Count);
-            return projects;
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Erro ao buscar projetos");
-            throw;
-        }
+        _logger.LogInformation("Retornados {Count} projetos com dados expandidos", projects.Count);
+        return projects;
     }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "Erro ao buscar projetos");
+        throw;
+    }
+}
 
     public async Task<ProjectDto?> GetProjectByIdAsync(int id)
     {
@@ -239,35 +255,50 @@ public class ProjectService : IProjectService
     }
 
     public async Task<List<ProjectSummaryDto>> GetActiveProjectsAsync()
+{
+    try
     {
-        try
-        {
-            var activeProjects = await _context.Projects
-                .Where(p => p.Status == ProjectStatus.Active || p.Status == ProjectStatus.Planning)
-                .OrderByDescending(p => p.LastActivity ?? p.CreatedAt)
-                .Select(p => new ProjectSummaryDto
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    ContractNumber = p.ContractNumber,
-                    Status = p.Status.ToString(),
-                    Client = p.Client,
-                    ProgressPercentage = p.ProgressPercentage,
-                    MachineCount = p.MachineCount,
-                    LastActivity = p.LastActivity,
-                    CreatedAt = p.CreatedAt,
-                    EndDate = p.EndDate // ✅ ADICIONADO
-                })
-                .ToListAsync();
+        var activeProjects = await _context.Projects
+            .Where(p => p.Status == ProjectStatus.Active || p.Status == ProjectStatus.Planning)
+            .OrderByDescending(p => p.LastActivity ?? p.CreatedAt)
+            .Select(p => new ProjectSummaryDto
+            {
+                Id = p.Id,
+                Name = p.Name,
+                ContractNumber = p.ContractNumber,
+                Status = p.Status.ToString(),
+                Client = p.Client,
+                
+                // ✅ CAMPOS ADICIONADOS
+                ResponsibleEngineer = p.ResponsibleEngineer,
+                
+                ProgressPercentage = p.ProgressPercentage,
+                MachineCount = p.MachineCount,
+                LastActivity = p.LastActivity,
+                CreatedAt = p.CreatedAt,
+                EndDate = p.EndDate,
+                
+                // ✅ CAMPOS FINANCEIROS
+                BudgetValue = p.BudgetValue,
+                ActualCost = p.ActualCost,
+                
+                // ✅ CAMPOS DE HORAS
+                EstimatedHours = p.EstimatedHours,
+                ActualHours = p.ActualHours,
+                
+                // ✅ CONTADOR DE BOMs
+                TotalBomVersions = p.TotalBomVersions
+            })
+            .ToListAsync();
 
-            return activeProjects;
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Erro ao buscar projetos ativos");
-            throw;
-        }
+        return activeProjects;
     }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "Erro ao buscar projetos ativos");
+        throw;
+    }
+}
 
     public async Task UpdateProjectActivityAsync(int projectId, DateTime activityTime)
     {

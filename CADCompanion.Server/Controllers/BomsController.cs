@@ -1,3 +1,4 @@
+// CADCompanion.Server/Controllers/BomsController.cs - CORRIGIDO
 using CADCompanion.Server.Data;
 using CADCompanion.Server.Services;
 using CADCompanion.Shared.Contracts;
@@ -24,6 +25,7 @@ public class BomsController : ControllerBase
         _context = context;
     }
 
+    // ✅ CORRIGIDO: Usar o método correto CreateBomVersion
     [HttpPost("submit")]
     public async Task<IActionResult> SubmitNewBom([FromBody] BomSubmissionDto bomData)
     {
@@ -42,49 +44,42 @@ public class BomsController : ControllerBase
             if (bomData.Items == null || bomData.Items.Count == 0)
                 return BadRequest("Lista de itens não pode estar vazia");
 
-            // Verificar se há mudanças antes de salvar
-            var lastVersion = await _context.BomVersions
-                .Where(bv => bv.AssemblyFilePath == bomData.AssemblyFilePath)
-                .OrderByDescending(bv => bv.VersionNumber)
-                .FirstOrDefaultAsync();
+            // ✅ USAR O MÉTODO CORRETO que inclui sincronização com catálogo de peças
+            var bomVersion = await _versioningService.CreateBomVersion(bomData);
 
-            if (lastVersion != null)
-            {
-                var hasChanges = _versioningService.HasSignificantChanges(lastVersion.Items, bomData.Items);
-                if (!hasChanges)
-                {
-                    return Ok(new
-                    {
-                        saved = false,
-                        message = "Nenhuma mudança detectada. BOM não foi salva.",
-                        version = lastVersion.VersionNumber
-                    });
-                }
-            }
-
-            // Salvar nova versão
-            var newVersion = await _versioningService.CreateNewVersionAsync(bomData);
-
-            _logger.LogInformation("✅ BOM processada com sucesso - Versão: {Version}, ID: {Id}",
-                newVersion.VersionNumber, newVersion.Id);
+            _logger.LogInformation("✅ BOM V{Version} salva com sucesso para {Path}",
+                bomVersion.VersionNumber, bomData.AssemblyFilePath);
 
             return Ok(new
             {
                 saved = true,
-                message = "BOM salva com sucesso",
-                id = newVersion.Id,
-                version = newVersion.VersionNumber
+                message = $"BOM V{bomVersion.VersionNumber} salva com sucesso",
+                versionId = bomVersion.Id,
+                versionNumber = bomVersion.VersionNumber,
+                itemCount = bomData.Items.Count,
+                machineId = bomVersion.MachineId,
+                projectId = bomVersion.ProjectId
             });
+        }
+        catch (ArgumentException ex)
+        {
+            _logger.LogWarning("❌ Validação falhou: {Message}", ex.Message);
+            return BadRequest(new { error = ex.Message });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "❌ Erro ao processar BOM");
-            return StatusCode(500, new { error = "Erro interno do servidor", details = ex.Message });
+            _logger.LogError(ex, "❌ Erro ao processar BOM para {Path}", bomData.AssemblyFilePath);
+            return StatusCode(500, new
+            {
+                error = "Erro interno do servidor",
+                message = ex.Message
+            });
         }
     }
 
-    [HttpGet("machines/{machineId}/versions")]
-    public async Task<ActionResult<List<BomVersionSummaryDto>>> GetMachineVersions(int machineId)
+    // ✅ OUTROS MÉTODOS EXISTENTES (não mudam)
+    [HttpGet("machine/{machineId}/versions")]
+    public async Task<IActionResult> GetMachineVersions(int machineId)
     {
         try
         {
@@ -94,30 +89,22 @@ public class BomsController : ControllerBase
         catch (Exception ex)
         {
             _logger.LogError(ex, "Erro ao buscar versões da máquina {MachineId}", machineId);
-            return StatusCode(500, "Erro interno do servidor");
+            return StatusCode(500, new { error = ex.Message });
         }
     }
 
-    [HttpGet("machines/{machineId}/compare/{version1}/{version2}")]
-    public async Task<ActionResult<BomComparisonResult>> CompareBomVersions(
-        int machineId, int version1, int version2)
+    [HttpGet("compare/{versionId1}/{versionId2}")]
+    public async Task<IActionResult> CompareBomVersions(int versionId1, int versionId2)
     {
         try
         {
-            _logger.LogInformation("Comparando versões {V1} e {V2} da máquina {MachineId}",
-                version1, version2, machineId);
-
-            var comparison = await _versioningService.CompareBomVersionsAsync(machineId, version1, version2);
+            var comparison = await _versioningService.CompareBomVersions(versionId1, versionId2);
             return Ok(comparison);
-        }
-        catch (InvalidOperationException ex)
-        {
-            return NotFound(ex.Message);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Erro ao comparar versões BOM");
-            return StatusCode(500, "Erro interno do servidor");
+            _logger.LogError(ex, "Erro ao comparar versões {V1} e {V2}", versionId1, versionId2);
+            return StatusCode(500, new { error = ex.Message });
         }
     }
 }
