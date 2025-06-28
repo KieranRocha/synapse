@@ -60,46 +60,69 @@ public class PartService : IPartService
     }
 
     // ✅ Gera próximo part number sequencial (INCREMENTA - usar só quando criar peça)
-    public async Task<string> GetNextPartNumber()
+   public async Task<string> GetNextPartNumber()
+{
+    const int maxRetries = 3;
+    int attempt = 0;
+
+    while (attempt < maxRetries)
     {
         using var transaction = await _context.Database.BeginTransactionAsync();
         
         try
         {
-            // Busca ou cria a sequência padrão
+            attempt++;
+            
+            // Busca ou cria a sequência padrão com lock
             var sequence = await _context.PartNumberSequences
                 .FirstOrDefaultAsync(s => s.SequenceType == "DEFAULT");
                 
             if (sequence == null)
             {
+                _logger.LogInformation("📝 Criando sequência de part number inicial");
+                
                 sequence = new PartNumberSequence
                 {
                     SequenceType = "DEFAULT",
-                    LastNumber = 0
+                    LastNumber = 0,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
                 };
                 _context.PartNumberSequences.Add(sequence);
+                await _context.SaveChangesAsync();
             }
             
-            // ✅ INCREMENTA atomicamente (só aqui!)
+            // Incrementa atomicamente
             sequence.LastNumber++;
             sequence.UpdatedAt = DateTime.UtcNow;
             
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();
             
-            // Formata com zeros à esquerda: 000001, 000002, etc.
+            // Formata com zeros à esquerda
             var partNumber = sequence.LastNumber.ToString("D6");
-            _logger.LogInformation("Part number gerado: {PartNumber}", partNumber);
+            _logger.LogDebug("✅ Part number gerado: {PartNumber} (tentativa {Attempt})", partNumber, attempt);
             
             return partNumber;
+        }
+        catch (Exception ex) when (attempt < maxRetries)
+        {
+            await transaction.RollbackAsync();
+            _logger.LogWarning(ex, "⚠️ Erro ao gerar part number (tentativa {Attempt}/{MaxRetries})", attempt, maxRetries);
+            
+            // Aguarda um tempo antes de tentar novamente
+            await Task.Delay(100 * attempt);
         }
         catch (Exception ex)
         {
             await transaction.RollbackAsync();
-            _logger.LogError(ex, "Erro ao gerar part number");
+            _logger.LogError(ex, "❌ Erro crítico ao gerar part number após {MaxRetries} tentativas", maxRetries);
             throw;
         }
     }
+    
+    throw new InvalidOperationException($"Falha ao gerar part number após {maxRetries} tentativas");
+}
 
     // ✅ Busca peça similar por descrição e propriedades
     public async Task<Part?> FindSimilarPart(string description, Dictionary<string, object>? properties = null)
@@ -204,56 +227,274 @@ public class PartService : IPartService
     }
 
     // ✅ Sincroniza todas as peças de um BOM
-    public async Task SyncPartsFromBom(int bomVersionId, List<BomItemDto> bomItems)
+   public async Task SyncPartsFromBom(int bomVersionId, List<BomItemDto> bomItems)
+{
+    _logger.LogInformation("🔧 Iniciando sincronização de {Count} itens do BOM {BomVersionId}", 
+        bomItems?.Count ?? 0, bomVersionId);
+
+    if (bomItems == null || bomItems.Count == 0)
     {
-        try
+        _logger.LogWarning("⚠️ Lista de BOM items está vazia, nada para sincronizar");
+        return;
+    }
+
+    try
+    {
+        // ✅ 1. VERIFICAR SE TABELAS EXISTEM
+        await EnsureTablesExist();
+
+        // ✅ 2. GARANTIR QUE SEQUÊNCIA DE PART NUMBER EXISTE
+        await EnsurePartNumberSequenceExists();
+
+        int successCount = 0;
+        int skipCount = 0;
+        int errorCount = 0;
+
+        foreach (var bomItem in bomItems)
         {
-            _logger.LogInformation("Sincronizando {Count} itens do BOM {BomVersionId}", 
-                bomItems.Count, bomVersionId);
-            
-            foreach (var bomItem in bomItems)
+            try
             {
-                // Cria ou atualiza a peça
-                var part = await CreateOrUpdatePart(bomItem);
-                
-                // Cria relacionamento BOM → Part
-                var usage = new BomPartUsage
+                // ✅ 3. VALIDAR ITEM
+                if (!IsValidBomItem(bomItem))
                 {
-                    BomVersionId = bomVersionId,
-                    PartNumber = part.PartNumber,
-                    Quantity = bomItem.Quantity,
-                    Level = bomItem.Level,
-                    ParentPartNumber = null, // Por enquanto null
-                    ReferenceDesignator = null, // Por enquanto null
-                    CreatedAt = DateTime.UtcNow
-                };
-                
-                // Verifica se já existe para evitar duplicatas
-                var existingUsage = await _context.BomPartUsages
-                    .FirstOrDefaultAsync(u => u.BomVersionId == bomVersionId && 
-                                            u.PartNumber == part.PartNumber);
-                                            
-                if (existingUsage == null)
-                {
-                    _context.BomPartUsages.Add(usage);
+                    skipCount++;
+                    continue;
                 }
-                else
-                {
-                    // Atualiza quantidade se mudou
-                    existingUsage.Quantity = bomItem.Quantity;
-                    existingUsage.Level = bomItem.Level;
-                }
+
+                // ✅ 4. PROCESSAR ITEM INDIVIDUAL COM RETRY
+                await ProcessBomItemSafely(bomVersionId, bomItem);
+                successCount++;
+
+                _logger.LogDebug("✅ Item processado: {PartNumber}", bomItem.PartNumber);
             }
-            
-            await _context.SaveChangesAsync();
-            _logger.LogInformation("Sincronização do BOM {BomVersionId} concluída", bomVersionId);
+            catch (Exception ex)
+            {
+                errorCount++;
+                _logger.LogWarning(ex, "⚠️ Erro ao processar item {PartNumber}, continuando...", 
+                    bomItem.PartNumber ?? "UNKNOWN");
+            }
         }
-        catch (Exception ex)
+
+        _logger.LogInformation("✅ Sincronização concluída. Sucesso: {Success}, Erros: {Errors}, Pulados: {Skipped}", 
+            successCount, errorCount, skipCount);
+    }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "❌ Erro crítico na sincronização do BOM {BomVersionId}", bomVersionId);
+        throw;
+    }
+}
+
+private async Task EnsureTablesExist()
+{
+    try
+    {
+        await _context.Parts.AnyAsync();
+        await _context.PartNumberSequences.AnyAsync();
+        await _context.BomPartUsages.AnyAsync();
+        _logger.LogDebug("✅ Todas as tabelas necessárias existem");
+    }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "❌ Tabelas de catálogo não existem. Execute: dotnet ef database update");
+        throw new InvalidOperationException("Tabelas de catálogo não encontradas. Execute as migrations.");
+    }
+}
+
+// ✅ MÉTODO AUXILIAR: Garantir sequência existe
+private async Task EnsurePartNumberSequenceExists()
+{
+    try
+    {
+        var sequence = await _context.PartNumberSequences
+            .FirstOrDefaultAsync(s => s.SequenceType == "DEFAULT");
+
+        if (sequence == null)
         {
-            _logger.LogError(ex, "Erro ao sincronizar peças do BOM {BomVersionId}", bomVersionId);
-            throw;
+            _logger.LogInformation("📝 Criando sequência de part number inicial");
+            
+            var newSequence = new PartNumberSequence
+            {
+                SequenceType = "DEFAULT",
+                LastNumber = 0,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            };
+
+            _context.PartNumberSequences.Add(newSequence);
+            await _context.SaveChangesAsync();
+            
+            _logger.LogInformation("✅ Sequência de part number criada");
         }
     }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "❌ Erro ao garantir sequência de part number");
+        throw;
+    }
+}
+
+private bool IsValidBomItem(BomItemDto item)
+{
+    if (string.IsNullOrWhiteSpace(item.PartNumber))
+    {
+        _logger.LogWarning("⚠️ Item com PartNumber vazio, pulando");
+        return false;
+    }
+
+    if (item.Quantity <= 0)
+    {
+        _logger.LogWarning("⚠️ Item {PartNumber} com quantidade inválida: {Quantity}", 
+            item.PartNumber, item.Quantity);
+        return false;
+    }
+
+    return true;
+}
+
+private async Task ProcessBomItemSafely(int bomVersionId, BomItemDto bomItem)
+{
+    // Normalizar dados
+    var normalizedItem = new BomItemDto
+    {
+        PartNumber = bomItem.PartNumber?.Trim(),
+        Description = bomItem.Description?.Trim() ?? "Sem descrição",
+        Quantity = bomItem.Quantity,
+        Level = bomItem.Level > 0 ? bomItem.Level : 1,
+        IsAssembly = bomItem.IsAssembly,
+        Material = bomItem.Material?.Trim(),
+        Weight = bomItem.Weight,
+        StockNumber = bomItem.StockNumber?.Trim()
+    };
+
+    // 1. Criar ou encontrar peça
+    var part = await CreateOrUpdatePartSafely(normalizedItem);
+    
+    // 2. Criar/atualizar relacionamento BOM -> Part
+    await CreateOrUpdateBomUsageSafely(bomVersionId, part.PartNumber, normalizedItem);
+}
+
+
+
+// ✅ NOVO: Versão segura do CreateOrUpdatePart
+private async Task<Part> CreateOrUpdatePartSafely(BomItemDto bomItem)
+{
+    try
+    {
+        // Buscar peça existente por part number exato primeiro
+        var existingPart = await _context.Parts
+            .FirstOrDefaultAsync(p => p.PartNumber == bomItem.PartNumber);
+
+        if (existingPart != null)
+        {
+            _logger.LogDebug("🔍 Peça existente encontrada: {PartNumber}", existingPart.PartNumber);
+            return existingPart;
+        }
+
+        // Se não encontrou, criar nova peça com part number sequencial
+        var newPartNumber = await GetNextPartNumber();
+        
+        var newPart = new Part
+        {
+            PartNumber = newPartNumber,
+            Description = bomItem.Description ?? "Sem descrição",
+            Material = bomItem.Material,
+            Weight = bomItem.Weight.HasValue ? (decimal)bomItem.Weight.Value : null,
+            Category = ClassifyPart(bomItem.Description ?? ""),
+            Status = PartStatus.AutoCreated,
+            IsStandardPart = IsStandardPart(bomItem.Description ?? ""),
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
+        };
+
+        _context.Parts.Add(newPart);
+        await _context.SaveChangesAsync();
+
+        _logger.LogDebug("✅ Nova peça criada: {OriginalPN} -> {NewPartNumber}", 
+            bomItem.PartNumber, newPart.PartNumber);
+
+        return newPart;
+    }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "❌ Erro ao criar/atualizar peça para {PartNumber}", bomItem.PartNumber);
+        throw;
+    }
+}
+private async Task CreateOrUpdateBomUsageSafely(int bomVersionId, string partNumber, BomItemDto bomItem)
+{
+    try
+    {
+        var existingUsage = await _context.BomPartUsages
+            .FirstOrDefaultAsync(u => u.BomVersionId == bomVersionId && 
+                                    u.PartNumber == partNumber);
+
+        if (existingUsage == null)
+        {
+            var newUsage = new BomPartUsage
+            {
+                BomVersionId = bomVersionId,
+                PartNumber = partNumber,
+                Quantity = bomItem.Quantity,
+                Level = bomItem.Level,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            _context.BomPartUsages.Add(newUsage);
+        }
+        else
+        {
+            existingUsage.Quantity = bomItem.Quantity;
+            existingUsage.Level = bomItem.Level;
+        }
+
+        await _context.SaveChangesAsync();
+    }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "❌ Erro ao criar/atualizar uso da peça {PartNumber}", partNumber);
+        throw;
+    }
+}
+
+// ✅ NOVO: Versão segura do CreateBomPartUsage
+private async Task CreateBomPartUsageSafely(int bomVersionId, Part part, BomItemDto bomItem)
+{
+    try
+    {
+        var usage = new BomPartUsage
+        {
+            BomVersionId = bomVersionId,
+            PartNumber = part.PartNumber,
+            Quantity = bomItem.Quantity,
+            Level = bomItem.Level,
+            ParentPartNumber = null, // Por enquanto null
+            ReferenceDesignator = null, // Por enquanto null
+            CreatedAt = DateTime.UtcNow
+        };
+        
+        // Verifica se já existe para evitar duplicatas
+        var existingUsage = await _context.BomPartUsages
+            .FirstOrDefaultAsync(u => u.BomVersionId == bomVersionId && 
+                                    u.PartNumber == part.PartNumber);
+                                    
+        if (existingUsage == null)
+        {
+            _context.BomPartUsages.Add(usage);
+        }
+        else
+        {
+            // Atualiza quantidade se mudou
+            existingUsage.Quantity = bomItem.Quantity;
+            existingUsage.Level = bomItem.Level;
+        }
+    }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "Erro ao criar BomPartUsage para {PartNumber}", part.PartNumber);
+        throw; // Re-propagar este erro pois é mais crítico
+    }
+}
 
     // ✅ Busca peças por status
     public async Task<List<Part>> GetPartsByStatus(PartStatus status)
@@ -323,3 +564,4 @@ public class PartService : IPartService
         return properties.Any() ? properties : null;
     }
 }
+

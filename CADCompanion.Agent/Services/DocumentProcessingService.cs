@@ -13,7 +13,7 @@ namespace CADCompanion.Agent.Services
     {
         Task ProcessDocumentSaveAsync(DocumentEvent documentEvent);
         Task ProcessDocumentChangeAsync(DocumentEvent documentEvent);
-        Task<BOMDataWithContext?> ExtractBOMWithContextAsync(string filePath, ProjectInfo? projectInfo, string? workSessionId = null);
+        Task<BOMDataWithContext?> ExtractBOMWithContextAsync(string filePath, ProjectInfo? projectInfo, string? workSessionId = null, string? machineIdFromEvent = null);
     }
 
     public class DocumentProcessingService : IDocumentProcessingService
@@ -107,7 +107,8 @@ namespace CADCompanion.Agent.Services
                 var bomData = await ExtractBOMWithContextAsync(
                     documentEvent.FilePath,
                     CreateProjectInfoFromEvent(documentEvent),
-                    null // workSessionId será obtido via documentEvent se necessário
+                    null, // workSessionId será obtido via documentEvent se necessário
+                    documentEvent.Engineer // Passa o MachineId do evento
                 );
 
                 if (bomData != null && bomData.BOMItems.Count > 0)
@@ -128,7 +129,7 @@ namespace CADCompanion.Agent.Services
             }
         }
 
-        public async Task<BOMDataWithContext?> ExtractBOMWithContextAsync(string filePath, ProjectInfo? projectInfo, string? workSessionId = null)
+        public async Task<BOMDataWithContext?> ExtractBOMWithContextAsync(string filePath, ProjectInfo? projectInfo, string? workSessionId = null, string? machineIdFromEvent = null)
         {
             try
             {
@@ -147,6 +148,37 @@ namespace CADCompanion.Agent.Services
                     return null;
                 }
 
+                // ✅ ADICIONAR: Obter MachineId do parâmetro se possível
+                string? machineId = machineIdFromEvent;
+                if (string.IsNullOrWhiteSpace(machineId))
+                {
+                    try
+                    {
+                        // Tenta obter o MachineId do arquivo usando o BOM extractor
+                        var inventorApp = _inventorConnection.GetInventorApp();
+                        if (inventorApp != null)
+                        {
+                            foreach (dynamic document in inventorApp.Documents)
+                            {
+                                if (document.FullFileName == filePath)
+                                {
+                                    var machineIdStr = _bomExtractor.GetCustomIProperty(document, "MachineDB_ID");
+                                    if (!string.IsNullOrWhiteSpace(machineIdStr))
+                                    {
+                                        machineId = machineIdStr;
+                                        _logger.LogDebug("✅ MachineId extraído do arquivo: {MachineId}", machineId);
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogWarning(ex, "⚠️ Erro ao extrair MachineId do arquivo: {FilePath}", filePath);
+                    }
+                }
+
                 // Cria objeto com contexto rico
                 var bomData = new BOMDataWithContext
                 {
@@ -159,6 +191,7 @@ namespace CADCompanion.Agent.Services
                     WorkSessionId = workSessionId,
                     Engineer = Environment.UserName,
                     BOMItems = bomItems,
+                    MachineId = machineId, // ✅ ADICIONADO: MachineId extraído do arquivo ou do evento
                     InventorVersion = _inventorConnection.InventorVersion ?? "Unknown"
                 };
 

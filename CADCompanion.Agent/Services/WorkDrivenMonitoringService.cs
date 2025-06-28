@@ -181,6 +181,9 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                         var machineInfo = await _apiService.GetMachineAsync(machineId);
                         if (machineInfo != null)
                         {
+                            // ✅ ADICIONAR: Armazenar MachineId no mapeamento
+                            _fileToMachineIdMap[e.FilePath] = machineId;
+                            
                             // Log detalhado das propriedades da máquina
                             Console.WriteLine("[DEBUG] Propriedades da máquina carregadas do banco:");
                             Console.WriteLine($"  Id: {machineInfo.Id}");
@@ -229,6 +232,13 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                         int machineId = int.Parse(machineIdStr);
                         var machineInfo = await _apiService.GetMachineAsync(machineId);
                         string machineName = machineInfo?.Name ?? $"ID: {machineId}";
+                        
+                        // ✅ ADICIONAR: Armazenar MachineId mesmo sem OP
+                        if (machineInfo != null)
+                        {
+                            _fileToMachineIdMap[e.FilePath] = machineId;
+                        }
+                        
                         if (timeSinceLastOpen > 3)
                         {
                             await _notificationService.ShowWarningAsync(
@@ -326,6 +336,8 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
             if (machineId > 0)
             {
                 _logger.LogInformation("Documento salvo pertence à Máquina ID: {MachineId}", machineId);
+                // ✅ Adiciona MachineId ao DocumentEvent para uso posterior
+                documentEvent.Engineer = machineId.ToString(); // Usar campo temporário para transportar MachineId
             }
             var projectInfo = DetectProjectFromFile(e.FilePath);
             if (projectInfo != null)
@@ -368,16 +380,13 @@ public class WorkDrivenMonitoringService : IWorkDrivenMonitoringService, IDispos
                         {
                             _logger.LogInformation($"BOM não mudou para {e.FileName}, não será exportado novamente.");
                         }
-                        return;
                     }
                 }
             }
-            // Para outros casos, segue fluxo normal
-            await _documentProcessingService.ProcessDocumentSaveAsync(documentEvent);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Erro ao processar save de documento: {e.FileName}");
+            _logger.LogError(ex, $"Erro ao processar save do documento: {e.FileName}");
         }
     }
 

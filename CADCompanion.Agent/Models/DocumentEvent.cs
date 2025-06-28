@@ -96,6 +96,9 @@ namespace CADCompanion.Agent.Models
         public string? Engineer { get; set; }
         public List<BomItem> BOMItems { get; set; } = new();
         
+        // ✅ ADICIONAR: MachineId para identificar a máquina corretamente
+        public string? MachineId { get; set; }
+        
         // Metadata agregado - ✅ FIX: Corrigido tipos double
         public int TotalItems => BOMItems.Count;
         public double TotalMass => BOMItems.Sum(b => 

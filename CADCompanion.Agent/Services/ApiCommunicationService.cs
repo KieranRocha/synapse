@@ -45,11 +45,14 @@ public class ApiCommunicationService : IApiCommunicationService
         {
             _logger.LogInformation("📤 Convertendo e enviando dados de BOM: {AssemblyFileName}", bomData.AssemblyFileName);
 
+            // ✅ Usar sempre o MachineId numérico se disponível
+            string machineId = !string.IsNullOrWhiteSpace(bomData.MachineId) ? bomData.MachineId : bomData.ExtractedBy;
+
             // Converte BOMDataWithContext para BomSubmissionDto
             var bomSubmission = new BomSubmissionDto
             {
                 ProjectId = bomData.ProjectId,
-                MachineId = bomData.ExtractedBy, // Usa ExtractedBy como MachineId
+                MachineId = machineId, // ✅ Usar MachineId correto
                 AssemblyFilePath = bomData.AssemblyFilePath,
                 ExtractedBy = bomData.ExtractedBy,
                 ExtractedAt = bomData.ExtractedAt,
